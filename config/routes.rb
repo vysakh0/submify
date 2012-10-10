@@ -1,5 +1,8 @@
 Youarel::Application.routes.draw do
 
+  match '/signup', to: 'users#new'
+  get "users/new"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
