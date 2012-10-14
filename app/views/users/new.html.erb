@@ -1,11 +1,12 @@
 <% provide(:title, 'Sign up') %>
 <div class="container-fluid" >
-<div class= "row-fluid">
-  <div class="span6">
+  <div class= "row-fluid">
+  <div class="span9 offset3">
     <h1> Sign up </h1>
 
     <%= form_for(@user) do |f| %>
 
+      <%= render 'shared/error_messages' %>
       <%= f.label :name %>
       <%= f.text_field :name %>
 
