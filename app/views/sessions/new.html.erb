@@ -4,7 +4,7 @@
   <div class="span9 offset3">
     
   <h3> Sign in </h3>
-    <%= form_for(:session, url: sessions_path) do |f| %>
+    <%= form_for :session, url: sessions_path, url: signin_url do |f| %>
       <%= f.label :email %>
       <%= f.text_field :email %>
 

@@ -18,13 +18,7 @@ body {
     border-color: #f00;
   }
 
-.dropdown-menu li {
-
-  &:hover{
-  -webkit-box-shadow:rgba(0, 0, 0, 0.121094) 0 3px 8px inset;
-   background-color:#E5E5E5;
-   box-shadow:rgba(0, 0, 0, 0.121094) 0 3px 8px inset;
-   color:#555555;
-   text-decoration:none;
-  }
+ul.nav li.dropdown:hover ul.dropdown-menu{
+  display:block;
 }
+

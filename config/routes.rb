@@ -4,7 +4,9 @@ Youarel::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   
   match '/signin', to: 'sessions#new'
+  #match '/signin', to: 'sessions#create'
   match '/signup', to: 'users#new'
+  #match '/signup', to: 'users#create'
   match '/signout', to: 'sessions#destroy', via: :delete
   # The priority is based upon order of creation:
   # first created -> highest priority.
