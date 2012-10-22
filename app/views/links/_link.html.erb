@@ -4,8 +4,8 @@
 <span class="timestamp"> Posted
   <%= time_ago_in_words(link.created_at) %> ago.
 </span>
-<% if current_user? (link.user) %>
-  <%= link_to "delete", link, method: :delete, data: { confirm: "You sure?" }, title: link.link_url %>
+<% if link.users.exists? current_user %>
+  <%= link_to "delete", link, method: :delete, data: { confirm: "You sure?" }, title: link.url_link %>
 <% end %>
 </li>
 

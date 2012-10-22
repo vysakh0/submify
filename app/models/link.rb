@@ -2,4 +2,9 @@ class Link < ActiveRecord::Base
   attr_accessible :url_link,:url_heading
   has_and_belongs_to_many :users
   default_scope order: 'links.created_at DESC'
+
+  def self.from_users_followed_by(user)
+    followed_user_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
+    joins(:users).where("user_id IN (#{followed_user_ids}) OR user_id = :user_id", user_id: user.id)
+  end
 end

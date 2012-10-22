@@ -3,7 +3,6 @@
 <head>
   <title><%= yield(:title) %></title>
   <%= stylesheet_link_tag    "application", media: "all" %>
-  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
 </head>
@@ -16,5 +15,7 @@
   <%= yield %>
   <%= debug(params) if Rails.env.development? %>
 </div>
+
+  <%= javascript_include_tag "application" %>
 </body>
 </html>

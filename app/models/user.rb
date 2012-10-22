@@ -14,7 +14,18 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation
 
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   has_and_belongs_to_many :links
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+
+  has_many :followed_users, through: :relationships, source: :followed
+
+  has_many :reverse_relationships, foreign_key: "followed_id", class_name: "Relationship", dependent: :destroy
+
+  has_many :followers, through: :reverse_relationships, source: :follower
+
   has_secure_password
 
   before_save { |user| user.email = email.downcase }
@@ -28,6 +39,23 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false} 
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
+
+  def feed
+    Link.from_users_followed_by(self)
+  end
+
+  def following?(other_user)
+    relationships.find_by_followed_id(other_user.id)
+  end
+
+  def follow!(other_user)
+    relationships.create!(followed_id: other_user.id)
+  end
+
+  def unfollow!(other_user)
+    relationships.find_by_followed_id(other_user.id).destroy
+  end
+
 
   private
 

@@ -4,10 +4,18 @@
     <aside class="span4">
       <section>
         <%= render 'shared/user_info' %>
+        </section>
+      <section>
+        <%= render 'shared/stats' %>
       </section>
       <section>
         <%= render 'shared/link_form' %>
       </section>
-    </aside>
+      </aside>
+      <div class="span8">
+        <h3> Feed </h3>
+        <%= render 'shared/feed' %>
+
+      </div>
   </div>  
 <% end %>

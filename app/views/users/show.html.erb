@@ -7,9 +7,12 @@
   <%= @user.name %>
 </h3>
 </section>
+<section>
+<%= render 'shared/stats' %>
+</section>
 </aside>
 <div class="span8">
-
+  <%= render 'follow_form' if signed_in? %>
   <% if @user.links.any? %>
     <h3> Activity ( <%= @user.links.count %> ) </h3>
 

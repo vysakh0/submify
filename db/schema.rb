@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121021114311) do
+ActiveRecord::Schema.define(:version => 20121022105920) do
 
   create_table "links", :force => true do |t|
     t.string   "url_link"
@@ -28,6 +28,19 @@ ActiveRecord::Schema.define(:version => 20121021114311) do
   end
 
   add_index "links_users", ["link_id", "user_id"], :name => "index_links_users_on_link_id_and_user_id"
+  add_index "links_users", ["link_id"], :name => "index_links_users_on_link_id"
+  add_index "links_users", ["user_id"], :name => "index_links_users_on_user_id"
+
+  create_table "relationships", :force => true do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"
+  add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id", :unique => true
+  add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -37,10 +50,12 @@ ActiveRecord::Schema.define(:version => 20121021114311) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin",           :default => false
+    t.string   "slug"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
+  add_index "users", ["slug"], :name => "index_users_on_slug", :unique => true
 
   create_table "users_links", :id => false, :force => true do |t|
     t.integer "user_id", :null => false

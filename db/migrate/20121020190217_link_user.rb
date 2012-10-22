@@ -8,7 +8,7 @@ class LinkUser < ActiveRecord::Migration
       t.integer :user_id, null: false
     end
 
-    add_index :links_users, [:link_id, :user_id]
+    add_index :links_users, [:link_id, :user_id], unique: true
   end
 
 end

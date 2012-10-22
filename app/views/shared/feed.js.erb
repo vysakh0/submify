@@ -1,0 +1,6 @@
+<% if @feed_items.all.count>0 %>
+$('ul').append('<%= escape_javascript(render(partial: 'shared/feed_item')) %>');
+$('a.hook').attr('href', '<%= feed_items_path(page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15) %>').show();
+<% else -%>
+$('a.hook').hide();
+<% end -%>

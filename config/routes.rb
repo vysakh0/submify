@@ -1,18 +1,26 @@
 Youarel::Application.routes.draw do
 
 
+  get "relationships/create"
+
+  get "relationships/destroy"
+
   root to: 'static_pages#home'
 
   match '/contact', to: 'static_pages#contact'
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
 
   resources :links, only: [:create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
-  
+
+  resources :relationships, only: [:create, :destroy]
+
   match '/signin', to: 'sessions#new'
-  #match '/signin', to: 'sessions#create'
   match '/signup', to: 'users#new'
-  #match '/signup', to: 'users#create'
   match '/signout', to: 'sessions#destroy', via: :delete
   # The priority is based upon order of creation:
   # first created -> highest priority.
