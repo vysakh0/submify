@@ -1,42 +1,28 @@
-@import "bootstrap";
-
-body{
+@import "bootstrap.css" ;
+body {
 
   padding-top: 60px;
 }
 
-$navbarCollapseWidth:             979px;
+#error_explanation {
 
-$navbarHeight:                    40px;
-$navbarBackground:darken($navbarBackgroundHighlight, 10%);
-$navbarBackgroundHighlight:#FEFEFE;
-$navbarBackgroundHighlightorder: darken($navbarBackground, 12%);
+  color: #f00;
 
-$navbarText:                      $gray;
-$navbarLinkColor:                 $gray;
-$navbarLinkColorHover:            $grayDark;
-$navbarLinkColorActive:           $gray;
-$navbarLinkBackgroundHover:       transparent;
-$navbarLinkBackgroundActive:      darken($navbarBackground, 5%);
+  ul{
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
 
-$navbarBrandColor:                $navbarLinkColor;
+  .field_with_errors input{ 
+    border-color: #f00;
+  }
 
-// Inverted navbar
-$navbarInverseBackground:                #111111;
-$navbarInverseBackgroundHighlight:       #222222;
-$navbarInverseBorder:                    #252525;
+ul.nav li.dropdown:hover ul.dropdown-menu{
+  display:block;
+}
 
-$navbarInverseText:                      $grayLight;
-$navbarInverseLinkColor:                 $grayLight;
-$navbarInverseLinkColorHover:            $white;
-$navbarInverseLinkColorActive:           $navbarInverseLinkColorHover;
-$navbarInverseLinkBackgroundHover:       transparent;
-$navbarInverseLinkBackgroundActive:      $navbarInverseBackground;
-
-$navbarInverseSearchBackground:          lighten($navbarInverseBackground, 25%);
-$navbarInverseSearchBackgroundFocus:     $white;
-$navbarInverseSearchBorder:              $navbarInverseBackground;
-$navbarInverseSearchPlaceholderColor:    #ccc;
-
-$navbarInverseBrandColor:                $navbarInverseLinkColor;
-
+.dropdown-menu li > a:hover{
+  background-image: none;
+  background-color: #bbc3bc;
+}

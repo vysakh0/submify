@@ -11,7 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121017085837) do
+ActiveRecord::Schema.define(:version => 20121021114311) do
+
+  create_table "links", :force => true do |t|
+    t.string   "url_link"
+    t.string   "url_heading"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "links", ["created_at"], :name => "index_links_on_created_at"
+
+  create_table "links_users", :id => false, :force => true do |t|
+    t.integer "link_id", :null => false
+    t.integer "user_id", :null => false
+  end
+
+  add_index "links_users", ["link_id", "user_id"], :name => "index_links_users_on_link_id_and_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -23,6 +39,14 @@ ActiveRecord::Schema.define(:version => 20121017085837) do
     t.boolean  "admin",           :default => false
   end
 
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
+
+  create_table "users_links", :id => false, :force => true do |t|
+    t.integer "user_id", :null => false
+    t.integer "link_id", :null => false
+  end
+
+  add_index "users_links", ["user_id", "link_id"], :name => "index_users_links_on_user_id_and_link_id"
 
 end

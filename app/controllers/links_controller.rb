@@ -1,0 +1,27 @@
+class LinksController < ApplicationController
+
+  before_filter :signed_in_user, only: [:create, :destroy]
+  before_filter :correct_user, only: :destroy
+
+  def create
+    @link = current_user.links.build(params[:link])
+    if @link.save
+      flash[:success] = "Link submitted"
+      redirect_to root_url
+    else
+      render 'static_pages/home'
+    end
+  end
+
+  def destroy
+    @link.destroy
+    redirect_to root_url unless current_user?(@link.user)
+  end
+
+  private
+    def correct_user
+      @link = current_user.links.find_by_id(params[:id])
+      redirect_to root_url if @link.nil?
+    end
+end
+

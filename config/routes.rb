@@ -1,6 +1,12 @@
 Youarel::Application.routes.draw do
 
+
+  root to: 'static_pages#home'
+
+  match '/contact', to: 'static_pages#contact'
   resources :users
+
+  resources :links, only: [:create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
   
   match '/signin', to: 'sessions#new'

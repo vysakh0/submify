@@ -34,6 +34,8 @@ GEM
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     bootstrap-sass (2.0.4.0)
+    bootstrap-will_paginate (0.0.6)
+      will_paginate
     builder (3.0.3)
     capybara (1.1.2)
       mime-types (>= 1.16)
@@ -142,6 +144,7 @@ GEM
     uglifier (1.2.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
+    will_paginate (3.0.3)
     xpath (0.1.4)
       nokogiri (~> 1.3)
 
@@ -152,6 +155,7 @@ DEPENDENCIES
   annotate (= 2.5.0)
   bcrypt-ruby (= 3.0.1)
   bootstrap-sass (= 2.0.4)
+  bootstrap-will_paginate (= 0.0.6)
   capybara (= 1.1.2)
   coffee-rails (= 3.2.2)
   factory_girl_rails (= 4.1.0)
@@ -162,3 +166,4 @@ DEPENDENCIES
   sass-rails (= 3.2.5)
   sqlite3 (= 1.3.5)
   uglifier (= 1.2.3)
+  will_paginate (= 3.0.3)

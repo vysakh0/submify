@@ -2,9 +2,11 @@
 
 <div class="row-fluid" >
   <div class="span9 offset3">
- 
+ <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %> 
   <h3> Sign in </h3>
-    <%= form_for :session, url: sessions_path do |f| %>
+    <%= form_for :session, url: sessions_path, url: signin_url do |f| %>
       <%= f.label :email %>
       <%= f.text_field :email %>
 
