@@ -15,5 +15,6 @@
 //= require bootstrap
 //= require_tree .
 //= require bootstrap-alert
+// require masonry/jquery.masonry
 
 

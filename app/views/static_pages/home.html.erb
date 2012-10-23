@@ -1,21 +1,15 @@
 <% provide(:title, 'Home') %>
+
+<%= javascript_include_tag('jquery.masonry.min') %>
 <% if signed_in? %>
-  <div class="row">
-    <aside class="span4">
-      <section>
-        <%= render 'shared/user_info' %>
-        </section>
-      <section>
-        <%= render 'shared/stats' %>
-      </section>
+  <div class="container-fluid">
+    <div class="span8">
+
       <section>
         <%= render 'shared/link_form' %>
-      </section>
-      </aside>
-      <div class="span8">
-        <h3> Feed </h3>
+        </section>
         <%= render 'shared/feed' %>
 
-      </div>
-  </div>  
+      </div>  
+    </div>
 <% end %>

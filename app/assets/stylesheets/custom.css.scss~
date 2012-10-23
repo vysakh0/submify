@@ -1,4 +1,3 @@
-
 @import "bootstrap.css" ;
 body {
 
@@ -66,7 +65,7 @@ aside {
   a{
     float: left;
     padding: 0 10px;
-    border-left: 1px solid $grayLighter;
+    border-left: 1px solid #999;
     color: gray;
     &:first-child{
       padding-left: 0;
@@ -95,10 +94,26 @@ aside {
   li {
     overflow: auto;
     padding: 10px 0;
-    border-top: 1px solid $grayLighter;
+    border-top: 1px solid #999;
     &:last-child {
-      border-bottom: 1px solid $grayLighter;
+      border-bottom: 1px solid #999;
     }
   }
+}
+
+.field{
+
+	input[type = "text"],
+	textarea{
+
+		width: 220px;
+		height: 20px;
+		padding: 3px;
+		border: 1px solid #999;
+	}
+}
+
+.stuff{
+border: 1px solid #999;
 }
 

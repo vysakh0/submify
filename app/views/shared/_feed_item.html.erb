@@ -1,4 +1,5 @@
-<div class="item>
+<div id='container'>
+<div class='item'>
 <li id="<%= feed_item.id %>
 <% feed_item.users.each do |user| %>
 
@@ -17,4 +18,7 @@
   <%= link_to "delete", feed_item, method: :delete, data: { confirm: "You sure?" }, title: feed_item.url_link %>
 <% end %>
 </li>
+
 </div>
+</div>
+
