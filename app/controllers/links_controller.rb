@@ -18,9 +18,8 @@ class LinksController < ApplicationController
 
   def destroy
     
-    current_user.unlink_with_user!(link1)
+    current_user.unlink_with_user!(@link)
     @link.destroy
-    current_user.unlink_with_user!(link1)
 
     redirect_to root_url unless @link.users.exists? current_user
   end
