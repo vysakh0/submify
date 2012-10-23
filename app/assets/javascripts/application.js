@@ -15,9 +15,5 @@
 //= require bootstrap
 //= require_tree .
 //= require bootstrap-alert
-// require masonry/jquery.masonry
-// require masonry/jquery.imageloaded.min
-// require masonry/jquery.infinitescroll.min
-// require masonry/modernizr-tranisitions
 
 
