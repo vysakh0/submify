@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121022105920) do
+ActiveRecord::Schema.define(:version => 20121023113407) do
+
+  create_table "link_users", :force => true do |t|
+    t.integer  "link_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "link_users", ["link_id", "user_id"], :name => "index_link_users_on_link_id_and_user_id", :unique => true
+  add_index "link_users", ["link_id"], :name => "index_link_users_on_link_id"
+  add_index "link_users", ["user_id"], :name => "index_link_users_on_user_id"
 
   create_table "links", :force => true do |t|
     t.string   "url_link"

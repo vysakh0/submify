@@ -5,7 +5,10 @@ class LinksController < ApplicationController
 
   def create
     @link = current_user.links.build(params[:link])
+
     if @link.save
+
+    current_user.link_with_user!(@link)
       flash[:success] = "Link submitted"
       redirect_to root_url
     else
@@ -14,7 +17,11 @@ class LinksController < ApplicationController
   end
 
   def destroy
+    
+    current_user.unlink_with_user!(link1)
     @link.destroy
+    current_user.unlink_with_user!(link1)
+
     redirect_to root_url unless @link.users.exists? current_user
   end
 

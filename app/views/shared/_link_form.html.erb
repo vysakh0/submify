@@ -1,6 +1,7 @@
 <%= form_for(@link) do |f| %>
   <div class="field">
     <%= f.text_area :url_link, placeholder: "Submit alink..." %>
+    <%= f.text_area :url_heading, placeholder: "Enter a heading" %>
   </div>
   <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
 <% end %>

@@ -10,4 +10,8 @@
  *
  *= require_self
  *= require_tree .
+ *= require 'masonry/fluid'
+ *= require 'masonry/infinitescroll'
+ *= require 'masonry/transitions'
+
  */

@@ -17,7 +17,9 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  has_and_belongs_to_many :links
+  has_many :link_users, foreign_key: "user_id", dependent: :destroy
+  has_many :links, through: :link_users, source: :link
+
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
 
   has_many :followed_users, through: :relationships, source: :followed
@@ -56,7 +58,13 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(other_user.id).destroy
   end
 
-
+  def link_with_user!(given_link)
+    link_users.create!(link_id: given_link.id)
+  end
+  
+  def unlink_with_user!(given_link)
+    link_users.find_by_link_id(given_link.id).destroy
+  end
   private
 
     def create_remember_token
