@@ -1,13 +1,21 @@
-<% provide(title, Home) %>
+<% provide(:title, 'Home') %>
+
+<%= javascript_include_tag('jquery.masonry.min') %>
 <% if signed_in? %>
-  <div class="row">
-    <aside class="span4">
+  <div class="container-fluid">
+    <div class="span8">
+
       <section>
-        <%= render 'shared/user_info' %>
-      </section>
-      <section>
-        <%= render 'shared/micropost_form' %>
-      </section>
-    </aside>
-  </div>  
-<% else %>
+        <%= render 'shared/link_form' %>
+        </section>
+        <% if @feed_items.any? %>
+	  <ol class="links">
+    	<%= render partial: 'shared/feed_item', collection: @feed_items %>
+  	</ol>
+  	<%= will_paginate @feed_items %>
+	<% end %>	
+
+
+      </div>  
+    </div>
+<% end %>
