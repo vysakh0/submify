@@ -5,6 +5,8 @@ class LinksController < ApplicationController
 
   def create
 
+    check_link(params[:link])
+
     @link = current_user.links.build(params[:link])
 
     if @link.save
@@ -31,5 +33,7 @@ class LinksController < ApplicationController
       redirect_to root_url if @link.nil?
     end
    
+    def check_link
+	
 end
 

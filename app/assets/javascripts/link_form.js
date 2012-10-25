@@ -1,41 +1,19 @@
-<% provide(:title, 'Home') %>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
 
-<% if signed_in? %>
-  <div class="container-fluid">
-    <div class="span8">
-
-      <section>
-        <%= render 'shared/link_form' %>
-        </section>
-        <% if @feed_items.any? %>
-	  <ol class="links">
-    	<%= render partial: 'shared/feed_item', collection: @feed_items %>
-  	</ol>
-  	<%= will_paginate @feed_items %>
-	<% end %>	
-
-
-      </div>  
-    </div>
-
-<% end %>
-
-
-<script type="text/javascript">
-
-$("#submit_button").hide();
- $('#complete_url').bind('input propertychange', function() {
+<script type='text/javascript'>
+ $("#submit_button").hide();
+$('#complete_url').bind('input propertychange', function() {
 
       $("#submit_button").show();
- 
- });
+     
+     });
 
 function UrlExists(ho){
 var myVariable = ho.replace(/\s+/g, '');
 
  if(!/^(https?|ftp):\/\//i.test(myVariable)) {
         myVariable = 'http://'+myVariable; // set both the value
- }
+         }
 
 if(/^([a-z]([a-z]|\d|\+|-|\.)*):(\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?((\[(|(v[\da-f]{1,}\.(([a-z]|\d|-|\.|_|~)|[!\$&'\(\)\*\+,;=]|:)+))\])|((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=])*)(:\d*)?)(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*|(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)|((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)|((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)){0})(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(myVariable)) {
 
@@ -54,6 +32,7 @@ $('#complete_url').keyup(function(evt){
 		
 	if(UrlExists(hi)){
 	$("#submit_button").prop("disabled",false);
+	alert("hi");
 	}
 	}
 	
@@ -67,7 +46,8 @@ $('#complete_url').bind('paste', function(e) {
 	if(h != null){
 		
 	if(UrlExists(h)){
-	$("#submit_button").prop("disabled",false);			
+	$("#submit_button").prop("disabled",false);
+	alert("hi");			
 	}
 	}
 	}, 500);
