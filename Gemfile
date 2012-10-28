@@ -7,6 +7,7 @@ gem 'bootstrap-will_paginate', '0.0.6'
 gem 'bootstrap-sass', '2.0.4'
 gem 'faker', '1.0.1'
 gem "friendly_id","~> 4.0.1"
+gem "pismo"
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do

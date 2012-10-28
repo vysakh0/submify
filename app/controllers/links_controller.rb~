@@ -1,3 +1,7 @@
+require 'open-uri'
+require 'uri'
+require 'pismo'
+
 class LinksController < ApplicationController
 
   before_filter :signed_in_user, only: [:create, :destroy]
@@ -5,8 +9,7 @@ class LinksController < ApplicationController
 
   def create
 
-    check_link(params[:link])
-
+    check_url
     @link = current_user.links.build(params[:link])
 
     if @link.save
@@ -22,7 +25,6 @@ class LinksController < ApplicationController
   def destroy
     
     current_user.unlink_with_user!(@link)
-    @link.destroy
 
     redirect_to root_url unless @link.users.exists? current_user
   end
@@ -33,7 +35,27 @@ class LinksController < ApplicationController
       redirect_to root_url if @link.nil?
     end
    
-    def check_link
-	
+    def check_url
+	given =params[:link][:url_link]
+	given = "http://" + given if /https?:\/\/[\S]+/.match(given) == nil
+       if page =  open(given).base_uri.to_s
+		doc = Pismo::Document.new(page)
+		link_title = doc.title
+		ur = URI(page)
+		host = ur.host
+		page.slice! ur.fragment if ur.fragment != nil
+		page.slice! ur.query if ur.query != nil
+		page.slice! "http://"
+		page.slice! "https://"
+		page.slice! "www"
+		params[:link][:url_link] = page
+		params[:link][:url_heading] = link_title
+		
+	else
+	       	flash[:error] = "Invalid url"
+        	render 'static_pages/home'
+
+	end
+   end   
 end
 

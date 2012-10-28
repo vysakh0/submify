@@ -1,6 +1,6 @@
 <%= form_for(@link) do |f| %>
   <div class="field">
-    <%= f.text_area :url_link, placeholder: "Submit alink...", id: "complete_url"%>
+    <%= f.text_area :url_link, placeholder: "Submit alink...(begin with http:// )", id: "complete_url"%>
     <%= f.submit "Submit", class: "btn btn-small", id: "submit_button"%>
   </div>
 <% end %>
@@ -17,17 +17,6 @@ $('#complete_url').bind('input propertychange', function() {
       }
 });
 
-function UrlExists(ho){
-var myVariable = ho.replace(/\s+/g, '');
-
-
-if(/^([a-z]([a-z]|\d|\+|-|\.)*):(\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?((\[(|(v[\da-f]{1,}\.(([a-z]|\d|-|\.|_|~)|[!\$&'\(\)\*\+,;=]|:)+))\])|((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=])*)(:\d*)?)(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*|(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)|((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)|((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)){0})(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(myVariable)) {
-
- return true;
-} else {
-  return false;
-}
-}
 
 $('#complete_url').keyup(function(evt){
 	if (evt.keyCode == 32) {
@@ -36,9 +25,9 @@ $('#complete_url').keyup(function(evt){
 	
 	if(hi != null){
 		
-	if(UrlExists(hi)){
+	
 	 $("#submit_button").show();
-	}
+	
 	}
 	
 	}
@@ -50,9 +39,7 @@ $('#complete_url').bind('paste', function(e) {
 	var h = $('#complete_url').val();
 	if(h != null){
 		
-	if(UrlExists(h)){
-	 $("#submit_button").show();
-	}
+		 $("#submit_button").show();
 	}
 	}, 500);
 	
