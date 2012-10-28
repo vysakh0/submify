@@ -9,16 +9,16 @@ class LinksController < ApplicationController
 
   def create
 
-    check_url
-    @link = current_user.links.build(params[:link])
+    
+    @link = current_user.links.build(params[:link]) if check_url
 
-    if @link.save
+    if @link!= nil && @link.save
 
     current_user.link_with_user!(@link)
       flash[:success] = "Link submitted"
       redirect_to root_url
     else
-      render 'static_pages/home'
+      redirect_to root_url
     end
   end
 
@@ -38,7 +38,8 @@ class LinksController < ApplicationController
     def check_url
 	given =params[:link][:url_link]
 	given = "http://" + given if /https?:\/\/[\S]+/.match(given) == nil
-       if page =  open(given).base_uri.to_s
+	begin       	
+		page =  open(given).base_uri.to_s
 		doc = Pismo::Document.new(page)
 		link_title = doc.title
 		ur = URI(page)
@@ -50,11 +51,10 @@ class LinksController < ApplicationController
 		page.slice! "www."
 		params[:link][:url_link] = page
 		params[:link][:url_heading] = link_title
-		
-	else
+		true
+	rescue
 	       	flash[:error] = "Invalid url"
-        	render 'static_pages/home'
-
+		false
 	end
    end   
 end
