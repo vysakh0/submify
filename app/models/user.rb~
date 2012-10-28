@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
   end
 
   def link_with_user!(given_link)
-	link_users.create!(link_id: given_link.id) unless link_users.find_by_link_id(given_link.id)
+    link_users.create!(link_id: given_link.id)
   end
   
   def unlink_with_user!(given_link)

@@ -9,17 +9,27 @@ class LinksController < ApplicationController
 
   def create
 
-    
-    @link = current_user.links.build(params[:link]) if check_url
+    if check_url
 
-    if @link!= nil && @link.save
+	if @link= Link.find_by_url_link(params[:link][:url_link])
+		current_user.link_with_user!(@link)
+      		flash[:success] = "Link submitted"
+	      	redirect_to root_url
+	else
+	    @link = current_user.links.build(params[:link]) 
+	
+	    if @link!= nil && @link.save
 
-    current_user.link_with_user!(@link)
-      flash[:success] = "Link submitted"
-      redirect_to root_url
-    else
-      redirect_to root_url
-    end
+	    current_user.link_with_user!(@link)
+	      flash[:success] = "Link submitted"
+	      redirect_to root_url
+	    else
+	  	redirect_to root_url
+     	    end
+	end
+     else
+	  redirect_to root_url
+     end
   end
 
   def destroy
