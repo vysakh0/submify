@@ -6,6 +6,5 @@ class CreateLinks < ActiveRecord::Migration
       t.timestamps
     end
     add_index :links, [:created_at]
-     add_index :links, :url_link, unique: true
   end
 end
