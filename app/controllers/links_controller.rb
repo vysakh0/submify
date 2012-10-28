@@ -49,6 +49,8 @@ class LinksController < ApplicationController
 		page.slice! "http://"
 		page.slice! "https://"
 		page.slice! "www."
+		page.slice! '#'
+		page.slice! page[-1] if page[-1]=='/'
 		params[:link][:url_link] = page
 		params[:link][:url_heading] = link_title
 		true
