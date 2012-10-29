@@ -1,22 +1,33 @@
+
 <div id='container'>
 <div class='item'>
-<li id="<%= feed_item.id %>
+
+<li id="<%= feed_item.id %>">
+
 <% feed_item.users.each do |user| %>
 
 <%= link_to gravatar_for(user), user %>
+
 <span class="user">
   <%= link_to user.name, user %>
 </span>
+
 <% end %>
 
-<span class="url_link"> <%= feed_item.url_link %> </span>
+<span class="url_link"><%= link_to feed_item.url_heading, 'http://' + feed_item.url_link %> </span>
+
+<% host = 'http://'+ feed_item.url_link %>
+
+<%= host.match(".+\:\/\/([^\/]+)")[1]  %> 
+
 <span class="timestamp">
   Posted <%= time_ago_in_words(feed_item.created_at) %> ago
 </span>
-<% if feed_item.users.exists? current_user %>
 
+<% if feed_item.users.exists? current_user %>
   <%= link_to "delete", feed_item, method: :delete, data: { confirm: "You sure?" }, title: feed_item.url_link %>
 <% end %>
+
 </li>
 
 </div>

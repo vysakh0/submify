@@ -119,6 +119,14 @@ width: 600px;
 
 #submit_button{
 	position: relative;
-	left: 600px;
+	left: 550px;
+}
+
+.link_url{
+	a{
+	text-decoration:  underline;
+	color: black;
+	
+	}
 }
 

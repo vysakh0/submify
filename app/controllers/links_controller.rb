@@ -1,7 +1,7 @@
 require 'open-uri'
 require 'uri'
 require 'pismo'
-
+require 'net/http'
 class LinksController < ApplicationController
 
   before_filter :signed_in_user, only: [:create, :destroy]
@@ -51,19 +51,29 @@ class LinksController < ApplicationController
 	begin       	
 		page =  open(given).base_uri.to_s
 		doc = Pismo::Document.new(page)
-		link_title = doc.title
-		ur = URI(page)
-		host = ur.host
-		page.slice! ur.fragment if ur.fragment != nil
-		page.slice! ur.query if ur.query != nil
+
 		page.slice! "http://"
 		page.slice! "https://"
 		page.slice! "www."
-		page.slice! '#'
+		
 		page.slice! page[-1] if page[-1]=='/'
 		params[:link][:url_link] = page
-		params[:link][:url_heading] = link_title
+		params[:link][:url_heading] = doc.title
 		true
+
+	rescue URI::InvalidURIError
+    		host = given.match(".+\:\/\/([^\/]+)")[1]
+    		path = given.partition(host)[2] || "/"
+    		doc = Net::HTTP.get host, path
+		given.slice! "http://"
+		given.slice! "https://"
+		given.slice! "www."
+
+		given.slice! given[-1] if given[-1] == '/'
+		params[:link][:url_link] = given
+		params[:link][:url_heading] = doc.match(/<title>(.*?)<\/title>/)[1]
+		true
+  	
 	rescue
 	       	flash[:error] = "Invalid url"
 		false
