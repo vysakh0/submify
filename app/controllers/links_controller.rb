@@ -64,7 +64,8 @@ class LinksController < ApplicationController
 	rescue URI::InvalidURIError
     		host = given.match(".+\:\/\/([^\/]+)")[1]
     		path = given.partition(host)[2] || "/"
-    		doc = Net::HTTP.get host, path
+		begin    		
+		doc = Net::HTTP.get host, path
 		given.slice! "http://"
 		given.slice! "https://"
 		given.slice! "www."
@@ -73,7 +74,10 @@ class LinksController < ApplicationController
 		params[:link][:url_link] = given
 		params[:link][:url_heading] = doc.match(/<title>(.*?)<\/title>/)[1]
 		true
-  	
+		rescue
+		flash[:error] = "Invalid url"
+		false
+		end	
 	rescue
 	       	flash[:error] = "Invalid url"
 		false

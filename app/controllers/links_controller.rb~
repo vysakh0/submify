@@ -2,7 +2,6 @@ require 'open-uri'
 require 'uri'
 require 'pismo'
 require 'net/http'
-require 'nokogiri'
 class LinksController < ApplicationController
 
   before_filter :signed_in_user, only: [:create, :destroy]
@@ -65,14 +64,14 @@ class LinksController < ApplicationController
 	rescue URI::InvalidURIError
     		host = given.match(".+\:\/\/([^\/]+)")[1]
     		path = given.partition(host)[2] || "/"
-    		doc = Nokogiri::HTML(Net::HTTP.get host, path)
+    		doc = Net::HTTP.get host, path
 		given.slice! "http://"
 		given.slice! "https://"
 		given.slice! "www."
 
 		given.slice! given[-1] if given[-1] == '/'
 		params[:link][:url_link] = given
-		params[:link][:url_heading] = doc.css('title').children
+		params[:link][:url_heading] = doc.match(/<title>(.*?)<\/title>/)[1]
 		true
   	
 	rescue
