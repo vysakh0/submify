@@ -1,7 +1,8 @@
 
 <script type='text/javascript'>
-
-
+$(document).ready(function(){
+        $('textarea').autosize({className:'mirroredText'});
+ });
  $("#submit_button").hide();
 
 $('#complete_url').bind('input propertychange', function() {

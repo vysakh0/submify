@@ -7,19 +7,20 @@
 <% feed_item.users.each do |user| %>
 
 <%= link_to gravatar_for(user), user %>
-
+<div class="user_link"
 <span class="user">
   <%= link_to user.name, user %>
 </span>
+</div>
 
 <% end %>
-<div class="link_url"
+<div class="link_url">
 <span class="url_link"><%= link_to feed_item.url_heading, 'http://' + feed_item.url_link %> </span>
 </div>
 <% host = 'http://'+ feed_item.url_link %>
-
-<%= host.match(".+\:\/\/([^\/]+)")[1]  %> 
-
+<div class="host_link">
+<%= link_to host.match(".+\:\/\/([^\/]+)")[1], host %> 
+</div>
 <span class="timestamp">
   Posted <%= time_ago_in_words(feed_item.created_at) %> ago
 </span>

@@ -106,16 +106,14 @@ aside {
 	input[type = "text"],
 	textarea{
 
-		width: 220px;
+		width: 600px;
 		height: 20px;
 		padding: 3px;
 		border: 1px solid #999;
 	}
 }
 
-#complete_url{
-width: 600px;
-}
+
 
 #submit_button{
 	position: relative;
@@ -124,9 +122,25 @@ width: 600px;
 
 .link_url{
 	a{
-	text-decoration:  underline;
-	color: black;
-	
+	font-size: medium;
+	font-family: arial, sans-serif;
 	}
 }
+.host_link{
+	a{
+	color: #009933;
+	font-family: arial, sans-serif;
+
+	}
+}
+.user_link{
+	a{
+	color: rgb(51, 51, 51);
+	font-size: 12.8px;
+	font-weight: bold;
+	font-family: "Helvetica Neue",Arial,sans-serif;
+	}
+}
+
+#content textarea, .mirroredText { line-height:20px; }
 
