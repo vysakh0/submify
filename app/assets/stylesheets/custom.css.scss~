@@ -122,8 +122,12 @@ aside {
 
 .link_url{
 	a{
+	color: #1122CC;
 	font-size: medium;
 	font-family: arial, sans-serif;
+	}
+	a:visited{
+	color: #0022CC;
 	}
 }
 .host_link{
