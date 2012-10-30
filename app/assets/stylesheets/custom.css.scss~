@@ -139,8 +139,9 @@ aside {
 	font-size: 12.8px;
 	font-weight: bold;
 	font-family: "Helvetica Neue",Arial,sans-serif;
+	text-shadow:rgba(0, 0, 0, 0.0078125) 0 0 1px;
 	}
 }
 
-#content textarea, .mirroredText { line-height:20px; }
+#complete_url textarea, .mirroredText { line-height:20px; }
 
