@@ -56,7 +56,6 @@ class LinksController < ApplicationController
 		page.slice! "https://"
 		page.slice! "www."
 		
-		page.slice! page[-1] if page[-1]=='/'
 		params[:link][:url_link] = page
 		params[:link][:url_heading] = doc.title
 		true
@@ -70,7 +69,6 @@ class LinksController < ApplicationController
 		given.slice! "https://"
 		given.slice! "www."
 
-		given.slice! given[-1] if given[-1] == '/'
 		params[:link][:url_link] = given
 		params[:link][:url_heading] = doc.match(/<title>(.*?)<\/title>/)[1]
 		true
