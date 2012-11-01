@@ -1,46 +1,25 @@
 
-<div id='container'>
-<div class='item'>
 
 <li id="<%= feed_item.id %>">
 
-<div class="timestamp">
-  <%= link_to time_ago_in_words(feed_item.created_at), feed_item  %>
-</div>
-
-<% feed_item.users.each do |user| %>
-<% if current_user == user || current_user.followed = user %>
-<%= link_to gravatar_for(user), user %>
-
-<div class="user_link">
-<span class="user">
-  <%= link_to user.name, user %>
-</span>
-</div>
-<% end %>
-<% end %>
 <% host = 'http://'+ feed_item.url_link %>
-<div class="link_url">
 
 <div class="host_link">
-<%= link_to host.match(".+\:\/\/([^\/]+)")[1], host %> 
+<%= link_to host.match(".+\:\/\/([^\/]+)")[1], host.match(".+\:\/\/([^\/]+)")[1] %> 
 </div>
+<div class="link_url">
 <span class="url_link"><%= link_to feed_item.url_heading, 'http://' + feed_item.url_link %> </span>
 </div>
-
+<div class= "row_of_linkstats"
 <div class="comments">
 <%= link_to feed_item.comments.count.to_s + ' comments', feed_item %>
 </div>
-<div class="delete_link">
-<% if feed_item.users.exists? current_user %>
-  <%= link_to "delete", feed_item, method: :delete, data: { confirm: "You sure?" }, title: feed_item.url_link %>
+<div class="user_image">
+<% feed_item.users.each do |user| %>
+<%= link_to gravatar_for(user, size: 30), user %>
 <% end %>
-
-
-
+</div>
 </div>
 </li>
 
-</div>
-</div>
 

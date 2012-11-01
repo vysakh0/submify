@@ -1,6 +1,15 @@
-
+<li>
+<% if comment %>
+<% if comment.user %>
+<%= link_to gravatar_for(comment.user), comment.user %>
+<div class="user_link">
+<span class="user">
+  <%= link_to comment.user.name, comment.user %>
+</span>
+</div>
+<% end %>
 <div class="comment_in_links">
-
 <%= comment.body %>
 </div>
-
+<% end %>
+</li>

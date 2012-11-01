@@ -19,3 +19,8 @@
 </div>
 
 
+<% if link.users.exists? current_user %>
+  <%= link_to "delete", link, method: :delete, data: { confirm: "You sure?" }, title: link.url_link %>
+<% end %>
+</li>
+

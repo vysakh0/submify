@@ -1,14 +1,15 @@
-
-<div class="comment_in_links">
-
-<%= comment.body %>
+<li>
+<% if comment %>
+<% if comment.user %>
+<%= link_to gravatar_for(comment.user), comment.user %>
+<div class="user_link">
+<span class="user">
+  <%= link_to comment.user.name, comment.user %>
+</span>
 </div>
 
-
-<%= form_for(@link) do |f| %>
-  <div class="field">
-    <%= f.text_area :url_link, placeholder: "Submit alink...(begin with http:// )", id: "complete_url"%>
-    <%= f.submit "Submit", class: "btn btn-small", id: "submit_button"%>
-  </div>
+<div class="comment_in_links">
+<%= comment.body %>
+</div>
 <% end %>
-
+</li>

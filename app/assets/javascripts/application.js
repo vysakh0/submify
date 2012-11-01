@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+//= require jquery.autosize.js
 //= require bootstrap-alert
-// require masonry/jquery.masonry
 
 

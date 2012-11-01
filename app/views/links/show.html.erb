@@ -1,4 +1,5 @@
-
+<% provide(:title, @link.url_link) %>
+ <div class="container-fluid">
 <h3>
 <% host = 'http://'+ @link.url_link %>
 <div class="link_url">
@@ -8,19 +9,19 @@
 </div>
 <span class="url_link"><%= link_to @link.url_heading, 'http://' + @link.url_link %> </span>
 </div>
-
-<div class="comments">
-<%= link_to @link.comments.count.to_s + ' comments', @link  %>
-</div>
 </h3>
+<div class="show_comment">
+<%= @link.comments.count.to_s%> comments
 
-<section>
-<%= render 'shared/comment_form' %>
-</section>
+</div>
 <div class="span8">
 <ol class="full_comments">
 <%= render @comments %>
 </ol>
 <%= will_paginate @comments %>
 
+<section>
+<%= render 'shared/comment_form' %>
+</section>
+</div>
 </div>

@@ -2,10 +2,10 @@
 <div class="timestamp">
   <%= link_to time_ago_in_words(link.created_at), link %>
 </div>
-<%= link_to gravatar_for(current_user), current_user %>
+<%= link_to gravatar_for(@user), @user %>
 <div class="user_link">
 <span class="user">
-  <%= link_to current_user.name, current_user %>
+  <%= link_to @user.name, @user %>
 </span>
 </div>
 <% host = 'http://'+ link.url_link %>

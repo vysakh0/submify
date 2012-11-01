@@ -2,9 +2,12 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
 <script type='text/javascript'>
 
+$(document).ready(function(){
+	$("#submit_button").hide();
 
- $("#submit_button").hide();
-
+    $('textarea#complete_url').autosize();  
+});
+ 
 $('#complete_url').bind('input propertychange', function() {
 
       if(this.value.length==0){

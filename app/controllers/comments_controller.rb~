@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
 
     if @comment.save
       flash[:notice] = "Commented"
-      redirect_to id: nil
+      redirect_to root_path
     else
       render :new
     end
