@@ -14,7 +14,7 @@ Youarel::Application.routes.draw do
     end
   end
 
-  resources :comments, only: [:create]
+  resources :comments, only: [:create, :destroy]
 
   resources :links, only: [:create, :destroy, :show]
   resources :sessions, only: [:new, :create, :destroy]

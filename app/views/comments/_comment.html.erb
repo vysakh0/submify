@@ -12,4 +12,8 @@
 <%= comment.body %>
 </div>
 <% end %>
+<% if comment.user== current_user %>
+  <%= link_to "delete", comment, method: :delete, data: { confirm: "You sure?" }, title: comment.body %>
+<% end %>
+
 </li>

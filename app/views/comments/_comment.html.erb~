@@ -7,9 +7,13 @@
   <%= link_to comment.user.name, comment.user %>
 </span>
 </div>
-
+<% end %>
 <div class="comment_in_links">
 <%= comment.body %>
 </div>
 <% end %>
+<% if comment.user== current_user %>
+  <%= link_to "delete", comment, method: :delete, data: { confirm: "You sure?" }, title: comment.body %>
+<% end %>
+
 </li>
