@@ -14,10 +14,16 @@ Youarel::Application.routes.draw do
     end
   end
 
-  resources :links, only: [:create, :destroy]
+  resources :comments, only: [:create]
+
+  resources :links, only: [:create, :destroy, :show]
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :relationships, only: [:create, :destroy]
+
+  resources :links do
+    resources :comments
+  end
 
   match '/signin', to: 'sessions#new'
   match '/signup', to: 'users#new'

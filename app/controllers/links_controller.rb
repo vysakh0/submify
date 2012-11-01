@@ -7,6 +7,11 @@ class LinksController < ApplicationController
   before_filter :signed_in_user, only: [:create, :destroy]
   before_filter :correct_user, only: :destroy
 
+ def show
+
+	@link = Link.find_by_id(params[:id])
+	@comments = @link.comments.paginate(page: params[:page])
+ end
   def create
 
     if check_url
@@ -81,5 +86,7 @@ class LinksController < ApplicationController
 		false
 	end
    end   
+
+  
 end
 

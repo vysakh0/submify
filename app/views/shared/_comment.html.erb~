@@ -1,0 +1,5 @@
+
+<div class="comment_in_links">
+
+<%= comment.body %>
+</div>

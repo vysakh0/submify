@@ -3,6 +3,8 @@ class Link < ActiveRecord::Base
   has_many :link_users, foreign_key: "link_id", dependent: :destroy
   has_many :users, through: :link_users, source: :user
 
+  has_many :comments, dependent: :destroy
+
   validates :url_link, uniqueness: true
   default_scope order: 'links.created_at DESC'
 

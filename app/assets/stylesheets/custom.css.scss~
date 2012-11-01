@@ -43,8 +43,12 @@ ul.nav li.dropdown:hover ul.dropdown-menu{
 }
 
 .timestamp {
-  color: #999;
-}
+	a{
+	  color: #999;
+	  float: right;
+	  font-size: 12px;
+	}
+	}
 
 .gravatar {
   float: left;
@@ -122,30 +126,38 @@ aside {
 
 .link_url{
 	a{
-	color: #1122CC;
-	font-size: medium;
+	color: #323232;
 	font-family: arial, sans-serif;
 	}
-	a:visited{
-	color: #0022CC;
-	}
+	
 }
 .host_link{
 	a{
-	color: #009933;
+	color: #7f7f7f;
 	font-family: arial, sans-serif;
-
+	float: right;
 	}
 }
 .user_link{
 	a{
-	color: #6C6C6A;
+	color: #4c4c4c;
 	font-size: 12.8px;
 	font-weight: bold;
 	font-family: "Helvetica Neue",Arial,sans-serif;
 	text-shadow: rgba(0, 0, 0, 0.0078125) 0 0 1px;
 	}
+	
 }
-
+.delete_link{
+	
+	
+	float: right;	
+	
+}
+.comments{
+	a{
+	
+	}
+}
 #complete_url textarea, .mirroredText { line-height:20px; }
 

@@ -1,7 +1,4 @@
 
-<% content_for :javascript_includes do %>
-  <%= javascript_include_tag "link_form.js" %>
-<% end %>
 <%= form_for(@link) do |f| %>
   <div class="field">
     <%= f.text_area :url_link, placeholder: "Submit alink...(begin with http:// )", id: "complete_url"%>

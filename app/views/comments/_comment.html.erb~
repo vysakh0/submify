@@ -1,0 +1,14 @@
+
+<div class="comment_in_links">
+
+<%= comment.body %>
+</div>
+
+
+<%= form_for(@link) do |f| %>
+  <div class="field">
+    <%= f.text_area :url_link, placeholder: "Submit alink...(begin with http:// )", id: "complete_url"%>
+    <%= f.submit "Submit", class: "btn btn-small", id: "submit_button"%>
+  </div>
+<% end %>
+
