@@ -16,5 +16,3 @@
 //= require_tree .
 //= require jquery.autosize.js
 //= require bootstrap-alert
-
-

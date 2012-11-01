@@ -2,7 +2,7 @@ namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
     make_users
-    make_links
+    
     make_relationships
   end
 end
@@ -24,13 +24,6 @@ def make_users
   end
 end
 
-def make_links
-  users = User.all(limit: 6)
-  50.times do
-    url_link = Faker::Lorem.sentence(5)
-    users.each { |user| user.links.create!(url_link: url_link) }
-  end
-end
 
 def make_relationships
   users = User.all

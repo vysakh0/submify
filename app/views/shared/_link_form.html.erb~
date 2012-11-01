@@ -5,4 +5,4 @@
     <%= f.submit "Submit", class: "btn btn-small", id: "submit_button"%>
   </div>
 <% end %>
-
+<% javascript 'link_form.js' %>
