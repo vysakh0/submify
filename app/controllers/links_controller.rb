@@ -1,7 +1,7 @@
 require 'open-uri'
 require 'uri'
-require 'pismo'
 require 'net/http'
+require 'nokogiri'
 class LinksController < ApplicationController
 
   before_filter :signed_in_user, only: [:create, :destroy]
@@ -54,28 +54,28 @@ class LinksController < ApplicationController
 	given =params[:link][:url_link]
 	given = "http://" + given if /https?:\/\/[\S]+/.match(given) == nil
 	begin       	
-		page =  open(given).base_uri.to_s
-		doc = Pismo::Document.new(page)
-
-		page.slice! "http://"
-		page.slice! "https://"
-		page.slice! "www."
-		
-		params[:link][:url_link] = page
-		params[:link][:url_heading] = doc.title
+		final_url =  open(given).base_uri.to_s
+		data = Nokogiri::HTML(open(final_url))
+		final_url.slice! "http://"
+		final_url.slice! "https://"
+		final_url.slice! "www."
+		final_url = final_url[0..-2] if final_url[-1]=='/'
+		params[:link][:url_link] = final_url
+		params[:link][:url_heading] = data.css('title')[0].content
 		true
 
 	rescue URI::InvalidURIError
     		host = given.match(".+\:\/\/([^\/]+)")[1]
     		path = given.partition(host)[2] || "/"
+		path= "/" if path== ""
 		begin    		
 		doc = Net::HTTP.get host, path
 		given.slice! "http://"
 		given.slice! "https://"
 		given.slice! "www."
-
+		data = Nokogiri::HTML(doc)	
 		params[:link][:url_link] = given
-		params[:link][:url_heading] = doc.match(/<title>(.*?)<\/title>/)[1]
+		params[:link][:url_heading] = doc.css('title')[0].content
 		true
 		rescue
 		flash[:error] = "Invalid url"
