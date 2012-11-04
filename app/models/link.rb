@@ -1,10 +1,22 @@
+# == Schema Information
+#
+# Table name: links
+#
+#  id          :integer          not null, primary key
+#  url_link    :string(255)
+#  url_heading :string(255)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  slug        :string(255)
+#
+
 class Link < ActiveRecord::Base
   
   attr_accessible :url_link,:url_heading
   has_many :link_users, foreign_key: "link_id", dependent: :destroy
   has_many :users, through: :link_users, source: :user
 
-  has_many :comments, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
 
   validates :url_link, uniqueness: true
   default_scope order: 'links.created_at DESC'

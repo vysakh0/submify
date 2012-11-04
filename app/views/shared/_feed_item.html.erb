@@ -13,7 +13,8 @@
 <div class= "row_of_linkstats">
 
 <div class="comments">
-<%= link_to feed_item.comments.count.to_s + ' comments', feed_item %>
+<%= link_to pluralize(feed_item.comments.count, "comment"), feed_item %>
+
 </div>
 <div class="user_image">
 <% feed_item.users.each do |user| %>

@@ -15,13 +15,15 @@ ActiveRecord::Schema.define(:version => 20121102175601) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
-    t.integer  "link_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
     t.integer  "user_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
-  add_index "comments", ["link_id", "created_at"], :name => "index_comments_on_link_id_and_created_at"
+  add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
+  add_index "comments", ["user_id", "commentable_id"], :name => "index_comments_on_user_id_and_commentable_id"
 
   create_table "link_users", :force => true do |t|
     t.integer  "link_id"

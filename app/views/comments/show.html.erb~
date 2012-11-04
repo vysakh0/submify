@@ -1,0 +1,37 @@
+<div class="container-fluid">
+
+<h3>
+<% if @comment %>
+<% if @comment.user %>
+<%= link_to gravatar_for(@comment.user), @comment.user %>
+<div class="user_link">
+<span class="user">
+  <%= link_to @comment.user.name, @comment.user %>
+</span>
+</div>
+<% end %>
+<div class="comment_in_links">
+<%= @comment.body %>
+</div>
+</h3>
+
+<%= link_to @comment.commentable.url_heading, 'http'+ @comment.commentable.url_link %>
+<% end %>
+<% if @comment.user== current_user %>
+  <%= link_to "delete", @comment, method: :delete, data: { confirm: "You sure?" }, title: @comment.body %>
+<% end %>
+
+<div class="show_comment">
+<%= pluralize(@comment.comments.count, "reply") %>
+</div>
+<div class="span8">
+<ol class="full_comments">
+<%= render partial: 'comments/comment', collection: @comment.comments %>
+</ol>
+<%= will_paginate @comments %>
+
+<section>
+<%= render 'shared/comment_form' %>
+</section>
+</div>
+</div>

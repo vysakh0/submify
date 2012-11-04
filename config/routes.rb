@@ -14,8 +14,6 @@ Youarel::Application.routes.draw do
     end
   end
 
-  resources :comments, only: [:create, :destroy]
-
   resources :link_users, only: [:create, :destroy]
   resources :links, only: [:create, :destroy, :show]
   resources :sessions, only: [:new, :create, :destroy]
@@ -23,7 +21,12 @@ Youarel::Application.routes.draw do
   resources :relationships, only: [:create, :destroy]
 
   resources :links do
-    resources :comments
+     resources :comments, only: [:create, :destroy, :show]
+  end
+
+  resources :comments do
+    
+     resources :comments, only: [:create, :destroy, :show]
   end
 
   match '/signin', to: 'sessions#new'

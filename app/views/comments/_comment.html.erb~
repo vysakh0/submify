@@ -15,5 +15,12 @@
 <% if comment.user== current_user %>
   <%= link_to "delete", comment, method: :delete, data: { confirm: "You sure?" }, title: comment.body %>
 <% end %>
+<div class= "row_of_linkstats">
+<% if !@comment %>
 
+<div class="comments">
+<%= link_to pluralize(comment.comments.count, "reply"), link_comment_path(@link) %>
+</div>
+
+<% end %>
 </li>

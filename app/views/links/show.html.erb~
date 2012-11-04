@@ -1,4 +1,4 @@
-<% provide(:title, @link.url_link) %>
+<% provide(:title, @link.url_heading) %>
  <div class="container-fluid">
 <h3>
 <% host = 'http://'+ @link.url_link %>
@@ -9,19 +9,34 @@
 </div>
 <span class="url_link"><%= link_to @link.url_heading, 'http://' + @link.url_link %> </span>
 </div>
-
-<div class="show_comment">
-<%= @link.comments.count.to_s%> comments
 </h3>
+<div class="show_comment">
+<%= pluralize(@link.comments.count, "comment") %>
 </div>
 <div class="span8">
 <ol class="full_comments">
-<%= render @comments %>
+<%= render partial: 'comments/comment', collection: @link.comments %>
 </ol>
 <%= will_paginate @comments %>
 
 <section>
-<%= render 'shared/comment_form' %>
+<%= form_for :comment, url: comments_path(link_id: @link) do |f| %>
+  <div class="field">
+    <%= f.text_area :body, placeholder: "Add a comment", id: "comment_text"%>
+    <%= f.submit "Submit", class: "btn btn-small"%>
+  </div>
+<% end %>
 </section>
 </div>
 </div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+<script>
+$(document).ready(function(){
+	$("#submit_button").hide();
+
+    $('textarea#comment_text').autosize();  
+});
+</script>
+
+
