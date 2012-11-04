@@ -1,4 +1,7 @@
 class Link < ActiveRecord::Base
+
+  extend FriendlyId
+  friendly_id :url_heading, use: :slugged
   
   attr_accessible :url_link,:url_heading
   has_many :link_users, foreign_key: "link_id", dependent: :destroy

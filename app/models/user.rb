@@ -27,7 +27,6 @@ class User < ActiveRecord::Base
   has_many :reverse_relationships, foreign_key: "followed_id", class_name: "Relationship", dependent: :destroy
 
   has_many :followers, through: :reverse_relationships, source: :follower
-  has_many :comments, dependent: :destroy
 
   has_secure_password
 
@@ -46,7 +45,6 @@ class User < ActiveRecord::Base
   def feed
     Link.from_users_followed_by(self)
   end
-  
 
   def following?(other_user)
     relationships.find_by_followed_id(other_user.id)
@@ -61,12 +59,13 @@ class User < ActiveRecord::Base
   end
 
   def link_with_user!(given_link)
-	link_users.create!(link_id: given_link.id) unless link_users.find_by_link_id(given_link.id)
+    link_users.create!(link_id: given_link.id)
   end
   
   def unlink_with_user!(given_link)
     link_users.find_by_link_id(given_link.id).destroy
   end
+
   private
 
     def create_remember_token

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121101091603) do
+ActiveRecord::Schema.define(:version => 20121102175601) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(:version => 20121101091603) do
     t.datetime "updated_at", :null => false
     t.integer  "user_id"
   end
+
+  add_index "comments", ["link_id", "created_at"], :name => "index_comments_on_link_id_and_created_at"
 
   create_table "link_users", :force => true do |t|
     t.integer  "link_id"
@@ -37,19 +39,12 @@ ActiveRecord::Schema.define(:version => 20121101091603) do
     t.string   "url_heading"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.string   "url_host"
+    t.string   "slug"
   end
 
   add_index "links", ["created_at"], :name => "index_links_on_created_at"
-
-  create_table "links_users", :id => false, :force => true do |t|
-    t.integer "link_id", :null => false
-    t.integer "user_id", :null => false
-  end
-
-  add_index "links_users", ["link_id", "user_id"], :name => "index_links_users_on_link_id_and_user_id"
-  add_index "links_users", ["link_id"], :name => "index_links_users_on_link_id"
-  add_index "links_users", ["user_id"], :name => "index_links_users_on_user_id"
+  add_index "links", ["slug"], :name => "index_links_on_slug", :unique => true
+  add_index "links", ["url_link"], :name => "index_links_on_url_link", :unique => true
 
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"
@@ -76,12 +71,5 @@ ActiveRecord::Schema.define(:version => 20121101091603) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
   add_index "users", ["slug"], :name => "index_users_on_slug", :unique => true
-
-  create_table "users_links", :id => false, :force => true do |t|
-    t.integer "user_id", :null => false
-    t.integer "link_id", :null => false
-  end
-
-  add_index "users_links", ["user_id", "link_id"], :name => "index_users_links_on_user_id_and_link_id"
 
 end

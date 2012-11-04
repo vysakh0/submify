@@ -16,6 +16,7 @@ Youarel::Application.routes.draw do
 
   resources :comments, only: [:create, :destroy]
 
+  resources :link_users, only: [:create, :destroy]
   resources :links, only: [:create, :destroy, :show]
   resources :sessions, only: [:new, :create, :destroy]
 

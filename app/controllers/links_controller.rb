@@ -6,13 +6,12 @@ class LinksController < ApplicationController
 
   before_filter :signed_in_user, only: [:create, :destroy]
   before_filter :correct_user, only: :destroy
-
  def show
 
 	@link = Link.find_by_id(params[:id])
 	@comments = @link.comments.paginate(page: params[:page])
  end
-  def create
+ def create
 
     if check_url
 
@@ -59,6 +58,7 @@ class LinksController < ApplicationController
 		final_url.slice! "http://"
 		final_url.slice! "https://"
 		final_url.slice! "www."
+		final_url.slice! '#'+ URI(final_url).fragment if URI(final_url).fragment
 		final_url = final_url[0..-2] if final_url[-1]=='/'
 		params[:link][:url_link] = final_url
 		params[:link][:url_heading] = data.css('title')[0].content
@@ -86,7 +86,6 @@ class LinksController < ApplicationController
 		false
 	end
    end   
-
   
 end
 

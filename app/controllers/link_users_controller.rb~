@@ -1,0 +1,21 @@
+class LinkUsersController < ApplicationController
+before_filter :signed_in_user
+
+  def create
+    @link = Link.find(params[:link_user][:link_id])
+    current_user.vote!(@link)
+    respond_to do |format|
+      format.html { redirect_to @link }
+      format.js
+    end
+  end
+
+  def destroy
+    @link = Link_User.find(params[:id]).link
+    current_user.unfollow!(@link)
+    respond_to do |format|
+      format.html { redirect_to @link }
+      format.js
+    end
+  end
+end

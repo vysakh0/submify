@@ -1,0 +1,12 @@
+<% if vote = current_user.link_users.find_by_link_id(@link.id) %>
+  <%= form_for like, :html => { :method => :delete },
+                     :remote => true do |f| %>
+    <%= f.submit "UnVote" %>
+  <% end %>
+<% else %>
+  <%= form_for current_user.links_users.build(link_id: link.id), :remote => true do |f| %>
+    <%= f.hidden_field :link_id %>
+    <%= f.hidden_field :user_id %>
+    <%= f.submit "Vote" %>
+  <% end %>
+<% end %>
