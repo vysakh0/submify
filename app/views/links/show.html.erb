@@ -1,5 +1,6 @@
 <% provide(:title, @link.url_heading) %>
  <div class="container-fluid">
+ <div class="link-<%= @link.id %>" >
 <h3>
 <% host = 'http://'+ @link.url_link %>
 <div class="link_url">
@@ -12,6 +13,10 @@
 </h3>
 <div class="show_comment">
 <%= pluralize(@link.comments.count, "comment") %>
+</div>
+
+<div class="vote">
+	<%= render 'votes/vote_button', votable: @link, type: @link.class.to_s %>
 </div>
 <div class="span8">
 <ol class="full_comments">
@@ -29,7 +34,7 @@
 </section>
 </div>
 </div>
-
+</div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
 <script>
 $(document).ready(function(){

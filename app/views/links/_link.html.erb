@@ -18,8 +18,8 @@
 <span class="url_link"><%= link_to link.url_heading, 'http://' + link.url_link %> </span>
 
 </div>
-<div id="vote">
-	<%= render 'votes/vote_button', votable: link %>
+<div class="vote">
+	<%= render 'votes/vote_button', votable: link, type: link.class.to_s %>
 </div>
 
 <% if link.users.exists? current_user %>

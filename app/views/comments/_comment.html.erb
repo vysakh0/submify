@@ -1,6 +1,9 @@
 <li>
+
+    <div class="comment-<%= comment.id %>">
 <% if comment %>
-<% if comment.user %>
+
+  <% if comment.user %>
 <%= link_to gravatar_for(comment.user), comment.user %>
 <div class="user_link">
 <span class="user">
@@ -15,6 +18,10 @@
 <% if comment.user== current_user %>
   <%= link_to "delete", comment, method: :delete, data: { confirm: "You sure?" }, title: comment.body %>
 <% end %>
+
+<div class="vote">
+	<%= render 'votes/vote_button', votable: comment, type: comment.class.to_s %>
+</div>
 <div class= "row_of_linkstats">
 <% if !@comment %>
 
@@ -23,4 +30,5 @@
 </div>
 
 <% end %>
+</div>
 </li>

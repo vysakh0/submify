@@ -1,5 +1,5 @@
 <div class="container-fluid">
-
+  <div class="comment-<%= @comment.id %>" >
 <h3>
 
 <% if @comment %>
@@ -28,6 +28,10 @@
 <div class="show_comment">
 <%= pluralize(@comment.comments.count, "reply") %>
 </div>
+
+<div class="vote">
+	<%= render 'votes/vote_button', votable: @comment, type: @comment.class.to_s %>
+</div>
 <div class="span8">
 <ol class="full_comments">
 <%= render partial: 'comments/comment', collection: @comment.comments %>
@@ -37,5 +41,6 @@
 <section>
 <%= render 'shared/comment_form' %>
 </section>
+</div>
 </div>
 </div>
