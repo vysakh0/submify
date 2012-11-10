@@ -1,0 +1,8 @@
+
+  <div id="vote_form">
+  <% if current_user.vote?(votable) %>
+    <%= render 'unfollow', votable: votable %>
+  <% else %>
+    <%= render 'follow', votable: votable %>
+  <% end %>
+  </div>

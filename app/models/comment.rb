@@ -20,4 +20,5 @@ class Comment < ActiveRecord::Base
   has_many :comments, as: :commentable
   validates :user_id, presence: true
  
+  has_many :votes, as: :votable, dependent: :destroy
 end

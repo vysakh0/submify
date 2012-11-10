@@ -1,10 +1,5 @@
 Youarel::Application.routes.draw do
 
-
-  get "relationships/create"
-
-  get "relationships/destroy"
-
   root to: 'static_pages#home'
 
   match '/contact', to: 'static_pages#contact'
@@ -13,6 +8,8 @@ Youarel::Application.routes.draw do
       get :following, :followers
     end
   end
+
+  resources :votes, only: [:create, :destroy]
 
   resources :link_users, only: [:create, :destroy]
   resources :links, only: [:create, :destroy, :show]

@@ -9,8 +9,6 @@
 #  updated_at      :datetime         not null
 #  password_digest :string(255)
 #  remember_token  :string(255)
-#  admin           :boolean          default(FALSE)
-#  slug            :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -21,6 +19,10 @@ class User < ActiveRecord::Base
 
   has_many :link_users, foreign_key: "user_id", dependent: :destroy
   has_many :links, through: :link_users, source: :link
+
+  has_many :comments, dependent: :destroy
+
+  has_many :votes, dependent: :destroy
 
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
 
@@ -52,6 +54,10 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(other_user.id)
   end
 
+  def vote?(votable)
+    votes.find_by_votable_id(votable.id)
+  end
+
   def follow!(other_user)
     relationships.create!(followed_id: other_user.id)
   end
@@ -67,7 +73,6 @@ class User < ActiveRecord::Base
   def unlink_with_user!(given_link)
     link_users.find_by_link_id(given_link.id).destroy
   end
-
   private
 
     def create_remember_token
