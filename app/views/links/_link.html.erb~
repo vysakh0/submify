@@ -1,4 +1,5 @@
-<li>
+<li >
+<div class= "link-<% link.id %>" >
 <div class="timestamp">
   <%= link_to time_ago_in_words(link.created_at), link %>
 </div>
@@ -24,5 +25,6 @@
 <% if link.users.exists? current_user %>
   <%= link_to "delete", link, method: :delete, data: { confirm: "You sure?" }, title: link.url_link %>
 <% end %>
+</div>
 </li>
 

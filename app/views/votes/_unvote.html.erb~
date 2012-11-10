@@ -1,0 +1,7 @@
+
+<%= form_for current_user.votes.build(votable_id: votable.id), remote: true do |f| %>
+		<%= f.hidden_field :votable_id %>
+		<%= f.hidden_field :user_id %>
+		<%= f.submit "vote" %>
+<% end %>
+

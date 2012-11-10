@@ -1,10 +1,11 @@
+
 <% if vote = current_user.votes.find_by_votable_id(votable.id) %>
 	<%= form_for vote, :html => { :method => :delete }, remote: true do |f| %>
 		<%= f.submit "Unvote" %>
 	<% end %>
 <% else %>
-	<%= form_for current_user.votes.build(votable_id: votable.id), remote: true do |f| %>
-		<%= f.hidden_field :votable_id %>
+	<%= form_for current_user.votes.build, url: votes_path(link_id: votable.id), remote: true do |f| %>
+		
 		<%= f.hidden_field :user_id %>
 		<%= f.submit "vote" %>
 	<% end %>

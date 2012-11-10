@@ -1,1 +1,2 @@
-$("#vote").html("<%= escape_javascript render('vote_button') %>");
+<% vid = @votable.class.to_s.downcase+'-'+ @votable.id.to_s %>
+$("<%=vid %> > #vote").html("<%= escape_javascript render('votes/vote_button', votable: @votable) %>");
