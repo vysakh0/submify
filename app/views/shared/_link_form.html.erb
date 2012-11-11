@@ -23,7 +23,15 @@ $('#complete_url').bind('input propertychange', function() {
       }
 });
 
-
+$('#new_link').submit(function(e)
+{
+   if($('#complete_url').val().length < 1)
+   {
+        alert("called");
+         e.preventDefault();
+    }    
+   
+});
 $('#complete_url').keyup(function(evt){
 	if (evt.keyCode == 32) {
 	 

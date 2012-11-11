@@ -24,14 +24,18 @@
 <% if @comment.user== current_user %>
   <%= link_to "delete", @comment, method: :delete, data: { confirm: "You sure?" }, title: @comment.body %>
 <% end %>
-
+<div class="span8">
+<div class="vote">
+	<%= render 'votes/vote_button', votable: @comment, type: @comment.class.to_s %>
+      </div>
+<div class="votes">
+<%= pluralize(@comment.votes.count, "vote")%>
+</div>
 <div class="show_comment">
 <%= pluralize(@comment.comments.count, "reply") %>
 </div>
-
-<div class="vote">
-	<%= render 'votes/vote_button', votable: @comment, type: @comment.class.to_s %>
 </div>
+
 <div class="span8">
 <ol class="full_comments">
 <%= render partial: 'comments/comment', collection: @comment.comments %>

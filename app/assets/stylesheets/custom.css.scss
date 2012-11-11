@@ -171,7 +171,20 @@ aside {
 	font-size: 12.8px;
 }
 .submits, .votes{
-        float:  right;
+        float:  left;
+        margin-right: 10px;
+         color: #8b9dc3;
+       a{
+         color: #8b9dc3;
+       }
+}
+.span8 > .submits, .span8 > .votes{
+        float:  left;
+        padding-right: 10px;
+         color: #8b9dc3;
+       a{
+         color: #8b9dc3;
+       }
 }
 .user_image{
   float: left;
@@ -182,6 +195,19 @@ aside {
 }
 .submit, .vote{
   float: right;
-  height: 5px;
   padding-left: 10px;
+}
+.butn, .butn:focus, .butn:active {
+    /* NOTE Remove all decorations */
+    border: none;
+    display: inline;
+    margin: 0em;
+    padding: 0em;
+    outline: none;
+    outline-offset: 0em;
+    /* NOTE Look like a link */
+    background: none;
+    color: #3b5998;
+    cursor: pointer;
+    font: inherit;
 }

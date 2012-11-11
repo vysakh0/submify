@@ -19,6 +19,9 @@
   <%= link_to "delete", comment, method: :delete, data: { confirm: "You sure?" }, title: comment.body %>
 <% end %>
 
+<div class="votes">
+<%= pluralize(comment.votes.count, "vote")%>
+</div>
 <div class="vote">
 	<%= render 'votes/vote_button', votable: comment, type: comment.class.to_s %>
 </div>
