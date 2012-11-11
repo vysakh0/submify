@@ -3,20 +3,14 @@
 <li>
 <div class="link-<%= feed_item.id %>">
 
-<% host = 'http://'+ feed_item.url_link %>
-
-<div class="host_link">
-<%= link_to host.match(".+\:\/\/([^\/]+)")[1], host.match(".+\:\/\/([^\/]+)")[1] %> 
+<div class="submit">
+  <%= render 'links/submit',link: feed_item %>
 </div>
-<div class="link_url">
-<span class="url_link"><%= link_to feed_item.url_heading, 'http://' + feed_item.url_link %> </span>
+  <div class="submit_row">
+<div class="submits">
+<%= link_to pluralize(feed_item.users.count, "submit"), feed_item %>
 </div>
-<div class= "row_of_linkstats">
 
-<div class="comments">
-<%= link_to pluralize(feed_item.comments.count, "comment"), feed_item %>
-
-</div>
 <div class="user_image">
 <% feed_item.users.each do |user| %>
 <%= link_to gravatar_for(user, size: 30), user %>
@@ -24,14 +18,23 @@
 
 </div>
 </div>
+<% host = 'http://'+ feed_item.url_link %>
 
-<div class="vote">
-	<%= render 'votes/vote_button', votable: feed_item, type: feed_item.class.to_s %>
-      </div>
-
-<div class="submit">
-  <%= render 'links/submit',link: feed_item %>
+<div class="link_url">
+<span class="url_link"><%= link_to feed_item.url_heading, 'http://' + feed_item.url_link %> </span>
 </div>
 
+<div class="host_link">
+<%= link_to host.match(".+\:\/\/([^\/]+)")[1], host.match(".+\:\/\/([^\/]+)")[1] %> 
+</div>
+<div class="vote">
+	<%= render 'votes/vote_button', votable: feed_item, type: feed_item.class.to_s %>
+</div>
+<div class="votes">
+
+<%= link_to pluralize(feed_item.votes.count, "vote"), feed_item %>
+</div>
+
+<%= link_to pluralize(feed_item.comments.count, "comment"), feed_item %>
 </div>
 </li>

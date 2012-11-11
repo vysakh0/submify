@@ -5,7 +5,7 @@
 		<%= f.submit "Unsubmit" %>
 	<% end %>
 <% else %>
-	<%= form_for :link, url: submit_link_path, remote: true do |f| %>
+	<%= form_for :link, url: submit_link_path(link), remote: true do |f| %>
                 <%= f.hidden_field :id, value: link.id %>
 		<%= f.submit "submit" %>
 	<% end %>

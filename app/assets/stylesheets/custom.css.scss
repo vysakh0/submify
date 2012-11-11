@@ -133,7 +133,6 @@ aside {
 	
 }
 .host_link{
-	float: right;
 	color: #7f7f7f;
 	a{
 	color: #7f7f7f;
@@ -152,15 +151,8 @@ aside {
 }
 .delete_link{
 	
-	
 	left: 550px;
 	
-}
-.comments{
-	a{
-	float: right;
-	
-	}
 }
 #complete_url textarea, .mirroredText { line-height:20px; }
 .full_comments {
@@ -178,6 +170,18 @@ aside {
 	font-family: arial, sans-serif;
 	font-size: 12.8px;
 }
-.row_of_linkstats{
-	height: 20px;
+.submits, .votes{
+        float:  right;
+}
+.user_image{
+  float: left;
+  margin-right: 300px;
+}
+.submit_row{
+  overflow: hidden;
+}
+.submit, .vote{
+  float: right;
+  height: 5px;
+  padding-left: 10px;
 }
