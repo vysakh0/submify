@@ -4,19 +4,32 @@ require 'net/http'
 require 'nokogiri'
 class LinksController < ApplicationController
 
-  before_filter :signed_in_user, only: [:create, :destroy]
-  before_filter :correct_user, only: :destroy
+  before_filter :signed_in_user, only: [:create, :destroy, :submit]
+  before_filter :correct_user, only: [:destroy]
  def show
 
 	@link = Link.find_by_id(params[:id])
 	@comments = @link.comments.paginate(page: params[:page])
  end
+
+ def submit
+  id = params[:link][:id]
+   if id
+    @link = Link.find_by_id(id)
+    current_user.link_with_user!(@link)
+    respond_to do |format|
+      format.js
+    end
+   end
+ end
+
  def create
 
     if check_url
 
 	if @link= Link.find_by_url_link(params[:link][:url_link])
-		current_user.link_with_user!(@link)
+		
+               current_user.link_with_user!(@link) if ! @link.users.exists? current_user
       		flash[:success] = "Link submitted"
 	      	redirect_to root_url
 	else
@@ -31,22 +44,28 @@ class LinksController < ApplicationController
 	  	redirect_to root_url
      	    end
 	end
-     else
+    else
 	  redirect_to root_url
-     end
-  end
+    end
+ end
 
   def destroy
     
     current_user.unlink_with_user!(@link)
+    respond_to do |format|
+      format.js
+    end
 
-    redirect_to root_url unless @link.users.exists? current_user
   end
 
   private
     def correct_user
-      @link = current_user.links.find_by_id(params[:id])
-      redirect_to root_url if @link.nil?
+      if params[:id] != nil
+        id = params[:id] 
+      else
+      id = params[:link][:id]
+      end
+      @link = current_user.links.find_by_id(id)
     end
    
     def check_url

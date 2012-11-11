@@ -21,10 +21,8 @@
 <div class="vote">
 	<%= render 'votes/vote_button', votable: link, type: link.class.to_s %>
 </div>
-
-<% if link.users.exists? current_user %>
-  <%= link_to "delete", link, method: :delete, data: { confirm: "You sure?" }, title: link.url_link %>
-<% end %>
+<div class="submit">
+  <%= render 'links/submit',link: link %>
+</div> 
 </div>
 </li>
-

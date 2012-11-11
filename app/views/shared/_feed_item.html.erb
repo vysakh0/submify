@@ -27,6 +27,11 @@
 
 <div class="vote">
 	<%= render 'votes/vote_button', votable: feed_item, type: feed_item.class.to_s %>
+      </div>
+
+<div class="submit">
+  <%= render 'links/submit',link: feed_item %>
 </div>
+
 </div>
 </li>

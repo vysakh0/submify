@@ -12,7 +12,7 @@ Youarel::Application.routes.draw do
   resources :votes, only: [:create, :destroy]
 
   resources :link_users, only: [:create, :destroy]
-  resources :links, only: [:create, :destroy, :show]
+  resources :links, only: [:create, :destroy, :show, :submit]
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :relationships, only: [:create, :destroy]
@@ -21,6 +21,11 @@ Youarel::Application.routes.draw do
      resources :comments, only: [:create, :destroy, :show]
   end
 
+  resources :links do
+    member do
+      post 'submit'
+    end
+  end
   resources :comments do
     
      resources :comments, only: [:create, :destroy, :show]

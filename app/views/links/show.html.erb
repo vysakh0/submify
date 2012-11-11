@@ -18,6 +18,9 @@
 <div class="vote">
 	<%= render 'votes/vote_button', votable: @link, type: @link.class.to_s %>
 </div>
+<div class="submit">
+  <%= render 'links/submit',link: @link %>
+</div> 
 <div class="span8">
 <ol class="full_comments">
 <%= render partial: 'comments/comment', collection: @link.comments %>

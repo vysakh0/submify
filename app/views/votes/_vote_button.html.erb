@@ -5,7 +5,6 @@
 	<% end %>
 <% else %>
 	<%= form_for current_user.votes.build, url: votes_path(votable_id: votable.id, votable_type: type), remote: true do |f| %>
-		
 		<%= f.hidden_field :user_id %>
 		<%= f.submit "vote" %>
 	<% end %>
