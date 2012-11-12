@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  has_one :authorization
   has_many :link_users, foreign_key: "user_id", dependent: :destroy
   has_many :links, through: :link_users, source: :link
 

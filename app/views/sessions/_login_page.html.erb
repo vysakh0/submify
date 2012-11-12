@@ -1,7 +1,7 @@
 <% provide(:title, "Sign in") %>
 
 <div class="row-fluid" >
-  <div class="span9 offset3">
+ <%= link_to "Connect With Facebook", "/auth/facebook" %> 
  
   <h3> Sign in </h3>
     <%= form_for :session, url: sessions_path do |f| %>

@@ -9,7 +9,9 @@ gem 'faker', '1.0.1'
 gem "friendly_id","~> 4.0.1"
 gem "pismo"
 gem 'tire'
-gem 'foreman'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'oauth2'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do
@@ -38,9 +40,9 @@ group :test do
         gem 'factory_girl_rails', '4.1.0'
 end
 
-#group :production do
-#	gem 'pg', '0.12.0'
-#end
+group :production do
+	gem 'pg', '0.12.0'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -1,10 +1,9 @@
 Youarel::Application.routes.draw do
 
-  root to: 'static_pages#home'
-  
   resources :users do
     collection { get :search }
   end
+
   match '/contact', to: 'static_pages#contact'
   resources :users do
     member do
@@ -34,9 +33,11 @@ Youarel::Application.routes.draw do
      resources :comments, only: [:create, :destroy, :show]
   end
 
-  match '/signin', to: 'sessions#new'
+  match '/auth/:provider/callback', to: 'sessions#new'
+  match '/auth/failure', to: 'sessions#failure'
   match '/signup', to: 'users#new'
   match '/signout', to: 'sessions#destroy', via: :delete
+  root to: 'static_pages#home'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
