@@ -1,7 +1,10 @@
 Youarel::Application.routes.draw do
 
   root to: 'static_pages#home'
-
+  
+  resources :users do
+    collection { get :search }
+  end
   match '/contact', to: 'static_pages#contact'
   resources :users do
     member do

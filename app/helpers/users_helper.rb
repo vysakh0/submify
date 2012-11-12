@@ -1,5 +1,14 @@
 module UsersHelper
 
+  def render_users(users)
+    if user.to_a.size > 0
+      render(users)
+    else
+      content_tag(:div, "No users were found", class: 'msg')
+    end
+  end
+
+
   def gravatar_for(user)
 
     gravatar_id = Digest::MD5::hexdigest(user.email.downcase)

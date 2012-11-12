@@ -6,6 +6,11 @@
    <div class="container-fluid">
      <div class="nav-collapse">
        <%=link_to "youarel", root_path, class: "brand" %>
+
+<%= form_tag search_users_path, :method => 'get', class:"navbar-search " do %>
+
+  <%= text_field_tag :q, params[:q],class:"search-query", placeholder:"Search" %>
+<% end %>
        <nav>
        <ul class="nav pull-right">
         <% if signed_in? %>

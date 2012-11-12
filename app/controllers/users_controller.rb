@@ -8,6 +8,17 @@ class UsersController < ApplicationController
 
   def index
     @users = User.paginate(page: params[:page])
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @users }
+    end
+  end
+    
+  def search
+    @users = User.search params[:q]
+
+    render :action => "index"
   end
 
   def create
