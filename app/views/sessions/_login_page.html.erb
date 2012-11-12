@@ -1,8 +1,7 @@
-<% provide(:title, "Sign in") %>
 
 <div class="row-fluid" >
- <%= link_to "Connect With Facebook", "/auth/facebook" %> 
- 
+<div id="fb-root"></div>
+    <a href="javascript:login();"><img src="http://static.ak.fbcdn.net/images/fbconnect/login-buttons/connect_light_medium_long.gif"/></a>
   <h3> Sign in </h3>
     <%= form_for :session, url: sessions_path do |f| %>
       <%= f.label :email %>
@@ -16,3 +15,42 @@
     <p> New user? <%= link_to "Sign up now", signup_path %> </p>
   </div>
 </div>
+<script src="//connect.facebook.net/en_US/all.js"></script>
+     <script>
+
+        window.fbAsyncInit = function()
+        {
+            FB.init
+            (
+                {
+                    appId   : "295241533825642",
+                    status  : true,
+                    cookie  : true,
+                    oauth   : true
+                }
+            );
+        };
+
+        function login()
+        {
+            FB.login
+            (
+                function( response )
+                {
+                    if ( response.authResponse )
+                    {
+                        FB.api
+                        (
+                            "/me",
+                            function( response )
+                            {
+                                document.getElementById( "profile_name" ).innerHTML = response.name;
+                                document.getElementById( "profile_pic" ).src = "http://graph.facebook.com/" + response.id + "/picture";
+                            }
+                        )
+                    }
+                }
+            );
+        }
+
+     </script>
