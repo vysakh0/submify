@@ -47,14 +47,6 @@ class User < ActiveRecord::Base
 #  validates :password, presence: true, length: { minimum: 6 }
 #  validates :password_confirmation, presence: true
 
-  include Tire::Model::Search
-  include Tire::Model::Callbacks
-after_save do
-  if self.name_changed? or
-    self.update_index
-  end
-end
-
 
   def feed
     Link.from_users_followed_by(self)
