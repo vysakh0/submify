@@ -70,7 +70,7 @@ class LinksController < ApplicationController
    
     def check_url
 	given =params[:link][:url_link]
-	given = "http://" + given if /https?:\/\/[\S]+/.match(given) == nil
+	given = "https://" + given if /https?:\/\/[\S]+/.match(given) == nil
 	begin       	
 		final_url =  open(given).base_uri.to_s
 		data = Nokogiri::HTML(open(final_url))
@@ -97,14 +97,13 @@ class LinksController < ApplicationController
 		params[:link][:url_heading] = doc.css('title')[0].content
 		true
 		rescue
-		flash[:error] = "Invalid url"
+		flash[:error] = "Invalid url in uri rescue"
 		false
 		end	
 	rescue
 	       	flash[:error] = "Invalid url"
 		false
 	end
-   end   
-  
+    end   
 end
 

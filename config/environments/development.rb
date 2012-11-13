@@ -1,5 +1,7 @@
 Youarel::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
+  YOUR_APP_ID = '295241533825642'
+  YOUR_APP_SECRET = "6be81d70c8df4705180ed8052d635c37"
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development

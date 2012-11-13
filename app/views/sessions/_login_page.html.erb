@@ -1,6 +1,5 @@
 
 <div class="row-fluid" >
-  <%= link_to image_tag("http://static.ak.fbcdn.net/images/fbconnect/login-buttons/connect_light_medium_long.gif"), '/auth/facebook/' %>
   <h3> Sign in </h3>
    <%= form_for :session, url: sessions_path do |f| %>
       <%= f.label :email %>

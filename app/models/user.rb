@@ -12,12 +12,10 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password, :password_confirmation, :description
 
   extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :username, use: :slugged
 
-  has_one :authorization
   has_many :link_users, foreign_key: "user_id", dependent: :destroy
   has_many :links, through: :link_users, source: :link
 
@@ -33,7 +31,7 @@ class User < ActiveRecord::Base
 
   has_many :followers, through: :reverse_relationships, source: :follower
 
-  has_secure_password
+#  has_secure_password
 
   before_save { |user| user.email = email.downcase }
 
@@ -47,6 +45,17 @@ class User < ActiveRecord::Base
 #  validates :password, presence: true, length: { minimum: 6 }
 #  validates :password_confirmation, presence: true
 
+  def self.from_omniauth(auth)
+  where(auth.slice(:uid)).first_or_initialize.tap do |user|
+   user.uid = auth.uid
+   user.name = auth.info.name
+   user.email = auth.info.email
+   user.username = auth.extra.raw_info.username
+   user.oauth_token = auth.credentials.token
+   user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+   user.save!
+  end
+  end
 
   def feed
     Link.from_users_followed_by(self)
