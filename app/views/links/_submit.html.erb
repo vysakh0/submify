@@ -1,4 +1,4 @@
-
+<% if signed_in? %>
 <% if link.users.exists? current_user %>
 	<%= form_for link, :html => { :method => :delete }, remote: true do |f| %>
           <%= f.hidden_field :id, value: link.id %>
@@ -9,4 +9,5 @@
                 <%= f.hidden_field :id, value: link.id %>
 		<%= f.submit "submit", class: "butn" %>
 	<% end %>
-<% end %>
+      <% end %>
+    <% end %>

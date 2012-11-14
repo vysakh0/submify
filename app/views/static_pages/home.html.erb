@@ -1,8 +1,8 @@
 <% provide(:title, 'Home') %>
 
-<% if signed_in? %>
   <div class="container-fluid">
     <div class="span8">
+<% if signed_in? %>
 
       <section>
         <%= render 'shared/link_form' %>
@@ -13,9 +13,10 @@
   	</ol>
   	<%= will_paginate @feed_items %>
 	<% end %>	
-
-
+      <% else %>
+    <ol class="links">
+      <%= render @links %>
+    </ol>
+<% end %>
       </div>  
     </div>
-<% end %>
-

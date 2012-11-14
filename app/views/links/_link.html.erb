@@ -15,8 +15,15 @@
 <div class="submit">
   <%= render 'links/submit',link: link %>
 </div>
-<div class="show_comment">
-<%= link_to pluralize(link.comments.count, "comment"), link %>
+<div class="vote">
+	<%= render 'votes/vote_button', votable: link, type: link.class.to_s %>
 </div>
+<div class="submits">
+<%= pluralize(link.users.count, "submit")%>
+</div>
+<div class="votes">
+<%= pluralize(link.votes.count, "vote")%>
+</div>
+<%= link_to pluralize(link.comments.count, "comment"), link %>
 </div>
 </li>

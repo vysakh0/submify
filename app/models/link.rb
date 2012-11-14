@@ -22,6 +22,13 @@ class Link < ActiveRecord::Base
   validates :url_link, uniqueness: true
   default_scope order: 'links.created_at DESC'
 
+  def self.front_page
+
+    top_ids = "SELECT votable_id FROM votes WHERE votable_type = 'Link' GROUP BY votable_id ORDER BY COUNT(*) DESC "
+
+    where("id IN (#{top_ids})")
+  end
+
 
   def self.from_users_followed_by(user)
     followed_user_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"

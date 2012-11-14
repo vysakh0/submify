@@ -7,6 +7,8 @@ class StaticPagesController < ApplicationController
       format.js
       format.html
     end
+    else
+      @links = Link.front_page.paginate(page: params[:page])
     end
   end
 
