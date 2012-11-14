@@ -7,6 +7,7 @@
       <section>
         <%= render 'shared/link_form' %>
         </section>
+
         <% if @feed_items.any? %>
 	  <ol class="links">
     	<%= render partial: 'shared/feed_item', collection: @feed_items %>

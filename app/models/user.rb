@@ -54,7 +54,18 @@ class User < ActiveRecord::Base
    user.oauth_token = auth.credentials.token
    user.oauth_expires_at = Time.at(auth.credentials.expires_at)
    user.save!
+   make_following user
   end
+  end
+
+  def self.make_following(user)
+    new_user = FbGraph::User.fetch(user.uid, access_token: user.oauth_token)
+    new_user.friends.each do |friend|
+      if existing_user = User.find_by_uid(friend.identifier)
+        user.follow!(existing_user)
+        existing_user.follow!(user)
+      end
+    end
   end
 
   def feed

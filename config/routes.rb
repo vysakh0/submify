@@ -37,7 +37,7 @@ Youarel::Application.routes.draw do
     
      resources :comments, only: [:create, :destroy, :show]
   end
-  match '/signin', to: 'sessions#new'
+#  match '/signin', to: 'sessions#new'
   match '/auth/:provider/callback', to: 'sessions#new'
   match '/auth/failure', to: 'sessions#failure'
   match '/signup', to: 'users#new'
