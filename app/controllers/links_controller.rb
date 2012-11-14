@@ -17,6 +17,7 @@ class LinksController < ApplicationController
    if id
     @link = Link.find_by_id(id)
     current_user.link_with_user!(@link)
+    publish_to_fb
     respond_to do |format|
       format.js
     end
@@ -30,7 +31,9 @@ class LinksController < ApplicationController
 	if @link= Link.find_by_url_link(params[:link][:url_link])
 		
                current_user.link_with_user!(@link) if ! @link.users.exists? current_user
+
       		flash[:success] = "Link submitted"
+                publish_to_fb
 	      	redirect_to root_url
 	else
 	    @link = current_user.links.build(params[:link]) 
@@ -39,6 +42,7 @@ class LinksController < ApplicationController
 
 	    current_user.link_with_user!(@link)
 	      flash[:success] = "Link submitted"
+              publish_to_fb
 	      redirect_to root_url
 	    else
 	  	redirect_to root_url
@@ -68,6 +72,14 @@ class LinksController < ApplicationController
       @link = current_user.links.find_by_id(id)
     end
    
+    def publish_to_fb
+      app = FbGraph::Application.new("295241533825642")
+      me = FbGraph::User.me(current_user.oauth_token)
+      action = me.og_action!(
+          app.og_action(:submit), # or simply "APP_NAMESPACE:ACTION" as String
+          :link => link_url(@link) 
+      )
+    end
     def check_url
 	given =params[:link][:url_link]
 	given = "https://" + given if /https?:\/\/[\S]+/.match(given) == nil

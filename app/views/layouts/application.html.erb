@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US"
+  xmlns:fb="https://www.facebook.com/2008/fbml">
+  
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# strongfly: http://ogp.me/ns/fb/strongfly#">
   <title><%= yield(:title) %></title>
+  <%= yield(:fb) %>
   <%= stylesheet_link_tag    "application", media: "all" %>
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
