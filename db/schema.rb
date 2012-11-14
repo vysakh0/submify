@@ -13,14 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20121113111308) do
 
-  create_table "authorizations", :force => true do |t|
-    t.string   "provider"
-    t.string   "uid"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "comments", :force => true do |t|
     t.text     "body"
     t.integer  "user_id"
@@ -93,5 +85,7 @@ ActiveRecord::Schema.define(:version => 20121113111308) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
+
+  add_index "votes", ["user_id", "votable_id"], :name => "index_votes_on_user_id_and_votable_id", :unique => true
 
 end

@@ -1,6 +1,7 @@
 <% provide(:title, @link.url_heading) %>
  <div class="container-fluid">
  <div class="link-<%= @link.id %>" >
+<div class = "span8">
 <h3>
 <% host = 'http://'+ @link.url_link %>
 <div class="link_url">
@@ -11,7 +12,6 @@
 <span class="url_link"><%= link_to @link.url_heading, 'http://' + @link.url_link %> </span>
 </div>
 </h3>
-<div class = "span8">
 <div class="vote">
 <%= render 'votes/vote_button', votable: @link, type: @link.class.to_s %>
 

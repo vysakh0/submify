@@ -1,13 +1,17 @@
 <div class="container-fluid">
+  <div class="span8">
   <div class="comment-<%= @comment.id %>" >
-<h3>
 
 <% if @comment %>
 
+<% if @comment.user== current_user %>
+  <div class="del_comment">  <%= link_to "delete", @comment, method: :delete, data: { confirm: "You sure?" }, title: @comment.body %></div>
+<% end %>
 <% if @comment.user %>
 <%= link_to gravatar_for(@comment.user), @comment.user %>
 <div class="user_link">
-<span class="user">
+  <h4>
+  <span class="user">
   <%= link_to @comment.user.name, @comment.user %>
 </span>
 </div>
@@ -16,15 +20,11 @@
 <div class="comment_in_links">
 <%= @comment.body %>
 </div>
-</h3>
+</h4>
 <%= link_to @comment.commentable.url_heading, 'http'+ @comment.commentable.url_link %>
 
 <% end %>
 
-<% if @comment.user== current_user %>
-  <%= link_to "delete", @comment, method: :delete, data: { confirm: "You sure?" }, title: @comment.body %>
-<% end %>
-<div class="span8">
 <div class="vote">
 	<%= render 'votes/vote_button', votable: @comment, type: @comment.class.to_s %>
       </div>

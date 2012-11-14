@@ -10,6 +10,11 @@ Youarel::Application.routes.draw do
       get :following, :followers
     end
   end
+  resources :users do
+    member do
+      get :commented
+    end
+  end
 
   resources :votes, only: [:create, :destroy]
 

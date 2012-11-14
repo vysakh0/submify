@@ -21,4 +21,5 @@ class Comment < ActiveRecord::Base
   validates :user_id, presence: true
  
   has_many :votes, as: :votable, dependent: :destroy
+
 end

@@ -1,20 +1,9 @@
 <% provide(:title, @user.name) %>
 <div class="row-fluid">
-  <aside class="span4 offset1">
-  <section>
-<h3>
-  <%= gravatar_for @user %>
-  <%= @user.name %>
-</h3>
-</section>
-<section>
-<%= render 'shared/stats' %>
-</section>
-</aside>
 <div class="span8">
+  <%= render 'profile_stat_nav' %>
   <%= render 'follow_form' if signed_in? %>
   <% if @user.links.any? %>
-    <h3> Activity ( <%= @user.links.count %> ) </h3>
 
     <ol class="links">
       <%= render @links %>

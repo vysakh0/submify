@@ -1,0 +1,12 @@
+<aside> 
+  <section>
+<h3>
+  <%= gravatar_for @user %>
+  <%= @user.name %>
+</h3>
+<div class="follow_button"  <%= render 'follow_form' if signed_in? %> </div>
+</section>
+<section>
+<%= render 'shared/stats' %>
+</section>
+</aside>

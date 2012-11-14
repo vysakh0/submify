@@ -14,6 +14,13 @@ class UsersController < ApplicationController
       format.json { render json: @users }
     end
   end
+
+  def commented
+
+    @user = User.find(params[:id])
+    @comments = @user.commented.paginate(page: params[:page])
+    render 'show_commented'
+  end
     
   def search
     @users = User.search params[:q]

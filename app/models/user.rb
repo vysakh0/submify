@@ -61,6 +61,10 @@ class User < ActiveRecord::Base
     Link.from_users_followed_by(self)
   end
 
+  def commented
+    Comment.where("user_id = #{self.id} AND commentable_type = 'Link' ")
+  end
+
   def following?(other_user)
     relationships.find_by_followed_id(other_user.id)
   end
