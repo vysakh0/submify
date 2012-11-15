@@ -51,7 +51,9 @@ class CommentsController < ApplicationController
     me = FbGraph::User.me(current_user.oauth_token)
     action = me.og_action!(
       app.og_action(:comment), # or simply "APP_NAMESPACE:ACTION" as String
-      :website => comment_url(@comment)
+      :website => comment_url(@comment),
+      :title => @comment.body,
+
     )
   end
 end
