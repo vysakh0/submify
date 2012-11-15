@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
 
   has_many :followers, through: :reverse_relationships, source: :follower
 
-#  has_secure_password
+  #  has_secure_password
 
   before_save { |user| user.email = email.downcase }
 
@@ -40,30 +40,32 @@ class User < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, 
-                    format: { with: VALID_EMAIL_REGEX }, 
-                    uniqueness: { case_sensitive: false} 
-#  validates :password, presence: true, length: { minimum: 6 }
-#  validates :password_confirmation, presence: true
+    format: { with: VALID_EMAIL_REGEX }, 
+    uniqueness: { case_sensitive: false} 
+  #  validates :password, presence: true, length: { minimum: 6 }
+  #  validates :password_confirmation, presence: true
 
   def self.from_omniauth(auth)
-  where(auth.slice(:uid)).first_or_initialize.tap do |user|
-   user.uid = auth.uid
-   user.name = auth.info.name
-   user.email = auth.info.email
-   user.username = auth.extra.raw_info.username
-   user.oauth_token = auth.credentials.token
-   user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-   user.save!
-   make_following user
-  end
+    where(auth.slice(:uid)).first_or_initialize.tap do |user|
+      user.uid = auth.uid
+      user.name = auth.info.name
+      user.email = auth.info.email
+      user.username = auth.extra.raw_info.username
+      user.oauth_token = auth.credentials.token
+      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+      user.save!
+      make_following user
+    end
   end
 
   def self.make_following(user)
     new_user = FbGraph::User.fetch(user.uid, access_token: user.oauth_token)
     new_user.friends.each do |friend|
       if existing_user = User.find_by_uid(friend.identifier)
-        user.follow!(existing_user)
-        existing_user.follow!(user)
+        if ! user.following? existing_user
+          user.follow!(existing_user)
+          existing_user.follow!(user)
+        end
       end
     end
   end
@@ -95,13 +97,13 @@ class User < ActiveRecord::Base
   def link_with_user!(given_link)
     link_users.create!(link_id: given_link.id)
   end
-  
+
   def unlink_with_user!(given_link)
     link_users.find_by_link_id(given_link.id).destroy
   end
   private
 
-    def create_remember_token
-      self.remember_token = SecureRandom.urlsafe_base64
-    end
+  def create_remember_token
+    self.remember_token = SecureRandom.urlsafe_base64
+  end
 end
