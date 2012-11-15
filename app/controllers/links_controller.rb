@@ -77,10 +77,7 @@ class LinksController < ApplicationController
       me = FbGraph::User.me(current_user.oauth_token)
       action = me.og_action!(
           app.og_action(:submit), # or simply "APP_NAMESPACE:ACTION" as String
-          :link => link_url(@link), 
-          :website => @link.url_link,
-          :url => link_url(@link),
-          :title => @link.url_heading
+          :website => link_url(@link)
       )
     end
     def check_url
