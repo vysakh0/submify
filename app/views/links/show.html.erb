@@ -1,61 +1,60 @@
 <% provide(:title, @link.url_heading) %>
- <meta property="fb:app_id" content="295241533825642" /> 
-  <meta property="og:type"   content="website" /> 
-  <meta property="og:url"    content="<%= link_url(@link)%>"/>
-  <meta property="og:title"  content= "<%= @link.url_heading %>" /> 
-  <meta property="og:image"  content="https://s-static.ak.fbcdn.net/images/devsite/attachment_blank.png" />
- <div class="container-fluid">
- <div class="link-<%= @link.id %>" >
-<div class = "span8">
-<h3>
-<% host = 'http://'+ @link.url_link %>
-<div class="link_url">
+<meta property="fb:app_id" content="295241533825642" /> 
+<meta property="og:type"   content="website" /> 
+<meta property="og:url"    content="<%= link_url(@link)%>"/>
+<meta property="og:title"  content= "<%= @link.url_heading %>" /> 
+<meta property="og:image"  content="https://s-static.ak.fbcdn.net/images/devsite/attachment_blank.png" />
+<div class="container-fluid">
+  <div class="link-<%= @link.id %>" >
+    <div class = "span8">
+      <h3>
+        <% host = 'http://'+ @link.url_link %>
+        <div class="link_url">
 
-<div class="host_link">
-<%= link_to host.match(".+\:\/\/([^\/]+)")[1], host %> 
-</div>
-<span class="url_link"><%= link_to @link.url_heading, 'http://' + @link.url_link %> </span>
-</div>
-</h3>
-<div class="vote">
-<%= render 'votes/vote_button', votable: @link, type: @link.class.to_s %>
+          <div class="host_link">
+            <%= link_to host.match(".+\:\/\/([^\/]+)")[1], host %> 
+          </div>
+          <span class="url_link"><%= link_to @link.url_heading, 'http://' + @link.url_link %> </span>
+        </div>
+      </h3>
+      <div class="vote">
+        <%= render 'votes/vote_button', votable: @link, type: @link.class.to_s %>
 
-</div>
-<div class="submit">
-  <%= render 'links/submit',link: @link %>
-</div>
+      </div>
+      <div class="submit">
+        <%= render 'links/submit',link: @link %>
+      </div>
 
-<div class="votes">
-<%= pluralize(@link.votes.count, "vote")%>
-</div>
-<div class="submits">
-<%= pluralize(@link.users.count, "submit")%>
-</div>
-<div class="show_comment">
-<%= pluralize(@link.comments.count, "comment") %>
-</div>
-</div>
+      <div class="votes">
+        <%= pluralize(@link.votes.count, "vote")%>
+      </div>
+      <div class="submits">
+        <%= pluralize(@link.users.count, "submit")%>
+      </div>
+      <div class="show_comment">
+        <%= pluralize(@link.comments.count, "comment") %>
+      </div>
+    </div>
 
-<div class="span8">
-<ol class="full_comments">
-<%= render partial: 'comments/comment', collection: @link.comments %>
-</ol>
-<%= will_paginate @comments %>
+    <div class="span8">
+      <ol class="full_comments">
+        <%= render partial: 'comments/comment', collection: @link.comments %>
+      </ol>
+      <%= will_paginate @comments %>
 
-<section>
-<% if signed_in? %>
-<%= form_for :comment, url: comments_path(link_id: @link) do |f| %>
-  <div class="field">
-    <%= f.text_area :body, placeholder: "Add a comment", id: "comment_text"%>
-    <%= f.submit "Submit", class: "btn btn-small"%>
+      <section>
+      <% if signed_in? %>
+        <%= form_for :comment, url: comments_path(link_id: @link), :html => { :multipart => true } do |f| %>
+          <div class="field">
+            <%= f.text_area :body, placeholder: "Add a comment", id: "comment_text"%>
+            <%= f.file_field :avatar %>
+            <%= f.submit "Submit", class: "btn btn-small"%>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+    </section>
   </div>
-<%= form_for :comment, :url => comments_path(link_id: @link), :html => { :multipart => true } do |form| %>
-  <%= form.file_field :avatar %>
-<% end %>
-<% end %>
-<% end %>
-</section>
-</div>
 </div>
 </div>
 
