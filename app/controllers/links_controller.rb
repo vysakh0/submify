@@ -75,8 +75,6 @@ class LinksController < ApplicationController
     def publish_to_fb
       app = FbGraph::Application.new("295241533825642")
       me = FbGraph::User.me(current_user.oauth_token)
-      action = me.og_action!(
-      )
     end
     def check_url
 	given =params[:link][:url_link]
