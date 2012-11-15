@@ -49,6 +49,9 @@
     <%= f.text_area :body, placeholder: "Add a comment", id: "comment_text"%>
     <%= f.submit "Submit", class: "btn btn-small"%>
   </div>
+<%= form_for :comment, :url => comments_path(link_id: @link), :html => { :multipart => true } do |form| %>
+  <%= form.file_field :avatar %>
+<% end %>
 <% end %>
 <% end %>
 </section>

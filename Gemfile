@@ -12,6 +12,7 @@ gem 'tire'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'fb_graph'
+gem "paperclip", "~> 3.0"
 gem 'oauth2'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

@@ -25,6 +25,7 @@
 <div class="comment_in_links">
 <%= @comment.body %>
 </div>
+<%= image_tag comment.avatar.url(:medium) %>
 </h4>
 <%= link_to @comment.commentable.url_heading, 'http'+ @comment.commentable.url_link %>
 

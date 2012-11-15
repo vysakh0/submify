@@ -1,0 +1,3 @@
+<%= form_for @comment, :url => comments_path, :html => { :multipart => true } do |form| %>
+  <%= form.file_field :avatar %>
+<% end %>
