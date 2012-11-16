@@ -17,8 +17,8 @@
     <% end %>
     <div class="comment_in_links">
       <%= comment.body %>
-    </div>
     <%= image_tag comment.avatar.url(:medium) %>
+    </div>
   <% end %>
     <div class="votes">
       <%= pluralize(comment.votes.count, "vote")%>
