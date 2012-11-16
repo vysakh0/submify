@@ -15,24 +15,24 @@
         </span>
       </div>
     <% end %>
-      <%= comment.body %>
+    <%= comment.body %>
     <div class="comment_in_links">
-    <%= image_tag comment.avatar.url(:medium) %>
+      <%= image_tag comment.avatar.url(:medium) if comment.avatar %>
     </div>
+  <div class="votes">
+    <%= pluralize(comment.votes.count, "vote")%>
+  </div>
+  <div class="vote">
+    <%= render 'votes/vote_button', votable: comment, type: comment.class.to_s %>
+  </div>
+  <div class= "row_of_linkstats">
+    <% if comment.commentable_type == 'Link' %>
+
+      <div class="comments">
+        <%= link_to pluralize(comment.comments.count, "reply"), link_comment_path(comment.commentable, comment) %>
+      </div>
+
+    <% end %>
   <% end %>
-    <div class="votes">
-      <%= pluralize(comment.votes.count, "vote")%>
-    </div>
-    <div class="vote">
-      <%= render 'votes/vote_button', votable: comment, type: comment.class.to_s %>
-    </div>
-    <div class= "row_of_linkstats">
-      <% if comment.commentable_type == 'Link' %>
-
-        <div class="comments">
-          <%= link_to pluralize(comment.comments.count, "reply"), link_comment_path(comment.commentable, comment) %>
-        </div>
-
-      <% end %>
-    </div>
+  </div>
   </li>

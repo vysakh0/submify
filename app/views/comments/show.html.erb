@@ -22,10 +22,10 @@
 </div>
 <% end %>
 
-<div class="comment_in_links">
 <%= @comment.body %>
-</div>
+<div class="comment_in_links">
 <%= image_tag @comment.avatar.url(:medium) %>
+</div>
 </h4>
 <%= link_to @comment.commentable.url_heading, 'http'+ @comment.commentable.url_link %>
 
