@@ -21,12 +21,12 @@ body {
   }
 }
 
-  .field_with_errors input{ 
-    border-color: #f00;
-  }
+.field_with_errors input{ 
+  border-color: #f00;
+}
 
 /* ul.nav li.dropdown:hover ul.dropdown-menu{
-  display:block;
+display:block;
 } 	*/
 
 .dropdown-menu li > a:hover{
@@ -50,12 +50,12 @@ body {
 }
 
 .timestamp {
-	a{
-	  color: #999;
-	  float: right;
-	  font-size: 12px;
-	}
-	}
+  a{
+    color: #999;
+    float: right;
+    font-size: 12px;
+  }
+}
 
 .gravatar {
   float: left;
@@ -114,57 +114,62 @@ aside {
 
 .field{
 
-	input[type = "text"],
-	textarea{
+  input[type = "text"],
+  textarea{
 
-		width: 600px;
-		height: 20px;
-		padding: 3px;
-		border: 1px solid #999;
-	}
+    width: 600px;
+    height: 20px;
+    padding: 3px;
+    border: 1px solid #999;
+  }
 }
 
 
 
 #submit_button{
-	position: relative;
-	left: 550px;
+  position: relative;
+  left: 550px;
 }
 
 .link_url{
-	a{
-	color: #323232;
-	font-family: arial, sans-serif;
-	}
-	
+  a{
+    color: #323232;
+    font-family: arial, sans-serif;
+  }
+
 }
 .host_link{
-	color: #7f7f7f;
-	a{
-	color: #7f7f7f;
-	font-family: arial, sans-serif;
-	}
+  color: #7f7f7f;
+  a{
+    color: #7f7f7f;
+    font-family: arial, sans-serif;
+  }
 }
 .user_link{
-	a{
-	color: #4c4c4c;
-	font-size: 12.8px;
-	font-weight: bold;
-	font-family: "Helvetica Neue",Arial,sans-serif;
-	text-shadow: rgba(0, 0, 0, 0.0078125) 0 0 1px;
-	}
-	
+  a{
+    color: #4c4c4c;
+    font-size: 12.8px;
+    font-weight: bold;
+    font-family: "Helvetica Neue",Arial,sans-serif;
+    text-shadow: rgba(0, 0, 0, 0.0078125) 0 0 1px;
+  }
+
 }
+.clearfix {
+  display: inline-block;
+  width: 100%;
+}
+
 .delete_link{
-	
-	left: 550px;
-	
+
+  left: 550px;
+
 }
 #complete_url textarea, .mirroredText { line-height:20px; }
 .full_comments {
   list-style: none;
   margin: 10px 0 0 0;
-
+  font-size: 12.8px;
   li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
@@ -172,25 +177,29 @@ aside {
 }
 
 .show_comment{
-	color: #7f7f7f;
-	font-family: arial, sans-serif;
-	font-size: 12.8px;
+  font-family: arial, sans-serif;
+  color: #8b9dc3;
+  font-size: 12.8px;
 }
 .submits, .votes{
-        float:  left;
-        margin-right: 10px;
-         color: #8b9dc3;
-       a{
-         color: #8b9dc3;
-       }
+  float:  left;
+  padding-right: 8px;
+  font-size: 12.8px;
+  display: block;
+  color: #8b9dc3;
+  a{
+    color: #8b9dc3;
+  }
 }
 .span8 > .submits, .span8 > .votes{
-        float:  left;
-        padding-right: 10px;
-         color: #8b9dc3;
-       a{
-         color: #8b9dc3;
-       }
+  float:  left;
+  padding-right: 10px;
+  display: block;
+  font-size: 12.8px;
+  color: #8b9dc3;
+  a{
+    color: #8b9dc3;
+  }
 }
 .user_image{
   float: left;
@@ -199,23 +208,32 @@ aside {
 .submit_row{
   overflow: hidden;
 }
-.submit, .vote{
+.submit{
   float: right;
-  padding-left: 10px;
+  font-size: 12.8px;
+  display: block;
+  padding-right: 8px;
+}
+
+.vote{
+  float: right;
+  font-size: 12.8px;
+  padding-right: 50px;
+  display: block;
 }
 .butn, .butn:focus, .butn:active {
-    /* NOTE Remove all decorations */
-    border: none;
-    display: inline;
-    margin: 0em;
-    padding: 0em;
-    outline: none;
-    outline-offset: 0em;
-    /* NOTE Look like a link */
-    background: none;
-    color: #3b5998;
-    cursor: pointer;
-    font: inherit;
+  /* NOTE Remove all decorations */
+  border: none;
+  display: inline;
+  margin: 0em;
+  padding: 0em;
+  outline: none;
+  outline-offset: 0em;
+  /* NOTE Look like a link */
+  background: none;
+  color: #3b5998;
+  cursor: pointer;
+  font: inherit;
 }
 .img_nav{
   padding-bottom: 1px;
@@ -225,4 +243,5 @@ aside {
 }
 .del_comment{
   float: right;
+  font-size: 12.8px;
 }

@@ -30,7 +30,12 @@ class Link < ActiveRecord::Base
   end
 
   def following_comments user
-    Comment.where("user_id IN (#{@followed_user_ids}) OR user_id = :user_id", user_id: user.id)
+    comments = self.comments
+    comments.where("user_id IN (#{@followed_user_ids}) OR user_id = :user_id", user_id: user.id).limit(3).order('created_at desc')
+  end
+  def following_submits user
+    users = self.users
+    users.where("user_id IN (#{@followed_user_ids}) OR user_id = :user_id", user_id: user.id).limit(8)
   end
 
   def self.from_users_followed_by(user)

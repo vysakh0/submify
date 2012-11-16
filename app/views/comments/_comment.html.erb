@@ -1,38 +1,38 @@
 <li>
 
-    <div class="comment-<%= comment.id %>">
-<% if comment %>
+<div class="comment-<%= comment.id %>">
+  <% if comment %>
 
-<% if comment.user== current_user %>
-  <div class="del_comment">  <%= link_to "delete", comment, method: :delete, data: { confirm: "You sure?" }, title: comment.body %>
+    <% if comment.user== current_user %>
+      <div class="del_comment">  <%= link_to "delete", comment, method: :delete, data: { confirm: "You sure?" }, title: comment.body %>
+      <% end %>
+    </div>
+    <% if comment.user %>
+      <%= link_to gravatar_for(comment.user, size: 10), comment.user %>
+      <div class="user_link">
+        <span class="user">
+          <%= link_to comment.user.name, comment.user %>
+        </span>
+      </div>
+    <% end %>
+    <div class="comment_in_links">
+      <%= comment.body %>
+    </div>
+    <%= image_tag comment.avatar.url(:medium) %>
   <% end %>
-</div>
-  <% if comment.user %>
-    <%= link_to gravatar_for(comment.user, size: 10), comment.user %>
-<div class="user_link">
-<span class="user">
-  <%= link_to comment.user.name, comment.user %>
-</span>
-</div>
-<% end %>
-<div class="comment_in_links">
-<%= comment.body %>
-</div><%= image_tag comment.avatar.url(:medium) %>
-<% end %>
+    <div class="votes">
+      <%= pluralize(comment.votes.count, "vote")%>
+    </div>
+    <div class="vote">
+      <%= render 'votes/vote_button', votable: comment, type: comment.class.to_s %>
+    </div>
+    <div class= "row_of_linkstats">
+      <% if comment.commentable_type == 'Link' %>
 
-<div class="votes">
-<%= pluralize(comment.votes.count, "vote")%>
-</div>
-<div class="vote">
-	<%= render 'votes/vote_button', votable: comment, type: comment.class.to_s %>
-</div>
-<div class= "row_of_linkstats">
-<% if comment.commentable_type == 'Link' %>
+        <div class="comments">
+          <%= link_to pluralize(comment.comments.count, "reply"), link_comment_path(comment.commentable, comment) %>
+        </div>
 
-<div class="comments">
-<%= link_to pluralize(comment.comments.count, "reply"), link_comment_path(comment.commentable, comment) %>
-</div>
-
-<% end %>
-</div>
-</li>
+      <% end %>
+    </div>
+  </li>

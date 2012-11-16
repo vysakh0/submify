@@ -3,8 +3,8 @@
   <div class="submit_row">
 
     <div class="user_image">
-      <% feed_item.users.each do |user| %>
-        <%= link_to gravatar_for(user, size: 30), user %>
+      <% feed_item.following_submits(current_user).each do |user| %>
+        <%= link_to gravatar_for(user, size: 20), user %>
       <% end %>
 
     </div>
@@ -18,26 +18,28 @@
   <div class="host_link">
     <%= link_to host.match(".+\:\/\/([^\/]+)")[1], host.match(".+\:\/\/([^\/]+)")[1] %> 
   </div>
-  <div class="submit">
-    <%= render 'links/submit',link: feed_item %>
-  </div>
-  <div class="vote">
-    <%= render 'votes/vote_button', votable: feed_item, type: feed_item.class.to_s %>
-  </div>
-  <div class="votes">
-    <%= pluralize(feed_item.votes.count, "vote")%>
-  </div>
-
-  <div class="submits">
-    <%= pluralize(feed_item.users.count, "submit")%>
-  </div>
-  <%= link_to pluralize(feed_item.comments.count, "comment"), feed_item %>
-  <div ="following_commenters">
-    <div class="span5">
-      <ol> 
-        <%= render partial: 'comments/comment', collection: feed_item.following_comments(current_user)%>
-      </ol>
+  <div class="clearfix">
+    <div class="vote">
+      <%= render 'votes/vote_button', votable: feed_item, type: feed_item.class.to_s %>
     </div>
+    <div class="submit">
+      <%= render 'links/submit',link: feed_item %>
+    </div>
+    <div class="votes">
+      <%= pluralize(feed_item.votes.count, "vote")%>
+    </div>
+
+    <div class="submits">
+      <%= pluralize(feed_item.users.count, "submit")%>
+    </div>
+    <%= link_to pluralize(feed_item.comments.count, "comment"), feed_item %>
+  </div>
+</div>
+<div class="container">
+  <div class="span6">
+    <ol class="full_comments"> 
+      <%= render partial: 'comments/comment', collection: feed_item.following_comments(current_user) %>
+    </ol>
   </div>
 </div>
 </li>

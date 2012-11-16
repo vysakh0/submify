@@ -7,7 +7,7 @@
 <div class="container-fluid">
   <div class="link-<%= @link.id %>" >
     <div class = "span8">
-      <h3>
+      <h5>
         <% host = 'http://'+ @link.url_link %>
         <div class="link_url">
 
@@ -16,7 +16,7 @@
           </div>
           <span class="url_link"><%= link_to @link.url_heading, 'http://' + @link.url_link %> </span>
         </div>
-      </h3>
+      </h5>
       <div class="vote">
         <%= render 'votes/vote_button', votable: @link, type: @link.class.to_s %>
 
@@ -50,11 +50,11 @@
             <%= f.file_field :avatar %>
             <%= f.submit "Submit", class: "btn btn-small"%>
           </div>
+        <% end %>
       <% end %>
-    <% end %>
-    </section>
+      </section>
+    </div>
   </div>
-</div>
 </div>
 
 
