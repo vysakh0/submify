@@ -18,7 +18,6 @@
   <div class="host_link">
     <%= link_to host.match(".+\:\/\/([^\/]+)")[1], host.match(".+\:\/\/([^\/]+)")[1] %> 
   </div>
-  <div class="clearfix">
     <div class="submit">
       <%= render 'links/submit',link: feed_item %>
     </div>
@@ -33,7 +32,6 @@
       <%= pluralize(feed_item.users.count, "submit")%>
     </div>
     <%= link_to pluralize(feed_item.comments.count, "comment"), feed_item %>
-  </div>
 </div>
 <div class="container">
   <div class="span6">
