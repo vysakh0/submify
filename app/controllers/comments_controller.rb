@@ -14,14 +14,18 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = @parent.comments.build(params[:comment])
-    @comment.user = current_user
-    if @comment.save
-      flash[:notice] = "Commented"
-      publish_to_fb if @parent.class.to_s == "Link"
-      redirect_to @parent
+      @comment = @parent.comments.build(params[:comment])
+    if params[:comment][:body]!=''
+      @comment.user = current_user
+      if @comment.save
+        flash[:notice] = "Commented"
+        publish_to_fb if @parent.class.to_s == "Link"
+        redirect_to @parent
+      else
+        redirect_to @parent
+      end
     else
-      render :new
+      redirect_to @parent 
     end
   end
 
