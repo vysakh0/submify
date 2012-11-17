@@ -11,7 +11,8 @@
   <meta property="og:title"  content= "<%= @comment.body %>" /> 
   <meta property="og:image"  content="https://s-static.ak.fbcdn.net/images/devsite/attachment_blank.png" />
 <% if @comment.user== current_user %>
-  <div class="del_comment">  <%= link_to "delete", @comment, method: :delete, data: { confirm: "You sure?" }, title: @comment.body %></div>
+  <div class="del_comment">  <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"), @comment, method: :delete, data: { confirm: "You sure?" }, title: @comment.body %></div>
+
 <% end %>
 <% if @comment.user %>
 <%= link_to gravatar_for(@comment.user), @comment.user %>
@@ -48,7 +49,7 @@
 <ol class="full_comments">
 <%= render partial: 'comments/comment', collection: @comment.comments %>
 </ol>
-<%= will_paginate @comments %>
+<%= will_paginate %>
 
 <section>
 <%= render 'shared/comment_form' %>

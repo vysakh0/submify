@@ -214,15 +214,15 @@ aside {
 .submit{
   float: right;
   font-size: 12.8px;
+  padding-right: 50px;
   display: block;
-  padding-right: 8px;
 }
 
 .vote{
   float: right;
   font-size: 12.8px;
-  padding-right: 50px;
   display: block;
+  padding-right: 8px;
 }
 .butn, .butn:focus, .butn:active {
   /* NOTE Remove all decorations */
@@ -246,7 +246,8 @@ aside {
 }
 .del_comment{
   float: right;
-  font-size: 12.8px;
+  font-size: 8px;
+  a{color: #8b9dc3;}
 }
 .comment_url{
   width: 100%;
