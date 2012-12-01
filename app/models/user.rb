@@ -44,7 +44,16 @@ class User < ActiveRecord::Base
     uniqueness: { case_sensitive: false} 
   #  validates :password, presence: true, length: { minimum: 6 }
   #  validates :password_confirmation, presence: true
+  after_save :load_into_soulmate
 
+  def load_into_soulmate
+    loader = Soulmate::Loader.new("user")
+    loader.add("term" => name, "id" => id)
+  end
+ def self.search(term)
+    matches = Soulmate::Matcher.new('user').matches_for_term(term)
+    matches.collect {|match| {"id" => match["id"], "label" => match["term"], "value" => match["term"] } }
+ end 
   def self.from_omniauth(auth)
     where(auth.slice(:uid)).first_or_initialize.tap do |user|
       user.uid = auth.uid

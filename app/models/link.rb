@@ -17,6 +17,7 @@ class Link < ActiveRecord::Base
   has_many :users, through: :link_users, source: :user
 
   has_many :comments, as: :commentable, dependent: :destroy
+  has_many :topics, through: :link_users, source: :topic
 
   has_many :votes, as: :votable, dependent: :destroy
   validates :url_link, uniqueness: true

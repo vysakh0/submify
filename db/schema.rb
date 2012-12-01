@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121115151115) do
+ActiveRecord::Schema.define(:version => 20121122165755) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -34,10 +34,12 @@ ActiveRecord::Schema.define(:version => 20121115151115) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "topic_id"
   end
 
   add_index "link_users", ["link_id", "user_id"], :name => "index_link_users_on_link_id_and_user_id", :unique => true
   add_index "link_users", ["link_id"], :name => "index_link_users_on_link_id"
+  add_index "link_users", ["topic_id"], :name => "index_link_users_on_topic_id"
   add_index "link_users", ["user_id"], :name => "index_link_users_on_user_id"
 
   create_table "links", :force => true do |t|
@@ -62,6 +64,16 @@ ActiveRecord::Schema.define(:version => 20121115151115) do
   add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"
   add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id", :unique => true
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
+
+  create_table "topics", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "slug"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "topics", ["slug"], :name => "index_topics_on_slug", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "name"

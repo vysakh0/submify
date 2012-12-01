@@ -1,23 +1,24 @@
 <% provide(:title, 'Home') %>
 
-  <div class="container-fluid">
-    <div class="span8">
-<% if signed_in? %>
+<div class="container-fluid">
+  <div class="span8">
+    <% if signed_in? %>
+      <%= text_field_tag 'person_name' %>
 
       <section>
-        <%= render 'shared/link_form' %>
-        </section>
+      <%= render 'shared/link_form' %>
+      </section>
 
-        <% if @feed_items.any? %>
-	  <ol class="links">
-    	<%= render partial: 'shared/feed_item', collection: @feed_items %>
-  	</ol>
-  	<%= will_paginate @feed_items %>
-	<% end %>	
-      <% else %>
-    <ol class="links">
-      <%= render @links %>
-    </ol>
-<% end %>
-      </div>  
-    </div>
+      <% if @feed_items.any? %>
+        <ol class="links">
+          <%= render partial: 'shared/feed_item', collection: @feed_items %>
+        </ol>
+        <%= will_paginate @feed_items %>
+      <% end %>	
+    <% else %>
+      <ol class="links">
+        <%= render @links %>
+      </ol>
+    <% end %>
+  </div>  
+</div>

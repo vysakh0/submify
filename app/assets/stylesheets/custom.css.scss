@@ -238,8 +238,11 @@ aside {
   cursor: pointer;
   font: inherit;
 }
-.img_nav{
-  padding-bottom: 1px;
+#fat-menu{
+  img{
+  width: 25px;
+  height: 25px;
+}
 }
 .follow_button{
   float: right;

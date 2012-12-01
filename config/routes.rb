@@ -3,7 +3,7 @@ Youarel::Application.routes.draw do
   resources :users do
     collection { get :search }
   end
-
+ match '/autocomplete', to: 'static_pages#autocomplete_user_name', as: 'autocomplete'
   match '/contact', to: 'static_pages#contact'
   resources :users do
     member do
