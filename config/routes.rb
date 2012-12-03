@@ -19,6 +19,7 @@ Youarel::Application.routes.draw do
   end
 
   resources :votes, only: [:create, :destroy]
+  resources :topics, only: [:create, :destroy, :show]
 
   resources :link_users, only: [:create, :destroy]
   resources :links, only: [:create, :destroy, :show, :submit]

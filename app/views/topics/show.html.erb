@@ -1,0 +1,11 @@
+<% provide(:title, @topic.name) %>
+<div class="row-fluid">
+  <div class="span8">
+    <%= render 'topic_stats' %>
+    <ol class="links">
+      <%= render @links %>
+    </ol>
+    <%= will_paginate @links %>
+</div>
+
+</div>

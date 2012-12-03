@@ -7,6 +7,11 @@
 <div class="container-fluid">
   <div class="link-<%= @link.id %>" >
     <div class = "span8">
+      <div class="topics-list">
+        <% @link.topics.each do |topic| %>
+          <%= link_to topic.name, topic %>
+        <% end %>
+      </div>
       <h5>
         <% host = 'http://'+ @link.url_link %>
         <div class="link_url">
