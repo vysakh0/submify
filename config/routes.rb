@@ -4,6 +4,8 @@ Youarel::Application.routes.draw do
     collection { get :search }
   end
  match '/autocomplete', to: 'static_pages#autocomplete_user_name', as: 'autocomplete'
+
+ match '/autocomplete_topic', to: 'static_pages#autocomplete_topic_name', as: 'autocomplete_topic'
   match '/contact', to: 'static_pages#contact'
   resources :users do
     member do

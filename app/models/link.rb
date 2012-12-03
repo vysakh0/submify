@@ -39,6 +39,11 @@ class Link < ActiveRecord::Base
     users.where("user_id IN (#{@followed_user_ids}) OR user_id = :user_id", user_id: user.id).limit(8)
   end
 
+  def link_with_topic!(topic_name)
+    topic = Topic.where(name: topic_name).first_or_create
+    link_users.create!(topic_id: topic.id)
+  end
+
   def self.from_users_followed_by(user)
     @followed_user_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
     joins(:users).where("user_id IN (#{@followed_user_ids}) OR user_id = :user_id", user_id: user.id).uniq

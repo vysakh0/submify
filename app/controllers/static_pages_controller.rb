@@ -14,6 +14,9 @@ class StaticPagesController < ApplicationController
   def autocomplete_user_name
     render :json => User.search(params['term'])
   end
+  def autocomplete_topic_name
+    render :json => Topic.search(params['term'])
+  end
   def contact
   end
 end

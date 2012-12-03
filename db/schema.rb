@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(:version => 20121122165755) do
     t.datetime "updated_at",  :null => false
   end
 
+  add_index "topics", ["name"], :name => "index_topics_on_name", :unique => true
   add_index "topics", ["slug"], :name => "index_topics_on_slug", :unique => true
 
   create_table "users", :force => true do |t|
