@@ -25,7 +25,7 @@ class LinksController < ApplicationController
   end
 
   def create
-    topic = params[:topic]
+    topic = params[:topic_name]
     if check_url
 
       if @link= Link.find_by_url_link(params[:link][:url_link])
