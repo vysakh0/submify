@@ -17,6 +17,18 @@ Youarel::Application.routes.draw do
       get :commented
     end
   end
+  resources :topics do
+    member do
+      get :following_users
+    end
+  end
+  
+  resources :users do
+    member do
+      get :followed_topics
+    end
+  end
+
 
   resources :votes, only: [:create, :destroy]
   resources :topics, only: [:create, :destroy, :show]
@@ -27,6 +39,7 @@ Youarel::Application.routes.draw do
 
   resources :relationships, only: [:create, :destroy]
 
+  resources :topic_user_relationships, only: [:create, :destroy]
   resources :links do
      resources :comments, only: [:create, :destroy, :show]
   end

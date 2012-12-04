@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121122165755) do
+ActiveRecord::Schema.define(:version => 20121203164629) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -64,6 +64,17 @@ ActiveRecord::Schema.define(:version => 20121122165755) do
   add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"
   add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id", :unique => true
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
+
+  create_table "topic_user_relationships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "topic_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "topic_user_relationships", ["topic_id"], :name => "index_topic_user_relationships_on_topic_id"
+  add_index "topic_user_relationships", ["user_id", "topic_id"], :name => "index_topic_user_relationships_on_user_id_and_topic_id", :unique => true
+  add_index "topic_user_relationships", ["user_id"], :name => "index_topic_user_relationships_on_user_id"
 
   create_table "topics", :force => true do |t|
     t.string   "name"

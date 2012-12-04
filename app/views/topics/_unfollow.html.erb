@@ -1,0 +1,4 @@
+<%= form_for(current_user.topic_user_relationships.find_by_topic_id(@topic), html: { method: :delete}, remote:true) do |f| %>
+  <%= f.submit "Unfollow", class: "btn btn-large" %>
+<% end %>
+

@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :username, use: :slugged
 
+  has_many :topic_user_relationships, foreign_key: "user_id", dependent: :destroy
+
+  has_many :followed_topics, through: :topic_user_relationships, source: :topic
+
   has_many :link_users, foreign_key: "user_id", dependent: :destroy
   has_many :links, through: :link_users, source: :link
 
@@ -50,10 +54,10 @@ class User < ActiveRecord::Base
     loader = Soulmate::Loader.new("user")
     loader.add("term" => name, "id" => id)
   end
- def self.search(term)
+  def self.search(term)
     matches = Soulmate::Matcher.new('user').matches_for_term(term)
     matches.collect {|match| {"id" => match["id"], "label" => match["term"], "value" => match["term"] } }
- end 
+  end 
   def self.from_omniauth(auth)
     where(auth.slice(:uid)).first_or_initialize.tap do |user|
       user.uid = auth.uid
@@ -101,6 +105,18 @@ class User < ActiveRecord::Base
 
   def unfollow!(other_user)
     relationships.find_by_followed_id(other_user.id).destroy
+  end
+
+  def topic_following?(topic)
+    topic_user_relationships.find_by_topic_id(topic.id)
+  end
+
+  def topic_follow!(topic)
+    topic_user_relationships.create!(topic_id: topic.id)
+  end
+
+  def topic_unfollow!(topic)
+    topic_user_relationships.find_by_topic_id(topic.id).destroy
   end
 
   def link_with_user!(given_link)

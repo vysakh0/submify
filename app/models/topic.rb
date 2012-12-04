@@ -7,6 +7,9 @@ class Topic < ActiveRecord::Base
   has_many :link_users, foreign_key: "topic_id", dependent: :destroy
   has_many :links, through: :link_users, source: :link
 
+  has_many :topic_user_relationships, foreign_key: "topic_id", dependent: :destroy
+
+  has_many :following_users, through: :topic_user_relationships, source: :user
   after_save :load_into_soulmate
 
   def load_into_soulmate
