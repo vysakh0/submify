@@ -39,9 +39,9 @@ class Link < ActiveRecord::Base
     users.where("user_id IN (#{@followed_user_ids}) OR user_id = :user_id", user_id: user.id).limit(8)
   end
 
-  def link_with_topic!(topic_name)
+  def link_with_topic!(topic_name, user)
     topic = Topic.where(name: topic_name).first_or_create
-    link_users.create!(topic_id: topic.id)
+    link_users.create!(topic_id: topic.id, user_id: user.id)
   end
 
   def self.from_users_followed_by(user)

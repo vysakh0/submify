@@ -31,8 +31,7 @@ class LinksController < ApplicationController
       if @link= Link.find_by_url_link(params[:link][:url_link])
 
         if !@link.users.exists? current_user and  !@link.topics.exists? topic
-          current_user.link_with_user!(@link) 
-          @link.link_with_topic!(topic)
+          @link.link_with_topic!(topic, current_user)
         end
 
         flash[:success] = "Link submitted"
@@ -42,9 +41,7 @@ class LinksController < ApplicationController
         @link = current_user.links.build(params[:link]) 
 
         if @link!= nil && @link.save
-
-          current_user.link_with_user!(@link)
-          @link.link_with_topic!(topic)
+          @link.link_with_topic!(topic, current_user)
           flash[:success] = "Link submitted"
           publish_to_fb
           redirect_to root_url

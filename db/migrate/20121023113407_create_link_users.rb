@@ -8,7 +8,6 @@ class CreateLinkUsers < ActiveRecord::Migration
     end
     add_index :link_users, :link_id
     add_index :link_users, :user_id
-    add_index :link_users, [:link_id, :user_id], unique: true
 
   end
 end

@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20121203164629) do
     t.integer  "topic_id"
   end
 
-  add_index "link_users", ["link_id", "user_id"], :name => "index_link_users_on_link_id_and_user_id", :unique => true
+  add_index "link_users", ["link_id", "user_id", "topic_id"], :name => "index_link_users_on_link_id_and_user_id_and_topic_id", :unique => true
   add_index "link_users", ["link_id"], :name => "index_link_users_on_link_id"
   add_index "link_users", ["topic_id"], :name => "index_link_users_on_topic_id"
   add_index "link_users", ["user_id"], :name => "index_link_users_on_user_id"
