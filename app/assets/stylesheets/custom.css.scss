@@ -259,3 +259,8 @@ aside {
   width: 120px;
   height: 12px;
 }
+.dropdown-menu {
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}

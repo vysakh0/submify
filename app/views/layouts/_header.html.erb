@@ -16,6 +16,15 @@
        <ul class="nav pull-right">
         <% if signed_in? %>
           
+        <li id="fat-menu" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+            Explore
+           </a>
+
+          <ul class="dropdown-menu">
+            <%= render 'shared/show_topics_nav' %>
+        </ul>
+        </li>
         <li><%= link_to "Home",root_path  %> </li>
         <li id="fat-menu" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" >

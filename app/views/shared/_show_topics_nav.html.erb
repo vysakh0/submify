@@ -1,0 +1,7 @@
+<div class="topics-nav">
+           <li><%= link_to "Front Page", front_page_path %></li>
+            <li class="divider"></li>
+            <% current_user.followed_topics.each do |topic| %>
+              <li> <%= link_to topic.name, topic_path(topic) %> </li>
+            <% end %>
+          </div> 

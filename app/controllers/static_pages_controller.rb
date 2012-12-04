@@ -17,6 +17,11 @@ class StaticPagesController < ApplicationController
   def autocomplete_topic_name
     render :json => Topic.search(params['term'])
   end
+  
+  def front_page
+      @links = Link.front_page.paginate(page: params[:page])
+  end
+
   def contact
   end
 end
