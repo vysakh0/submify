@@ -9,7 +9,7 @@ class TopicsController < ApplicationController
 
   def update
     @topic = Topic.find(params[:id])
-    if @topic.update_attributes(params[:user])
+    if @topic.update_attributes(params[:topic])
       flash.now[:success] = "Topic updated"
       redirect_to @topic
     else

@@ -3,12 +3,12 @@
   <div class="span8">
     <% tab "Feed" %>
     <%= render 'topic_stats' %>
-  <div class="span8">
-    <ol class="links">
-      <%= render @links %>
-    </ol>
-    <%= will_paginate @links %>
+      <div class="span8">
+        <ol class="links">
+          <%= render @links %>
+        </ol>
+        <%= will_paginate @links %>
+    </div>
   </div>
-</div>
 
 </div>

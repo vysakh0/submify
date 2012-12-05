@@ -5,6 +5,8 @@
 <%= image_tag @topic.avatar.url(:medium) %>
   <%= @topic.name %>
 </h3>
+<%= @topic.description %>
+
 <ul class="breadcrumb">
   <li>
   <%= link_to "Feed" , topic_path(@topic) , class:("active" if @page_tab == "Feed")%><span class="divider">/</span> </li> 
