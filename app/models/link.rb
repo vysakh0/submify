@@ -20,6 +20,7 @@ class Link < ActiveRecord::Base
   has_many :topics, through: :link_users, source: :topic
 
   has_many :votes, as: :votable, dependent: :destroy
+  has_many :topic_downvotes, dependent: :destroy
   validates :url_link, uniqueness: true
   default_scope order: 'links.created_at DESC'
 

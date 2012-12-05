@@ -5,6 +5,7 @@ class Topic < ActiveRecord::Base
   attr_accessible :description, :name, :id, :avatar
   has_attached_file :avatar, styles: { medium: "200x200>", thumb: "100x100>"}
 
+  has_many :topic_downvotes, dependent: :destroy
   has_many :link_users, foreign_key: "topic_id", dependent: :destroy
   has_many :links, through: :link_users, source: :link
 

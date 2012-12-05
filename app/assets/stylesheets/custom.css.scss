@@ -218,7 +218,7 @@ aside {
   display: block;
 }
 
-.vote{
+.vote, #topic-downvote{
   float: right;
   font-size: 12.8px;
   display: block;
@@ -266,4 +266,18 @@ aside {
 }
 .topic-desc{
   padding: 30px;
+}
+.undo-butn, .undo-butn:focus, .undo-butn:active {
+  /* NOTE Remove all decorations */
+  border: none;
+  display: inline;
+  margin: 0em;
+  padding: 0em;
+  outline: none;
+  outline-offset: 0em;
+  /* NOTE Look like a link */
+  background: none;
+  color: #bbc3bc;
+  cursor: pointer;
+  font: inherit;
 }

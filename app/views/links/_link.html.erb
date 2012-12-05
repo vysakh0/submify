@@ -1,23 +1,28 @@
 <li >
 <div class= "link-<%= link.id %>" >
-<div class="timestamp">
-  <%= link_to time_ago_in_words(link.created_at), link %>
-</div>
-<% host = 'http://'+ link.url_link %>
+  <div class="timestamp">
+    <%= link_to time_ago_in_words(link.created_at), link %>
+  </div>
+  <% host = 'http://'+ link.url_link %>
 
-<div class="host_link">
-<%= link_to host.match(".+\:\/\/([^\/]+)")[1], host %> 
-</div>
-<div class="link_url">
-<span class="url_link"><%= link_to link.url_heading, 'http://' + link.url_link %> </span>
+  <div class="host_link">
+    <%= link_to host.match(".+\:\/\/([^\/]+)")[1], host %> 
+  </div>
+  <div class="link_url">
+    <span class="url_link"><%= link_to link.url_heading, 'http://' + link.url_link %> </span>
 
-</div>
-<div class="vote">
-	<%= render 'votes/vote_button', votable: link, type: link.class.to_s %>
-</div>
-<div class="votes">
-<%= pluralize(link.votes.count, "vote")%>
-</div>
-<%= link_to pluralize(link.comments.count, "comment"), link %>
+  </div>
+  <% if @topic %>
+    <div id="topic-downvote">
+      <%= render 'topics/downvote_button', link: link %>
+    </div>
+  <% end %>
+  <div class="vote">
+    <%= render 'votes/vote_button', votable: link, type: link.class.to_s %>
+  </div>
+  <div class="votes">
+    <%= pluralize(link.votes.count, "vote")%>
+  </div>
+  <%= link_to pluralize(link.comments.count, "comment"), link %>
 </div>
 </li>
