@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121203164629) do
+ActiveRecord::Schema.define(:version => 20121205051248) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -80,8 +80,12 @@ ActiveRecord::Schema.define(:version => 20121203164629) do
     t.string   "name"
     t.text     "description"
     t.string   "slug"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "topics", ["name"], :name => "index_topics_on_name", :unique => true

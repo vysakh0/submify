@@ -1,11 +1,14 @@
 <% provide(:title, @topic.name) %>
 <div class="row-fluid">
   <div class="span8">
+    <% tab "Feed" %>
     <%= render 'topic_stats' %>
+  <div class="span8">
     <ol class="links">
       <%= render @links %>
     </ol>
     <%= will_paginate @links %>
+  </div>
 </div>
 
 </div>
