@@ -18,9 +18,6 @@
   <div class="host_link">
     <%= link_to host.match(".+\:\/\/([^\/]+)")[1], host.match(".+\:\/\/([^\/]+)")[1] %> 
   </div>
-  <div class="submit">
-    <%= render 'links/submit',link: feed_item %>
-  </div>
   <div class="vote">
     <%= render 'votes/vote_button', votable: feed_item, type: feed_item.class.to_s %>
   </div>
@@ -28,9 +25,6 @@
     <%= pluralize(feed_item.votes.count, "vote")%>
   </div>
 
-  <div class="submits">
-    <%= pluralize(feed_item.users.count, "submit")%>
-  </div>
   <%= link_to pluralize(feed_item.comments.count, "comment"), feed_item %>
 </div>
 <div class="span8">

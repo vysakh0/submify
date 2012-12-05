@@ -7,10 +7,8 @@
 <div class="container-fluid">
   <div class="link-<%= @link.id %>" >
     <div class = "span8">
-      <div class="topics-list">
-        <% @link.topics.each do |topic| %>
-          <%= link_to topic.name, topic %>
-        <% end %>
+      <div id="topics-list">
+        <%= render 'list_topics' %>
       </div>
       <h5>
         <% host = 'http://'+ @link.url_link %>
@@ -22,9 +20,6 @@
           <span class="url_link"><%= link_to @link.url_heading, 'http://' + @link.url_link %> </span>
         </div>
       </h5>
-      <div class="submit">
-        <%= render 'links/submit',link: @link %>
-      </div>
 
       <div class="vote">
         <%= render 'votes/vote_button', votable: @link, type: @link.class.to_s %>
@@ -32,9 +27,6 @@
       </div>
       <div class="votes">
         <%= pluralize(@link.votes.count, "vote")%>
-      </div>
-      <div class="submits">
-        <%= pluralize(@link.users.count, "submit")%>
       </div>
       <div class="show_comment">
         <%= pluralize(@link.comments.count, "comment") %>

@@ -14,9 +14,10 @@ class LinksController < ApplicationController
 
   def submit
     id = params[:link][:id]
+    topic = params[:topic_name]
     if id
       @link = Link.find_by_id(id)
-      current_user.link_with_user!(@link)
+      @link.link_with_topic!(topic, current_user)
       publish_to_fb
       respond_to do |format|
         format.js
@@ -30,9 +31,7 @@ class LinksController < ApplicationController
 
       if @link= Link.find_by_url_link(params[:link][:url_link])
 
-        if !@link.users.exists? current_user and  !@link.topics.exists? topic
           @link.link_with_topic!(topic, current_user)
-        end
 
         flash[:success] = "Link submitted"
         publish_to_fb

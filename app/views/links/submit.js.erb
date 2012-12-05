@@ -1,4 +1,1 @@
-$(".link-<%= @link.id %> > .span8 > .submit").html("<%= escape_javascript render('links/submit', link: @link) %>");
-$(".link-<%= @link.id %> > .span8 > .submits").html("<%= pluralize(@link.users.count, "submit") %>");
-$(".link-<%= @link.id %> > .submit").html("<%= escape_javascript render('links/submit', link: @link) %>");
-$(".link-<%= @link.id %> > .submits").html("<%= pluralize(@link.users.count, "submit") %>");
+$("#topics-list").html("<%= escape_javascript render('links/list_topics', link: @link) %>");
