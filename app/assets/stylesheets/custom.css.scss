@@ -52,7 +52,7 @@ display:block;
 .timestamp {
   a{
     color: #999;
-    float: right;
+    float: center;
     font-size: 12px;
   }
 }
@@ -288,4 +288,9 @@ aside {
 li.underline { 
   border-bottom-style: solid; 
   border-bottom-width:1px; 
-} 
+}
+.unsubmit{
+  float: right;
+  font-size: 8px;
+  a{color: #8b9dc3;}
+}

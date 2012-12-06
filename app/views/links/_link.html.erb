@@ -1,5 +1,10 @@
 <li >
 <div class= "link-<%= link.id %>" >
+  <% if unsubmit = current_user.link_users.find_by_link_id_and_topic_id(link.id, @topic.id) %>
+    <div class="unsubmit">
+      <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  unsubmit_topic_path(@topic, unsubmit: unsubmit, topic: @topic.id), method: :post %>
+    </div>
+  <% end %>
   <div class="timestamp">
     <%= link_to time_ago_in_words(link.created_at), link %>
   </div>
