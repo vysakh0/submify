@@ -32,6 +32,7 @@ Youarel::Application.routes.draw do
   match '/front_page', to: 'static_pages#front_page'
   resources :votes, only: [:create, :destroy]
   resources :topic_downvotes, only: [:create, :destroy]
+  resources :comment_downvotes, only: [:create, :destroy]
   resources :topics, only: [:create, :destroy, :show, :edit]
 
   resources :link_users, only: [:create, :destroy]

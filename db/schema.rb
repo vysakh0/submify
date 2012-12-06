@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121205145617) do
+ActiveRecord::Schema.define(:version => 20121206054551) do
+
+  create_table "comment_downvotes", :force => true do |t|
+    t.integer  "comment_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "comment_downvotes", ["user_id", "comment_id"], :name => "index_comment_downvotes_on_user_id_and_comment_id", :unique => true
 
   create_table "comments", :force => true do |t|
     t.text     "body"

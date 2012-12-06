@@ -20,8 +20,9 @@
   <div class="vote">
     <%= render 'votes/vote_button', votable: link, type: link.class.to_s %>
   </div>
+  <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
   <div class="votes">
-    <%= pluralize(link.votes.count, "vote")%>
+    <%= link.votes.count %>
   </div>
   <%= link_to pluralize(link.comments.count, "comment"), link %>
 </div>

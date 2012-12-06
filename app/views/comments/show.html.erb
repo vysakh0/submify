@@ -37,11 +37,14 @@
 <div class="vote">
 	<%= render 'votes/vote_button', votable: @comment, type: @comment.class.to_s %>
       </div>
+
+    <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
 <div class="votes">
 <%= pluralize(@comment.votes.count, "vote")%>
 </div>
 <div class="show_comment">
-<%= pluralize(@comment.comments.count, "reply") %>
+  <i class="icon-comments-alt icon-small"></i>
+<%= (@comment.comments.count) %>
 </div>
 </div>
 

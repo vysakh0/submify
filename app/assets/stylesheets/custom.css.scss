@@ -218,7 +218,7 @@ aside {
   display: block;
 }
 
-.vote, #topic-downvote{
+.vote, #topic-downvote, .comment-downvote{
   float: right;
   font-size: 12.8px;
   display: block;
@@ -240,9 +240,9 @@ aside {
 }
 #fat-menu{
   img{
-  width: 25px;
-  height: 25px;
-}
+    width: 25px;
+    height: 25px;
+  }
 }
 .follow_button{
   float: right;
@@ -260,9 +260,9 @@ aside {
   height: 12px;
 }
 .dropdown-menu {
-    max-height: 500px;
-    overflow-y: auto;
-    overflow-x: hidden;
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .topic-desc{
   padding: 30px;
@@ -281,3 +281,11 @@ aside {
   cursor: pointer;
   font: inherit;
 }
+.votes-up{
+  float: left;
+  color: #3b5998;
+}
+li.underline { 
+  border-bottom-style: solid; 
+  border-bottom-width:1px; 
+} 

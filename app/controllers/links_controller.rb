@@ -27,7 +27,7 @@ class LinksController < ApplicationController
 
   def create
     topic = params[:topic_name]
-    if check_url
+    if topic != "" and check_url
 
       if @link= Link.find_by_url_link(params[:link][:url_link])
 
@@ -49,6 +49,7 @@ class LinksController < ApplicationController
         end
       end
     else
+      flash[:error]="Enter the topic name" if topic==""
       redirect_to root_url
     end
   end

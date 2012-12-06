@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
 
   has_many :followed_topics, through: :topic_user_relationships, source: :topic
 
+  has_many :comment_downvotes, dependent: :destroy
   has_many :link_users, foreign_key: "user_id", dependent: :destroy
   has_many :links, through: :link_users, source: :link
 
