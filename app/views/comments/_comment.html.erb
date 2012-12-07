@@ -5,6 +5,10 @@
 
     <% if comment.user== current_user %>
       <div class="del_comment">  <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  comment, method: :delete, data: { confirm: "You sure?" }, title: comment.body %>
+      <% else %>
+        <div class="flag">
+          <%= render 'flags/flag_button', flaggable: comment, type: "Comment" %>
+        </div>
       <% end %>
     </div>
     <% if comment.user %>
@@ -27,7 +31,7 @@
       <%= render 'comment_downvotes/downvote_button', comment: comment %>
     </div>
     <div class="vote">
-      <%= render 'votes/vote_button', votable: comment, type: comment.class.to_s %>
+      <%= render 'votes/vote_button', votable: comment, type: "Comment" %>
     </div>
     <div class= "row_of_linkstats">
       <% if comment.commentable_type == 'Link' %>

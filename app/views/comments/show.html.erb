@@ -12,7 +12,10 @@
   <meta property="og:image"  content="https://s-static.ak.fbcdn.net/images/devsite/attachment_blank.png" />
 <% if @comment.user== current_user %>
   <div class="del_comment">  <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"), @comment, method: :delete, data: { confirm: "You sure?" }, title: @comment.body %></div>
-
+      <% else %>
+        <div class="flag">
+          <%= render 'flags/flag_button', flaggable: @comment, type: "Comment" %>
+        </div>
 <% end %>
 <% if @comment.user %>
 <%= link_to gravatar_for(@comment.user), @comment.user %>

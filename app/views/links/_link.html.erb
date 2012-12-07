@@ -1,8 +1,12 @@
 <li >
 <div class= "link-<%= link.id %>" >
-  <% if unsubmit = current_user.link_users.find_by_link_id_and_topic_id(link.id, @topic.id) %>
+  <% if signed_in? and unsubmit = current_user.link_users.find_by_link_id_and_topic_id(link.id, @topic.id) %>
     <div class="unsubmit">
       <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  unsubmit_topic_path(@topic, unsubmit: unsubmit, topic: @topic.id), method: :post %>
+    </div>
+  <% else %>
+    <div class="flag">
+      <%= render 'flags/flag_button', flaggable: link, type: "Link" %>
     </div>
   <% end %>
   <div class="timestamp">
@@ -23,7 +27,7 @@
     </div>
   <% end %>
   <div class="vote">
-    <%= render 'votes/vote_button', votable: link, type: link.class.to_s %>
+    <%= render 'votes/vote_button', votable: link, type: "Link" %>
   </div>
   <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
   <div class="votes">

@@ -35,6 +35,7 @@ Youarel::Application.routes.draw do
   resources :comment_downvotes, only: [:create, :destroy]
   resources :topics, only: [:create, :destroy, :show, :edit, :unsubmit]
 
+  resources :flags, only: [:create, :destroy]
   resources :link_users, only: [:create, :destroy]
   resources :links, only: [:create, :destroy, :show, :submit]
   resources :sessions, only: [:new, :create, :destroy]

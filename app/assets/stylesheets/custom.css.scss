@@ -52,7 +52,8 @@ display:block;
 .timestamp {
   a{
     color: #999;
-    float: center;
+    float: left;
+    padding: 10px;
     font-size: 12px;
   }
 }
@@ -140,9 +141,11 @@ aside {
 }
 .host_link{
   color: #7f7f7f;
+  float: left;
   a{
     color: #7f7f7f;
     font-family: arial, sans-serif;
+    float: left;
   }
 }
 .user_link{
@@ -247,7 +250,7 @@ aside {
 .follow_button{
   float: right;
 }
-.del_comment{
+.del_comment,  .unsubmit{
   float: right;
   font-size: 8px;
   a{color: #8b9dc3;}
@@ -289,8 +292,8 @@ li.underline {
   border-bottom-style: solid; 
   border-bottom-width:1px; 
 }
-.unsubmit{
+.flag{
   float: right;
-  font-size: 8px;
+  font-size: 12px;
   a{color: #8b9dc3;}
 }
