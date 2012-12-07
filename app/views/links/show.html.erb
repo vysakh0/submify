@@ -25,34 +25,26 @@
         <%= render 'votes/vote_button', votable: @link, type: @link.class.to_s %>
 
       </div>
-  <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
       <div class="votes">
         <%= @link.votes.count %>
       </div>
+  <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
       <div class="show_comment">
-  <i class="icon-comments-alt icon-small"></i>
         <%= (@link.comments.count) %>
       </div>
+  <i class="icon-comments-alt icon-small"></i>
     </div>
 
    <%= render 'shared/load_gif' %>
     <div class="span8">
+      <div class="comment-form">
+      <%= render 'shared/comment_form' %>
+    </div>
       <ol class="full_comments">
         <%= render partial: 'comments/comment', collection: @link.comments %>
       </ol>
       <%= will_paginate @comments %>
 
-      <section>
-      <% if signed_in? %>
-        <%= form_for :comment, url: comments_path(link_id: @link), :html => { :multipart => true } do |f| %>
-          <div class="field">
-            <%= f.text_area :body, placeholder: "Add a comment", id: "comment_text"%>
-            <%= f.file_field :avatar %>
-            <%= f.submit "Submit", class: "btn btn-small"%>
-          </div>
-        <% end %>
-      <% end %>
-      </section>
     </div>
   </div>
 </div>

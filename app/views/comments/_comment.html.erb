@@ -39,6 +39,8 @@
         <div class="comments">
           <%= link_to pluralize(comment.comments.count, "reply"), link_comment_path(comment.commentable, comment) %>
         </div>
+      <% else %>
+        <br/>
 
       <% end %>
     <% end %>

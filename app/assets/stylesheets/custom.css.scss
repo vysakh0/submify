@@ -180,9 +180,8 @@ aside {
 }
 
 .show_comment{
-  font-family: arial, sans-serif;
   color: #bbc3bc;
-  font-size: 12.8px;
+  float: left;
 }
 .submits, .votes{
   float:  left;
@@ -299,6 +298,6 @@ li.underline {
   font-size: 12.8px;
 }
 #loading-indicator {
-     left: 10px;
-        top: 10px;
-         }
+  left: 10px;
+  top: 10px;
+}

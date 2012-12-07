@@ -15,8 +15,8 @@ class LinksController < ApplicationController
   def submit
     id = params[:link][:id]
     topic = params[:topic_name]
-    if id
       @link = Link.find_by_id(id)
+    if id and topic!= ""
       @link.link_with_topic!(topic, current_user)
       publish_to_fb
       respond_to do |format|

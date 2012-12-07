@@ -21,10 +21,10 @@
   <div class="vote">
     <%= render 'votes/vote_button', votable: feed_item, type: feed_item.class.to_s %>
   </div>
-  <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
   <div class="votes">
     <%= feed_item.votes.count %>
   </div>
+  <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
   <div class="show-comments">
     <%= link_to pluralize(feed_item.comments.count, "comment"), feed_item %>
   </div>

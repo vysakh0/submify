@@ -1,65 +1,64 @@
 <% provide(:title, @comment.body) %>
 <div class="container-fluid">
   <div class="span8">
-  <div class="comment-<%= @comment.id %>" >
+    <div class="comment-<%= @comment.id %>" >
 
-<% if @comment %>
+      <% if @comment %>
 
- <meta property="fb:app_id" content="295241533825642" /> 
-  <meta property="og:type"   content="website" /> 
-  <meta property="og:url"    content="<%= comment_url(@comment)%>"/>
-  <meta property="og:title"  content= "<%= @comment.body %>" /> 
-  <meta property="og:image"  content="https://s-static.ak.fbcdn.net/images/devsite/attachment_blank.png" />
-<% if @comment.user== current_user %>
-  <div class="del_comment">  <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"), @comment, method: :delete, data: { confirm: "You sure?" }, title: @comment.body %></div>
-      <% else %>
-        <div class="flag">
-          <%= render 'flags/flag_button', flaggable: @comment, type: "Comment" %>
+        <meta property="fb:app_id" content="295241533825642" /> 
+        <meta property="og:type"   content="website" /> 
+        <meta property="og:url"    content="<%= comment_url(@comment)%>"/>
+        <meta property="og:title"  content= "<%= @comment.body %>" /> 
+        <meta property="og:image"  content="https://s-static.ak.fbcdn.net/images/devsite/attachment_blank.png" />
+        <% if @comment.user== current_user %>
+          <div class="del_comment">  <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"), @comment, method: :delete, data: { confirm: "You sure?" }, title: @comment.body %></div>
+        <% else %>
+          <div class="flag">
+            <%= render 'flags/flag_button', flaggable: @comment, type: "Comment" %>
+          </div>
+        <% end %>
+        <% if @comment.user %>
+          <%= link_to gravatar_for(@comment.user), @comment.user %>
+          <div class="user_link">
+            <h4>
+              <span class="user">
+                <%= link_to @comment.user.name, @comment.user %>
+              </span>
+            </div>
+          <% end %>
+
+          <%= @comment.body %>
+          <div class="comment_in_links">
+            <%= image_tag @comment.avatar.url(:medium) if @comment.avatar.exists? %>
+          </div>
+        </h4>
+        <div class="comment_url">
+          <%= link_to @comment.commentable.url_heading, 'http://'+ @comment.commentable.url_link %>
         </div>
-<% end %>
-<% if @comment.user %>
-<%= link_to gravatar_for(@comment.user), @comment.user %>
-<div class="user_link">
-  <h4>
-  <span class="user">
-  <%= link_to @comment.user.name, @comment.user %>
-</span>
-</div>
-<% end %>
+      <% end %>
 
-<%= @comment.body %>
-<div class="comment_in_links">
-<%= image_tag @comment.avatar.url(:medium) if @comment.avatar.exists? %>
-</div>
-</h4>
-<div class="comment_url">
-<%= link_to @comment.commentable.url_heading, 'http://'+ @comment.commentable.url_link %>
-</div>
-<% end %>
-
-<div class="vote">
-	<%= render 'votes/vote_button', votable: @comment, type: @comment.class.to_s %>
+      <div class="vote">
+        <%= render 'votes/vote_button', votable: @comment, type: @comment.class.to_s %>
       </div>
+        <div class="votes">
+          <%= @comment.votes.count %>
+        </div>
+        <div class="votes-up">
+          <i class="icon-caret-up icon-small "></i></div>
+        <div class="show_comment">
+          <%= (@comment.comments.count) %>
+        </div>
+        <i class="icon-comments-alt icon-small"></i>
 
-    <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
-<div class="votes">
-<%= pluralize(@comment.votes.count, "vote")%>
-</div>
-<div class="show_comment">
-  <i class="icon-comments-alt icon-small"></i>
-<%= (@comment.comments.count) %>
-</div>
-</div>
+    </div>
 
-<div class="span8">
-<ol class="full_comments">
-<%= render partial: 'comments/comment', collection: @comment.comments %>
-</ol>
-<%= will_paginate %>
+    <div class="span8">
+      <%= render 'shared/comment_form' %>
+      <ol class="full_comments">
+        <%= render partial: 'comments/comment', collection: @comment.comments %>
+      </ol>
+      <%= will_paginate %>
 
-<section>
-<%= render 'shared/comment_form' %>
-</section>
-</div>
-</div>
+    </div>
+  </div>
 </div>

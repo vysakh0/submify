@@ -13,22 +13,36 @@ class CommentsController < ApplicationController
     @comments = @comment.comments.paginate(page: params[:page])
   end
 
+  #def create
+      #@comment = @parent.comments.build(params[:comment])
+    #if params[:comment][:body]!=''
+      #@comment.user = current_user
+      #if @comment.save
+        #flash[:notice] = "Commented"
+        #publish_to_fb if @parent.class.to_s == "Link"
+        #redirect_to @parent
+      #else
+        #redirect_to @parent
+      #end
+    #else
+      #redirect_to @parent 
+    #end
+  #end
+
   def create
-      @comment = @parent.comments.build(params[:comment])
+    @comment = @parent.comments.build(params[:comment])
     if params[:comment][:body]!=''
       @comment.user = current_user
       if @comment.save
-        flash[:notice] = "Commented"
         publish_to_fb if @parent.class.to_s == "Link"
-        redirect_to @parent
-      else
-        redirect_to @parent
+      respond_to do |format|
+        format.html { redirect_to @parent }
+        format.js
       end
-    else
-      redirect_to @parent 
+
+      end
     end
   end
-
 
   def destroy
     @comment.destroy if @comment
@@ -38,8 +52,11 @@ class CommentsController < ApplicationController
   protected
 
   def get_parent
-    @parent = Link.find_by_id(params[:link_id]) if params[:link_id]
-    @parent = Comment.find_by_id(params[:comment_id]) if params[:comment_id]
+    if params[:val]=="1"     
+    @parent = Link.find_by_id(params[:comment_id]) 
+    else
+    @parent = Comment.find_by_id(params[:comment_id]) 
+    end
   end
 
   def correct_user

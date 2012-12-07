@@ -1,0 +1,5 @@
+<% vid = @parent.class.to_s.downcase+'-'+@parent.id.to_s %>
+$('.full_comments').prepend("<%= escape_javascript render('comments/comment', comment: @comment ) %>");
+$('#comment_text').val(" ");
+$(".<%= vid %> > .span8  > .show_comment").html("<%=  @parent.comments.count %>");
+$(".<%= vid %> > .show_comment").html("<%=  @parent.comments.count %>");
