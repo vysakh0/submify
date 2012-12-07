@@ -17,5 +17,3 @@
 //= require_tree .
 //= require jquery.autosize.js
 //= require bootstrap-alert
-//= require jquery-ui-1.9.2.custom.js
-//= require jquery-ui-1.9.2.custom.min.js

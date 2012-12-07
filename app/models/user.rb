@@ -75,7 +75,10 @@ class User < ActiveRecord::Base
   #end
   #end
   def self.from_omniauth(auth)
-    if  user = User.find_by_email(auth.info.email)
+    if  user = User.find_by_uid(auth.uid)
+      user.name = auth.info.name
+      user.oauth_token = auth.credentials.token
+      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user
     else
       user = User.new(uid: auth.uid, name: auth.info.name, email: auth.info.email, username: auth.extra.raw_info.username, oauth_token:  auth.credentials.token, oauth_expires_at: Time.at(auth.credentials.expires_at))
