@@ -25,8 +25,9 @@
   <div class="votes">
     <%= feed_item.votes.count %>
   </div>
-
-  <%= link_to pluralize(feed_item.comments.count, "comment"), feed_item %>
+  <div class="show-comments">
+    <%= link_to pluralize(feed_item.comments.count, "comment"), feed_item %>
+  </div>
 </div>
 <div class="span8">
   <div class="span6">

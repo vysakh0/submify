@@ -9,14 +9,12 @@
       <%= render 'flags/flag_button', flaggable: link, type: "Link" %>
     </div>
   <% end %>
-  <div class="timestamp">
-    <%= link_to time_ago_in_words(link.created_at), link %>
-  </div>
   <% host = 'http://'+ link.url_link %>
 
   <div class="host_link">
     <%= link_to host.match(".+\:\/\/([^\/]+)")[1], host %> 
-  </div>
+    </div>
+
   <div class="link_url">
     <span class="url_link"><%= link_to link.url_heading, 'http://' + link.url_link %> </span>
 
@@ -33,6 +31,6 @@
   <div class="votes">
     <%= link.votes.count %>
   </div>
-  <%= link_to pluralize(link.comments.count, "comment"), link %>
+  <div class="show-comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></div>
 </div>
 </li>

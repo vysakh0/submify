@@ -52,8 +52,7 @@ display:block;
 .timestamp {
   a{
     color: #999;
-    float: left;
-    padding: 10px;
+    padding: 20px;
     font-size: 12px;
   }
 }
@@ -141,11 +140,9 @@ aside {
 }
 .host_link{
   color: #7f7f7f;
-  float: left;
   a{
     color: #7f7f7f;
     font-family: arial, sans-serif;
-    float: left;
   }
 }
 .user_link{
@@ -184,7 +181,7 @@ aside {
 
 .show_comment{
   font-family: arial, sans-serif;
-  color: #8b9dc3;
+  color: #bbc3bc;
   font-size: 12.8px;
 }
 .submits, .votes{
@@ -192,9 +189,9 @@ aside {
   padding-right: 8px;
   font-size: 12.8px;
   display: block;
-  color: #8b9dc3;
+  color: #bbc3bc;
   a{
-    color: #8b9dc3;
+    color: #bbc3bc;
   }
 }
 .span8 > .submits, .span8 > .votes{
@@ -202,9 +199,9 @@ aside {
   padding-right: 10px;
   display: block;
   font-size: 12.8px;
-  color: #8b9dc3;
+  color: #bbc3bc;
   a{
-    color: #8b9dc3;
+    color: #bbc3bc;
   }
 }
 .user_image{
@@ -237,7 +234,7 @@ aside {
   outline-offset: 0em;
   /* NOTE Look like a link */
   background: none;
-  color: #3b5998;
+  color: #bbc3bc;
   cursor: pointer;
   font: inherit;
 }
@@ -253,7 +250,7 @@ aside {
 .del_comment,  .unsubmit{
   float: right;
   font-size: 8px;
-  a{color: #8b9dc3;}
+  a{color: #bbc3bc;}
 }
 .comment_url{
   width: 100%;
@@ -280,7 +277,7 @@ aside {
   outline-offset: 0em;
   /* NOTE Look like a link */
   background: none;
-  color: #bbc3bc;
+  color: #626271;
   cursor: pointer;
   font: inherit;
 }
@@ -295,5 +292,9 @@ li.underline {
 .flag{
   float: right;
   font-size: 12px;
-  a{color: #8b9dc3;}
+  color: #bbc3bc;
+  a{color: #bbc3bc;}
+}
+.show-comments{
+  font-size: 12.8px;
 }
