@@ -55,9 +55,10 @@
     <div class="span8">
       <%= render 'shared/comment_form' %>
       <ol class="full_comments">
-        <%= render partial: 'comments/comment', collection: @comment.comments %>
       </ol>
-      <%= will_paginate %>
+        <div class="load-more">
+        <%= link_to 'Load More', comment_path(@comment,page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'hook-comment-comments', remote: true %>
+      </div>
 
     </div>
   </div>

@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
   def show
 
     @comment = Comment.find_by_id(params[:id])
-    @comments = @comment.comments.paginate(page: params[:page])
+    @comments = @comment.comments.paginate(page: params[:page], per_page: params[:per_page] || 15)
   end
 
   #def create

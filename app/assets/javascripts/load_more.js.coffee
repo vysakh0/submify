@@ -5,5 +5,6 @@ $(document).ready ->
     $.getScript $(this).attr("href")  if visible
   $("a.hook-link-comments").bind "inview", (e, visible) ->
     $.getScript $(this).attr("href")  if visible
-
+  $("a.hook-comment-comments").bind "inview", (e, visible) ->
+    $.getScript $(this).attr("href")  if visible
 
