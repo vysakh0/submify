@@ -2,6 +2,7 @@ require 'open-uri'
 require 'uri'
 require 'net/http'
 require 'nokogiri'
+require 'open_uri_redirections'
 class LinksController < ApplicationController
 
   before_filter :signed_in_user, only: [:create, :destroy, :submit]
@@ -10,6 +11,10 @@ class LinksController < ApplicationController
 
     @link = Link.find_by_id(params[:id])
     @comments = @link.comments.paginate(page: params[:page])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def submit
@@ -85,7 +90,7 @@ class LinksController < ApplicationController
     given =params[:link][:url_link]
     given = "https://" + given if /https?:\/\/[\S]+/.match(given) == nil
     begin       	
-      final_url =  open(given).base_uri.to_s
+      final_url =  open(given, allow_safe_redirections: true).base_uri.to_s
       data = Nokogiri::HTML(open(final_url))
       final_url.slice! "http://"
       final_url.slice! "https://"
@@ -107,7 +112,7 @@ class LinksController < ApplicationController
         given.slice! "www."
         data = Nokogiri::HTML(doc)	
         params[:link][:url_link] = given
-        params[:link][:url_heading] = doc.css('title')[0].content
+        params[:link][:url_heading] = data.css('title')[0].content
         true
       rescue
         flash[:error] = "Invalid url in uri rescue"

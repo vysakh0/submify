@@ -1,8 +1,9 @@
-
+<% name = nil %>
+<% name = @topic.name if @topic %>
 <%= form_for(@link) do |f| %>
   <div class="field">
     <%= f.text_area :url_link, placeholder: "Submit a link...", id: "complete_url"%>
-    <%= text_field_tag 'topic_name',nil, class: 'link-topic-tag' %>
+    <%= text_field_tag 'topic_name', name , class: 'link-topic-tag' %>
     <%= f.submit "Submit", class: "btn btn-small", id: "submit_button"%>
   </div>
 <% end %>

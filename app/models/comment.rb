@@ -13,6 +13,7 @@
 
 class Comment < ActiveRecord::Base
   attr_accessible :body, :avatar
+  self.per_page = 10
 
   has_attached_file :avatar, styles: { medium: "600x600>", thumb: "300x300>" }
   belongs_to :commentable, polymorphic: true  

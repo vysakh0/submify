@@ -19,6 +19,7 @@ class Link < ActiveRecord::Base
 
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :topics, through: :link_users, source: :topic
+  self.per_page = 10
 
   has_many :votes, as: :votable, dependent: :destroy
   has_many :topic_downvotes, dependent: :destroy

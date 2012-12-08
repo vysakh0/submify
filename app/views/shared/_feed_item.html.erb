@@ -1,23 +1,17 @@
 <li>
 <div class="link-<%= feed_item.id %>">
-  <div class="submit_row">
-
-    <div class="user_image">
-      <% feed_item.following_submits(current_user).each do |user| %>
-        <%= link_to gravatar_for(user, size: 20), user %>
-      <% end %>
-
-    </div>
-  </div>
   <% host = 'http://'+ feed_item.url_link %>
 
+<div class="link-image">
+  <%= image_tag(link_image('http://' + feed_item.url_link), size: "50x50") %>
+</div>
   <div class="link_url">
     <span class="url_link"><%= link_to feed_item.url_heading, 'http://' + feed_item.url_link %> </span>
-  </div>
-
   <div class="host_link">
     <%= link_to host.match(".+\:\/\/([^\/]+)")[1], host.match(".+\:\/\/([^\/]+)")[1] %> 
   </div>
+
+</div>
   <div class="vote">
     <%= render 'votes/vote_button', votable: feed_item, type: feed_item.class.to_s %>
   </div>

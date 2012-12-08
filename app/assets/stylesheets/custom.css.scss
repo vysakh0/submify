@@ -45,9 +45,6 @@ display:block;
   }
 }
 
-.url_link{
-  display: block;
-}
 
 .timestamp {
   a{
@@ -128,12 +125,13 @@ aside {
 
 #submit_button{
   position: relative;
-  left: 550px;
 }
 
 .link_url{
+  padding: 5px;
   a{
     color: #323232;
+    padding: 5px;
     font-family: arial, sans-serif;
   }
 
@@ -300,4 +298,21 @@ li.underline {
 #loading-indicator {
   left: 10px;
   top: 10px;
+}
+.link-image{
+  float: left;
+}
+.load-more {
+  background-color:#eee; 
+  color:#999; font-weight:bold; 
+  text-align:center; padding:10px 0;
+  cursor:pointer;
+}  
+.load-more:hover{
+  color: #666; 
+}
+.topic{
+  background: #ebf6ff;
+  margin: 1px 1px 1px 1px;
+  padding: 1px 1px 1px 1px;
 }

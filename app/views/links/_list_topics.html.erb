@@ -1,5 +1,5 @@
         <% @link.topics.each do |topic| %>
-          <%= link_to topic.name, topic %>
+            <%= link_to topic.name, topic, class: 'topic' %>
         <% end %>
         <%= render 'submit_to_topics' %>
 

@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery.ui.autocomplete
+//= require jquery.inview.js
+//= require jquery.inview.min.js
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
