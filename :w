@@ -1,2 +1,0 @@
-$('.full_comments').prepend("<%= escape_javascript render('comments/comment', comment: @comment ) %>");
-$('#comment_text').value(" ")
