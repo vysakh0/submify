@@ -56,11 +56,11 @@ class User < ActiveRecord::Base
 
   def load_into_soulmate
     loader = Soulmate::Loader.new("user")
-    loader.add("term" => name, "id" => id,"data" => { "url" => path } )
+    loader.add("term" => name, "id" => id,"data" => { "url" => Rails.application.routes.url_helpers.user_path(self) } )
   end
   def self.search(term)
     matches = Soulmate::Matcher.new('user').matches_for_term(term)
-    matches.collect {|match| {"id" => match["id"], "label" => match["term"], "value" => match["term"], "url"  => match["url"] } }
+    matches.collect {|match| {"id" => match["id"], "label" => match["term"], "value" => match["term"], "url"  => match["data"]["url"] } }
   end 
   #def self.from_omniauth(auth)
   #where(auth.slice(:uid)).first_or_initialize.tap do |user|
@@ -81,7 +81,7 @@ class User < ActiveRecord::Base
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user
     else
-      user = User.new(uid: auth.uid, name: auth.info.name, email: auth.info.email, username: auth.extra.raw_info.username, oauth_token:  auth.credentials.token, oauth_expires_at: Time.at(auth.credentials.expires_at))
+      user = User.where(uid: auth.uid, name: auth.info.name, email: auth.info.email, username: auth.extra.raw_info.username, oauth_token:  auth.credentials.token, oauth_expires_at: Time.at(auth.credentials.expires_at)).first_or_create
       user.save
       make_following user
       user

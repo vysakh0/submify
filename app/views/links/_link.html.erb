@@ -1,3 +1,4 @@
+<% link= @link if @link %>
 <div class= "link-<%= link.id %>" >
   <% if signed_in? and @topic %>
    <% if unsubmit = current_user.link_users.find_by_link_id_and_topic_id(link.id, @topic.id) %>
