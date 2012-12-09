@@ -1,9 +1,8 @@
-<li>
 <div class="link-<%= feed_item.id %>">
   <% host = 'http://'+ feed_item.url_link %>
 
 <div class="link-image">
-  <%= image_tag(link_image('http://' + feed_item.url_link), size: "50x50") %>
+  <%= link_image('http://' + feed_item.url_link) %>
 </div>
   <div class="link_url">
     <span class="url_link"><%= link_to feed_item.url_heading, 'http://' + feed_item.url_link %> </span>
@@ -30,5 +29,4 @@
   </ol>
 </div>
 </div>
-</li>
-
+<br/>

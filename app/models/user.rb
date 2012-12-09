@@ -56,11 +56,11 @@ class User < ActiveRecord::Base
 
   def load_into_soulmate
     loader = Soulmate::Loader.new("user")
-    loader.add("term" => name, "id" => id)
+    loader.add("term" => name, "id" => id,"data" => { "url" => path } )
   end
   def self.search(term)
     matches = Soulmate::Matcher.new('user').matches_for_term(term)
-    matches.collect {|match| {"id" => match["id"], "label" => match["term"], "value" => match["term"] } }
+    matches.collect {|match| {"id" => match["id"], "label" => match["term"], "value" => match["term"], "url"  => match["url"] } }
   end 
   #def self.from_omniauth(auth)
   #where(auth.slice(:uid)).first_or_initialize.tap do |user|

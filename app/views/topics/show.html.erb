@@ -6,10 +6,9 @@
       <div class="span8">
       <%= render 'shared/link_form' %>
         <ol class="links">
-          <%= render @links %>
         </ol>
         <div class="load-more">
-        <%= link_to 'Load More', topics_path(page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'hook-topic', remote: true %>
+        <%= link_to 'Load More', topic_path(@topic, page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'hook-topic', remote: true %>
     </div>
   </div>
 

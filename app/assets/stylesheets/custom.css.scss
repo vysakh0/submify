@@ -249,7 +249,7 @@ aside {
 .follow_button{
   float: right;
 }
-.del_comment,  .unsubmit{
+.del_comment,  .unsubmit, .flag{
   float: right;
   font-size: 8px;
   a{color: #bbc3bc;}
@@ -290,12 +290,6 @@ aside {
 li.underline { 
   border-bottom-style: solid; 
   border-bottom-width:1px; 
-}
-.flag{
-  float: right;
-  font-size: 12px;
-  color: #bbc3bc;
-  a{color: #bbc3bc;}
 }
 .show-comments{
   font-size: 12.8px;
