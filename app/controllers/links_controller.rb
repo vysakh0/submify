@@ -38,24 +38,20 @@ class LinksController < ApplicationController
 
           @link.link_with_topic!(topic, current_user)
 
-        flash[:success] = "Link submitted"
         publish_to_fb
-        redirect_to root_url
       else
         @link = current_user.links.build(params[:link]) 
 
         if @link!= nil && @link.save
           @link.link_with_topic!(topic, current_user)
-          flash[:success] = "Link submitted"
           publish_to_fb
-          redirect_to root_url
-        else
-          redirect_to root_url
         end
       end
-    else
-      flash[:error]="Enter the topic name" if topic==""
-      redirect_to root_url
+
+    end
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.js
     end
   end
 

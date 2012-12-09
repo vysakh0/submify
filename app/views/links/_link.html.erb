@@ -1,14 +1,17 @@
 <li >
 <div class= "link-<%= link.id %>" >
-  <% if signed_in? and unsubmit = current_user.link_users.find_by_link_id_and_topic_id(link.id, @topic.id) %>
+  <% if signed_in? and @topic %>
+   <% if unsubmit = current_user.link_users.find_by_link_id_and_topic_id(link.id, @topic.id) %>
     <div class="unsubmit">
       <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  unsubmit_topic_path(@topic, unsubmit: unsubmit, topic: @topic.id), method: :post %>
     </div>
+  
   <% else %>
     <div class="flag">
       <%= render 'flags/flag_button', flaggable: link, type: "Link" %>
     </div>
   <% end %>
+<% end %>
   <% host = 'http://'+ link.url_link %>
   <div class="link-image">
   <%= link_image('http://' + link.url_link) %>

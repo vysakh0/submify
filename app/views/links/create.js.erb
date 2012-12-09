@@ -1,1 +1,6 @@
-$(".link-<%= @link.id %>  > .submit").html("<%= escape_javascript render('links/submit', link: @link) %>");
+  $('.links').prepend("<%= escape_javascript render('links/link', link: @link ) %>");
+  $('#complete_url').val(" ");
+  <% unless @topic %>
+    $('#topic_name').val("");
+  <% end %>
+
