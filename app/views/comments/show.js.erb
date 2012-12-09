@@ -1,6 +1,5 @@
 <% if @comments.all.count>0 %>
-  $('.full_comments').append('<%= escape_javascript(render(partial: 'comments/comment', collection: @comments)) %>');
-  $('a.hook-comment-comments').attr('href', '<%= comment_path(@comment, page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15) %>').show();
-<% else -%>
-  $('a.hook-comment-comments').hide();
+  $(".comment-<%= @comment.id %> > .span8 > #comment-comments").append('<%= escape_javascript(render(partial: 'comments/comment', collection: @comments)) %>');
 <% end -%>
+  $(".comment-<%= @comment.id %> > .span8 > .comments-form").append('<%= escape_javascript(render(partial: 'shared/comment_form')) %>');
+  $(".comment-<%= @comment.id %>  .show_comment").html('<%= pluralize(@comment.comments.count, "reply") %>');

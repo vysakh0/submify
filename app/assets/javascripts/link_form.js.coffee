@@ -4,6 +4,10 @@ $(document).ready ->
   $("textarea#complete_url").autosize()
   $('textarea#comment_text').autosize();  
 
+$("#comment_text").live "click", (event) ->
+  $("textarea#comment_text").autosize()
+
+
 $("#complete_url").bind "input propertychange", ->
   $("#submit_button").hide()  if @value.length is 0
   $(".link-topic-tag").hide()  if @value.length is 0

@@ -4,13 +4,14 @@
   <% if comment %>
 
     <% if comment.user== current_user %>
-      <div class="del_comment">  <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  comment, method: :delete, data: { confirm: "You sure?" }, title: comment.body %>
-      <% else %>
-        <div class="flag">
-          <%= render 'flags/flag_button', flaggable: comment, type: "Comment" %>
-        </div>
-      <% end %>
-    </div>
+      <div class="del_comment"> 
+        <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  comment, method: :delete, data: { confirm: "You sure?" }, title: comment.body %>
+      </div>
+    <% else %>
+      <div class="flag">
+        <%= render 'flags/flag_button', flaggable: comment, type: "Comment" %>
+      </div>
+    <% end %>
     <% if comment.user %>
       <%= link_to gravatar_for(comment.user, size: 10), comment.user %>
       <div class="user_link">
@@ -33,16 +34,21 @@
     <div class="vote">
       <%= render 'votes/vote_button', votable: comment, type: "Comment" %>
     </div>
-    <div class= "row_of_linkstats">
-      <% if comment.commentable_type == 'Link' %>
+    <% if comment.commentable_type == 'Link' %>
 
-        <div class="comments">
-          <%= link_to pluralize(comment.comments.count, "reply"), link_comment_path(comment.commentable, comment) %>
-        </div>
-      <% else %>
-        <br/>
-
-      <% end %>
+  <i class="icon-comments-alt icon-small", style= "float: left"></i>
+      <div class="show_comment">
+        <%= link_to pluralize(comment.comments.count, "reply"), comment_path(comment), class: 'hook-comment-comments', remote: true %>
+      </div>
+    <% else %>
     <% end %>
-  </div>
-  </li>
+    <div class="span8">
+      <div id="comment-comments", class="span6">
+      </div>
+      <div class="comments-form">
+      </div>
+    </div>
+  <% end %>
+  <br/>
+</div>
+</li>

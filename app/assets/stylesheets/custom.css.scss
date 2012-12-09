@@ -109,6 +109,7 @@ aside {
   }
 }
 
+
 .field{
 
   input[type = "text"],
@@ -121,7 +122,11 @@ aside {
   }
 }
 
-
+.comments-form  .field{
+    textarea{
+  width: 350px;
+}
+}
 
 #submit_button{
   position: relative;
