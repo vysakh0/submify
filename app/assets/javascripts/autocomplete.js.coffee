@@ -9,3 +9,4 @@ $ ->
           window.location.href = selectedObj.url
 
   $("#topic_name").autocomplete source: "/autocomplete_topic" 
+

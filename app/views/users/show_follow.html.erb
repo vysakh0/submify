@@ -1,6 +1,7 @@
 <% provide(:title, @title) %>
 <div class="row-fluid">
   <div class="span8">
+    <% tab "followers" %>
     <%= render 'profile_stat_nav' %>
     <h4><%= @title %></h4>
     <% if @users.any? %>

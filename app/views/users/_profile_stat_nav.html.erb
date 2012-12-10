@@ -2,7 +2,7 @@
   <section>
 <div class="follow_button">  <%= render 'follow_form' if signed_in? %> </div>
 <h3>
-  <%= gravatar_for @user %>
+   <%= image_tag (@user.avatar.url(:thumb)), class: "gravatar" %>
   <%= @user.name %>
 </h3>
 </section>

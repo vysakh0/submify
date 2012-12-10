@@ -1,23 +1,9 @@
 <% @user ||= current_user %>
-<div class="stats">
-  <a href="<%= user_path(@user) %>" >
-    <strong id="links_stat" class="stat">
-      <%= @user.links.count %>
-    </strong>
-    links
-  </a>
-  <a href="<%= commented_user_path(@user) %>" >
-    <strong id="comments_stat" class="stat">
-      <%= @user.commented.count %>
-    </strong>
-    comments
-  </a>
-  <a href="<%= followers_user_path(@user) %>">
-  <a href="<%= followers_user_path(@user) %>">
-    <strong id="followers" class="stat" >
-      <%= @user.followers.count %>
-    </strong>
-    followers
-  </a> 
 
-</div>
+<ul class="breadcrumb">
+  <li>
+  <%= link_to pluralize(@user.links.count, 'link') , user_path(@user) , class:("active" if @page_tab == "links")%><span class="divider">/</span> </li> 
+  <li>
+  <%= link_to pluralize(@user.commented.count, 'comment') , commented_user_path(@user) ,class:("active" if @page_tab == "comments") %> <span class="divider">/</span> </li> </li>
+  <%= link_to pluralize(@user.followers.count, 'follower') , followers_user_path(@user) , class:("active" if @page_tab == "followers")%>
+</ul>

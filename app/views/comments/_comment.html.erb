@@ -12,7 +12,8 @@
       </div>
     <% end %>
     <% if comment.user %>
-      <%= link_to gravatar_for(comment.user, size: 10), comment.user %>
+            <%= image_tag (comment.user.avatar.url(:thumb)), class: "gravatar" %>
+      
       <div class="user_link">
         <span class="user">
           <%= link_to comment.user.name, comment.user %>
@@ -52,7 +53,6 @@
       </div>
     </div>
   <% end %>
-  <br/>
   <br/>
   <div class="underline"></div>
 </div>

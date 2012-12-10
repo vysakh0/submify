@@ -1,6 +1,7 @@
 <% provide(:title, @user.name) %>
 <div class="row-fluid">
 <div class="span8">
+    <% tab "links" %>
   <%= render 'profile_stat_nav' %>
   <% if @user.links.any? %>
 

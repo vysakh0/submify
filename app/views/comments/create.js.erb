@@ -1,7 +1,7 @@
 <% vid = @parent.class.to_s.downcase+'-'+@parent.id.to_s %>
 <% if @parent.class.to_s == "Link"%>
   $('.full_comments').prepend("<%= escape_javascript render('comments/comment', comment: @comment ) %>");
-$('#comment_text').val(" ");
+$('#comment_text').val("");
 <% else %>
 
   $(".<%=vid %> > .span8 > #comment-comments").append("<%= escape_javascript render('comments/comment', comment: @comment ) %>");

@@ -1,6 +1,7 @@
 <% provide(:title,'comments') %>
   <div class="span8">
 <div class="container-fluid">
+    <% tab "comments" %>
     <%= render 'profile_stat_nav' %>
     <h4>Comments </h4>
     <% if @comments.any? %>
