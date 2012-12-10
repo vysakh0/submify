@@ -1,5 +1,7 @@
+<% if @link %>
   $('.links').prepend("<%= escape_javascript render('links/link', link: @link ) %>");
   $('#complete_url').val("");
+<% end %>
   <% if not @topic %>
     $('#topic_name').val("");
   <% end %>

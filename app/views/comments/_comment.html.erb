@@ -12,7 +12,7 @@
       </div>
     <% end %>
     <% if comment.user %>
-            <%= image_tag (comment.user.avatar.url(:thumb)), class: "gravatar" %>
+            <%= image_tag (comment.user.avatar.url(:thumb)), class: "comment-image" %>
       
       <div class="user_link">
         <span class="user">

@@ -38,13 +38,13 @@ class LinksController < ApplicationController
 
           @link.link_with_topic!(topic, current_user)
 
-          publish_to_fb
+#          publish_to_fb
       else
         @link = current_user.links.build(params[:link]) 
 
         if @link!= nil && @link.save
           @link.link_with_topic!(topic, current_user)
-          publish_to_fb
+ #         publish_to_fb
         end
       end
 
@@ -86,7 +86,7 @@ class LinksController < ApplicationController
     given =params[:link][:url_link]
     given = "https://" + given if /https?:\/\/[\S]+/.match(given) == nil
     begin       	
-      final_url =  open(given).base_uri.to_s
+      final_url =  open(given, allow_safe_redirections: true).base_uri.to_s
       data = Nokogiri::HTML(open(final_url))
       final_url.slice! "http://"
       final_url.slice! "https://"

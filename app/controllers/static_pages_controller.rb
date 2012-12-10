@@ -11,8 +11,9 @@ class StaticPagesController < ApplicationController
       @links = Link.front_page.paginate(page: params[:page])
     end
   end
-  def autocomplete_user_name
-    render :json => User.search(params['term'])
+  def autocomplete
+    result = User.search(params['term']) +  Topic.search(params['term'])
+render :json => result
   end
   def autocomplete_topic_name
     render :json => Topic.search(params['term'])

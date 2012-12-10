@@ -298,10 +298,14 @@ aside {
   left: 10px;
   top: 10px;
 }
-.link-image{
+.link-image img{
   float: left;
+  width: 90px;
+  height: 65px;
+
 }
 .load-more {
+
   background-color:#eee; 
   color:#999; font-weight:bold; 
   text-align:center; padding:10px 0;
@@ -319,4 +323,10 @@ aside {
   background: #f5faff;
   margin: 1px 1px 1px 1px;
   padding: 1px 1px 1px 1px;
+}
+.comment-image {
+  float: left;
+  margin-right: 10px;
+  width: 25px;
+  height: 25px;
 }

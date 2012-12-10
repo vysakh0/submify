@@ -3,22 +3,25 @@
 <meta property="og:type"   content="website" /> 
 <meta property="og:url"    content="<%= link_url(@link)%>"/>
 <meta property="og:title"  content= "<%= @link.url_heading %>" /> 
-<meta property="og:image"  content="https://s-static.ak.fbcdn.net/images/devsite/attachment_blank.png" />
+<meta property="og:image"  content="<%= @link.topics.first.avatar.url %>"/>
 <div class="container-fluid">
   <div class="link-<%= @link.id %>" >
     <div class = "span8">
       <div id="topics-list">
         <%= render 'list_topics' %>
       </div>
+  <div class="link-image">
+  <%= link_image('http://' + @link.url_link) %>
+</div>
       <h5>
         <% host = 'http://'+ @link.url_link %>
         <div class="link_url">
 
+          <span class="url_link"><%= link_to @link.url_heading, 'http://' + @link.url_link %> </span>
+        </div>
           <div class="host_link">
             <%= link_to host.match(".+\:\/\/([^\/]+)")[1], host %> 
           </div>
-          <span class="url_link"><%= link_to @link.url_heading, 'http://' + @link.url_link %> </span>
-        </div>
       </h5>
 
       <div class="vote">
