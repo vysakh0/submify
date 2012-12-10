@@ -15,7 +15,7 @@ module LinksHelper
         if img_list.css('img')[0]
           result = find_largest_img(img_list.css('img'))
           first_img =  img_list.css('img')[result].attributes['src'].value
-          image_tag(first_img, size: "40x60")
+          image_tag(first_img, size: "50x75")
         end
       end
     rescue URI::InvalidURIError
@@ -25,7 +25,7 @@ module LinksHelper
         if img_list.css('img')[0]
           result = find_largest_img(img_list.css('img'))
           first_img =  img_list.css('img')[result].attributes['src'].value
-          image_tag(first_img, size: "40x60")
+          image_tag(first_img, size: "50x75")
         end
       end
     rescue

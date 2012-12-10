@@ -182,7 +182,7 @@ aside {
   }
 }
 
-.show_comment{
+.show_comment, .downvotes{
   color: #bbc3bc;
   float: left;
 }
@@ -287,8 +287,8 @@ aside {
   float: left;
   color: #3b5998;
 }
-li.underline { 
-  border-bottom-style: solid; 
+.underline { 
+  border-bottom-style: inset; 
   border-bottom-width:1px; 
 }
 .show-comments{
@@ -312,6 +312,11 @@ li.underline {
 }
 .topic{
   background: #ebf6ff;
+  margin: 1px 1px 1px 1px;
+  padding: 1px 1px 1px 1px;
+}
+.full_comments{
+  background: #f5faff;
   margin: 1px 1px 1px 1px;
   padding: 1px 1px 1px 1px;
 }

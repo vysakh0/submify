@@ -1,6 +1,7 @@
 <div class="comment-<%= comment.id %>">
   <% if comment %>
 
+    <br/>
     <% if comment.user== current_user %>
       <div class="del_comment"> 
         <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  comment, method: :delete, data: { confirm: "You sure?" }, title: comment.body %>
@@ -34,11 +35,15 @@
     </div>
     <% if comment.commentable_type == 'Link' %>
 
-  <i class="icon-comments-alt icon-small", style= "float: left"></i>
+      <div class="votes-up"><i class="icon-comments-alt icon-small"></i></div>
       <div class="show_comment">
         <%= link_to pluralize(comment.comments.count, "reply"), comment_path(comment), class: 'hook-comment-comments', remote: true %>
       </div>
     <% else %>
+      <div class="votes-up"><i class="icon-caret-down icon-small"></i></div>
+      <div class="downvotes">
+        <%= comment.comment_downvotes.count %>
+      </div>
     <% end %>
     <div class="span8">
       <div id="comment-comments", class="span6">
@@ -49,4 +54,5 @@
   <% end %>
   <br/>
   <br/>
+  <div class="underline"></div>
 </div>

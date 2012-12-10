@@ -1,13 +1,14 @@
 <% provide(:title,'comments') %>
-<div class="row-fluid">
   <div class="span8">
+<div class="container-fluid">
     <%= render 'profile_stat_nav' %>
     <h4>Comments </h4>
     <% if @comments.any? %>
-<ol class="full_comments">
-<%= render partial: 'comments/comment', collection: @comments %>
+<ol class="show-commented">
 </ol>
-<%= will_paginate @comments %>
+        <div class="load-more">
+        <%= link_to 'Load More', commented_user_path(@user,page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'hook-user-commented', remote: true %>
+      </div>
     <% end %>
   </div>
 </div>

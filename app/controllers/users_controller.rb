@@ -19,7 +19,10 @@ class UsersController < ApplicationController
 
     @user = User.find(params[:id])
     @comments = @user.commented.paginate(page: params[:page])
-    render 'show_commented'
+    respond_to do |format|
+      format.html {render 'show_commented'}
+      format.js
+    end
   end
     
   def search
@@ -40,6 +43,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @links = @user.links.paginate(page: params[:page])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
   def new
     @user = User.new

@@ -1,0 +1,6 @@
+<% if @comments.all.count>0 %>
+  $('.show-commented').append('<%= escape_javascript(render(partial: 'comments/comment', collection: @comments)) %>');
+  $('a.hook-user-commented').attr('href', '<%= commented_user_path(@user,page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15) %>').show();
+<% else -%>
+  $('a.hook-topic').hide();
+<% end -%>
