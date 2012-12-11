@@ -34,8 +34,9 @@ class Link < ActiveRecord::Base
   end
 
   def following_comments user
+    followed_user_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
     comments = self.comments
-    comments.where("user_id IN (#{@followed_user_ids}) OR user_id = :user_id", user_id: user.id).limit(3).order('created_at desc')
+    comments.where("user_id IN (#{followed_user_ids}) OR user_id = :user_id", user_id: user.id).limit(3).order('created_at desc')
   end
   def following_submits user
     users = self.users
@@ -48,7 +49,7 @@ class Link < ActiveRecord::Base
   end
 
   def self.from_users_followed_by(user)
-    @followed_user_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
-    joins(:users).where("user_id IN (#{@followed_user_ids}) OR user_id = :user_id", user_id: user.id).uniq
+    followed_topic_ids = "SELECT topic_id FROM topic_user_relationships WHERE user_id = :user_id"
+    joins(:link_users).where("topic_id IN (#{followed_topic_ids}) OR user_id = :user_id", user_id: user.id).uniq
   end
 end

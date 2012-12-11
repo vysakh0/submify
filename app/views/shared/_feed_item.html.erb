@@ -23,13 +23,13 @@
     <%= link_to pluralize(feed_item.comments.count, "comment"), feed_item %>
   </div>
 </div>
+  <ol class="full_comments"> 
 <div class="span8">
   <div class="span6">
-  <ol class="full_comments"> 
     <%= render partial: 'comments/comment', collection: feed_item.following_comments(current_user) %>
+</div>
+</div>
   </ol>
-</div>
-</div>
 <br/>
 <div class="underline"></div>
 
