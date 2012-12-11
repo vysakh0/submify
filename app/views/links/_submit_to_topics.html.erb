@@ -2,6 +2,6 @@
 <%= form_for :link, url: submit_link_path(@link), remote: true do |f| %>
   <%= text_field_tag 'topic_name' %>
                 <%= f.hidden_field :id, value: @link.id %>
-                <%= f.submit "submit", class: "undo-butn" %>
+                <%= f.submit "submit", class: "undo-butn gif-load" %>
               <% end %>
             <% end %>

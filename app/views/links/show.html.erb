@@ -9,6 +9,7 @@
     <div class = "span8">
       <div id="topics-list">
         <%= render 'list_topics' %>
+   <%= render 'shared/load_gif' %>
       </div>
   <div class="link-image">
   <%= link_image('http://' + @link.url_link) %>
@@ -38,7 +39,6 @@
   <i class="icon-comments-alt icon-small"></i>
     </div>
 
-   <%= render 'shared/load_gif' %>
     <div class="span8">
       <div class="comment-form">
       <%= render 'shared/comment_form' %>

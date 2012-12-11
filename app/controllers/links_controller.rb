@@ -54,7 +54,7 @@ class LinksController < ApplicationController
         end
       end
     else 
-      flash[:error]= "Invalid url! Enter a proper url"
+      flash[:error]= "Enter a proper url"
 
     end
     respond_to do |format|
