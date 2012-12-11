@@ -43,7 +43,7 @@
       <div class="comment-form">
       <%= render 'shared/comment_form' %>
     </div>
-      <ol class="full_comments">
+    <ol class="full_comments">
       </ol>
         <div class="load-more">
         <%= link_to 'Load More', link_path(@link,page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'hook-link-comments', remote: true %>

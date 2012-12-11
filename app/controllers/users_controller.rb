@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   end
   def show
     @user = User.find(params[:id])
-    @links = @user.links.paginate(page: params[:page])
+    @link_users = @user.link_users.paginate(page: params[:page])
     respond_to do |format|
       format.html
       format.js
