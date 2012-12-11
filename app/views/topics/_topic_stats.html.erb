@@ -1,6 +1,7 @@
 <aside> 
   <section>
 <div class="follow_button">  <%= render 'topics/follow_form' if signed_in? %> </div>
+<div class="followers-count"> <%= pluralize(@topic.following_users.count, 'follower') %></div>
 <h3>
 <%= image_tag @topic.avatar.url(:thumb) %>
   <%= @topic.name %>

@@ -1,5 +1,10 @@
 <% name = nil %>
 <% name = @topic.name if @topic %>
+<div id="flash">
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, :id => "flash_#{name}" %>
+  <% end %>
+</div>
 <%= form_for @link , remote: true do |f| %>
   <div class="field">
     <%= f.text_area :url_link, placeholder: "Submit a link...", id: "complete_url"%>

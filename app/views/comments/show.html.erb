@@ -53,11 +53,11 @@
     </div>
 
     <div class="span8">
-      <%= render 'shared/comment_form' %>
-      <ol class="comment-comments">
+      <ol id="comment-comments">
         <%= render partial: 'comments/comment', collection: @comments %>
       </ol>
 
+      <%= render 'shared/comment_form' %>
     </div>
   </div>
 </div>

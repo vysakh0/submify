@@ -11,15 +11,20 @@
         <%= render 'flags/flag_button', flaggable: comment, type: "Comment" %>
       </div>
     <% end %>
-    <% if comment.user %>
-            <%= image_tag (comment.user.avatar.url(:thumb)), class: "comment-image" %>
-      
-      <div class="user_link">
-        <span class="user">
-          <%= link_to comment.user.name, comment.user %>
-        </span>
+      <div class="timestamp">
+        <% if comment.commentable_type == 'Link' %>
+          <%= link_to timing(comment.created_at), link_comment_path(comment.commentable, comment) %>
+        <% else %>
+          <%= timing(comment.created_at) %>
+        <% end %>
       </div>
-    <% end %>
+    <%= image_tag (comment.user.avatar.url(:thumb)), class: "comment-image" %>
+
+    <div class="user_link">
+      <span class="user">
+        <%= link_to comment.user.name, comment.user %>
+      </span>
+    </div>
     <%= comment.body %>
     <div class="comment_in_links">
       <%= image_tag comment.avatar.url(:medium) if comment.avatar.exists? %>

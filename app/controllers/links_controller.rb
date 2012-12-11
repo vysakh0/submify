@@ -20,7 +20,7 @@ class LinksController < ApplicationController
   def submit
     id = params[:link][:id]
     topic = params[:topic_name]
-      @link = Link.find_by_id(id)
+    @link = Link.find_by_id(id)
     if id and topic!= ""
       @link.link_with_topic!(topic, current_user)
       publish_to_fb
@@ -36,17 +36,25 @@ class LinksController < ApplicationController
 
       if @link= Link.find_by_url_link(params[:link][:url_link])
 
+        if @link.topics.exists? name: topic
+          flash[:notice]="Link already submitted to the topic"
+        else 
           @link.link_with_topic!(topic, current_user)
 
-#          publish_to_fb
+          flash[:success]="Link submitted"
+          #          publish_to_fb
+        end
       else
         @link = current_user.links.build(params[:link]) 
 
         if @link!= nil && @link.save
           @link.link_with_topic!(topic, current_user)
- #         publish_to_fb
+          #         publish_to_fb
+          flash[:success]="Link submitted"
         end
       end
+    else 
+      flash[:error]= "Invalid url"
 
     end
     respond_to do |format|

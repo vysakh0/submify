@@ -46,11 +46,15 @@ display:block;
 }
 
 
-.timestamp {
+.timestamp{
+  float: right;
+    color: #bbc3bc;
+    padding-right: 90px;
+    font-size: 10px;
   a{
-    color: #999;
-    padding: 20px;
-    font-size: 12px;
+    color: #bbc3bc;
+    padding-right: 10px;
+    font-size: 10px;
   }
 }
 
@@ -148,10 +152,14 @@ aside {
     font-family: arial, sans-serif;
   }
 }
+.followers-count{
+font-size: 10px;
+float: right;
+}
 .user_link{
   a{
     color: #4c4c4c;
-    font-size: 12.8px;
+    font-size: 10.8px;
     font-weight: bold;
     font-family: "Helvetica Neue",Arial,sans-serif;
     text-shadow: rgba(0, 0, 0, 0.0078125) 0 0 1px;

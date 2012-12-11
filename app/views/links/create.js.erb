@@ -2,6 +2,7 @@
   $('.links').prepend("<%= escape_javascript render('links/link', link: @link ) %>");
   $('#complete_url').val("");
 <% end %>
+$('#flash').html("<%= escape_javascript raw(flash_display) %>");
   <% if not @topic %>
     $('#topic_name').val("");
   <% end %>
