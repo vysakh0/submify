@@ -12,3 +12,6 @@ $(document).ready ->
 
   $("a.hook-user-commented").bind "inview", (e, visible) ->
     $.getScript $(this).attr("href")  if visible
+
+  $("a.hook-user-profile").bind "inview", (e, visible) ->
+    $.getScript $(this).attr("href")  if visible

@@ -9,3 +9,4 @@ $('#comment_text').val("");
 <% end %>
 $(".<%= vid %> > .span8  > .show_comment").html("<%=  @parent.comments.count %>");
 $(".<%= vid %> > .show_comment").html("<%=  @parent.comments.count %>");
+$('#flash').html("<%= escape_javascript raw(flash_display) %>");

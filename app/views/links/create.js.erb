@@ -6,4 +6,4 @@ $('#flash').html("<%= escape_javascript raw(flash_display) %>");
   <% if not @topic %>
     $('#topic_name').val("");
   <% end %>
-
+$('#flash').html("<%= escape_javascript raw(flash_display) %>");

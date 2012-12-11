@@ -33,7 +33,7 @@ Youarel::Application.routes.draw do
   resources :votes, only: [:create, :destroy]
   resources :topic_downvotes, only: [:create, :destroy]
   resources :comment_downvotes, only: [:create, :destroy]
-  resources :topics, only: [:create, :destroy, :show, :edit, :unsubmit]
+  resources :topics, only: [:create, :destroy, :show, :edit ]
 
   resources :flags, only: [:create, :destroy]
   resources :link_users, only: [:create, :destroy]

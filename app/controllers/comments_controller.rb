@@ -39,13 +39,15 @@ class CommentsController < ApplicationController
       @comment.user = current_user
       if @comment.save
         publish_to_fb if @parent.class.to_s == "Link"
+      else
+        flash[:notice] = "Could not add comment, try again"
+      end
+
+    end
       respond_to do |format|
         format.html { redirect_to @parent }
         format.js
-      end
-
-      end
-    end
+       end
   end
 
   def destroy
