@@ -16,12 +16,12 @@ class Topic < ActiveRecord::Base
 
   def load_into_soulmate
     loader = Soulmate::Loader.new("topic")
-    loader.add("term" => name, "id" => id,"data" => { "url" => Rails.application.routes.url_helpers.user_path(self), "imgsrc" => avatar.url } )
+    loader.add("term" => name, "id" => id,"data" => { "url" => Rails.application.routes.url_helpers.topic_path(self), "imgsrc" => avatar.url(:thumb) } )
   end
 
   def self.search(term)
     matches = Soulmate::Matcher.new('topic').matches_for_term(term)
-    matches.collect {|match| {"id" => match["id"], "label" => match["term"], "value" => match["term"], "url"  => match["data"]["url"], "imgsrc" => match["data"]["imgsrc"] } }
+    matches.collect {|match| {"id" => match["id"], "label" => match["term"], "value" => match["term"], "url"  => match["data"]["url"], "imgsrc" => match["data"]["imgsrc"] , "category" => "topic"} }
   end
 
 end

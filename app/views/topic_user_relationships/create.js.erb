@@ -1,3 +1,4 @@
 $("#follow_form").html("<%= escape_javascript(render('topics/unfollow')) %>")
 $(".topics-nav").html("<%= escape_javascript(render('shared/show_topics_nav')) %>")
+$(".followers-count").html('<%= pluralize(@topic.following_users.count, 'follower') %>')
 
