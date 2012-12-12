@@ -9,7 +9,7 @@
     <div class = "span8">
       <div id="topics-list">
         <%= render 'list_topics' %>
-   <%= render 'shared/load_gif' %>
+    <%= image_tag("ajax-loader.gif", class:  "loading-indicator") %>
       </div>
   <div class="link-image">
   <%= link_image('http://' + @link.url_link) %>

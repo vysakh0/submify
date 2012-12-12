@@ -6,5 +6,6 @@
     <%= text_field_tag 'topic_name', name , class: 'link-topic-tag' %>
     <%= f.submit "Submit", class: "btn btn-small gif-load", id: "submit_button"%>
   </div>
+   <%= image_tag("ajax-loader.gif", class:  "loading-indicator") %>
 <% end %>
-<%= render 'shared/load_gif' %>
+

@@ -307,9 +307,8 @@ float: right;
 .show-comments{
   font-size: 12.8px;
 }
-#loading-indicator {
-  left: 10px;
-  top: 10px;
+.loading-indicator {
+    float: right;
 }
 .link-image img{
   float: left;
@@ -344,17 +343,22 @@ float: right;
   height: 25px;
 }
 .auto-label, .auto-topic{
-  padding-left: 4px;
+  padding-left: 12px;
   font-weight: bold;
   font-size: 12.8px;
+    color: #4c4c4c;
+    font-weight: bold;
+    font-family: "Helvetica Neue",Arial,sans-serif;
+    text-shadow: rgba(0, 0, 0, 0.0078125) 0 0 1px;
   a{
     font-weight: bold;
   }
 }
 .auto-category{
   font-size: 12px;
+  float: left;
   color: gray;
-  padding-left: 12px;
+  padding-left: 10px;
 }
 .auto-img img{
   width: 20px;
