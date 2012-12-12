@@ -21,4 +21,29 @@ class LinkUser < ActiveRecord::Base
 
   validates :link_id, presence: true
 
+# add score: when it is newly created
+# calculate: periodically based on the votes,downvotes,comments
+# remove old link_users based on some algorithm
+
+  def scored(score)
+    if score > self.high_score
+      $redis.zadd("highscores", score, self.id)
+    end
+  end
+
+  # table rank
+  def rank
+    $redis.zrevrank("highscores", self.id) + 1
+  end
+
+  # high score
+  def high_score
+    $redis.zscore("highscores", self.id).to_i
+  end
+
+  # load top 3 users
+  def self.top_links range
+    $redis.zrevrange("highscores", 0, range).map{|id| User.find(id)}
+  end
+
 end
