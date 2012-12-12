@@ -1,11 +1,11 @@
 <div class="link-<%= feed_item.id %>">
-  <% host = 'http://'+ feed_item.url_link %>
 
-<div class="link-image">
-  <%= link_image('http://' + feed_item.url_link) %>
-</div>
+<%= image_tag(feed_item.avatar.url, class: 'link-image')  if feed_item.avatar.exists? %>
+
   <div class="link_url">
     <span class="url_link"><%= link_to feed_item.url_heading, 'http://' + feed_item.url_link %> </span>
+
+  <% host = 'http://'+ feed_item.url_link %>
   <div class="host_link">
     <%= link_to host.match(".+\:\/\/([^\/]+)")[1], host.match(".+\:\/\/([^\/]+)")[1] %> 
   </div>

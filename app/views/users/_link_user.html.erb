@@ -16,10 +16,10 @@
     submitted to <%= link_to topic.name, topic_path(topic) %>
   </div> 
   <br/>
+
+
+<%= image_tag(link.avatar.url, class: 'link-image')  if link.avatar.exists? %>
   <% host = 'http://'+ link.url_link %>
-  <div class="link-image">
-  <%= link_image('http://' + link.url_link) %>
-</div>
 
   <div class="link_url">
     <span class="url_link"><%= link_to link.url_heading, 'http://' + link.url_link %> </span>

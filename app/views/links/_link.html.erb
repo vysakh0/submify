@@ -11,15 +11,12 @@
     </div>
   <% end %>
 <% end %>
-  <% host = 'http://'+ link.url_link %>
-  <div class="link-image">
-  <%= link_image('http://' + link.url_link) %>
-</div>
-
+<%= image_tag(link.avatar.url, class: 'link-image')  if link.avatar.exists? %>
   <div class="link_url">
     <span class="url_link"><%= link_to link.url_heading, 'http://' + link.url_link %> </span>
 
   </div>
+  <% host = 'http://'+ link.url_link %>
   <div class="host_link">
     <%= link_to host.match(".+\:\/\/([^\/]+)")[1], host %> 
     </div>

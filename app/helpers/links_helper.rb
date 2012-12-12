@@ -14,8 +14,7 @@ module LinksHelper
       if img_list = doc.xpath("/html/body//img[@src[contains(.,'://') and not(contains(.,'ads.') or contains(.,'gif') or contains(.,'ad.') or contains(.,'?'))]][1]") 
         if img_list.css('img')[0]
           result = find_largest_img(img_list.css('img'))
-          first_img =  img_list.css('img')[result].attributes['src'].value
-          image_tag(first_img)
+          img_list.css('img')[result].attributes['src'].value
         end
       end
     rescue URI::InvalidURIError
@@ -24,11 +23,9 @@ module LinksHelper
       if img_list= data.xpath("/html/body//img[@src[contains(.,'://') and not(contains(.,'ads.') or contains(.,'ad.') or contains(.,'?'))]][1]") 
         if img_list.css('img')[0]
           result = find_largest_img(img_list.css('img'))
-          first_img =  img_list.css('img')[result].attributes['src'].value
-          image_tag(first_img)
+          img_list.css('img')[result].attributes['src'].value
         end
       end
-    rescue
     end
   end
   def find_largest_img images

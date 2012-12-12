@@ -11,9 +11,7 @@
         <%= render 'list_topics' %>
     <%= image_tag("ajax-loader.gif", class:  "loading-indicator") %>
       </div>
-  <div class="link-image">
-  <%= link_image('http://' + @link.url_link) %>
-</div>
+<%= image_tag(@link.avatar.url, class: 'link-image')  if @link.avatar.exists? %>
       <h5>
         <% host = 'http://'+ @link.url_link %>
         <div class="link_url">

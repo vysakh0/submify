@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121210124219) do
+ActiveRecord::Schema.define(:version => 20121212031209) do
 
   create_table "comment_downvotes", :force => true do |t|
     t.integer  "comment_id"
@@ -64,9 +64,13 @@ ActiveRecord::Schema.define(:version => 20121210124219) do
   create_table "links", :force => true do |t|
     t.string   "url_link"
     t.string   "url_heading"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
     t.string   "slug"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "links", ["created_at"], :name => "index_links_on_created_at"

@@ -5,6 +5,7 @@ require 'nokogiri'
 require 'open_uri_redirections'
 class LinksController < ApplicationController
 
+  include LinksHelper
   before_filter :signed_in_user, only: [:create, :destroy, :submit]
   before_filter :correct_user, only: [:destroy]
   def show
@@ -48,6 +49,10 @@ class LinksController < ApplicationController
         @link = current_user.links.build(params[:link]) 
 
         if @link!= nil && @link.save
+          if img = link_image('http://' + params[:link][:url_link])
+            @link.picture_from_url(img)
+            @link.save
+          end
           @link.link_with_topic!(topic, current_user)
           #         publish_to_fb
           flash[:success]="Link submitted"

@@ -9,6 +9,8 @@
 #  updated_at  :datetime         not null
 #  slug        :string(255)
 #
+require 'uri'
+require 'open-uri'
 
 class Link < ActiveRecord::Base
   
@@ -25,6 +27,8 @@ class Link < ActiveRecord::Base
   has_many :topic_downvotes, dependent: :destroy
   validates :url_link, uniqueness: true
   default_scope order: 'links.created_at DESC'
+  attr_accessible :avatar
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
 
   def self.front_page
 
@@ -48,6 +52,9 @@ class Link < ActiveRecord::Base
     link_users.create!(topic_id: topic.id, user_id: user.id)
   end
 
+  def picture_from_url(url)
+    self.avatar = URI.parse(url) 
+  end
   def self.from_users_followed_by(user)
     followed_topic_ids = "SELECT topic_id FROM topic_user_relationships WHERE user_id = :user_id"
     joins(:link_users).where("topic_id IN (#{followed_topic_ids}) OR user_id = :user_id", user_id: user.id).uniq
