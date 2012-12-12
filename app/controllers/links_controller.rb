@@ -48,11 +48,10 @@ class LinksController < ApplicationController
       else
         @link = current_user.links.build(params[:link]) 
 
-        if @link!= nil && @link.save
           if img = link_image('http://' + params[:link][:url_link])
             @link.picture_from_url(img)
-            @link.save
           end
+        if @link!= nil && @link.save
           @link.link_with_topic!(topic, current_user)
           #         publish_to_fb
           flash[:success]="Link submitted"

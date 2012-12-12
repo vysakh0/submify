@@ -11,7 +11,11 @@ module LinksHelper
       final_url =  open(url, allow_safe_redirections: true).base_uri.to_s
       doc = Nokogiri::HTML(open(final_url))
 
-      if img_list = doc.xpath("/html/body//img[@src[contains(.,'://') and not(contains(.,'ads.') or contains(.,'gif') or contains(.,'ad.') or contains(.,'?'))]][1]") 
+      og_image = doc.xpath('//meta[@property="og:image"]').first.attribute('content').value
+      if og_image
+        og_image
+      else
+        img_list = doc.xpath("/html/body//img[@src[contains(.,'://') and not(contains(.,'ads.') or contains(.,'gif') or contains(.,'ad.') or contains(.,'?'))]][1]") 
         if img_list.css('img')[0]
           result = find_largest_img(img_list.css('img'))
           img_list.css('img')[result].attributes['src'].value
