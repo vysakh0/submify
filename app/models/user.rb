@@ -18,8 +18,8 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :username, use: :slugged
   attr_accessible :avatar
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
 
+  has_attached_file :avatar, styles: { medium: "200x200>", thumb: "100x100>"}, default_style: :thumb, default_url:'/images/avatar/missing_profile_thumb.png'
   has_many :flags
 
   has_many :topic_user_relationships, foreign_key: "user_id", dependent: :destroy

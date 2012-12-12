@@ -11,9 +11,8 @@ module LinksHelper
       final_url =  open(url, allow_safe_redirections: true).base_uri.to_s
       doc = Nokogiri::HTML(open(final_url))
 
-      og_image = doc.xpath('//meta[@property="og:image"]').first.attribute('content').value
-      if og_image
-        og_image
+      if doc.xpath('//meta[@property="og:image"]').first
+        doc.xpath('//meta[@property="og:image"]').first.attribute('content').value
       else
         img_list = doc.xpath("/html/body//img[@src[contains(.,'://') and not(contains(.,'ads.') or contains(.,'gif') or contains(.,'ad.') or contains(.,'?'))]][1]") 
         if img_list.css('img')[0]
@@ -33,7 +32,7 @@ module LinksHelper
     end
   end
   def find_largest_img images
-    height = 0;
+    height = 60;
     i = 0;
     large = 0;
     images.each do |image|
