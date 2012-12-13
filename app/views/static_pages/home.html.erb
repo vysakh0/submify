@@ -8,12 +8,12 @@
       </section>
 
       <ol class="links">
+    <%= render @feed_items %>
       </ol>
-      <% if @feed_items %>
+<% params[:page] = 1 %>
         <div class="load-more">
           <%= link_to 'Load More', root_path(page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'hook', remote: true %>
         </div>
-      <% end %>
     <% else %>
       <h4> Front Page </h4>
       <ol class="links">

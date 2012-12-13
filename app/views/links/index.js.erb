@@ -1,0 +1,6 @@
+<% if @links.all.count>0 %>
+  $('.links').append('<%= escape_javascript(render(partial: 'shared/link', collection: @links)) %>');
+  $('a.hook').attr('href', '<%= root_path(page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15) %>').show();
+<% else -%>
+  $('a.hook').hide();
+<% end -%>
