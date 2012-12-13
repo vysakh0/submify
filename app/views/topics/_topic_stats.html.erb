@@ -4,7 +4,6 @@
 <h3>
 <%= image_tag (@topic.avatar.url(:thumb)), class: "topic-pic" %>
   <%= @topic.name %>
-<div class="followers-count"> <%= pluralize(@topic.following_users.count, 'follower') %></div>
 </h3>
 <%= @topic.description %>
 <ul class="breadcrumb">
@@ -12,6 +11,8 @@
   <%= link_to "Feed" , topic_path(@topic) , class:("active" if @page_tab == "Feed")%><span class="divider">/</span> </li> 
   <li>
   <%= link_to "Edit" , edit_topic_path(@topic) ,class:("active" if @page_tab == "Edit") %> </li>
+  <li class="followers-count"> 
+  <%= pluralize(@topic.following_users.count, 'follower') %></li>
 </ul>
 </div>
 </div>
