@@ -6,7 +6,9 @@
     <h4>Comments </h4>
     <% if @comments.any? %>
 <ol class="show-commented">
+  <%= render @comments %>
 </ol>
+<% params[:page] = 1 %>
         <div class="load-more">
         <%= link_to 'Load More', commented_user_path(@user,page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'hook-user-commented', remote: true %>
       </div>

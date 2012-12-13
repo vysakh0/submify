@@ -99,7 +99,7 @@ class User < ActiveRecord::Base
   end
 
   def commented
-    Comment.where("user_id = #{self.id} AND commentable_type = 'Link' ")
+    Comment.where("user_id = #{self.id} AND commentable_type = 'Link' ").order("created_at DESC")
   end
 
   def following?(other_user)
