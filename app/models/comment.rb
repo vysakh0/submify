@@ -31,7 +31,8 @@ class Comment < ActiveRecord::Base
     end
   end
 
-  def show_link_comments link_id
+  def self.show_link_comments link_id
+    where("commentable_id = #{link_id}").joins(:comment_downvotes).group("comment_id").order("count(*)")
   end
 
 end

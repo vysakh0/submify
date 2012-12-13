@@ -3,7 +3,7 @@
 <meta property="og:type"   content="website" /> 
 <meta property="og:url"    content="<%= link_url(@link)%>"/>
 <meta property="og:title"  content= "<%= @link.url_heading %>" /> 
-<meta property="og:image"  content="<%= @link.topics.first.avatar.url %>"/>
+<meta property="og:image"  content="<%= @link.topics.first.avatar.url if @link.topics.first %>"/>
 <div class="container-fluid">
   <div class="link-<%= @link.id %>" >
     <div class = "span8">

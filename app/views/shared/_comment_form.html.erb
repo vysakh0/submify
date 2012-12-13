@@ -5,7 +5,7 @@
   <div class="field">
     <%= f.text_area :body, placeholder: "Add a comment", id: "comment_text", value: ""%>
     <% if @link %>
-      <%= f.file_field :avatar %>
+      Image:<%= f.file_field :avatar %>
     <% end %>
     <br/>
     <%= f.submit "Comment", class: "btn btn-small"%>
