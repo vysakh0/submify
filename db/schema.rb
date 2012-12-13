@@ -14,10 +14,10 @@
 ActiveRecord::Schema.define(:version => 20121212031209) do
 
   create_table "comment_downvotes", :force => true do |t|
-    t.integer  "comment_id"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "comment_id", :limit => 8
+    t.integer  "user_id",    :limit => 8
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   add_index "comment_downvotes", ["user_id", "comment_id"], :name => "index_comment_downvotes_on_user_id_and_comment_id", :unique => true
@@ -25,10 +25,10 @@ ActiveRecord::Schema.define(:version => 20121212031209) do
   create_table "comments", :force => true do |t|
     t.text     "body"
     t.integer  "user_id"
-    t.integer  "commentable_id"
+    t.integer  "commentable_id",      :limit => 8
     t.string   "commentable_type"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -39,21 +39,21 @@ ActiveRecord::Schema.define(:version => 20121212031209) do
   add_index "comments", ["user_id", "commentable_id"], :name => "index_comments_on_user_id_and_commentable_id"
 
   create_table "flags", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "flaggable_id"
+    t.integer  "user_id",        :limit => 8
+    t.integer  "flaggable_id",   :limit => 8
     t.string   "flaggable_type"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   add_index "flags", ["user_id", "flaggable_id", "flaggable_type"], :name => "index_flags_on_user_id_and_flaggable_id_and_flaggable_type", :unique => true
 
   create_table "link_users", :force => true do |t|
-    t.integer  "link_id"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "topic_id"
+    t.integer  "link_id",    :limit => 8
+    t.integer  "user_id",    :limit => 8
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.integer  "topic_id",   :limit => 8
   end
 
   add_index "link_users", ["link_id", "topic_id"], :name => "index_link_users_on_link_id_and_topic_id", :unique => true
@@ -66,22 +66,19 @@ ActiveRecord::Schema.define(:version => 20121212031209) do
     t.string   "url_heading"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
-    t.string   "slug"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
   end
 
-  add_index "links", ["created_at"], :name => "index_links_on_created_at"
-  add_index "links", ["slug"], :name => "index_links_on_slug", :unique => true
   add_index "links", ["url_link"], :name => "index_links_on_url_link", :unique => true
 
   create_table "relationships", :force => true do |t|
-    t.integer  "follower_id"
-    t.integer  "followed_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "follower_id", :limit => 8
+    t.integer  "followed_id", :limit => 8
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
   add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"
@@ -89,20 +86,20 @@ ActiveRecord::Schema.define(:version => 20121212031209) do
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
 
   create_table "topic_downvotes", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "topic_id"
-    t.integer  "link_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "user_id",    :limit => 8
+    t.integer  "topic_id",   :limit => 8
+    t.integer  "link_id",    :limit => 8
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   add_index "topic_downvotes", ["user_id", "topic_id", "link_id"], :name => "index_topic_downvotes_on_user_id_and_topic_id_and_link_id", :unique => true
 
   create_table "topic_user_relationships", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "topic_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "user_id",    :limit => 8
+    t.integer  "topic_id",   :limit => 8
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   add_index "topic_user_relationships", ["topic_id"], :name => "index_topic_user_relationships_on_topic_id"
@@ -149,10 +146,10 @@ ActiveRecord::Schema.define(:version => 20121212031209) do
 
   create_table "votes", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "votable_id"
+    t.integer  "votable_id",   :limit => 8
     t.string   "votable_type"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "votes", ["user_id", "votable_id"], :name => "index_votes_on_user_id_and_votable_id", :unique => true

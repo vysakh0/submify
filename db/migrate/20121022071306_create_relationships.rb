@@ -1,8 +1,8 @@
 class CreateRelationships < ActiveRecord::Migration
   def change
     create_table :relationships do |t|
-      t.integer :follower_id
-      t.integer :followed_id
+      t.integer :follower_id, :limit => 8
+      t.integer :followed_id, :limit => 8
 
       t.timestamps
 

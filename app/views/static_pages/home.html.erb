@@ -7,9 +7,9 @@
       <%= render 'shared/link_form' %>
       </section>
 
-      <% if @feed_items.any? %>
         <ol class="links">
         </ol>
+      <% if @feed_items.any? %>
         <div class="load-more">
         <%= link_to 'Load More', root_path(page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'hook', remote: true %>
       </div>
