@@ -8,6 +8,19 @@ class LinksController < ApplicationController
   include LinksHelper
   before_filter :signed_in_user, only: [:create, :destroy, :submit]
   before_filter :correct_user, only: [:destroy]
+
+  def index
+
+    final_url  =params[:q]
+    final_url.slice! "http://"
+    final_url.slice! "https://"
+    final_url.slice! "www."
+    params[:q] = final_url
+    if params[:q]
+      @links = Link.search(params)
+    end
+
+  end
   def show
 
     @link = Link.find_by_id(params[:id])
@@ -33,7 +46,7 @@ class LinksController < ApplicationController
 
   def create
     topic = params[:topic_name]
-    @topic = Topic.find(params[:topic_val]) if params[:topic_val]
+    @topic = Topic.find(params[:topic_val]) if params[:topic_val]!=""
 
     if topic != "" and check_url
 
