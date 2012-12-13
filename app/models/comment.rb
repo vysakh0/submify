@@ -23,5 +23,15 @@ class Comment < ActiveRecord::Base
   has_many :comments, as: :commentable
   validates :user_id, presence: true
   has_many :votes, as: :votable, dependent: :destroy
+  after_save :add_downvote 
+  def add_downvote
+    if self.commentable.is_a? Link
+      vote =CommentDownvote.new(user_id: 0, comment_id: id) 
+      vote.save
+    end
+  end
+
+  def show_link_comments link_id
+  end
 
 end

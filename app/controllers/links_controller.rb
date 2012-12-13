@@ -11,7 +11,7 @@ class LinksController < ApplicationController
   def show
 
     @link = Link.find_by_id(params[:id])
-    @comments = @link.comments.paginate(page: params[:page])
+    @comments = @link.link_comments.paginate(page: params[:page])
     respond_to do |format|
       format.html
       format.js
@@ -33,6 +33,8 @@ class LinksController < ApplicationController
 
   def create
     topic = params[:topic_name]
+    @topic = Topic.find(params[:topic_val]) if params[:topic_val]
+
     if topic != "" and check_url
 
       if @link= Link.find_by_url_link(params[:link][:url_link])
@@ -48,9 +50,9 @@ class LinksController < ApplicationController
       else
         @link = current_user.links.build(params[:link]) 
 
-          if img = link_image('http://' + params[:link][:url_link])
-            @link.picture_from_url(img)
-          end
+        if img = link_image('http://' + params[:link][:url_link])
+          @link.picture_from_url(img)
+        end
         if @link!= nil && @link.save
           @link.link_with_topic!(topic, current_user)
           #         publish_to_fb

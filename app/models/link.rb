@@ -23,6 +23,7 @@ class Link < ActiveRecord::Base
   has_many :topics, through: :link_users, source: :topic
   self.per_page = 10
 
+
   has_many :votes, as: :votable, dependent: :destroy
   has_many :topic_downvotes, dependent: :destroy
   validates :url_link, uniqueness: true
@@ -30,6 +31,10 @@ class Link < ActiveRecord::Base
   attr_accessible :avatar
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
 
+
+  def link_comments
+    Comment.show_link_comments(self.id)
+  end
   def self.front_page
 
     top_ids = "SELECT votable_id FROM votes WHERE votable_type = 'Link' GROUP BY votable_id ORDER BY COUNT(*) DESC "
@@ -50,6 +55,10 @@ class Link < ActiveRecord::Base
   def link_with_topic!(topic_name, user)
     topic = Topic.where(name: topic_name).first_or_create
     link_users.create!(topic_id: topic.id, user_id: user.id)
+  end
+
+  def self.feed_topic (topic_id)
+    unscoped.joins(:topic_downvotes).group("topic_id, link_id").where("topic_id = #{topic_id}").order("count(*)").order('links.created_at DESC')
   end
 
   def picture_from_url(url)

@@ -19,8 +19,16 @@ class LinkUser < ActiveRecord::Base
 
   default_scope order: 'link_users.created_at DESC'
 
+
   validates :link_id, presence: true
 
+
+
+  after_save :add_downvote
+  def add_downvote
+    vote =TopicDownvote.new(user_id: 0,topic_id: topic_id, link_id: link_id) 
+    vote.save
+  end
 # add score: when it is newly created
 # calculate: periodically based on the votes,downvotes,comments
 # remove old link_users based on some algorithm
@@ -30,6 +38,7 @@ class LinkUser < ActiveRecord::Base
       $redis.zadd("highscores", score, self.id)
     end
   end
+
 
   # table rank
   def rank

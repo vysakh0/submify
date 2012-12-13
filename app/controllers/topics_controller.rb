@@ -2,7 +2,7 @@ class TopicsController < ApplicationController
   def show
       @link = current_user.links.build 
     @topic = Topic.find_by_slug(params[:id])
-    @links = @topic.links.paginate(page: params[:page])
+    @links = @topic.topic_feed.paginate(page: params[:page])
     respond_to do |format|
       format.html
       format.js
