@@ -11,10 +11,10 @@
       </div>
     <% end %>
   <% end %>
-  <% if li = link.link_users.find_by_topic_id(@topic.id) and user = li.user %>
+  <% if @topic and li = link.link_users.find_by_topic_id(@topic.id) and user = li.user %>
     <%= image_tag (user.avatar.url(:thumb)), class: "comment-image" %>
     <div class="user_link">
-      <%= link_to user.name, user %>
+      <%= link_to user.user_name, user %>
     </div>
   <% end %>
   <%= image_tag(link.avatar.url, class: 'link-image')  if link.avatar.exists? %>

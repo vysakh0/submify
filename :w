@@ -58,18 +58,12 @@ class User < ActiveRecord::Base
   #  validates :password_confirmation, presence: true
   after_save :make_following
   after_save :load_into_soulmate
-
   after_update :flush_name_cache
-
-  def user_name
-    Rails.cache.fetch([:user, id, :name]) do
-      name
-    end
-  end
 
   def flush_name_cache
     Rails.cache.delete([:user, id, :name]) if name_changed?
   end
+end
 
   def load_into_soulmate
     loader = Soulmate::Loader.new("user")

@@ -24,15 +24,19 @@ class Comment < ActiveRecord::Base
   validates :user_id, presence: true
   has_many :votes, as: :votable, dependent: :destroy
   after_save :add_downvote 
+
   def add_downvote
     if self.commentable.is_a? Link
       vote =CommentDownvote.new(user_id: 0, comment_id: id) 
       vote.save
     end
   end
+  def user_name
+    user.user_name
+  end
 
   def self.show_link_comments link_id
-    where("commentable_id = #{link_id}").joins(:comment_downvotes).group("comment_id").order("count(*)")
+    where("commentable_id = #{link_id}").joins(:comment_downvotes).group("comments.id").order("count(*)")
   end
 
 end

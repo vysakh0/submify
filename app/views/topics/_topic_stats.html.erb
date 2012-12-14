@@ -3,7 +3,7 @@
 <div class="follow_button">  <%= render 'topics/follow_form' if signed_in? %> </div>
 <h3>
 <%= image_tag (@topic.avatar.url(:thumb)), class: "topic-pic" %>
-  <%= @topic.name %>
+  <%= @topic.topic_name %>
 </h3>
 <%= @topic.description %>
 <ul class="breadcrumb">

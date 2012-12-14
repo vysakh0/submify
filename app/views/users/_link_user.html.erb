@@ -11,8 +11,8 @@
     <%= image_tag (@user.avatar.url(:thumb)), class: 'comment-image'  %>
 
     <div class="user-profile">
-        <%= link_to @user.name, @user %>
-    submitted to <%= link_to topic.name, topic_path(topic) %>
+        <%= link_to @user.user_name, @user %>
+    submitted to <%= link_to topic.topic_name, topic_path(topic) %>
   </div> 
   <br/>
 

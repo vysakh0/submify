@@ -13,9 +13,22 @@ class Topic < ActiveRecord::Base
   has_many :following_users, through: :topic_user_relationships, source: :user
   after_save :load_into_soulmate
 
+  after_update :flush_name_cache
+
+  def topic_name
+    Rails.cache.fetch([:topic, id, :name]) do
+      name
+    end
+  end
+
+  def flush_name_cache
+    Rails.cache.delete([:topic, id, :name]) if name_changed?
+  end
+
+
   def load_into_soulmate
     loader = Soulmate::Loader.new("topic")
-    loader.add("term" => name, "id" => id,"data" => { "url" => Rails.application.routes.url_helpers.topic_path(self), "imgsrc" => avatar.url(:thumb) } )
+    loader.add("term" => name, "id" => id,"data" => { "url" => "/topics/#{slug}", "imgsrc" => avatar.url(:thumb) } )
   end
 
   def self.search(term)
