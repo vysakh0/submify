@@ -9,7 +9,7 @@
         <meta property="og:type"   content="website" /> 
         <meta property="og:url"    content="<%= comment_url(@comment)%>"/>
         <meta property="og:title"  content= "<%= @comment.body %>" /> 
-        <meta property="og:image"  content="https://s-static.ak.fbcdn.net/images/devsite/attachment_blank.png" />
+        <meta property="og:image"  content="<%= @comment.avatar.url if @comment.avatar? %>" />
         <% if @comment.user== current_user %>
           <div class="del_comment">  <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"), @comment, method: :delete, data: { confirm: "You sure?" }, title: @comment.body %></div>
         <% else %>
