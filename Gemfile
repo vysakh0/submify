@@ -21,6 +21,7 @@ gem 'sinatra', require: false
 gem 'slim'
 gem 'oauth2'
 gem 'multi_fetch_fragments'
+gem 'dalli'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do
