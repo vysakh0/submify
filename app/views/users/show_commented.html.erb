@@ -9,9 +9,11 @@
   <%= render @comments %>
 </ol>
 <% params[:page] = 1 %>
+    <% if !(@comments.total_pages == @comments.current_page) %>
         <div class="load-more">
         <%= link_to 'Load More', commented_user_path(@user,page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'hook-user-commented', remote: true %>
       </div>
     <% end %>
+  <% end %>
   </div>
 </div>
