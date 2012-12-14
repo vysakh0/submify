@@ -7,16 +7,16 @@
       <%= render 'shared/link_form' %>
       </section>
 
-<<<<<<< HEAD
-        <ol class="links">
-        </ol>
       <% if @feed_items.any? %>
-=======
       <ol class="links">
     <%= render @feed_items %>
       </ol>
-<% params[:page] = 1 %>
->>>>>>> 13-12-elasticsearch
+      <% params[:page] = 1 %>
+    <% else %>
+
+        <ol class="links">
+        </ol>
+      <% end %>
         <div class="load-more">
           <%= link_to 'Load More', root_path(page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'hook', remote: true %>
         </div>
