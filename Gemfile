@@ -16,8 +16,10 @@ gem 'fb_graph'
 gem "paperclip", "~> 3.0"
 gem "soulmate"
 gem 'open_uri_redirections'
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
 gem 'oauth2'
-gem 'pg', '0.12.0'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do
@@ -47,7 +49,7 @@ group :test do
 end
 
 group :production do
-	gem 'pg', '0.12.0'
+	gem 'pg'
 end
 
 # To use ActiveModel has_secure_password

@@ -45,7 +45,7 @@ class LinksController < ApplicationController
           @link.link_with_topic!(topic, current_user)
 
           flash[:success]="Link submitted"
-          #          publish_to_fb
+                    publish_to_fb
         end
       else
         @link = current_user.links.build(params[:link]) 
@@ -55,7 +55,7 @@ class LinksController < ApplicationController
         end
         if @link!= nil && @link.save
           @link.link_with_topic!(topic, current_user)
-          #         publish_to_fb
+                   publish_to_fb
           flash[:success]="Link submitted"
         end
       end
@@ -89,12 +89,7 @@ class LinksController < ApplicationController
   end
 
   def publish_to_fb
-    app = FbGraph::Application.new("295241533825642")
-    me = FbGraph::User.me(current_user.oauth_token)
-    action = me.og_action!(
-      app.og_action(:submit), # or simply "APP_NAMESPACE:ACTION" as String
-      :website => link_url(@link)
-    )
+   FacebookLinkNotifyWorker.perform_async(link_url(@link))
   end
   def check_url
     given =params[:link][:url_link]
