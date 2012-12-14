@@ -17,7 +17,7 @@ class LinksController < ApplicationController
     final_url.slice! "www."
     params[:q] = final_url
     if params[:q]
-      @links = Link.search(params).paginate(page: params[:page])
+      @links = Link.search(params)
       respond_to do |format|
         format.js
         format.html

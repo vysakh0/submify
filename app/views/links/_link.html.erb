@@ -1,27 +1,23 @@
 <div class= "link-<%= link.id %>" >
   <% if signed_in? and @topic %>
-   <% if unsubmit = current_user.link_users.find_by_link_id_and_topic_id(link.id, @topic.id) %>
-    <div class="unsubmit">
-      <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  unsubmit_topic_path(@topic, unsubmit: unsubmit, topic: @topic.id), method: :post %>
-    </div>
-     
-    <%= image_tag (current_user.avatar.url(:thumb)), class: "comment-image" %>
-    <div class="user_link">
-        <%= link_to current_user.name, current_user %>
+    <% if unsubmit = current_user.link_users.find_by_link_id_and_topic_id(link.id, @topic.id) %>
+      <div class="unsubmit">
+        <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  unsubmit_topic_path(@topic, unsubmit: unsubmit, topic: @topic.id), method: :post %>
       </div>
-  <% else %>
-    <div class="flag">
-      <%= render 'flags/flag_button', flaggable: link, type: "Link" %>
-    </div>
-    <% if li = link.link_users.find_by_topic_id(@topic.id) and user = li.user %>
-    <%= image_tag (user.avatar.url(:thumb)), class: "comment-image" %>
-    <div class="user_link">
-        <%= link_to user.name, user %>
+
+    <% else %>
+      <div class="flag">
+        <%= render 'flags/flag_button', flaggable: link, type: "Link" %>
       </div>
     <% end %>
   <% end %>
-<% end %>
-<%= image_tag(link.avatar.url, class: 'link-image')  if link.avatar.exists? %>
+  <% if li = link.link_users.find_by_topic_id(@topic.id) and user = li.user %>
+    <%= image_tag (user.avatar.url(:thumb)), class: "comment-image" %>
+    <div class="user_link">
+      <%= link_to user.name, user %>
+    </div>
+  <% end %>
+  <%= image_tag(link.avatar.url, class: 'link-image')  if link.avatar.exists? %>
   <div class="link_url">
     <span class="url_link"><%= link_to link.url_heading, 'http://' + link.url_link %> </span>
 
@@ -29,7 +25,7 @@
   <% host = 'http://'+ link.url_link %>
   <div class="host_link">
     <%= link_to host.match(".+\:\/\/([^\/]+)")[1], host %> 
-    </div>
+  </div>
   <% if @topic %>
     <div id="topic-downvote">
       <%= render 'topics/downvote_button', link: link %>
@@ -45,5 +41,5 @@
   <div class="show-comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></div>
 </div>
 <br/>
-  <div class="underline"></div>
+<div class="underline"></div>
 

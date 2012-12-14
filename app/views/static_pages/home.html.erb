@@ -23,7 +23,7 @@
     <% else %>
       <h4> Front Page </h4>
       <ol class="links">
-        <%= render @links %>
+        <%= render @links, cache: true %>
       </ol>
     <% end %>
   </div>  

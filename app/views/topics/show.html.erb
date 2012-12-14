@@ -6,13 +6,9 @@
       <div class="span8">
       <%= render 'shared/link_form' %>
         <ol class="links">
-          <%= render @links %>
+          <%= render @links,  cache: true  %>
         </ol>
         <% params[:page] = 1 %>
-<<<<<<< HEAD
-        
-=======
->>>>>>> 13-12-elasticsearch
         <div class="load-more">
         <%= link_to 'Load More', topic_path(@topic, page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'hook-topic', remote: true %>
     </div>
