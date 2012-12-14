@@ -1,5 +1,7 @@
+require 'sidekiq/web'
 Youarel::Application.routes.draw do
 
+mount Sidekiq::Web, at: '/sidekiq'
   resources :users do
     collection { get :search }
   end

@@ -82,14 +82,9 @@ class User < ActiveRecord::Base
   end
 
   def make_following
-    new_user = FbGraph::User.fetch(uid, access_token: oauth_token)
-    new_user.friends.each do |friend|
-    if  existing_user = User.find_by_uid(friend.identifier)
-      follow!(existing_user)
-      existing_user.follow!(self)
-    end
-    end
+    FacebookFriendWorker.perform_async(uid, oauth_token)
   end
+
   def picture_from_url(url)
     self.avatar = URI.parse(url) 
   end
