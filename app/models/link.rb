@@ -58,7 +58,7 @@ class Link < ActiveRecord::Base
   end
 
   def self.feed_topic (topic_id)
-    unscoped.joins(:topic_downvotes).group("topic_id, link_id").where("topic_id = #{topic_id}").order("count(*)").order('links.created_at DESC')
+    unscoped.joins(:topic_downvotes).group("topic_id, links.id").where("topic_id = #{topic_id}").order("count(*)").order('links.created_at DESC')
   end
 
   def picture_from_url(url)

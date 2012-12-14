@@ -4,11 +4,21 @@
     <div class="unsubmit">
       <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  unsubmit_topic_path(@topic, unsubmit: unsubmit, topic: @topic.id), method: :post %>
     </div>
-  
+     
+    <%= image_tag (current_user.avatar.url(:thumb)), class: "comment-image" %>
+    <div class="user_link">
+        <%= link_to current_user.name, current_user %>
+      </div>
   <% else %>
     <div class="flag">
       <%= render 'flags/flag_button', flaggable: link, type: "Link" %>
     </div>
+    <% if li = link.link_users.find_by_topic_id(@topic.id) and user = li.user %>
+    <%= image_tag (user.avatar.url(:thumb)), class: "comment-image" %>
+    <div class="user_link">
+        <%= link_to user.name, user %>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
 <%= image_tag(link.avatar.url, class: 'link-image')  if link.avatar.exists? %>
