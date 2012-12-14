@@ -7,7 +7,7 @@
      <div class="nav-collapse">
        <%=link_to "youarel", root_path, class: "brand" %>
        <% if signed_in? %>
-<%= form_tag search_users_path, :method => 'get', class:"navbar-search " do %>
+<%= form_tag links_path , :method => 'get', class:"navbar-search " do %>
 
   <%= text_field_tag :q, params[:q],class:"search-query", id: "search_input", placeholder:"Search" %>
 <% end %>

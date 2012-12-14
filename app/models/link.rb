@@ -13,7 +13,10 @@ require 'uri'
 require 'open-uri'
 
 class Link < ActiveRecord::Base
-  
+
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+
   attr_accessible :url_link,:url_heading
   has_many :flags, as: :flaggable
   has_many :link_users, foreign_key: "link_id", dependent: :destroy
@@ -68,4 +71,23 @@ class Link < ActiveRecord::Base
     followed_topic_ids = "SELECT topic_id FROM topic_user_relationships WHERE user_id = :user_id"
     joins(:link_users).where("topic_id IN (#{followed_topic_ids}) OR user_id = :user_id", user_id: user.id).uniq
   end
+
+  def self.search(params)
+
+    tire.search(load: true) do
+      query { string params[:q], default_operator: "AND" } if params[:q].present?
+  #    filter :range, published_at: {lte: Time.zone.now}
+    end
+    # raise to_curl
+  end
+
+  # self.include_root_in_json = false (necessary before Rails 3.1)
+  def to_indexed_json
+    to_json(methods: [:topics_name])
+  end
+
+  def author_name
+    topics.collect {|topic|  topic.name  }
+  end
+
 end

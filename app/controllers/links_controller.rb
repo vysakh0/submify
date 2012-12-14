@@ -8,6 +8,23 @@ class LinksController < ApplicationController
   include LinksHelper
   before_filter :signed_in_user, only: [:create, :destroy, :submit]
   before_filter :correct_user, only: [:destroy]
+
+  def index
+
+    final_url  =params[:q]
+    final_url.slice! "http://"
+    final_url.slice! "https://"
+    final_url.slice! "www."
+    params[:q] = final_url
+    if params[:q]
+      @links = Link.search(params).paginate(page: params[:page])
+      respond_to do |format|
+        format.js
+        format.html
+      end
+    end
+
+  end
   def show
 
     @link = Link.find_by_id(params[:id])
