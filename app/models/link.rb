@@ -42,17 +42,13 @@ class Link < ActiveRecord::Base
 
     top_ids = "SELECT votable_id FROM votes WHERE votable_type = 'Link' GROUP BY votable_id ORDER BY COUNT(*) DESC "
 
-    where("id IN (#{top_ids})")
+    where("id IN (#{top_ids})").limit(100)
   end
 
   def following_comments user
     followed_user_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
     comments = self.comments
     comments.where("user_id IN (#{followed_user_ids}) OR user_id = :user_id", user_id: user.id).limit(3).order('created_at desc')
-  end
-  def following_submits user
-    users = self.users
-    users.where("user_id IN (#{@followed_user_ids}) OR user_id = :user_id", user_id: user.id).limit(8)
   end
 
   def link_with_topic!(topic_name, user)

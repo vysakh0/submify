@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+   caches_page :front_page, expires_in: 10.minutes
   def home
     if signed_in?
       @link = current_user.links.build 

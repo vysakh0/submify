@@ -28,7 +28,7 @@
         <li><%= link_to "Home",root_path  %> </li>
         <li id="fat-menu" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
-            <%= current_user.name.split.first %> 
+            <%= current_user.user_name.split.first %> 
             <%= image_tag (current_user.avatar.url(:thumb)), class: "gravatar" %><b class="caret"></b>
            </a>
           <ul class="dropdown-menu">
