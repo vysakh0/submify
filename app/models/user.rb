@@ -144,8 +144,9 @@ class User < ActiveRecord::Base
   def unlink_with_user!(given_link)
     link_users.find_by_link_id(given_link.id).destroy
   end
+  private
 
   def create_remember_token
-    SecureRandom.urlsafe_base64
+    self.remember_token = SecureRandom.urlsafe_base64
   end
 end

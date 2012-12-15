@@ -1,0 +1,12 @@
+<% provide(:title, @title) %>
+<div class="row-fluid">
+  <div class="span8">
+    <h4><%= @title %></h4>
+    <% if @users.any? %>
+      <ul class="users">
+        <%= render @users %>
+      </ul>
+      <%= will_paginate %>
+    <% end %>
+  </div>
+</div>

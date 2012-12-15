@@ -2,8 +2,8 @@
 
 <ul class="breadcrumb">
   <li>
-  <%= link_to pluralize(@user.links.count, 'link') , user_path(@user) , class:("active" if @page_tab == "links")%><span class="divider">/</span> </li> 
+  <%= link_to pluralize(@user.links.count, 'link') , ajax_links_user_path(@user) , class:("active" if @page_tab == "links"), remote: true , method: :post %><span class="divider">/</span> </li> 
   <li>
-  <%= link_to pluralize(@user.commented.count, 'comment') , commented_user_path(@user) ,class:("active" if @page_tab == "comments") %> <span class="divider">/</span> </li> </li>
-  <%= link_to pluralize(@user.followers.count, 'follower') , followers_user_path(@user) , class:("active" if @page_tab == "followers")%>
+  <%= link_to pluralize(@user.commented.count, 'comment') , ajax_comments_user_path(@user) ,class:("active" if @page_tab == "comments"), remote: true, method: :post %> <span class="divider">/</span> </li> </li>
+  <%= link_to pluralize(@user.followers.count, 'follower') , ajax_followers_user_path(@user) , class:("active" if @page_tab == "followers"), remote: true, method: :post %>
 </ul>

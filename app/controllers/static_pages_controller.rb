@@ -1,18 +1,14 @@
 class StaticPagesController < ApplicationController
-
-  caches_action :home
   def home
     if signed_in?
       @link = current_user.links.build 
       @feed_items = current_user.feed.paginate(page: params[:page])
-      expires_in 5.minutes
       respond_to do |format|
         format.js
         format.html
       end
     else
       @links = Link.front_page.paginate(page: params[:page])
-      expires_in 5.minutes
     end
   end
   def autocomplete

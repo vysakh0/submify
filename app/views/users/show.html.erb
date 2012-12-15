@@ -3,19 +3,15 @@
 <div class="span8">
     <% tab "links" %>
   <%= render 'profile_stat_nav' %>
-  <% if @user.links.any? %>
+  <ol class="show-commented"></ol>
+ 
 
     <ol class="links">
-      <%= render @link_users,  cache: true  %>
+      <%= render @link_users,  cache: true if @link_users %>
     </ol>
     <% params[:page] = 1 %>
-    <% if !(@link_users.total_pages == @link_users.current_page) %>
         <div class="load-more">
         <%= link_to 'Load More', user_path(@user, page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'kooh', remote: true %>
       </div>
-    <% end %>
-  <% end %>
 </div>
-
 </div>
-

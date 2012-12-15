@@ -1,19 +1,15 @@
 <% provide(:title,'comments') %>
-  <div class="span8">
-<div class="container-fluid">
+<div class="span8">
+  <div class="container-fluid">
     <% tab "comments" %>
     <%= render 'profile_stat_nav' %>
-    <h4>Comments </h4>
-    <% if @comments.any? %>
-<ol class="show-commented">
-  <%= render @comments %>
-</ol>
-<% params[:page] = 1 %>
-    <% if !(@comments.total_pages == @comments.current_page) %>
+      <ol class="links"></ol>
+      <ol class="show-commented">
+        <%= render @comments if @comments.any? %>
+      </ol>
+      <% params[:page] = 1 %>
         <div class="load-more">
-        <%= link_to 'Load More', commented_user_path(@user,page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'hook-user-commented', remote: true %>
-      </div>
-    <% end %>
-  <% end %>
+          <%= link_to 'Load More', commented_user_path(@user,page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'kooh', remote: true %>
+        </div>
   </div>
 </div>

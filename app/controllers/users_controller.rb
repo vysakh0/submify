@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @comments = @user.commented.paginate(page: params[:page])
     respond_to do |format|
       format.html {render 'show_commented'}
-      format.js
+      format.js 
     end
   end
     
@@ -45,9 +45,33 @@ class UsersController < ApplicationController
     @link_users = @user.link_users.paginate(page: params[:page])
     respond_to do |format|
       format.html
-      format.js
+      format.js 
     end
   end
+  def ajax_comments
+    @user = User.find(params[:id])
+    @comments = @user.commented.paginate(page: params[:page])
+    respond_to do |format|
+      format.js 
+    end
+  end
+  def ajax_followers
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    respond_to do |format|
+     format.js
+    end
+  end
+
+  def ajax_links
+    @user = User.find(params[:id])
+    @link_users = @user.link_users.paginate(page: params[:page])
+    respond_to do |format|
+      format.js 
+    end
+  end
+
   def new
     @user = User.new
   end
@@ -77,14 +101,21 @@ class UsersController < ApplicationController
     @title = "Following"
     @user = User.find(params[:id])
     @users = @user.followed_users.paginate(page: params[:page])
-    render 'show_follow'
+    respond_to do |format|
+      format.html {render 'show_following'}
+      format.js
+    end
   end
   
   def followers
     @title = "Followers"
     @user = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
-    render 'show_follow'
+    respond_to do |format|
+
+     format.html {render 'show_follow'}
+     format.js
+    end
   end
 
   private

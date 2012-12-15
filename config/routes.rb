@@ -1,33 +1,23 @@
 require 'sidekiq/web'
 Youarel::Application.routes.draw do
 
-mount Sidekiq::Web, at: '/sidekiq'
+  mount Sidekiq::Web, at: '/sidekiq'
   resources :users do
     collection { get :search }
   end
- match '/autocomplete', to: 'static_pages#autocomplete', as: 'autocomplete'
+  match '/autocomplete', to: 'static_pages#autocomplete', as: 'autocomplete'
 
- match '/autocomplete_topic', to: 'static_pages#autocomplete_topic_name', as: 'autocomplete_topic'
+  match '/autocomplete_topic', to: 'static_pages#autocomplete_topic_name', as: 'autocomplete_topic'
   match '/contact', to: 'static_pages#contact'
   resources :users do
     member do
-      get :following, :followers
-    end
-  end
-  resources :users do
-    member do
-      get :commented
+      get :following, :followers, :commented, :followed_topics
+      post :ajax_links, :ajax_comments, :ajax_followers
     end
   end
   resources :topics do
     member do
       get :following_users
-    end
-  end
-  
-  resources :users do
-    member do
-      get :followed_topics
     end
   end
 
@@ -46,7 +36,7 @@ mount Sidekiq::Web, at: '/sidekiq'
 
   resources :topic_user_relationships, only: [:create, :destroy]
   resources :links do
-     resources :comments, only: [:create, :destroy, :show]
+    resources :comments, only: [:create, :destroy, :show]
   end
 
   resources :links do
@@ -60,10 +50,10 @@ mount Sidekiq::Web, at: '/sidekiq'
     end
   end
   resources :comments do
-    
-     resources :comments, only: [:create, :destroy, :show]
+
+    resources :comments, only: [:create, :destroy, :show]
   end
-#  match '/signin', to: 'sessions#new'
+  #  match '/signin', to: 'sessions#new'
   match '/auth/:provider/callback', to: 'sessions#new'
   match '/auth/failure', to: 'sessions#failure'
   match '/signup', to: 'users#new'
