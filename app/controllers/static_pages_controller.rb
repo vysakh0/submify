@@ -9,7 +9,7 @@ class StaticPagesController < ApplicationController
         format.html
       end
     else
-      @links = Link.front_page.paginate(page: params[:page])
+      front_page
     end
   end
   def autocomplete

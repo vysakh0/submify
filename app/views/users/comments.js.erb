@@ -1,0 +1,12 @@
+<% tab "comments" %>
+$('.stats_of_user').html('<%= escape_javascript(render 'shared/stats') %>')
+  $('.users').html('')
+  $('.links').html('')
+  <% if @comments.all.count >0 %>
+  <% params[:page] = 1 %>
+ 
+  $('.show-commented').append('<%= escape_javascript(render(partial: 'comments/comment', collection: @comments)) %>');
+    $('a.kooh').attr('href', '<%= commented_user_path(@user,page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15) %>').show();
+<% else -%>
+  $('a.kooh').hide();
+<% end -%>

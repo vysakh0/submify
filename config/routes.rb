@@ -12,7 +12,9 @@ Youarel::Application.routes.draw do
   resources :users do
     member do
       get :following, :followers, :commented, :followed_topics
-      post :ajax_links, :ajax_comments, :ajax_followers
+
+      get :links, :comments, :follower
+      post :links, :comments, :follower
     end
   end
   resources :topics do

@@ -11,25 +11,25 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery.ui.autocomplete
+//= require jquery.inview.js
+//= require jquery.inview.min.js
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+//= require jquery.autosize.js
 //= require bootstrap-alert
 
-jQuery(function() {
-  $('#loading').hide();
-  if ($('.pagination').length) {
-    $('#endless_paginate').prepend('<a id="add_results"
-   href="javascript:void(0);">Show more</a>');
-    return $('#add_results').click(function() {
-      var url;
-      url = $('.pagination .next_page').attr('href');
-      $('#endless_paginate').show();
-      if (url) {
-        $('#endless_paginate').hide();
-        $('#loading').show();
-        return $.getScript(url);
-      }
+if (history && history.pushState) {
+  $(function() {
+    $(".breadcrumb a").live("click", function(e) {
+      $.getScript(this.href);
+      history.pushState(null, document.title, this.href);
+      e.preventDefault();
     });
-  }
-});
+    
+    $(window).bind("popstate", function() {
+      $.getScript(location.href);
+    });
+  });
+}

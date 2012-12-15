@@ -48,26 +48,29 @@ class UsersController < ApplicationController
       format.js 
     end
   end
-  def ajax_comments
+  def comments
     @user = User.find(params[:id])
     @comments = @user.commented.paginate(page: params[:page])
     respond_to do |format|
+      format.html { render 'show_commented'}
       format.js 
     end
   end
-  def ajax_followers
+  def follower
     @title = "Followers"
     @user = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     respond_to do |format|
+     format.html { render 'show_follow' }
      format.js
     end
   end
 
-  def ajax_links
+  def links
     @user = User.find(params[:id])
     @link_users = @user.link_users.paginate(page: params[:page])
     respond_to do |format|
+      format.html { render 'show' }
       format.js 
     end
   end
