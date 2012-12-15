@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121212031209) do
+ActiveRecord::Schema.define(:version => 20121215183958) do
 
   create_table "comment_downvotes", :force => true do |t|
     t.integer  "comment_id", :limit => 8
@@ -20,7 +20,9 @@ ActiveRecord::Schema.define(:version => 20121212031209) do
     t.datetime "updated_at",              :null => false
   end
 
+  add_index "comment_downvotes", ["comment_id"], :name => "index_comment_downvotes_on_comment_id"
   add_index "comment_downvotes", ["user_id", "comment_id"], :name => "index_comment_downvotes_on_user_id_and_comment_id", :unique => true
+  add_index "comment_downvotes", ["user_id"], :name => "index_comment_downvotes_on_user_id"
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -36,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20121212031209) do
   end
 
   add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
+  add_index "comments", ["id"], :name => "index_comments_on_id"
   add_index "comments", ["user_id", "commentable_id"], :name => "index_comments_on_user_id_and_commentable_id"
 
   create_table "flags", :force => true do |t|
@@ -47,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20121212031209) do
   end
 
   add_index "flags", ["user_id", "flaggable_id", "flaggable_type"], :name => "index_flags_on_user_id_and_flaggable_id_and_flaggable_type", :unique => true
+  add_index "flags", ["user_id"], :name => "index_flags_on_user_id"
 
   create_table "link_users", :force => true do |t|
     t.integer  "link_id",    :limit => 8
@@ -72,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20121212031209) do
     t.datetime "avatar_updated_at"
   end
 
+  add_index "links", ["id"], :name => "index_links_on_id"
   add_index "links", ["url_link"], :name => "index_links_on_url_link", :unique => true
 
   create_table "relationships", :force => true do |t|
@@ -93,7 +98,10 @@ ActiveRecord::Schema.define(:version => 20121212031209) do
     t.datetime "updated_at",              :null => false
   end
 
+  add_index "topic_downvotes", ["link_id"], :name => "index_topic_downvotes_on_link_id"
+  add_index "topic_downvotes", ["topic_id"], :name => "index_topic_downvotes_on_topic_id"
   add_index "topic_downvotes", ["user_id", "topic_id", "link_id"], :name => "index_topic_downvotes_on_user_id_and_topic_id_and_link_id", :unique => true
+  add_index "topic_downvotes", ["user_id"], :name => "index_topic_downvotes_on_user_id"
 
   create_table "topic_user_relationships", :force => true do |t|
     t.integer  "user_id",    :limit => 8
@@ -118,6 +126,7 @@ ActiveRecord::Schema.define(:version => 20121212031209) do
     t.datetime "avatar_updated_at"
   end
 
+  add_index "topics", ["id"], :name => "index_topics_on_id"
   add_index "topics", ["name"], :name => "index_topics_on_name", :unique => true
   add_index "topics", ["slug"], :name => "index_topics_on_slug", :unique => true
 
@@ -141,6 +150,7 @@ ActiveRecord::Schema.define(:version => 20121212031209) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["id"], :name => "index_users_on_id"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
   add_index "users", ["slug"], :name => "index_users_on_slug", :unique => true
 
@@ -153,5 +163,6 @@ ActiveRecord::Schema.define(:version => 20121212031209) do
   end
 
   add_index "votes", ["user_id", "votable_id"], :name => "index_votes_on_user_id_and_votable_id", :unique => true
+  add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
 
 end
