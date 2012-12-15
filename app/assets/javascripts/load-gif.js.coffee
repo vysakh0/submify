@@ -5,5 +5,4 @@ $ ->
     $(this).show()
   ).ajaxStop ->
     $(this).hide() # hide it when it is done.
-
-
+  

@@ -7,6 +7,8 @@
    <%= hidden_field_tag 'topic_val', val  %>
     <%= f.submit "Submit", class: "btn btn-small gif-load", id: "submit_button"%>
   </div>
+    <div class="loading-indicator">
    <%= image_tag("ajax-loader.gif", class:  "loading-indicator") %>
+</div>
 <% end %>
 
