@@ -13,6 +13,7 @@ class Topic < ActiveRecord::Base
   has_many :following_users, through: :topic_user_relationships, source: :user
   after_save :load_into_soulmate
 
+  before_destroy :remove_from_soulmate
   after_update :flush_name_cache
 
   def topic_name
@@ -26,6 +27,10 @@ class Topic < ActiveRecord::Base
   end
 
 
+  def remove_from_soulmate
+    loader = Soulmate::Loader.new("topic")
+    loader.remove("term" => name, "id" => id,"data" => { "url" => "/topics/#{slug}", "imgsrc" => avatar.url(:thumb) } )
+  end
   def load_into_soulmate
     loader = Soulmate::Loader.new("topic")
     loader.add("term" => name, "id" => id,"data" => { "url" => "/topics/#{slug}", "imgsrc" => avatar.url(:thumb) } )

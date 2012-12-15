@@ -58,6 +58,7 @@ class User < ActiveRecord::Base
   #  validates :password_confirmation, presence: true
   after_save :make_following
   after_save :load_into_soulmate
+  before_destroy :remove_from_soulmate
 
   after_update :flush_name_cache
 
@@ -71,9 +72,14 @@ class User < ActiveRecord::Base
     Rails.cache.delete([:user, id, :name]) if name_changed?
   end
 
+  def remove_from_soulmate
+    loader = Soulmate::Loader.new("user")
+    loader.remove("term" => name, "id" => id,"data" => { "url" => "/users/#{slug}", "imgsrc" => avatar.url(:thumb) } )
+  end
+  def self.search(term)
   def load_into_soulmate
     loader = Soulmate::Loader.new("user")
-    loader.add("term" => name, "id" => id,"data" => { "url" => Rails.application.routes.url_helpers.user_path(self), "imgsrc" => avatar.url(:thumb) } )
+    loader.add("term" => name, "id" => id,"data" => { "url" => "/users/#{slug}", "imgsrc" => avatar.url(:thumb) } )
   end
   def self.search(term)
     matches = Soulmate::Matcher.new('user').matches_for_term(term)
