@@ -4,9 +4,8 @@
 $('#comment_text').val("");
 <% else %>
 
-  $(".<%=vid %> > .span8 > #comment-comments").append("<%= escape_javascript render('comments/comment', comment: @comment ) %>");
+  $(".<%=vid %>  > #comment-comments").append("<%= escape_javascript render('comments/comment', comment: @comment ) %>");
   $(" #comment_text").val(" ");
 <% end %>
-$(".<%= vid %> > .span8  > .show_comment").html("<%=  @parent.comments.count %>");
 $(".<%= vid %> > .show_comment").html("<%=  @parent.comments.count %>");
 $('#flash').html("<%= escape_javascript raw(flash_display) %>");

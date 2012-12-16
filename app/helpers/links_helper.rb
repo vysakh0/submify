@@ -15,7 +15,7 @@ module LinksHelper
         img_list = data.xpath("/html/body//img[@src[contains(.,'://') and not(contains(.,'ads.') or contains(.,'gif') or contains(.,'ad.') or contains(.,'?'))]][1]") 
         if img_list.css('img')[0]
           result = find_largest_img(img_list.css('img'))
-          img_list.css('img')[result].attributes['src'].value
+          img_list.css('img')[result].attributes['src'].value if result
         end
       end
     rescue
@@ -33,7 +33,11 @@ module LinksHelper
       end
       i= i + 1
     end
-    large
+    if height > 60
+      large
+    else 
+      false
+    end
   end
 end
 

@@ -23,7 +23,7 @@ gem 'oauth2'
 gem 'multi_fetch_fragments'
 gem 'dalli'
 #gem 'rails3-redis-session-store'
-gem 'redis-store'
+#gem 'redis-store'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do

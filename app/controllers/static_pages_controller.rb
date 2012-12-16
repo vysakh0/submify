@@ -8,7 +8,7 @@ class StaticPagesController < ApplicationController
         format.html
       end
     else
-     redirect_to front_path 
+     front_page 
     end
   end
   def autocomplete

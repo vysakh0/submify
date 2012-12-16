@@ -18,11 +18,13 @@
     </div>
   <% end %>
   <%= render 'links/link_info', link: link %>
+
   <% if @topic %>
     <div id="topic-downvote">
       <%= render 'topics/downvote_button', link: link %>
     </div>
   <% end %>
+
   <div class="vote">
     <%= render 'votes/vote_button', votable: link, type: "Link" %>
   </div>
@@ -35,3 +37,4 @@
 <br/>
 <div class="underline"></div>
 
+<br/>

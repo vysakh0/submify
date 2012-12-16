@@ -1,4 +1,5 @@
 <% if signed_in? %>
+
   <% if vote = current_user.topic_downvotes.find_by_link_id_and_topic_id(link.id, @topic.id) %>
     <%= form_for vote, :html => { :method => :delete }, remote: true do |f| %>
       <%= button_tag(type: 'submit',class: "undo-butn ") do %>
@@ -13,4 +14,5 @@
       <% end %>
     <% end %>
   <% end %>
+
 <% end %>

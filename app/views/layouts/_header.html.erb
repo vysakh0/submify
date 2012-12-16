@@ -10,7 +10,7 @@
           <%= form_tag links_path , :method => 'get', class:"navbar-search " do %>
 
             <%= text_field_tag :q, params[:q],class:"search-query", id: "search_input", placeholder:"Search" %>
-        <% end %>
+          <% end %>
         <nav>
         <ul class="nav pull-right">
 
@@ -40,9 +40,9 @@
             </ul>
             </li>
           <% else %>
-            <li> 
-            <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-            </li>
+            <ul class="nav pull-right"> 
+              <li><%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %></li>
+            </ul>
           <% end %>
         </ul>
         </nav>

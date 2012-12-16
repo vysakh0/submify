@@ -4,10 +4,9 @@
     <% tab "links" %>
   <%= render 'profile_stat_nav' %>
   <ol class="show-commented"></ol>
- 
-
+  <ul class="users"></ul>
     <ol class="links">
-      <%= render @link_users,  cache: true if @link_users %>
+      <%= render @link_users if @link_users %>
     </ol>
     <% params[:page] = 1 %>
         <div class="load-more">

@@ -1,5 +1,4 @@
 <div class="comment-<%= comment.id %>">
-  <% if comment %>
 
     <br/>
     <% if comment.user== current_user %>
@@ -11,24 +10,7 @@
         <%= render 'flags/flag_button', flaggable: comment, type: "Comment" %>
       </div>
     <% end %>
-      <div class="timestamp">
-        <% if comment.commentable_type == 'Link' %>
-          <%= link_to timing(comment.created_at), link_comment_path(comment.commentable, comment) %>
-        <% else %>
-          <%= timing(comment.created_at) %>
-        <% end %>
-      </div>
-    <%= image_tag (comment.user.avatar.url(:thumb)), class: "comment-image" %>
-
-    <div class="user_link">
-      <span class="user">
-        <%= link_to comment.user_name, comment.user %>
-      </span>
-    </div>
-    <%= comment.body %>
-    <div class="comment_in_links">
-      <%= image_tag comment.avatar.url(:medium) if comment.avatar.exists? %>
-    </div>
+    <%= render 'comments/comment_content', comment: comment %>
     <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
     <div class="votes">
       <%= comment.votes.count %>
@@ -51,13 +33,12 @@
         <%= comment.comment_downvotes.count %>
       </div>
     <% end %>
-    <div class="span8">
-      <div id="comment-comments", class="span6">
+
+      <div id="comment-comments">
       </div>
       <div class="comments-form">
+        <br/>
       </div>
-    </div>
-  <% end %>
   <br/>
   <div class="underline"></div>
 </div>
