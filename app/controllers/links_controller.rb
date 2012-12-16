@@ -50,7 +50,7 @@ class LinksController < ApplicationController
 
   def create
     topic = params[:topic_name]
-    @topic = Topic.find(params[:topic_val]) if params[:topic_val]!=""
+    @topic = Topic.find_by_id(params[:topic_val]) if params[:topic_val]!=""
 
     if topic != "" and data=check_url
 

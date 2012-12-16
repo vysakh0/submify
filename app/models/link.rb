@@ -24,13 +24,10 @@ class Link < ActiveRecord::Base
 
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :topics, through: :link_users, source: :topic
-  self.per_page = 10
-
 
   has_many :votes, as: :votable, dependent: :destroy
   has_many :topic_downvotes, dependent: :destroy
   validates :url_link, uniqueness: true
-  default_scope order: 'links.created_at DESC'
   attr_accessible :avatar
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
 
@@ -42,7 +39,7 @@ class Link < ActiveRecord::Base
 
     top_ids = "SELECT votable_id FROM votes WHERE votable_type = 'Link' GROUP BY votable_id ORDER BY COUNT(*) DESC "
 
-    where("id IN (#{top_ids})").limit(100)
+    where("id IN (#{top_ids})").limit(100).order('links.created_at DESC')
   end
 
   def following_comments user

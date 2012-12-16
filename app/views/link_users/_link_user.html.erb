@@ -1,8 +1,6 @@
 
   <% link = link_user.link %>
-<div class= "link-<%= link.id %>" >
   <% topic = link_user.topic %>
-
   <% if signed_in? and topic %>
     <div class="unsubmit">
       <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  unsubmit_topic_path(topic, unsubmit: link_user, topic: topic), method: :post %>
@@ -17,17 +15,4 @@
   <br/>
 
   <% end %>  
-  <%= render 'links/link_info', link: link %>
-
-  <div class="vote">
-    <%= render 'votes/vote_button', votable: link, type: "Link" %>
-  </div>
-  <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
-  <div class="votes">
-    <%= link.votes.count %>
-  </div>
-  <div class="show-comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></div>
-</div>
-<br/>
-  <div class="underline"></div>
-
+  <%= render 'links/link', link: link %>

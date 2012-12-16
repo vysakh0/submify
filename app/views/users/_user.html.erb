@@ -1,7 +1,9 @@
 
 <li>
+<% cache "#{user.id}_user_info" do %>
 <%= image_tag (user.avatar.url(:thumb)), class: "gravatar" %>
-  <%= link_to user.name, user %>
+<%= link_to user.name, user %>
+<% end %>
   <% if current_user.admin? %>
     | <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "You sure?" } %>

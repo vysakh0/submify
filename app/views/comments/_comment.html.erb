@@ -1,3 +1,4 @@
+<% cache comment do %>
 <div class="comment-<%= comment.id %>">
 
     <br/>
@@ -33,12 +34,12 @@
         <%= comment.comment_downvotes.count %>
       </div>
     <% end %>
-
+        <br/>
       <div id="comment-comments">
       </div>
       <div class="comments-form">
-        <br/>
       </div>
   <br/>
   <div class="underline"></div>
 </div>
+<% end %>
