@@ -25,7 +25,7 @@
 <link href="/assets/votes.css?body=1" media="all" rel="stylesheet" type="text/css" />
 <link href="/assets/font-awesome.css?body=1" media="all" rel="stylesheet" type="text/css" />
   <meta content="authenticity_token" name="csrf-param" />
-<meta content="QcRMkIgHWI/FwmFq7IG2dCT+0unLNgg2xgMG+m1Z3sA=" name="csrf-token" />
+<meta content="PGiPThAzdh36EInuJn8zkabajzGqDmKGcGKohZfTmnk=" name="csrf-token" />
   <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
@@ -36,19 +36,50 @@
 <header class="navbar">
 
 <div class="navbar navbar-fixed-top">
-   <div class="navbar-inner">
-   <div class="container-fluid">
-     <div class="nav-collapse">
-       <a href="/" class="brand">submify</a>
-       <nav>
-       <ul class="nav pull-right">
-        <li> 
-        <a href="/auth/facebook" id="sign_in">Sign in with Facebook</a>
-        </li>
-    </ul>
-    </nav>
-  </div>
-  </div>
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <div class="nav-collapse">
+        <a href="/" class="brand">submify</a>
+          <form accept-charset="UTF-8" action="/links" class="navbar-search " method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+
+            <input class="search-query" id="search_input" name="q" placeholder="Search" type="text" />
+</form>        <nav>
+        <ul class="nav pull-right">
+
+            <li id="fat-menu" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+              Explore<b class="caret"></b>
+            </a>
+
+            <ul class="dropdown-menu">
+              <div class="topics-nav">
+           <li><a href="/front">Front Page</a></li>
+            <li class="divider"></li>
+              <li> <a href="/topics/rails">Rails</a> </li>
+          </div> 
+
+            </ul>
+            </li>
+            <li><a href="/">Home</a> </li>
+            <li id="fat-menu" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+              Vysakh 
+              <img alt="Picture?1355640798" class="gravatar" src="/system/users/avatars/000/001/002/thumb/picture?1355640798" /><b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="/users/vysakh0">Profile</a></li>
+              <li><a href="/users/vysakh0/following">Following</a> </li>
+              <!--
+              -<li><a href="/users/vysakh0/edit">Settings</a> </li>
+              -->
+              <li class="divider"></li>
+              <li> <a href="/signout" data-method="delete" rel="nofollow">Sign out</a> </li>
+            </ul>
+            </li>
+        </ul>
+        </nav>
+      </div>
+    </div>
   </div>
 </div>
 </header>
@@ -62,7 +93,7 @@
   <section>
 <div class="follow_button">   </div>
 <h3>
-   <img alt="Picture?1355510761" class="gravatar" src="/system/users/avatars/000/001/002/thumb/picture?1355510761" />
+   <img alt="Picture?1355640798" class="gravatar" src="/system/users/avatars/000/001/002/thumb/picture?1355640798" />
   Vysakh Sreenivasan
 </h3>
 </section>
@@ -71,40 +102,265 @@
 
 <ul class="breadcrumb">
   <li>
-  <a href="/users/vysakh0/links" class="active" data-method="post" data-remote="true" rel="nofollow">1 link</a><span class="divider">/</span> </li> 
+  <a href="/users/vysakh0/links" class="active" data-method="post" data-remote="true" rel="nofollow">6 links</a><span class="divider">/</span> </li> 
   <li>
-  <a href="/users/vysakh0/comments" data-method="post" data-remote="true" rel="nofollow">9 comments</a> <span class="divider">/</span> </li> </li>
+  <a href="/users/vysakh0/comments" data-method="post" data-remote="true" rel="nofollow">27 comments</a> <span class="divider">/</span> </li> </li>
   <a href="/users/vysakh0/follower" data-method="post" data-remote="true" rel="nofollow">0 followers</a>
 </ul>
 
 </div>
 </aside>
 
-  <ol class="show-commented"></ol> 
+  <ol class="show-commented"></ol>
  
+
     <ol class="links">
       
+<div class= "link-1011" >
+
+    <div class="unsubmit">
+      <a href="/topics/rails/unsubmit?topic=rails&amp;unsubmit=12" data-method="post" rel="nofollow"><i class="icon-remove icon-small"></i></a>
+    </div>
+  
+    <img alt="Picture?1355640798" class="comment-image" src="/system/users/avatars/000/001/002/thumb/picture?1355640798" />
+
+    <div class="user-profile">
+        <a href="/users/vysakh0">Vysakh Sreenivasan</a>
+    submitted to <a href="/topics/rails">Rails</a>
+  </div> 
+  <br/>
+
+    <img alt="Slide-1-1024" class="link-image" src="/system/links/avatars/000/001/011/original/slide-1-1024.jpg?1355649445" />
+  <div class="link_url">
+    <span class="url_link"><a href="http://slideshare.net/kigster/enterprise-architectures-with-ruby-and-rails">Enterprise Architectures with Ruby (and Rails)</a> </span>
+
+  </div>
+  <div class="host_link">
+    <a href="http://slideshare.net/kigster/enterprise-architectures-with-ruby-and-rails">slideshare.net</a> 
+  </div>
+
+
+  <div class="vote">
+    
+    <form accept-charset="UTF-8" action="/votes?votable_id=1011&amp;votable_type=Link" class="new_vote" data-remote="true" id="new_vote" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="PGiPThAzdh36EInuJn8zkabajzGqDmKGcGKohZfTmnk=" /></div>
+      <input id="vote_user_id" name="vote[user_id]" type="hidden" value="1002" />
+      <button class="butn " type="submit">
+        <i class="icon-caret-up icon-small"></i>vote
+</button></form>
+  </div>
+  <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
+  <div class="votes">
+    0
+  </div>
+  <div class="show-comments">  <a href="/links/1011">4 comments</a></div>
+</div>
+<br/>
+  <div class="underline"></div>
+
+
+<div class= "link-1010" >
+
+    <div class="unsubmit">
+      <a href="/topics/verge/unsubmit?topic=verge&amp;unsubmit=11" data-method="post" rel="nofollow"><i class="icon-remove icon-small"></i></a>
+    </div>
+  
+    <img alt="Picture?1355640798" class="comment-image" src="/system/users/avatars/000/001/002/thumb/picture?1355640798" />
+
+    <div class="user-profile">
+        <a href="/users/vysakh0">Vysakh Sreenivasan</a>
+    submitted to <a href="/topics/verge">Verge</a>
+  </div> 
+  <br/>
+
+    <img alt="Gmailwp81_640_large_large" class="link-image" src="/system/links/avatars/000/001/010/original/gmailwp81_640_large_large.jpg?1355648935" />
+  <div class="link_url">
+    <span class="url_link"><a href="http://theverge.com/2012/12/14/3768274/google-gmail-activesync-windows-phone">Google drops a Gmail-shaped bomb on Windows Phone | The Verge</a> </span>
+
+  </div>
+  <div class="host_link">
+    <a href="http://theverge.com/2012/12/14/3768274/google-gmail-activesync-windows-phone">theverge.com</a> 
+  </div>
+
+
+  <div class="vote">
+    
+    <form accept-charset="UTF-8" action="/votes?votable_id=1010&amp;votable_type=Link" class="new_vote" data-remote="true" id="new_vote" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="PGiPThAzdh36EInuJn8zkabajzGqDmKGcGKohZfTmnk=" /></div>
+      <input id="vote_user_id" name="vote[user_id]" type="hidden" value="1002" />
+      <button class="butn " type="submit">
+        <i class="icon-caret-up icon-small"></i>vote
+</button></form>
+  </div>
+  <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
+  <div class="votes">
+    0
+  </div>
+  <div class="show-comments">  <a href="/links/1010">0 comments</a></div>
+</div>
+<br/>
+  <div class="underline"></div>
+
+
+<div class= "link-1009" >
+
+    <div class="unsubmit">
+      <a href="/topics/fb/unsubmit?topic=fb&amp;unsubmit=10" data-method="post" rel="nofollow"><i class="icon-remove icon-small"></i></a>
+    </div>
+  
+    <img alt="Picture?1355640798" class="comment-image" src="/system/users/avatars/000/001/002/thumb/picture?1355640798" />
+
+    <div class="user-profile">
+        <a href="/users/vysakh0">Vysakh Sreenivasan</a>
+    submitted to <a href="/topics/fb">fb</a>
+  </div> 
+  <br/>
+
+    <img alt="Fb_icon_325x325" class="link-image" src="/system/links/avatars/000/001/009/original/fb_icon_325x325.png?1355644937" />
+  <div class="link_url">
+    <span class="url_link"><a href="http://facebook.com">Welcome to Facebook - Log In, Sign Up or Learn More</a> </span>
+
+  </div>
+  <div class="host_link">
+    <a href="http://facebook.com">facebook.com</a> 
+  </div>
+
+
+  <div class="vote">
+    
+    <form accept-charset="UTF-8" action="/votes?votable_id=1009&amp;votable_type=Link" class="new_vote" data-remote="true" id="new_vote" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="PGiPThAzdh36EInuJn8zkabajzGqDmKGcGKohZfTmnk=" /></div>
+      <input id="vote_user_id" name="vote[user_id]" type="hidden" value="1002" />
+      <button class="butn " type="submit">
+        <i class="icon-caret-up icon-small"></i>vote
+</button></form>
+  </div>
+  <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
+  <div class="votes">
+    0
+  </div>
+  <div class="show-comments">  <a href="/links/1009">0 comments</a></div>
+</div>
+<br/>
+  <div class="underline"></div>
+
+
+<div class= "link-1008" >
+
+    <div class="unsubmit">
+      <a href="/topics/rails/unsubmit?topic=rails&amp;unsubmit=9" data-method="post" rel="nofollow"><i class="icon-remove icon-small"></i></a>
+    </div>
+  
+    <img alt="Picture?1355640798" class="comment-image" src="/system/users/avatars/000/001/002/thumb/picture?1355640798" />
+
+    <div class="user-profile">
+        <a href="/users/vysakh0">Vysakh Sreenivasan</a>
+    submitted to <a href="/topics/rails">Rails</a>
+  </div> 
+  <br/>
+
+    <img alt="Avatar_c735ec98909f_128" class="link-image" src="/system/links/avatars/000/001/008/original/avatar_c735ec98909f_128.png?1355594408" />
+  <div class="link_url">
+    <span class="url_link"><a href="http://robotmay.com/post/23161612605/everyone-should-be-using-low-level-caching">Everyone should be using low level caching in Rails - robotmay</a> </span>
+
+  </div>
+  <div class="host_link">
+    <a href="http://robotmay.com/post/23161612605/everyone-should-be-using-low-level-caching">robotmay.com</a> 
+  </div>
+
+
+  <div class="vote">
+    
+    <form accept-charset="UTF-8" action="/votes/19" class="edit_vote" data-remote="true" id="edit_vote_19" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="_method" type="hidden" value="delete" /><input name="authenticity_token" type="hidden" value="PGiPThAzdh36EInuJn8zkabajzGqDmKGcGKohZfTmnk=" /></div>
+      <button class="undo-butn " type="submit">
+        <i class="icon-caret-up icon-small"></i>voted
+</button></form>
+  </div>
+  <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
+  <div class="votes">
+    1
+  </div>
+  <div class="show-comments">  <a href="/links/1008">7 comments</a></div>
+</div>
+<br/>
+  <div class="underline"></div>
+
+
+<div class= "link-1007" >
+
+    <div class="unsubmit">
+      <a href="/topics/twitter/unsubmit?topic=twitter&amp;unsubmit=8" data-method="post" rel="nofollow"><i class="icon-remove icon-small"></i></a>
+    </div>
+  
+    <img alt="Picture?1355640798" class="comment-image" src="/system/users/avatars/000/001/002/thumb/picture?1355640798" />
+
+    <div class="user-profile">
+        <a href="/users/vysakh0">Vysakh Sreenivasan</a>
+    submitted to <a href="/topics/twitter">Twitter</a>
+  </div> 
+  <br/>
+
+    
+  <div class="link_url">
+    <span class="url_link"><a href="http://highscalability.com/scaling-twitter-making-twitter-10000-percent-faster">High Scalability - High Scalability - Scaling Twitter: Making Twitter 10000 Percent Faster</a> </span>
+
+  </div>
+  <div class="host_link">
+    <a href="http://highscalability.com/scaling-twitter-making-twitter-10000-percent-faster">highscalability.com</a> 
+  </div>
+
+
+  <div class="vote">
+    
+    <form accept-charset="UTF-8" action="/votes?votable_id=1007&amp;votable_type=Link" class="new_vote" data-remote="true" id="new_vote" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="PGiPThAzdh36EInuJn8zkabajzGqDmKGcGKohZfTmnk=" /></div>
+      <input id="vote_user_id" name="vote[user_id]" type="hidden" value="1002" />
+      <button class="butn " type="submit">
+        <i class="icon-caret-up icon-small"></i>vote
+</button></form>
+  </div>
+  <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
+  <div class="votes">
+    0
+  </div>
+  <div class="show-comments">  <a href="/links/1007">0 comments</a></div>
+</div>
+<br/>
+  <div class="underline"></div>
+
+
 <div class= "link-1006" >
 
+    <div class="unsubmit">
+      <a href="/topics/multifetch/unsubmit?topic=multifetch&amp;unsubmit=7" data-method="post" rel="nofollow"><i class="icon-remove icon-small"></i></a>
+    </div>
+  
+    <img alt="Picture?1355640798" class="comment-image" src="/system/users/avatars/000/001/002/thumb/picture?1355640798" />
 
-<img alt="6dfe8696eaf911e110635161ee251c19?1355585842" class="link-image" src="/system/links/avatars/000/001/006/original/6dfe8696eaf911e110635161ee251c19?1355585842" />
+    <div class="user-profile">
+        <a href="/users/vysakh0">Vysakh Sreenivasan</a>
+    submitted to <a href="/topics/multifetch">multifetch</a>
+  </div> 
+  <br/>
 
+    <img alt="6dfe8696eaf911e110635161ee251c19?1355585842" class="link-image" src="/system/links/avatars/000/001/006/original/6dfe8696eaf911e110635161ee251c19?1355585842" />
   <div class="link_url">
     <span class="url_link"><a href="http://github.com/n8/multi_fetch_fragments">n8/multi_fetch_fragments · GitHub</a> </span>
 
   </div>
   <div class="host_link">
     <a href="http://github.com/n8/multi_fetch_fragments">github.com</a> 
-    </div>
+  </div>
+
+
   <div class="vote">
     
-
+    <form accept-charset="UTF-8" action="/votes/20" class="edit_vote" data-remote="true" id="edit_vote_20" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="_method" type="hidden" value="delete" /><input name="authenticity_token" type="hidden" value="PGiPThAzdh36EInuJn8zkabajzGqDmKGcGKohZfTmnk=" /></div>
+      <button class="undo-butn " type="submit">
+        <i class="icon-caret-up icon-small"></i>voted
+</button></form>
   </div>
   <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
   <div class="votes">
-    0
+    1
   </div>
-  <div class="show-comments">  <a href="/links/1006">0 comments</a></div>
+  <div class="show-comments">  <a href="/links/1006">7 comments</a></div>
 </div>
 <br/>
   <div class="underline"></div>

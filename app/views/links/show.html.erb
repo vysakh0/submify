@@ -9,19 +9,8 @@
     <div class = "span8">
       <div id="topics-list">
         <%= render 'list_topics' %>
-    <%= image_tag("ajax-loader.gif", class:  "loading-indicator") %>
       </div>
-<%= image_tag(@link.avatar.url, class: 'link-image')  if @link.avatar.exists? %>
-      <h5>
-        <% host = 'http://'+ @link.url_link %>
-        <div class="link_url">
-
-          <span class="url_link"><%= link_to @link.url_heading, 'http://' + @link.url_link %> </span>
-        </div>
-          <div class="host_link">
-            <%= link_to host.match(".+\:\/\/([^\/]+)")[1], host %> 
-          </div>
-      </h5>
+      <%= render 'link_info', link: @link %>
 
       <div class="vote">
         <%= render 'votes/vote_button', votable: @link, type: @link.class.to_s %>
@@ -41,8 +30,15 @@
       <div class="comment-form">
       <%= render 'shared/comment_form' %>
     </div>
+    <% if  @comments.any? %>
+    <ol class="full_comments">
+      <%= render @comments %>
+      </ol>
+      <% params[:page] = 1 %>
+    <% else %>
     <ol class="full_comments">
       </ol>
+    <%end %>
         <div class="load-more">
         <%= link_to 'Load More', link_path(@link,page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'hook-link-comments', remote: true %>
       </div>

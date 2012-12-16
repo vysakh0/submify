@@ -52,7 +52,7 @@ class LinksController < ApplicationController
     topic = params[:topic_name]
     @topic = Topic.find(params[:topic_val]) if params[:topic_val]!=""
 
-    if topic != "" and check_url
+    if topic != "" and data=check_url
 
       if @link= Link.find_by_url_link(params[:link][:url_link])
 
@@ -67,7 +67,7 @@ class LinksController < ApplicationController
       else
         @link = current_user.links.build(params[:link]) 
 
-        if img = link_image('http://' + params[:link][:url_link])
+        if img = link_image(data)
           @link.picture_from_url(img)
         end
         if @link!= nil && @link.save
@@ -109,6 +109,7 @@ class LinksController < ApplicationController
    FacebookLinkNotifyWorker.perform_async(link_url(@link))
   end
   def check_url
+    count = 0
     given =params[:link][:url_link]
     given = "https://" + given if /https?:\/\/[\S]+/.match(given) == nil
     begin       	
@@ -121,7 +122,7 @@ class LinksController < ApplicationController
       final_url = final_url[0..-2] if final_url[-1]=='/'
       params[:link][:url_link] = final_url
       params[:link][:url_heading] = data.css('title')[0].content
-      true
+      data 
 
     rescue URI::InvalidURIError
       host = given.match(".+\:\/\/([^\/]+)")[1]
@@ -135,11 +136,14 @@ class LinksController < ApplicationController
         data = Nokogiri::HTML(doc)	
         params[:link][:url_link] = given
         params[:link][:url_heading] = data.css('title')[0].content
-        true
+        data
       rescue
         flash[:error] = "Invalid url in uri rescue"
         false
       end	
+    rescue Errno::ECONNRESET 
+      count  = count + 1 
+      retry unless count > 10 
     rescue
       flash[:error] = "Invalid url"
       false

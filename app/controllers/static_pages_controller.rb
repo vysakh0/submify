@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
-   caches_page :front_page, expires_in: 10.minutes
+   caches_page :front_page, expires_in: 10.minutes, layout: false
+  caches_action :home, expires_in: 50.seconds, layout: false
   def home
     if signed_in?
       @link = current_user.links.build 
@@ -9,7 +10,7 @@ class StaticPagesController < ApplicationController
         format.html
       end
     else
-      front_page
+     redirect_to front_path 
     end
   end
   def autocomplete

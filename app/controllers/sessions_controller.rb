@@ -23,7 +23,6 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out
-    session[:user_id] = nil
     redirect_to root_path 
   end
   def failure

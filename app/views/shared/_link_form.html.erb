@@ -1,3 +1,4 @@
+<% if signed_in? %>
 <% name , val = nil %>
 <% name = @topic.name and val= @topic.id if @topic %>
 <%= form_for @link , remote: true do |f| %>
@@ -12,3 +13,4 @@
 </div>
 <% end %>
 
+<% end %>
