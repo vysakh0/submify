@@ -22,6 +22,7 @@ gem 'slim'
 gem 'oauth2'
 gem 'multi_fetch_fragments'
 gem 'dalli'
+gem 'pjax_rails'
 #gem 'rails3-redis-session-store'
 #gem 'redis-store'
 # Bundle edge Rails instead:
