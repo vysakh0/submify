@@ -5,10 +5,6 @@ class UsersController < ApplicationController
   before_filter :not_signed_user, only: [:create, :new]
 
   before_filter :admin_user, only: :destroy
-  caches_page :show, layout: false
-  caches_page :commented, layout: false
-  caches_page :followers, layout: false
-  caches_page :following, layout: false
 
   def index
     @users = User.paginate(page: params[:page])
