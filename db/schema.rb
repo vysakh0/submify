@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(:version => 20121215183958) do
   end
 
   add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
-  add_index "comments", ["id"], :name => "index_comments_on_id"
   add_index "comments", ["user_id", "commentable_id"], :name => "index_comments_on_user_id_and_commentable_id"
 
   create_table "flags", :force => true do |t|
@@ -76,7 +75,6 @@ ActiveRecord::Schema.define(:version => 20121215183958) do
     t.datetime "avatar_updated_at"
   end
 
-  add_index "links", ["id"], :name => "index_links_on_id"
   add_index "links", ["url_link"], :name => "index_links_on_url_link", :unique => true
 
   create_table "relationships", :force => true do |t|
@@ -126,7 +124,6 @@ ActiveRecord::Schema.define(:version => 20121215183958) do
     t.datetime "avatar_updated_at"
   end
 
-  add_index "topics", ["id"], :name => "index_topics_on_id"
   add_index "topics", ["name"], :name => "index_topics_on_name", :unique => true
   add_index "topics", ["slug"], :name => "index_topics_on_slug", :unique => true
 
@@ -150,19 +147,19 @@ ActiveRecord::Schema.define(:version => 20121215183958) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["id"], :name => "index_users_on_id"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
   add_index "users", ["slug"], :name => "index_users_on_slug", :unique => true
 
   create_table "votes", :force => true do |t|
-    t.integer  "user_id"
+    t.integer  "user_id",      :limit => 8
     t.integer  "votable_id",   :limit => 8
     t.string   "votable_type"
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
   end
 
-  add_index "votes", ["user_id", "votable_id"], :name => "index_votes_on_user_id_and_votable_id", :unique => true
-  add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
+  add_index "votes", ["user_id", "votable_id", "votable_type"], :name => "index_votes_on_user_id_and_votable_id_and_votable_type", :unique => true
+  add_index "votes", ["user_id", "votable_id"], :name => "index_votes_on_user_id_and_votable_id"
+  add_index "votes", ["votable_id", "votable_type"], :name => "index_votes_on_votable_id_and_votable_type"
 
 end

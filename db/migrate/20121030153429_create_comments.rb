@@ -8,7 +8,7 @@ class CreateComments < ActiveRecord::Migration
       t.string :commentable_type
       t.timestamps
     end
-execute "SELECT setval('comments_id_seq', 1000)"
+    execute "SELECT setval('comments_id_seq', 1000)"
     add_index :comments, [:commentable_id, :commentable_type]
     add_index :comments, [:user_id, :commentable_id]
   end
