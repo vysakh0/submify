@@ -13,9 +13,9 @@ class LinkUser < ActiveRecord::Base
 
   attr_accessible :link_id, :user_id, :topic_id
 
-  belongs_to :link, class_name: "Link"
-  belongs_to :user, class_name: "User"
-  belongs_to :topic, class_name: "Topic"
+  belongs_to :link, class_name: "Link", touch: true
+  belongs_to :user, class_name: "User", touch: true
+  belongs_to :topic, class_name: "Topic", touch: true
 
   default_scope order: 'link_users.created_at DESC'
 

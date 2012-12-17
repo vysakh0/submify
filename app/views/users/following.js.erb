@@ -1,5 +1,5 @@
 <% if @users.all.count>0 %>
-  $('.users').append('<%= escape_javascript(render @users) %>');
+  $('.users').append('<%= escape_javascript(render partial: 'users/user', collection: @users, cache: true) %>');
 
     $('a.kooh').attr('href', '<%= following_user_path(@user,page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15) %>').show();
 <% else -%>

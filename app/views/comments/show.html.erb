@@ -54,7 +54,7 @@
 
     <div class="span8">
       <ol id="comment-comments">
-        <%= render partial: 'comments/comment', collection: @comments %>
+        <%= render partial: 'comments/comment', collection: @comments, cache: true %>
       </ol>
 
       <%= render 'shared/comment_form' %>

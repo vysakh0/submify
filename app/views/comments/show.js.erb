@@ -1,5 +1,5 @@
 <% if @comments.all.count>0 %>
-  $(".comment-<%= @comment.id %> >  #comment-comments").append('<%= escape_javascript(render(partial: 'comments/comment', collection: @comments)) %>');
+  $(".comment-<%= @comment.id %> >  #comment-comments").append('<%= escape_javascript(render(partial: 'comments/comment', collection: @comments, cache: true)) %>');
 <% end -%>
   $(".comment-<%= @comment.id %> > .comments-form").append('<%= escape_javascript(render(partial: 'shared/comment_form')) %>');
   $(".comment-<%= @comment.id %>  .show_comment").html('<%= pluralize(@comment.comments.count, "reply") %>');

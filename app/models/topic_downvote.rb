@@ -4,7 +4,7 @@ class TopicDownvote < ActiveRecord::Base
 
   belongs_to :topic
   belongs_to :user
-  belongs_to :link
+  belongs_to :link, touch: true
 
   validates :user_id, presence: true
 

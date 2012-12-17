@@ -4,9 +4,11 @@
     <h4><%= @title %></h4>
     <% if @users.any? %>
       <ul class="users">
-        <%= render @users %>
+        <%= render partial: 'users/user', collection: @users, cache: true %>
       </ul>
-      <%= will_paginate %>
+        <div class="load-more">
+          <%= link_to 'Load More', following_user_path(@user,page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'kooh', remote: true %>
+        </div>
     <% end %>
   </div>
 </div>

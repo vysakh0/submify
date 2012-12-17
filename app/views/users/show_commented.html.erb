@@ -6,7 +6,7 @@
       <ol class="links"></ol>
       <ul class="users"></ul>
       <ol class="show-commented">
-        <%= render @comments if @comments.any? %>
+        <%= render partial: 'comments/comment', collection: @comments, cache: true if @comments.any? %>
       </ol>
       <% params[:page] = 1 %>
         <div class="load-more">

@@ -21,7 +21,7 @@
     </div>
     <% if  @comments.any? %>
     <ol class="full_comments">
-      <%= render @comments %>
+      <%= render partial: 'comments/comment', colleciton: @comments,cache: true %>
       </ol>
       <% params[:page] = 1 %>
     <% else %>

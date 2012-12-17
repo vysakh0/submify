@@ -17,7 +17,7 @@ class Comment < ActiveRecord::Base
 
   has_attached_file :avatar, styles: { medium: "600x600>", thumb: "300x300>" }
   belongs_to :commentable, polymorphic: true  
-  belongs_to :user
+  belongs_to :user, touch: true 
   has_many :flags, as: :flaggable
   has_many :comment_downvotes, dependent: :destroy
   has_many :comments, as: :commentable
