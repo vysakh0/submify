@@ -8,9 +8,14 @@ module SessionsHelper
     @current_user = user
   end
 
-def current_user
-  @current_user ||= User.find_by_remember_token(cookies[:remember_token])
-end
+  def current_user
+    if session[:user_id]!=nil
+      @current_user ||= User.find(session[:user_id])
+    else
+      @current_user ||= User.find_by_remember_token(cookies[:remember_token])
+      session[:user_id] = @current_user.id if @current_user
+    end
+  end
   def current_user?(user)
     user == current_user
   end
@@ -34,11 +39,11 @@ end
   end
 
 
-   def signed_in_user
-     unless signed_in?
-       store_location
-       redirect_to root_url, notice: "Please sign in" 
-     end
-   end
+  def signed_in_user
+    unless signed_in?
+      store_location
+      redirect_to root_url, notice: "Please sign in" 
+    end
+  end
 
 end

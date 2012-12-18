@@ -1,43 +1,41 @@
 <% cache link do %>
-<div class= "link-<%= link.id %>" >
-  <div class ="link_contain">
-  <% if signed_in? and @topic %>
-    <% if unsubmit = current_user.link_users.find_by_link_id_and_topic_id(link.id, @topic.id) %>
-      <div class="unsubmit">
-        <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  unsubmit_topic_path(@topic, unsubmit: unsubmit, topic: @topic.id), method: :post %>
-      </div>
+  <div class= "link-<%= link.id %>" >
+    <div class ="link_contain">
+      <% if signed_in? and @topic %>
+        <% if unsubmit = current_user.link_users.find_by_link_id_and_topic_id(link.id, @topic.id) %>
+          <div class="unsubmit">
+            <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  unsubmit_topic_path(@topic, unsubmit: unsubmit, topic: @topic.id), method: :post %>
+          </div>
 
-    <% else %>
-      <div class="flag">
-        <%= render 'flags/flag_button', flaggable: link, type: "Link" %>
+        <% else %>
+          <div class="flag">
+            <%= render 'flags/flag_button', flaggable: link, type: "Link" %>
+          </div>
+        <% end %>
+      <% end %>
+      <% if @topic and li = link.link_users.find_by_topic_id(@topic.id) and user = li.user %>
+        <%= image_tag (user.avatar.url(:thumb)), class: "comment-image" %>
+        <div class="user_link">
+          <%= link_to user.user_name, user %>
+        </div>
+      <% end %>
+      <%= render 'links/link_info', link: link %>
+      <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
+      <div class="votes">
+        <%= link.votes.count %>
+      </div>
+      <div class="show-comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></div>
+    <% end %>
+    <div class="vote">
+      <%= render 'votes/vote_button', votable: link, type: "Link" %>
+    </div>
+    <% if @topic %>
+      <div id="topic-downvote">
+        <%= render 'topics/downvote_button', link: link %>
       </div>
     <% end %>
-  <% end %>
-  <% if @topic and li = link.link_users.find_by_topic_id(@topic.id) and user = li.user %>
-    <%= image_tag (user.avatar.url(:thumb)), class: "comment-image" %>
-    <div class="user_link">
-      <%= link_to user.user_name, user %>
-    </div>
-  <% end %>
-  <%= render 'links/link_info', link: link %>
-
-  <% if @topic %>
-    <div id="topic-downvote">
-      <%= render 'topics/downvote_button', link: link %>
-    </div>
-  <% end %>
-
-  <div class="vote">
-    <%= render 'votes/vote_button', votable: link, type: "Link" %>
   </div>
-  <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
-  <div class="votes">
-    <%= link.votes.count %>
-  </div>
-  <div class="show-comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></div>
 </div>
-</div>
+<br/>
 <br/>
 <div class="underline"></div>
-<br/>
-<% end %>

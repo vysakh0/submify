@@ -18,11 +18,13 @@ class SessionsController < ApplicationController
   def new
    user = User.from_omniauth(env["omniauth.auth"])
     sign_in user
+    session[:user_id] = user.id
     redirect_back_or root_url
   end
 
   def destroy
     sign_out
+    session[:user_id] = nil
     redirect_to root_path 
   end
   def failure

@@ -1,4 +1,4 @@
-<% cache @link do %>
+<% cache ["show", @link] do %>
 <% provide(:title, @link.url_heading) %>
 <meta property="fb:app_id" content="295241533825642" /> 
 <meta property="og:type"   content="website" /> 
@@ -21,9 +21,8 @@
     </div>
     <% if  @comments.any? %>
     <ol class="full_comments">
-      <%= render partial: 'comments/comment', colleciton: @comments,cache: true %>
+      <%= render partial: 'comments/comment', colleciton: @comments %>
       </ol>
-      <% params[:page] = 1 %>
     <% else %>
     <ol class="full_comments">
       </ol>

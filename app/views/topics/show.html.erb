@@ -2,18 +2,15 @@
 <div class="row-fluid">
   <div class="span8">
     <% tab "Feed" %>
-    <% cache @topic do %>
     <%= render 'topic_stats' %>
       <div class="span8">
       <%= render 'shared/link_form' %>
         <ol class="links">
-          <%= render @links  %>
+          <%= render @links %>
         </ol>
-        <% params[:page] = 1 %>
         <div class="load-more">
         <%= link_to 'Load More', topic_path(@topic, page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'hook-topic', remote: true %>
       </div>
-    <% end %>
   </div>
 
 </div>

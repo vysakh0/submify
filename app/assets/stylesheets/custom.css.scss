@@ -137,10 +137,10 @@ aside {
 }
 
 .link_url{
-  padding: 5px;
   a{
-    color: #323232;
-    padding: 5px;
+    //color: #323232;
+    color: #004864;
+    font-size: 26px; 
     font-family: arial, sans-serif;
   }
 
@@ -149,6 +149,8 @@ aside {
   color: #7f7f7f;
   a{
     color: #7f7f7f;
+    font-weight: bold;
+    font-size: 14px;
     font-family: arial, sans-serif;
   }
 }
@@ -204,7 +206,6 @@ color: #0088CC;
   float:  left;
   padding-right: 8px;
   font-size: 12.8px;
-  display: block;
   color: #bbc3bc;
   a{
     color: #bbc3bc;
@@ -213,7 +214,6 @@ color: #0088CC;
 .span8 > .submits, .span8 > .votes{
   float:  left;
   padding-right: 10px;
-  display: block;
   font-size: 12.8px;
   color: #bbc3bc;
   a{
@@ -233,12 +233,14 @@ color: #0088CC;
   padding-right: 50px;
   display: block;
 }
-
-.vote, #topic-downvote, .comment-downvote{
+.vote{
+  padding-right: 50px; 
+  font-size: 12.8px;
+  float: right;
+}
+ #topic-downvote, .comment-downvote{
   float: right;
   font-size: 12.8px;
-  display: block;
-  padding-right: 8px;
 }
 .butn, .butn:focus, .butn:active {
   /* NOTE Remove all decorations */
@@ -306,13 +308,14 @@ color: #0088CC;
   border-bottom-width:1px; 
 }
 .show-comments{
+  float: left;
   font-size: 12.8px;
 }
 .loading-indicator, #loadindicator {
     float: right;
 }
 .link-image {
-  float: left;
+  float: right;
   max-width: 150px;
   max-height: 100px;
 }
@@ -374,7 +377,4 @@ color: #0088CC;
 #comment-comments, .comments-form{
   padding-left: 60px;
   width: 500px;
-}
-.link_contain{
-  max-height: 200px;
 }

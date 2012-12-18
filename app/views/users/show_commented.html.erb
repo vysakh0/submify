@@ -1,14 +1,13 @@
 <% provide(:title, @user.user_name) %>
 <div class="span8">
   <div class="container-fluid">
-    <% tab "comments" %>
     <%= render 'profile_stat_nav' %>
+    <% tab "comments" %>
       <ol class="links"></ol>
       <ul class="users"></ul>
       <ol class="show-commented">
-        <%= render partial: 'comments/comment', collection: @comments, cache: true if @comments.any? %>
+        <%= render @comments %>
       </ol>
-      <% params[:page] = 1 %>
         <div class="load-more">
           <%= link_to 'Load More', commented_user_path(@user,page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'kooh', remote: true %>
         </div>

@@ -6,25 +6,20 @@
       <section>
       <%= render 'shared/link_form' %>
       </section>
-
-      <% if @feed_items.any? %>
-      <ol class="links">
-    <%= render @feed_items %>
-      </ol>
-      <% params[:page] = 1 %>
-    <% else %>
-
         <ol class="links">
+          <%= render @feed_items %>
         </ol>
-      <% end %>
+
         <div class="load-more">
           <%= link_to 'Load More', root_path(page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'hook', remote: true %>
         </div>
     <% else %>
+      <% cache "front", expires_in: 10.minutes do %>
       <h4> Front Page </h4>
       <ol class="links">
         <%= render @links if @links %>
       </ol>
     <% end %>
+  <% end %>
   </div>  
 </div>

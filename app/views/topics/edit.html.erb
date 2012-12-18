@@ -1,4 +1,4 @@
-<% cache("#{@topic.id}_topic_edit") do %>
+<% cache ["edit", @topic] do %>
 <% provide(:title, @topic.topic_name ) %>
 
 <div class="row-fluid">

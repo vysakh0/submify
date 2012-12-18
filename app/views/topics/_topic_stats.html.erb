@@ -1,6 +1,7 @@
 <aside> 
   <section>
 <div class="follow_button">  <%= render 'topics/follow_form' if signed_in? %> </div>
+<% cache @topic do %>
 <h3>
 <%= image_tag (@topic.avatar.url(:thumb)), class: "topic-pic" %>
   <%= @topic.topic_name %>
@@ -18,3 +19,4 @@
 </div>
 </section>
 </aside>
+<% end %>

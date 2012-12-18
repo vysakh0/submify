@@ -7,6 +7,7 @@
       <div class="nav-collapse">
         <%=link_to "submify", root_path, class: "brand" %>
         <% if signed_in? %>
+          <% cache ["head",current_user] do %>
           <%= form_tag links_path , :method => 'get', class:"navbar-search " do %>
 
             <%= text_field_tag :q, params[:q],class:"search-query", id: "search_input", placeholder:"Search" %>
@@ -39,6 +40,7 @@
               <li> <%= link_to "Sign out", signout_path, method: "delete" %> </li>
             </ul>
             </li>
+          <% end %>
           <% else %>
             <ul class="nav pull-right"> 
               <li><%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %></li>
