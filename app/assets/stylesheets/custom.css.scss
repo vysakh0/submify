@@ -140,7 +140,7 @@ aside {
   a{
     //color: #323232;
     color: #004864;
-    font-size: 26px; 
+    font-size: 22px; 
     font-family: arial, sans-serif;
   }
 
@@ -234,12 +234,12 @@ color: #0088CC;
   display: block;
 }
 .vote{
-  padding-right: 50px; 
   font-size: 12.8px;
   float: right;
 }
  #topic-downvote, .comment-downvote{
   float: right;
+  padding-right: 4px;
   font-size: 12.8px;
 }
 .butn, .butn:focus, .butn:active {
@@ -317,7 +317,7 @@ color: #0088CC;
 .link-image {
   float: right;
   max-width: 150px;
-  max-height: 100px;
+  max-height: 80px;
 }
 .load-more {
 

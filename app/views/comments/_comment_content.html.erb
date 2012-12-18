@@ -1,4 +1,4 @@
-<% cache comment_content do %>
+<% cache "#{comment.id}_comment" do %>
   <div class="timestamp">
     <% if comment.commentable_type == 'Link' %>
       <%= link_to timing(comment.created_at), link_comment_path(comment.commentable, comment) %>

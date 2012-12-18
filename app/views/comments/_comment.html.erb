@@ -1,5 +1,4 @@
 <% if comment %>
-  <% cache comment do %>
     <div class="comment-<%= comment.id %>">
 
       <br/>
@@ -12,6 +11,7 @@
           <%= render 'flags/flag_button', flaggable: comment, type: "Comment" %>
         </div>
       <% end %>
+  <% cache comment do %>
       <%= render 'comments/comment_content', comment: comment %>
       <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
       <div class="votes">

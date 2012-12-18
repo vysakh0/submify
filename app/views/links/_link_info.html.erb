@@ -1,3 +1,4 @@
+<% cache "link_#{link.id}" do %>
   <%= image_tag(link.avatar.url, class: 'link-image')  if link.avatar.exists? %>
   <div class="link_url">
     <span class="url_link"><%= link_to link.url_heading, 'http://' + link.url_link %> </span>
@@ -7,3 +8,4 @@
   <div class="host_link">
     <%= link_to host.match(".+\:\/\/([^\/]+)")[1], host %> 
   </div>
+<% end %>
