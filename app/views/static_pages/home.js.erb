@@ -1,4 +1,4 @@
-<% if @feed_items and @feed_items.all.count > 0 %>
+<% if params[:page].to_i >0 and @feed_items and @feed_items.all.count > 0 %>
   $('.links').append('<%= escape_javascript(render(partial: 'shared/feed_item', collection: @feed_items )) %>');
   $('a.hook').attr('href', '<%= root_path(page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15) %>').show();
 <% else -%>

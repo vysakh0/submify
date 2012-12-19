@@ -1,4 +1,4 @@
-<% if @comments.all.count >0 %>
+<% if params[:page].to_i > 0 and @comments.all.count >0 %>
   $('.full_comments').append('<%= escape_javascript(render(partial: 'comments/comment', collection: @comments)) %>');
   $('a.hook-link-comments').attr('href', '<%= link_path(@link,page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15) %>').show();
 <% else -%>

@@ -1,4 +1,4 @@
-<% if @link_users.all.count>0 %>
+<% if params[:page].to_i > 0 and  @link_users.all.count>0 %>
   $('.links').append('<%= escape_javascript(render @link_users) %>');
 
     $('a.kooh').attr('href', '<%= user_path(@user,page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15) %>').show();
