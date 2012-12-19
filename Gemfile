@@ -23,9 +23,10 @@ gem 'oauth2'
 gem 'multi_fetch_fragments'
 gem 'dalli'
 gem 'pjax_rails'
+gem 'bundler'
 gem 'cache_digests'
 #gem 'rails3-redis-session-store'
-#gem 'redis-store'
+gem 'redis-store'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do
@@ -65,7 +66,7 @@ end
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+ gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'

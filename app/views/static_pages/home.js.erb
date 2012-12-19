@@ -1,5 +1,5 @@
-<% if @feed_items.all.count > 0 %>
-  $('.links').append('<%= escape_javascript(render(partial: 'shared/feed_item', collection: @feed_items, cache: Proc.new{|feed_item| [current_user.id,feed_item] })) %>');
+<% if @feed_items and @feed_items.all.count > 0 %>
+  $('.links').append('<%= escape_javascript(render(partial: 'shared/feed_item', collection: @feed_items )) %>');
   $('a.hook').attr('href', '<%= root_path(page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15) %>').show();
 <% else -%>
   $('a.hook').hide();

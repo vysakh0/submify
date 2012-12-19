@@ -12,7 +12,9 @@
         </div>
       <% end %>
   <% cache comment do %>
-      <%= render 'comments/comment_content', comment: comment %>
+     <div class="comment_body">
+       <%= render 'comments/comment_content', comment: comment %>
+     </div>
       <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
       <div class="votes">
         <%= comment.votes.count %>
@@ -33,16 +35,14 @@
     <div class="comment-downvote">
       <%= render 'comment_downvotes/downvote_button', comment: comment %>
     </div>
-    <div class="vote">
+    <div class="comment-vote">
       <%= render 'votes/vote_button', votable: comment, type: "Comment" %>
     </div>
-
     <br/>
     <div id="comment-comments">
     </div>
     <div class="comments-form">
     </div>
-    <br/>
     <div class="underline"></div>
   </div>
 <% end %>
