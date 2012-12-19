@@ -1,5 +1,6 @@
   <div class= "link-<%= link.id %>" >
     <div class ="link_contain">
+        <br/>
       <% if signed_in? and @topic %>
         <% if unsubmit = current_user.link_users.find_by_link_id_and_topic_id(link.id, @topic.id) %>
           <div class="unsubmit">
@@ -27,6 +28,7 @@
       </div>
       <div class="show-comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></div>
     <% end %>
+
     <% if @topic %>
       <div id="topic-downvote">
         <%= render 'topics/downvote_button', link: link %>

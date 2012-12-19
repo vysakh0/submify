@@ -12,6 +12,9 @@
         </div>
       <% end %>
   <% cache comment do %>
+    <!--
+       -do caching with comment content and number of stats & number of downvotes or replies as it saves more time calculating the count & no need of any counter cache :) This works with model of vote, downvote set as touch: true!
+       -->
      <div class="comment_body">
        <%= render 'comments/comment_content', comment: comment %>
      </div>

@@ -1,5 +1,7 @@
+    <% cache list_topics do %>
         <% @link.topics.each do |topic| %>
             <%= link_to topic.topic_name, topic, class: 'topic' %>
         <% end %>
-        <%= render 'submit_to_topics' %>
+    <% end %>
+        <%= render 'submit_to_topics'%>
 

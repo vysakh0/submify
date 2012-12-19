@@ -1,4 +1,3 @@
-<% cache ["show", @link] do %>
 <% provide(:title, @link.url_heading) %>
 <meta property="fb:app_id" content="295241533825642" /> 
 <meta property="og:type"   content="website" /> 
@@ -9,12 +8,17 @@
   <div class="link-<%= @link.id %>" >
     <div class = "span8">
       <div id="topics-list">
-        <%= render 'list_topics' %>
-
+        <%= render 'list_topics' %> 
+  <!--
+     -fragment cached :)
+     -->
       </div>
       <%= render 'links/link', link: @link %>
+<!--
+   -      links are always fragment cached with their link info and stats :) no need of counter cache as it has already has a cache digest with "touch: true" to change as and when :)
+   -
+   -->
     </div>
-<% end %>
 
     <div class="span8">
       <div class="comment-form">
@@ -23,6 +27,9 @@
     <% if  @comments.any? %>
     <ol class="full_comments">
       <%= render partial: 'comments/comment', colleciton: @comments %>
+      <!--
+         -each comment is fragment cached :)
+         -->
       </ol>
     <% else %>
     <ol class="full_comments">

@@ -1,3 +1,5 @@
+
+<% cache skip_digest: true do %>
 <% if signed_in? %>
   <% comment = @link.id and value =1 if @link %>
   <% comment = @comment.id and value = 0 if @comment %>
@@ -16,4 +18,4 @@
   </div>
 <% end %>
 <% end %>
- 
+<% end %> 
