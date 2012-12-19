@@ -8,19 +8,19 @@
   <div class="link-<%= @link.id %>" >
     <div class = "span8">
       <%= render 'submit_to_topics'%>
-      <% cache @link do %>
+      <% cache ["list_topics", @link] do %>
         <div id="topics-list">
           <%= render 'list_topics' %> 
           <!--
           -fragment cached!..but now its a  problem!!Lets try adding diff cache
           -->
         </div>
+      <% end %>
         <%= render 'links/link', link: @link %>
         <!--
         -      links are always fragment cached with their link info and stats :) no need of counter cache as it has already has a cache digest with "touch: true" to change as and when :) due to topics-list problem lets try combined caching with cache @link :)
-        -
+        - may expose vote button but never mind it disappears when tried to click
         -->
-      <% end %>
 
     </div>
     <div class="span8">
