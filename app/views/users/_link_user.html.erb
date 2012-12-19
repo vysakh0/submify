@@ -1,42 +1,22 @@
-<div class="link_user_contain">
+<div class="linkuser_contain">
   <% link = link_user.link %>
-<div class= "link-<%= link.id %>" >
-  <% topic = link_user.topic %>
+  <div class= "link-<%= link.id %>" >
+    <% topic = link_user.topic %>
 
-  <% if signed_in? and topic %>
-    <div class="unsubmit">
-      <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  unsubmit_topic_path(topic, unsubmit: link_user), method: :post %>
-    </div>
-  
-    <%= image_tag (@user.avatar.url(:thumb)), class: 'comment-image'  %>
+    <% if signed_in? and topic %>
+      <div class="unsubmit">
+        <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  unsubmit_topic_path(topic, unsubmit: link_user), method: :post %>
+      </div>
 
-    <div class="user-profile">
+      <%= image_tag (@user.avatar.url(:thumb)), class: 'comment-image'  %>
+
+      <div class="user-profile">
         <%= link_to @user.user_name, @user %>
-    submitted to <%= link_to topic.topic_name, topic_path(topic) %>
-  </div> 
-  <br/>
-
-  <% end %>  
-
-<%= image_tag(link.avatar.url, class: 'link-image')  if link.avatar.exists? %>
-  <% host = 'http://'+ link.url_link %>
-
-  <div class="link_url">
-    <span class="url_link"><%= link_to link.url_heading, 'http://' + link.url_link %> </span>
+        submitted to <%= link_to topic.topic_name, topic_path(topic) %>
+      </div> 
+    <% end %>  
+    <%= render 'links/link', link: link %>
 
   </div>
-  <div class="host_link">
-    <%= link_to host.match(".+\:\/\/([^\/]+)")[1], host %> 
-    </div>
-  <div class="vote">
-    <%= render 'votes/vote_button', votable: link, type: "Link" %>
-  </div>
-  <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
-  <div class="votes">
-    <%= link.votes.count %>
-  </div>
-  <div class="show-comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></div>
-</div>
-<br/>
   <div class="underline"></div>
 </div>

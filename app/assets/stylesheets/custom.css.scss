@@ -338,13 +338,17 @@ color: #0088CC;
 .underline { 
   border-bottom-color: #333333;
 }
-.feed_contain, .link_user_contain {
+.feed_contain {
   border-top-color:  #E0E0E0;
   border-left-color: #333333;
   border-right-color: #333333;
-  border-bottom-color: #333333;
+  border-bottom-color: #E0E0E0;
   border-top-style: solid;
   border-top-width: 1px;
+}
+.linkuser_contain{
+  border-bottom-style: inset;
+  border-bottom-width: 1px;
 }
 .show-comments{
   float: left;
@@ -420,7 +424,4 @@ color: #0088CC;
 #comment-comments, .comments-form{
   padding-left: 60px;
   width: 500px;
-}
-.link_contain{
-  padding-top: 10px;
 }
