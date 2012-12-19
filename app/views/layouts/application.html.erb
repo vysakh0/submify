@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US"
   xmlns:fb="https://www.facebook.com/2008/fbml">
-  
-  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# strongfly: http://ogp.me/ns/fb/strongfly#">
-  <title><%= yield(:title) %> | Submify </title>
-  <%= stylesheet_link_tag    "application", media: "all" %>
-  <%= csrf_meta_tags %>
-  <%= render 'layouts/shim' %>
-</head>
-<body>
-  <%= render 'layouts/header' %>
-      <div data-pjax-container>
-  <div class="container">
-      <div id="flash">
-  <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>"><%= value %></div>
-  <% end %>
-      </div>
-      <%= yield %>
-      </div>
-  <%= debug(params) if Rails.env.development? %>
-</div>
 
-  <%= javascript_include_tag "application" %>
-</body>
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# strongfly: http://ogp.me/ns/fb/strongfly#">
+    <title><%= yield(:title) %> | Submify </title>
+    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= csrf_meta_tags %>
+    <%= render 'layouts/shim' %>
+  </head>
+  <body>
+    <%= render 'layouts/header' %>
+      <div class="container">
+        <div id="flash">
+          <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>"><%= value %></div>
+          <% end %>
+        </div>
+    <div data-pjax-container>
+        <%= yield %>
+      </div>
+      <%= debug(params) if Rails.env.development? %>
+    </div>
+
+    <%= javascript_include_tag "application" %>
+  </body>
 </html>
