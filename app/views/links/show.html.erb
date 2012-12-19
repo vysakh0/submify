@@ -7,35 +7,38 @@
 <div class="container-fluid">
   <div class="link-<%= @link.id %>" >
     <div class = "span8">
-      <div id="topics-list">
-        <%= render 'list_topics' %> 
-  <!--
-     -fragment cached :)
-     -->
-      </div>
-      <%= render 'links/link', link: @link %>
-<!--
-   -      links are always fragment cached with their link info and stats :) no need of counter cache as it has already has a cache digest with "touch: true" to change as and when :)
-   -
-   -->
-    </div>
+      <%= render 'submit_to_topics'%>
+      <% cache @link do %>
+        <div id="topics-list">
+          <%= render 'list_topics' %> 
+          <!--
+          -fragment cached!..but now its a  problem!!Lets try adding diff cache
+          -->
+        </div>
+        <%= render 'links/link', link: @link %>
+        <!--
+        -      links are always fragment cached with their link info and stats :) no need of counter cache as it has already has a cache digest with "touch: true" to change as and when :) due to topics-list problem lets try combined caching with cache @link :)
+        -
+        -->
+      <% end %>
 
+    </div>
     <div class="span8">
       <div class="comment-form">
-      <%= render 'shared/comment_form' %>
-    </div>
-    <% if  @comments.any? %>
-    <ol class="full_comments">
-      <%= render partial: 'comments/comment', colleciton: @comments %>
-      <!--
-         -each comment is fragment cached :)
-         -->
-      </ol>
-    <% else %>
-    <ol class="full_comments">
-      </ol>
-    <%end %>
-        <div class="load-more">
+        <%= render 'shared/comment_form' %>
+      </div>
+      <% if  @comments.any? %>
+        <ol class="full_comments">
+          <%= render partial: 'comments/comment', colleciton: @comments %>
+          <!--
+          -each comment is fragment cached :)
+          -->
+        </ol>
+      <% else %>
+        <ol class="full_comments">
+        </ol>
+      <%end %>
+      <div class="load-more">
         <%= link_to 'Load More', link_path(@link,page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'hook-link-comments', remote: true %>
       </div>
 
