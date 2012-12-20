@@ -1,7 +1,8 @@
-<% if params[:page].to_i > 0 and  @link_users.all.count>0 %>
-  $('.links').append('<%= escape_javascript(render @link_users) %>');
+$('.links').append('<%= j (render @link_users) %>');
+<% if @link_users.next_page %>
+  $('.pagination').replaceWith('<%= j (will_paginate(@link_users)) %>');
+<% else %>
+  $('.pagination').remove();
+<% end %>
+<% sleep 1 %>
 
-    $('a.kooh').attr('href', '<%= user_path(@user,page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15) %>').show();
-<% else -%>
-  $('a.kooh').hide();
-<% end -%>

@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def commented
 
     @user = User.find(params[:id])
-    @comments = @user.commented.paginate(page: params[:page])
+    @comments = @user.commented.paginate(page: params[:page], per_page: params[:page] || 15)
     respond_to do |format|
       format.html {render 'show_commented'}
       format.js 
@@ -42,17 +42,13 @@ class UsersController < ApplicationController
   end
   def show
     @user = User.find(params[:id])
-    @link_users = @user.link_users.paginate(page: params[:page])
-    respond_to do |format|
-      format.html
-      format.js 
-    end
+    @link_users = @user.link_users.page(params[:page]).per_page(10)
   end
   def comments
     @user = User.find(params[:id])
     @comments = @user.commented.paginate(page: params[:page])
     respond_to do |format|
-      format.html { render 'show_commented'}
+      format.html { redirect_to commented_user_url(@user) }
       format.js 
     end
   end

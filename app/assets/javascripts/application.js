@@ -12,9 +12,7 @@
 //
 //= require jquery
 //= require jquery.ui.autocomplete
-//= require jquery.inview.js
 //= require pjax
-//= require jquery.inview.min.js
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .

@@ -27,9 +27,9 @@
       <div class="comment-form">
         <%= render 'shared/comment_form' %>
       </div>
-      <% if  @comments.any? %>
+      <% if  @comments.all.count > 0 %>
         <ol class="full_comments">
-          <%= render partial: 'comments/comment', colleciton: @comments %>
+          <%= render partial: 'comments/comment', collection: @comments %>
           <!--
           -each comment is fragment cached :)
           -->

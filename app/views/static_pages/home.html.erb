@@ -7,11 +7,10 @@
       <%= render 'shared/link_form' %>
       </section>
         <ol class="links">
+          <%= render @feed_items %>
         </ol>
+        <%= will_paginate @feed_items %>
 
-        <div class="load-more">
-          <%= link_to 'Load More', root_path(page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'hook', remote: true %>
-        </div>
     <% else %>
       <% cache "front", expires_in: 10.minutes do %>
       <h4> Front Page </h4>

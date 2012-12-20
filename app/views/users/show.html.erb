@@ -5,10 +5,9 @@
   <%= render 'profile_stat_nav' %>
   <ol class="show-commented"></ol>
   <ul class="users"></ul>
-    <ol class="links">
+  <ol class="links">
+    <%= render @link_users %>
     </ol>
-        <div class="load-more">
-        <%= link_to 'Load More', user_path(@user, page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'kooh', remote: true %>
-      </div>
+    <%= will_paginate @link_users %>
 </div>
 </div>

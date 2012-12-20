@@ -3,18 +3,18 @@
   <div class= "link-<%= link.id %>" >
     <% topic = link_user.topic %>
 
-    <% if signed_in? and topic %>
+    <% if link_user.user == current_user and topic %>
       <div class="unsubmit">
         <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  unsubmit_topic_path(topic, unsubmit: link_user), method: :post %>
       </div>
 
+    <% end %>  
       <%= image_tag (@user.avatar.url(:thumb)), class: 'comment-image'  %>
 
       <div class="user-profile">
         <%= link_to @user.user_name, @user %>
         submitted to <%= link_to topic.topic_name, topic_path(topic) %>
       </div> 
-    <% end %>  
     <%= render 'links/link', link: link %>
 
   </div>
