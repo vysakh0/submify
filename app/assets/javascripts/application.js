@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery.ui.autocomplete
-//= require pjax
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
