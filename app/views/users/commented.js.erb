@@ -1,8 +1,6 @@
-<% if @comments.all.count>0 %>
-  <% if params[:page].to_i > 0 %>
-  $('.show-commented').append('<%= escape_javascript(render partial: 'comments/comment', collection: @comments) %>');
-    $('a.kooh').attr('href', '<%= commented_user_path(@user,page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15) %>').show();
-  <% end %>
-<% else -%>
-  $('a.kooh').hide();
-<% end -%>
+$('.show-commented').append('<%= j (render @comments) %>');
+<% if @comments.next_page %>
+  $('.pagination').replaceWith('<%= j (will_paginate(@comments)) %>');
+<% else %>
+  $('.pagination').remove();
+<% end %>

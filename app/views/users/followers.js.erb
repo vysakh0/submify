@@ -1,7 +1,6 @@
-<% if @users.all.count>0 %>
-  $('.users').append('<%= escape_javascript(render partial: 'users/user', collection: @users, cache: true) %>');
-
-    $('a.kooh').attr('href', '<%= followers_user_path(@user,page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15) %>').show();
-<% else -%>
-  $('a.kooh').hide();
-<% end -%>
+$('.users').append('<%= j (render @users) %>');
+<% if @users.next_page %>
+  $('.pagination').replaceWith('<%= j (will_paginate(@users)) %>');
+<% else %>
+  $('.pagination').remove();
+<% end %>

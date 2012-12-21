@@ -33,14 +33,14 @@
           <!--
           -each comment is fragment cached :)
           -->
+
         </ol>
+        <%= will_paginate @comments %>
       <% else %>
         <ol class="full_comments">
         </ol>
       <%end %>
-      <div class="load-more">
-        <%= link_to 'Load More', link_path(@link,page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'hook-link-comments', remote: true %>
-      </div>
+      
 
     </div>
   </div>

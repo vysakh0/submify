@@ -57,7 +57,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     respond_to do |format|
-     format.html { render 'show_follow' }
+     format.html { redirect_to followers_user_url(@user) }
      format.js
     end
   end
@@ -66,7 +66,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @link_users = @user.link_users.paginate(page: params[:page])
     respond_to do |format|
-      format.html { render 'show' }
+      format.html { redirect_to user_url(@user) }
       format.js 
     end
   end

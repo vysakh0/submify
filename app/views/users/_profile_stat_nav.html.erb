@@ -1,15 +1,13 @@
-<% cache @user do %>
 <aside> 
-  <section>
 <div class="follow_button">  <%= render 'follow_form' if signed_in? %> </div>
+<% cache @user do %>
 <h3>
    <%= image_tag (@user.avatar.url(:thumb)), class: "gravatar" %>
   <%= @user.name %>
 </h3>
-</section>
 
 <div class="stats_of_user">
 <%= render 'shared/stats' %>
 </div>
-</aside>
 <% end %>
+</aside>

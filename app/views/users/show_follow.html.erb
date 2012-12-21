@@ -3,12 +3,11 @@
   <div class="span8">
     <% tab "followers" %>
     <%= render 'profile_stat_nav' %>
-      <ul class="users">
+    <ul class="users">
+      <%= render @users %>
       </ul>
       <ol class="show-commented"></ol>
       <ol class="links"></ol>
-        <div class="load-more">
-          <%= link_to 'Load More', followers_user_path(@user,page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'kooh', remote: true %>
-        </div>
+      <%= will_paginate @users %>
   </div>
 </div>
