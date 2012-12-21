@@ -152,8 +152,6 @@ GEM
       nokogiri
       sanitize
       shoulda
-    pjax_rails (0.3.4)
-      jquery-rails
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -309,7 +307,6 @@ DEPENDENCIES
   paperclip (~> 3.0)
   pg
   pismo
-  pjax_rails
   rails (= 3.2.8)
   redis-store
   rspec-rails (= 2.11.0)

@@ -1,9 +1,10 @@
 <% @user ||= current_user %>
-
+<% @page_tab = "comments" %>
 <ul class="breadcrumb">
   <li>
-  <%= link_to pluralize(@user.links.count, 'link') , links_user_path(@user) , class:("active" if @page_tab == "links"), remote: true , method: :post %><span class="divider">/</span> </li> 
+  <%= link_to pluralize(@user.links.count, 'link') , user_path(@user) , class:("active" if @page_tab == "links") %><span class="divider">/</span> </li> 
   <li>
-  <%= link_to pluralize(@user.commented.count, 'comment') , comments_user_path(@user) ,class:("active" if @page_tab == "comments"), remote: true, method: :post %> <span class="divider">/</span> </li> </li>
-  <%= link_to pluralize(@user.followers.count, 'follower') , follower_user_path(@user) , class:("active" if @page_tab == "followers"), remote: true, method: :post %>
+  <%= link_to pluralize(@user.commented.count, 'comment') , commented_user_path(@user) ,class:("active" if @page_tab == "comments")%> <span class="divider">/</span> </li>
+  <li>
+  <%= link_to pluralize(@user.followers.count, 'follower') , followers_user_path(@user) , class:("active" if @page_tab == "followers") %> </li>
 </ul>

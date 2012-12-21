@@ -37,6 +37,10 @@
     <div class="vote">
       <%= render 'votes/vote_button', votable: link, type: "Link" %>
     </div>
+    <% unless signed_in? %>
+      <br/>
+      <br/>
+    <% end %>
   </div>
 </div>
 <div class="underline"></div>

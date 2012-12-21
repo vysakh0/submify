@@ -1,18 +1,36 @@
-
+<div class="linkuser_contain">
   <% link = link_user.link %>
-  <% topic = link_user.topic %>
-  <% if signed_in? and topic %>
-    <div class="unsubmit">
-      <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  unsubmit_topic_path(topic, unsubmit: link_user, topic: topic), method: :post %>
-    </div>
-  
+  <div class= "link-<%= link.id %>" >
+    <% topic = link_user.topic %>
+
+    <% if link_user.user == current_user and topic %>
+      <div class="unsubmit">
+        <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  link_path(link_id: link.id, unsubmit: link_user, topic: topic.id), method: :delete %>
+      </div>
+    <% end %>  
     <%= image_tag (@user.avatar.url(:thumb)), class: 'comment-image'  %>
 
     <div class="user-profile">
-        <%= link_to @user.name, @user %>
-    submitted to <%= link_to topic.name, topic_path(topic) %>
-  </div> 
-  <br/>
+      <%= link_to @user.user_name, @user %>
+      submitted to <%= link_to topic.topic_name, topic_path(topic) %>
+    </div> 
 
-  <% end %>  
-  <%= render 'links/link', link: link %>
+    <% cache link do %>
+      <%= render 'links/link_info', link: link %>
+      <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
+      <div class="votes">
+        <%= link.votes.count %>
+      </div>
+      <div class="show-comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></div>
+    <% end %>
+
+    <div class="vote">
+      <%= render 'votes/vote_button', votable: link, type: "Link" %>
+    </div>
+    <% unless signed_in? %>
+      <br/>
+      <br/>
+    <% end %>
+  </div>
+  <div class="underline"></div>
+</div>
