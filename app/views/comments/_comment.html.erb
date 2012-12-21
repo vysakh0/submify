@@ -4,7 +4,7 @@
       <br/>
       <% if comment.user== current_user %>
         <div class="del_comment"> 
-          <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  comment, method: :delete, data: { confirm: "You sure?" }, title: comment.body %>
+          <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  comment, method: :delete, data: { confirm: "You sure?" }, remote: true, title: comment.body %>
         </div>
       <% else %>
         <div class="flag">

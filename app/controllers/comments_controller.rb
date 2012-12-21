@@ -51,8 +51,14 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment.destroy if @comment
-    redirect_to @parent 
+    if @comment
+      @comment_id = @comment.id
+      @comment.destroy
+    end
+    respond_to do |format|
+      format.html { redirect_to @parent }
+      format.js 
+    end
   end
 
   protected
