@@ -59,7 +59,7 @@ class LinksController < ApplicationController
         if @link.topics.exists? name: topic
           flash[:notice]="Link already submitted to the topic"
         else 
-          @link.link_with_topic!(topic, current_user)
+          @link.link_with_topic!(topic, current_user,@topic)
 
           flash[:success]="Link submitted"
                     publish_to_fb
@@ -71,7 +71,7 @@ class LinksController < ApplicationController
           @link.picture_from_url(img)
         end
         if @link!= nil && @link.save
-          @link.link_with_topic!(topic, current_user)
+          @link.link_with_topic!(topic, current_user, @topic)
                    publish_to_fb
           flash[:success]="Link submitted"
         end
@@ -111,7 +111,7 @@ class LinksController < ApplicationController
   def check_url
     count = 0
     given =params[:link][:url_link]
-    given = "https://" + given if /https?:\/\/[\S]+/.match(given) == nil
+    given = "http://" + given if /https?:\/\/[\S]+/.match(given) == nil
     begin       	
       final_url =  open(given, allow_safe_redirections: true).base_uri.to_s
       data = Nokogiri::HTML(open(final_url))

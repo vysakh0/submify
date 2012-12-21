@@ -48,8 +48,15 @@ class Link < ActiveRecord::Base
     comments.where("user_id IN (#{followed_user_ids}) OR user_id = :user_id", user_id: user.id).limit(3).order('created_at desc')
   end
 
-  def link_with_topic!(topic_name, user)
-    topic = Topic.where(name: topic_name).first_or_create
+  def link_with_topic!(topic_name, user, topic_page)
+    topic_slug = topic_name.to_s.parameterize
+    if topic_page
+      topic = topic_page
+    elsif topic = Topic.find_by_slug(topic_slug)
+    else
+      topic = Topic.create!(name: topic_name)
+      topic.save
+    end
     link_users.create!(topic_id: topic.id, user_id: user.id)
   end
 
