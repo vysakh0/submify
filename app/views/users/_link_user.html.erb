@@ -5,7 +5,7 @@
 
     <% if link_user.user == current_user and topic %>
       <div class="unsubmit">
-        <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  unsubmit_topic_path(topic, unsubmit: link_user), method: :post %>
+            <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  link_path(link_id: link.id, unsubmit: unsubmit, topic: topic.id), method: :delete %>
       </div>
 
     <% end %>  

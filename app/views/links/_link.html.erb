@@ -1,10 +1,10 @@
   <div class= "link-<%= link.id %>" >
     <div class ="link_contain">
         <br/>
-      <% if signed_in? and @topic %>
+      <% if signed_in? and @topic  %>
         <% if unsubmit = current_user.link_users.find_by_link_id_and_topic_id(link.id, @topic.id) %>
           <div class="unsubmit">
-            <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  unsubmit_topic_path(@topic, unsubmit: unsubmit, topic: @topic.id), method: :post %>
+            <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  link_path(link,link_id: link.id, unsubmit: unsubmit, topic: @topic.id), remote: true, method: :delete %>
           </div>
 
         <% else %>

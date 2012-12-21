@@ -1,6 +1,6 @@
-<% if params[:page].to_i >0 and @links.all.count>0 %>
-  $('.links').append('<%= escape_javascript(render(partial: 'links/link', collection: @links)) %>');
-  $('a.hook-topic').attr('href', '<%= topic_path(@topic, page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15) %>').show();
-<% else -%>
-  $('a.hook-topic').hide();
-<% end -%>
+$('.links').append('<%= j (render @links) %>');
+<% if @links.next_page %>
+  $('.pagination').replaceWith('<%= j (will_paginate(@links)) %>');
+<% else %>
+  $('.pagination').remove();
+<% end %>
