@@ -3,9 +3,23 @@ require 'uri'
 require 'net/http'
 require 'nokogiri'
 require 'open_uri_redirections'
-
+include AutoHtml
 module LinksHelper
 
+  def video_preview(url)
+    if /twitter.com/.match(url)
+      url = "https://" + url
+    else
+      url = 'http://' + url
+    end
+
+    auto_html url do
+      youtube
+      vimeo
+      soundcloud
+      twitter
+    end
+  end
   def link_image(data)
     begin  
 

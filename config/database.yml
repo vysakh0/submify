@@ -18,7 +18,8 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: project_production
+  database: jerry
+  host: localhost
   pool: 25
-  username: 
-  password:
+  username: tom
+  password: pass
