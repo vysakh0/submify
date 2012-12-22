@@ -1,4 +1,6 @@
 class TopicsController < ApplicationController
+  before_filter :signed_in_user, only: [:edit, :update]
+
   def show
     @link = current_user.links.build  if current_user
     @topic = Topic.find_by_slug(params[:id])

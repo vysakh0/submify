@@ -297,7 +297,7 @@ color: #0088CC;
 .follow_button{
   float: right;
 }
-.del_comment,  .unsubmit, .flag, .dummy{
+.del_comment,  .unsubmit, .flag {
   float: right;
   font-size: 8px;
   a{color: #bbc3bc;}
@@ -427,5 +427,17 @@ color: #0088CC;
 }
 .video_embedd{
   float: left;
+  width: 100%;
+}
+.user-profile{
+  width: 100%;
+}
+.sep{
+  width: 100%;
+  border-bottom-color: #333333;
+  height: 2px;
+}
+.dummy{
+  font-size: 0.2px;
   width: 100%;
 }

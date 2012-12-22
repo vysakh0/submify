@@ -1,20 +1,25 @@
-<div class="linkuser_contain">
-  <% link = link_user.link %>
-  <div class= "link-<%= link.id %>" >
+<% link = link_user.link %>
+<div class= "link-<%= link.id %>" >
+  <div class="link_contain">
     <% topic = link_user.topic %>
 
     <% if link_user.user == current_user and topic %>
       <div class="unsubmit">
-        <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  link_path(link_id: link.id, unsubmit: link_user, topic: topic.id), method: :delete %>
+        <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  link_path(link_id: link.id, unsubmit: link_user, topic: topic.id), method: :delete, remote: true %>
       </div>
+    <% else %>
+      <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"), "#", class: "dummy" %>
+      <!--
+         -created a dummy link so that unsigned user see a good profile links which is otherwise unaligned :)
+         -->
     <% end %>  
-    <%= image_tag (@user.avatar.url(:thumb)), class: 'comment-image'  %>
 
     <div class="user-profile">
+    <%= image_tag (@user.avatar.url(:thumb)), class: 'comment-image'  %>
       <%= link_to @user.user_name, @user %>
       submitted to <%= link_to topic.topic_name, topic_path(topic) %>
     </div> 
-
+    <br/>
     <% cache link do %>
       <%= render 'links/link_info', link: link %>
       <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
@@ -27,10 +32,6 @@
     <div class="vote">
       <%= render 'votes/vote_button', votable: link, type: "Link" %>
     </div>
-    <% unless signed_in? %>
-      <br/>
-      <br/>
-    <% end %>
   </div>
-  <div class="underline"></div>
 </div>
+<div class="underline"></div>
