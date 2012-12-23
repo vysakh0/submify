@@ -2,7 +2,7 @@
     <div class ="link_contain">
         <br/>
       <% if signed_in? and @topic  %>
-        <% if unsubmit = current_user.link_users.find_by_link_id_and_topic_id(link.id, @topic.id) %>
+        <% if unsubmit = current_user.link_users.find_by_link_id_and_topic_id(link.id, @topic.id) || current_user.admin? %>
           <div class="unsubmit">
             <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  link_path(link,link_id: link.id, unsubmit: unsubmit, topic: @topic.id), remote: true, method: :delete %>
           </div>

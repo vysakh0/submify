@@ -1,4 +1,3 @@
-<% cache ["edit", @topic] do %>
 <% provide(:title, @topic.topic_name ) %>
 
 <div class="row-fluid">
@@ -6,18 +5,24 @@
     <% tab "Edit" %>
     <%= render 'topic_stats' %>
     <h5> Edit Topic </h5>
-    <%= form_for @topic, :html => {:multipart => true}  do |f| %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-      <%= f.label :description %>
-      <%= f.text_field :description %>
-       <br/>
-       <%= f.label :image %>
-       <%= f.file_field :avatar %>
-       <br/>
-       <br/>
-      <%= f.submit "Save changes", class:"btn" %>
+    <% if  !(@topic.verify) || current_user.admin? %>
+      <%= form_for @topic, :html => {:multipart => true}  do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+        <%= f.label :description %>
+        <%= f.text_field :description %>
+        <br/>
+        <%= f.label :image %>
+        <%= f.file_field :avatar %>
+        <br/>
+        <br/>
+        <% if current_user.admin? %>
+          Topic verification is  <%= @topic.verify? %>
+          <br/>
+          <%= text_field_tag 'verify' %>
+        <% end %>
+        <%= f.submit "Save changes", class:"btn" %>
+      <% end %>
     <% end %>
   </div>
 </div>
-<% end %>
