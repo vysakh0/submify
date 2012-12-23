@@ -28,7 +28,7 @@ class LinksController < ApplicationController
   def show
 
     @link = Link.find_by_id(params[:id])
-    @comments = @link.link_comments.paginate(page: params[:page])
+    @comments = @link.comments.order('score DESC').paginate(page: params[:page])
     respond_to do |format|
       format.html
       format.js
@@ -40,7 +40,7 @@ class LinksController < ApplicationController
     topic = params[:topic_name]
     @link = Link.find_by_id(id)
     if id and topic!= ""
-      @link.link_with_topic!(topic, current_user)
+      @link.link_with_topic!(topic, current_user, nil)
       publish_to_fb
       respond_to do |format|
         format.js

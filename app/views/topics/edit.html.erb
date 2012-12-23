@@ -5,7 +5,7 @@
     <% tab "Edit" %>
     <%= render 'topic_stats' %>
     <h5> Edit Topic </h5>
-    <% if  !(@topic.verify) || current_user.admin? %>
+    <% if  !(@topic.verify) || (current_user.admin? if current_user) %>
       <%= form_for @topic, :html => {:multipart => true}  do |f| %>
         <%= f.label :name %>
         <%= f.text_field :name %>

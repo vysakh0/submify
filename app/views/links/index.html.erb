@@ -8,9 +8,7 @@
         <ol class="links">
     <%= render @links %>
         </ol>
-        <div class="load-more">
-          <%= link_to 'Load More', root_path(page: (params[:page].to_i || 1)+1, per_page: params[:per_page] || 15), class: 'hook', remote: true %>
-        </div>
+        <%= will_paginate @links %>
       <% else %>
     <h5> No links found </h5>
       <% end %>	

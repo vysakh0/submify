@@ -6,4 +6,13 @@ class Vote < ActiveRecord::Base
 
   validates :user_id, presence: true
  
+  after_initialize :calculate_score
+
+  def calculate_score
+    if votable.is_a? Link
+      votable.calculate_score
+    elsif votable.is_a? Comment
+      votable.calculate_score
+    end
+  end
 end

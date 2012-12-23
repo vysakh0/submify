@@ -20,7 +20,7 @@ render :json => result
   end
   
   def front_page
-      @links = Link.front_page.paginate(page: params[:page])
+      @links = Link.order("score DESC").limit(100).paginate(page: params[:page])
   end
 
   def contact

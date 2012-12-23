@@ -2,7 +2,7 @@
     <div class="comment-<%= comment.id %>">
 
       <br/>
-      <% if comment.user== current_user || current_user.admin? %>
+      <% if comment.user== current_user || (current_user.admin? if current_user) %>
         <div class="del_comment"> 
           <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  comment, method: :delete, data: { confirm: "You sure?" }, remote: true, title: comment.body %>
         </div>

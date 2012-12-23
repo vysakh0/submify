@@ -30,17 +30,21 @@ class Link < ActiveRecord::Base
   validates :url_link, uniqueness: true
   attr_accessible :avatar
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  C = 45000
+  EPOCH = 1356264052 #time in milli seconds 23rd dec 5.31 PM
+  def calculate_score
+    t = (self.created_at.to_i - EPOCH)
+    x = self.votes.count + self.comments.count  #number of upvotes only
+    self.score = (C * Math::log10(x) ) +  t
 
+  end
 
   def link_comments
     Comment.show_link_comments(self.id)
   end
-  def self.front_page
-
-    top_ids = "SELECT votable_id FROM votes WHERE votable_type = 'Link' GROUP BY votable_id ORDER BY COUNT(*) DESC "
-
-    where("id IN (#{top_ids})").limit(100).order('links.created_at DESC')
-  end
+  #def self.front_page
+    #order('created_at DESC').order('score')
+  #end
 
   def following_comments user
     followed_user_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
@@ -61,12 +65,13 @@ class Link < ActiveRecord::Base
   end
 
   def self.feed_topic (topic_id)
-    unscoped.joins(:topic_downvotes).group("topic_id, links.id").where("topic_id = #{topic_id}").order("count(*)").order('links.created_at DESC')
+    joins(:topic_downvotes).group("topic_id, links.id").where("topic_id = #{topic_id}").order("count(*)").order('links.created_at DESC')
   end
 
   def picture_from_url(url)
     self.avatar = URI.parse(url) 
   end
+
   def self.from_users_followed_by(user)
     followed_topic_ids = "SELECT topic_id FROM topic_user_relationships WHERE user_id = :user_id"
     joins(:link_users).where("topic_id IN (#{followed_topic_ids}) OR user_id = :user_id", user_id: user.id).uniq
@@ -76,7 +81,7 @@ class Link < ActiveRecord::Base
 
     tire.search(load: true) do
       query { string params[:q], default_operator: "AND" } if params[:q].present?
-  #    filter :range, published_at: {lte: Time.zone.now}
+      #    filter :range, published_at: {lte: Time.zone.now}
     end
     # raise to_curl
   end

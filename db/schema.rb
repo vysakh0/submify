@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121223081529) do
+ActiveRecord::Schema.define(:version => 20121223091803) do
 
   create_table "comment_downvotes", :force => true do |t|
     t.integer  "comment_id", :limit => 8
@@ -35,9 +35,11 @@ ActiveRecord::Schema.define(:version => 20121223081529) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "score",               :limit => 8
   end
 
   add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
+  add_index "comments", ["score"], :name => "index_comments_on_score"
   add_index "comments", ["user_id", "commentable_id"], :name => "index_comments_on_user_id_and_commentable_id"
 
   create_table "flags", :force => true do |t|
@@ -67,14 +69,16 @@ ActiveRecord::Schema.define(:version => 20121223081529) do
   create_table "links", :force => true do |t|
     t.string   "url_link"
     t.string   "url_heading"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "score",               :limit => 8
   end
 
+  add_index "links", ["score"], :name => "index_links_on_score"
   add_index "links", ["url_link"], :name => "index_links_on_url_link", :unique => true
 
   create_table "relationships", :force => true do |t|
