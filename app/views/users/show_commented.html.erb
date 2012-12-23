@@ -1,7 +1,7 @@
 <% provide(:title, @user.user_name) %>
 <div class="span8">
   <div class="container-fluid">
-    <% tab "comments" %>
+   <%= hidden_field_tag 'page_tab',"comments" %> 
     <%= render 'profile_stat_nav' %>
       <ol class="show-commented">
         <%= render @comments %>

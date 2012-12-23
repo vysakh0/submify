@@ -1,7 +1,7 @@
 <% provide(:title, @user.user_name) %>
 <div class="row-fluid">
   <div class="span8">
-    <% tab "followers" %>
+   <%= hidden_field_tag 'page_tab',"followers" %> 
     <%= render 'profile_stat_nav' %>
     <ul class="users">
       <%= render @users %>

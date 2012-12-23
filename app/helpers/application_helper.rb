@@ -5,4 +5,7 @@ end
 def tab(value)
   @page_tab = value
 end
+def page_tab
+  @page_tab
+end
 end
