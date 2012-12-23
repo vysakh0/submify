@@ -5,4 +5,9 @@ class CommentDownvote < ActiveRecord::Base
   belongs_to :comment, touch: true
 
   validates :user_id, presence: true
+  after_initialize :calculate_score
+
+  def calculate_score
+    comment.calculate_score if comment
+  end
 end

@@ -35,8 +35,8 @@ class Link < ActiveRecord::Base
   def calculate_score
     t = (self.created_at.to_i - EPOCH)
     x = self.votes.count + self.comments.count  #number of upvotes only
-    self.score = (C * Math::log10(x) ) +  t
-
+    #self.score = (C * Math::log10(x) ) +  t -> this is reddit algorithm
+    self.score = x + 1 +  t #mixed hackernews algo( p+1/t^1.5) with reddit algo :)
   end
 
   def link_comments
