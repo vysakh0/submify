@@ -48,8 +48,7 @@ class Link < ActiveRecord::Base
 
   def following_comments user
     followed_user_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
-    comments = self.comments
-    comments.where("user_id IN (#{followed_user_ids}) OR user_id = :user_id", user_id: user.id).limit(3).order('created_at desc')
+    self.comments.where("user_id IN (#{followed_user_ids}) OR user_id = :user_id", user_id: user.id).limit(3).order('created_at desc')
   end
 
   def link_with_topic!(topic_name, user, topic_page)
