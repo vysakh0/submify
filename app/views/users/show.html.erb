@@ -1,13 +1,11 @@
+<div class="container span8">
 <% provide(:title, @user.user_name) %>
 <div class="row-fluid">
-<div class="span8">
    <%= hidden_field_tag 'page_tab',"links" %> 
   <%= render 'profile_stat_nav' %>
-  <ol class="show-commented"></ol>
-  <ul class="users"></ul>
+</div>
   <ol class="links">
     <%= render @link_users %>
     </ol>
     <%= will_paginate @link_users %>
-</div>
-</div>
+  </div>

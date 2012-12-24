@@ -1,41 +1,41 @@
 <% link = link_user.link %>
-<div class="container span8">
-<div class= "link-<%= link.id %>" >
-  <div class="link_contain">
-    <% topic = link_user.topic %>
+<div class="span8 container">
+  <div class= "link-<%= link.id %>" >
+    <div class="link_contain">
+      <% topic = link_user.topic %>
 
-    <% if link_user.user == current_user and topic %>
-      <div class="unsubmit">
-        <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  link_path(link_id: link.id, unsubmit: link_user, topic: topic.id), method: :delete, remote: true %>
+      <% if link_user.user == current_user and topic %>
+        <div class="unsubmit">
+          <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  link_path(link_id: link.id, unsubmit: link_user, topic: topic.id), method: :delete, remote: true %>
+        </div>
+      <% else %>
+        <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"), "#", class: "dummy" %>
+        <!--
+        -created a dummy link so that unsigned user see a good profile links which is otherwise unaligned :)
+        -->
+      <% end %>  
+
+      <div class="user-profile">
+        <%= image_tag (@user.avatar.url(:thumb)), class: 'comment-image'  %>
+        <%= link_to @user.user_name, @user %>
+        submitted to <%= link_to topic.topic_name, topic_path(topic) %>
+      </div> 
+      <br/>
+      <% cache link do %>
+        <%= render 'links/link_info', link: link %>
+        <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
+        <div class="votes">
+          <%= link.votes.count %>
+        </div>
+        <div class="show-comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></div>
+      <% end %>
+
+      <div class="vote">
+        <%= render 'votes/vote_button', votable: link, type: "Link" %>
       </div>
-    <% else %>
-      <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"), "#", class: "dummy" %>
-      <!--
-         -created a dummy link so that unsigned user see a good profile links which is otherwise unaligned :)
-         -->
-    <% end %>  
-
-    <div class="user-profile">
-    <%= image_tag (@user.avatar.url(:thumb)), class: 'comment-image'  %>
-      <%= link_to @user.user_name, @user %>
-      submitted to <%= link_to topic.topic_name, topic_path(topic) %>
-    </div> 
-    <br/>
-    <% cache link do %>
-      <%= render 'links/link_info', link: link %>
-      <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
-      <div class="votes">
-        <%= link.votes.count %>
-      </div>
-      <div class="show-comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></div>
-    <% end %>
-
-    <div class="vote">
-      <%= render 'votes/vote_button', votable: link, type: "Link" %>
     </div>
   </div>
 </div>
-</div>
 <!--
-   -<div class="underline"></div>
-   -->
+-<div class="underline"></div>
+-->
