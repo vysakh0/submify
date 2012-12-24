@@ -336,19 +336,17 @@ color: #0088CC;
   color: #3b5998;
 }
 .underline { 
-  border-bottom-color: #333333;
+  //border-bottom-color: #333333;
 }
 .feed_contain {
-  border-top-color:  #E0E0E0;
-  border-left-color: #333333;
-  border-right-color: #333333;
-  border-bottom-color: #E0E0E0;
-  border-top-style: solid;
-  border-top-width: 1px;
-}
-.linkuser_contain{
-  border-bottom-style: inset;
-  border-bottom-width: 1px;
+  /*
+   *border-top-color:  #E0E0E0;
+   *border-left-color: #333333;
+   *border-right-color: #333333;
+   *border-bottom-color: #E0E0E0;
+   *border-top-style: solid;
+   *border-top-width: 1px;
+   */
 }
 .show-comments{
   float: left;
@@ -443,6 +441,15 @@ color: #0088CC;
 }
 .link_contain{
   width: 100%;
+  padding-top: 5px;
+  padding-bottom:  5px;
+  padding-left: 5px;
+  border-top-color: #E9E9E9;
+  border-left-color: #E9E9E9;
+  border-right-color: #E9E9E9;
+  border-top-style: solid;
+  border-left-style: solid;
+  border-right-style: solid;
 }
 li.active{
 a{

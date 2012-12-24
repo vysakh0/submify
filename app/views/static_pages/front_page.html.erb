@@ -1,21 +1,11 @@
 <% provide(:title, 'Front Page') %>
 <div class="container-fluid">
   <div class="span8">
-<% if signed_in? %>
 <% cache "signedin_front", expires_in: 10.minutes do %>
       <h4> Front Page </h4>
       <ol class="links">
         <%= render @links %>
       </ol>
-<% end %>
-<% else %>
-  <% cache "front", expires_in: 10.minutes do %>
-      <h4> Front Page </h4>
-      <ol class="links">
-        <%= render @links %>
-      </ol>
-<% end %>
-
 <% end %>
   </div>
 </div>

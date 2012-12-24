@@ -4,7 +4,7 @@
 <%= form_for @link , remote: true do |f| %>
   <div class="field">
     <%= f.text_area :url_link, placeholder: "Submit a link...", id: "complete_url"%>
-    <%= text_field_tag 'topic_name', name , class: 'link-topic-tag' %>
+    <%= text_field_tag 'topic_name', name , class: 'link-topic-tag', placeholder: "Topic name" %>
    <%= hidden_field_tag 'topic_val', val  %>
     <%= f.submit "Submit", class: "btn btn-small gif-load", id: "submit_button"%>
   </div>

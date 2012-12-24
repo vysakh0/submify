@@ -21,6 +21,9 @@ render :json => result
   
   def front_page
       @links = Link.order("score DESC").limit(100).paginate(page: params[:page])
+      unless signed_in?
+        render 'home'
+      end
   end
 
   def contact

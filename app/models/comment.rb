@@ -30,7 +30,7 @@ class Comment < ActiveRecord::Base
     if self.commentable.is_a? Link
       t = (self.created_at.to_i - EPOCH)
       x = self.votes.count + self.comments.count - self.comment_downvotes.count  #number of upvotes only
-      self.score = x+1 +  t
+      self.score = (C * (x+1)) +  t
     end
   end
 
