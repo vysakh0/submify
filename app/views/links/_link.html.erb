@@ -1,4 +1,6 @@
-  <div class= "link-<%= link.id %>" >
+    <div class="container span8">
+<div class= "link-<%= link.id %>" >
+
     <div class ="link_contain">
         <br/>
       <% if signed_in? and @topic  %>
@@ -37,10 +39,7 @@
     <div class="vote">
       <%= render 'votes/vote_button', votable: link, type: "Link" %>
     </div>
-    <% unless signed_in? %>
-      <br/>
-      <br/>
-    <% end %>
+  </div>
   </div>
 </div>
 <!--
