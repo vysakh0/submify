@@ -12,10 +12,10 @@
         <%= will_paginate @link_users %>
 
     <% else %>
-      <% cache "front", expires_in: 10.minutes do %>
+      <% cache "front_c", expires_in: 10.minutes do %>
       <h4> Front Page </h4>
       <ol class="links">
-        <%= render @links if @links %>
+        <%= render @link_users if @link_users %>
       </ol>
     <% end %>
   <% end %>

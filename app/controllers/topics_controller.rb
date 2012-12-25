@@ -5,7 +5,7 @@ class TopicsController < ApplicationController
   def show
     @link = current_user.links.build  if current_user
     @topic = Topic.find_by_slug(params[:id])
-    @link_users = @topic.link_users.paginate(page: params[:page], per_page: params[:per_page]||15)
+    @link_users = @topic.link_users.order("score DESC").paginate(page: params[:page], per_page: params[:per_page]||15)
     respond_to do |format|
       format.html
       format.js
