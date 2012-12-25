@@ -1,64 +1,11 @@
-<% cache @comment do %>
 <% provide(:title, @comment.body) %>
-<div class="container-fluid">
-  <div class="span8">
-    <div class="comment-<%= @comment.id %>" >
+<div class="container-fluid span8">
 
-      <% if @comment %>
-
-        <meta property="fb:app_id" content="295241533825642" /> 
-        <meta property="og:type"   content="website" /> 
-        <meta property="og:url"    content="<%= comment_url(@comment)%>"/>
-        <meta property="og:title"  content= "<%= @comment.body %>" /> 
-        <meta property="og:image"  content="<%= @comment.avatar.url if @comment.avatar? %>" />
-        <% if @comment.user== current_user %>
-          <div class="del_comment">  <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"), @comment, method: :delete, data: { confirm: "You sure?" }, title: @comment.body %></div>
-        <% else %>
-          <div class="flag">
-            <%= render 'flags/flag_button', flaggable: @comment, type: "Comment" %>
-          </div>
-        <% end %>
-        <% if @comment.user %>
-          <%= link_to gravatar_for(@comment.user), @comment.user %>
-          <div class="user_link">
-            <h4>
-              <span class="user">
-                <%= link_to @comment.user.name, @comment.user %>
-              </span>
-            </div>
-          <% end %>
-
-          <%= @comment.body %>
-          <div class="comment_in_links">
-            <%= image_tag @comment.avatar.url(:medium) if @comment.avatar.exists? %>
-          </div>
-        </h4>
-        <div class="comment_url">
-          <%= link_to @comment.commentable.url_heading, 'http://'+ @comment.commentable.url_link %>
-        </div>
-      <% end %>
-
-      <div class="vote">
-        <%= render 'votes/vote_button', votable: @comment, type: @comment.class.to_s %>
-      </div>
-        <div class="votes">
-          <%= @comment.votes.count %>
-        </div>
-        <div class="votes-up">
-          <i class="icon-caret-up icon-small "></i></div>
-        <div class="show_comment">
-          <%= (@comment.comments.count) %>
-        </div>
-        <i class="icon-comments-alt icon-small"></i>
-
-    </div>
-
-    <div class="span8">
-      <ol id="comment-comments">
-        <%= render partial: 'comments/comment', collection: @comments, cache: true %>
-      </ol>
-      <%= render 'shared/comment_form' %>
-    </div>
-  </div>
+  <meta property="fb:app_id" content="295241533825642" /> 
+  <meta property="og:type"   content="website" /> 
+  <meta property="og:url"    content="<%= comment_url(@comment)%>"/>
+  <meta property="og:title"  content= "<%= @comment.body %>" /> 
+  <meta property="og:image"  content="<%= @comment.avatar.url if @comment.avatar? %>" />
+  <%= render 'links/link_info', link: @comment.commentable %>
+  <%= render 'comments/comment', comment: @comment %>
 </div>
-<% end %>

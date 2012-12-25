@@ -1,4 +1,0 @@
-$(".comment-<%= @comment.id %> > .comment-downvote").html("<%= escape_javascript render('comment_downvotes/downvote_button', comment: @comment) %>");
-<% if @comment.commentable.is_a? Comment %>
-  $(".comment-<%= @comment.id %> > .downvotes").html("<%= @comment.comment_downvotes.count %>");
-<% end %>
