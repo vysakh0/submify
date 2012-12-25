@@ -3,25 +3,9 @@
 
     <div class ="link_contain">
         <br/>
-      <% if signed_in? and @topic  %>
-        <% if unsubmit = current_user.link_users.find_by_link_id_and_topic_id(link.id, @topic.id) || (current_user.admin? if current_user) %>
-          <div class="unsubmit">
-            <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  link_path(link,link_id: link.id, unsubmit: unsubmit, topic: @topic.id), remote: true, method: :delete %>
-          </div>
-
-        <% else %>
           <div class="flag">
             <%= render 'flags/flag_button', flaggable: link, type: "Link" %>
           </div>
-        <% end %>
-      <% end %>
-      <% if @topic and li = link.link_users.find_by_topic_id(@topic.id) and user = li.user %>
-        <%= image_tag (user.avatar.url(:thumb)), class: "comment-image" %>
-        <div class="user_link">
-          <%= link_to user.user_name, user, class: "comment-name" %>
-        </div>
-          <br/>
-      <% end %>
       <% cache link do %>
       <%= render 'links/link_info', link: link %>
       <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
@@ -31,11 +15,6 @@
       <div class="show-comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></div>
     <% end %>
 
-    <% if @topic %>
-      <div id="topic-downvote">
-        <%= render 'topics/downvote_button', link: link %>
-      </div>
-    <% end %>
     <div class="vote">
       <%= render 'votes/vote_button', votable: link, type: "Link" %>
     </div>

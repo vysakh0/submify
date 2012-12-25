@@ -16,8 +16,8 @@
       <% end %>  
 
       <div class="user-profile">
-        <%= image_tag (@user.avatar.url(:thumb)), class: 'comment-image'  %>
-        <%= link_to @user.user_name, @user %>
+        <%= image_tag (link_user.user.avatar.url(:thumb)), class: 'comment-image'  %>
+        <%= link_to link_user.user.user_name, link_user.user %>
         submitted to <%= link_to topic.topic_name, topic_path(topic) %>
       </div> 
       <br/>
@@ -29,6 +29,9 @@
         </div>
         <div class="show-comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></div>
       <% end %>
+      <div id="topic-downvote">
+        <%= render 'topics/downvote_button', link: link %>
+      </div>
 
       <div class="vote">
         <%= render 'votes/vote_button', votable: link, type: "Link" %>
