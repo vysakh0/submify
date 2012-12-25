@@ -30,7 +30,7 @@
         <div class="show-comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></div>
       <% end %>
       <div id="topic-downvote">
-        <%= render 'topics/downvote_button', link: link %>
+        <%= render 'downvotes/downvote_button', votable: link, type: "Link" %>
       </div>
 
       <div class="vote">

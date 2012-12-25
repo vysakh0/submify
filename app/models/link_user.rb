@@ -16,6 +16,7 @@ class LinkUser < ActiveRecord::Base
   belongs_to :link, class_name: "Link", touch: true
   belongs_to :user, class_name: "User", touch: true
   belongs_to :topic, class_name: "Topic", touch: true
+  has_many :downvotes,as: :votable, dependent: :destroy
 
   default_scope order: 'link_users.created_at DESC'
 

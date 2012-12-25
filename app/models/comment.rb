@@ -19,7 +19,7 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable, polymorphic: true, touch: true 
   belongs_to :user, touch: true 
   has_many :flags, as: :flaggable
-  has_many :comment_downvotes, dependent: :destroy
+  has_many :downvotes,as: :votable, dependent: :destroy
   has_many :comments, as: :commentable
   after_save :add_downvote 
   validates :user_id, presence: true
@@ -29,8 +29,12 @@ class Comment < ActiveRecord::Base
   def calculate_score
     if self.commentable.is_a? Link
       t = (self.created_at.to_i - EPOCH)
-      x = self.votes.count + self.comments.count - self.comment_downvotes.count  #number of upvotes only
+      x = self.votes.count + self.comments.count - self.downvotes.count  #number of upvotes only
+      if x< 0
+        self.score = t - (C * x)
+      else
       self.score = (C * (x+1)) +  t
+      end
     end
   end
 
@@ -45,7 +49,7 @@ class Comment < ActiveRecord::Base
   end
 
   def self.show_link_comments link_id
-    where("commentable_id = #{link_id}").joins(:comment_downvotes).group("comments.id").order("count(*)")
+    where("commentable_id = #{link_id}").joins(:downvotes).group("comments.id").order("count(*)")
   end
 
 end

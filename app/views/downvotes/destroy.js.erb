@@ -1,0 +1,8 @@
+<% vid = @votable.class.to_s.downcase+'-'+@votable.id.to_s %>
+<% if @votable.is_a? LinkUser %>
+$(".<%= vid %>  > .link_contain > .topic-downvote").html("<%= escape_javascript render('downvotes/downvote_button', votable: @votable) %>");
+$(".<%= vid %>  > .link_contain > .downvotes").html(" <%=  @votable.downvotes.count %>");
+<% else %>
+$(".<%= vid %>  > .comment-downvote").html("<%= escape_javascript render('downvotes/downvote_button', votable: @votable) %>");
+$(".<%= vid %>  > .downvotes").html("<%=  @votable.downvotes.count %>");
+<% end %>

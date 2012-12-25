@@ -26,7 +26,6 @@ class Link < ActiveRecord::Base
   has_many :topics, through: :link_users, source: :topic
 
   has_many :votes, as: :votable, dependent: :destroy
-  has_many :topic_downvotes, dependent: :destroy
   validates :url_link, uniqueness: true
   attr_accessible :avatar
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
@@ -35,8 +34,8 @@ class Link < ActiveRecord::Base
   def calculate_score
     t = (self.created_at.to_i - EPOCH)
     x = self.votes.count + self.comments.count  #number of upvotes only
-    #self.score = (C * Math::log10(x) ) +  t -> this is reddit algorithm
-    self.score =(C * (x + 1)) +  t #mixed hackernews algo( p+1/t^1.5) with reddit algo :)
+    self.score = (C * Math::log10(x) ) +  t #-> this is reddit algorithm
+    #self.score =(C * (x + 1)) +  t #mixed hackernews algo( p+1/t^1.5) with reddit algo :)
   end
 
   def link_comments

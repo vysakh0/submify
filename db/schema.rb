@@ -11,18 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121223091803) do
-
-  create_table "comment_downvotes", :force => true do |t|
-    t.integer  "comment_id", :limit => 8
-    t.integer  "user_id",    :limit => 8
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-  end
-
-  add_index "comment_downvotes", ["comment_id"], :name => "index_comment_downvotes_on_comment_id"
-  add_index "comment_downvotes", ["user_id", "comment_id"], :name => "index_comment_downvotes_on_user_id_and_comment_id", :unique => true
-  add_index "comment_downvotes", ["user_id"], :name => "index_comment_downvotes_on_user_id"
+ActiveRecord::Schema.define(:version => 20121225100624) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -42,6 +31,17 @@ ActiveRecord::Schema.define(:version => 20121223091803) do
   add_index "comments", ["score"], :name => "index_comments_on_score"
   add_index "comments", ["user_id", "commentable_id"], :name => "index_comments_on_user_id_and_commentable_id"
 
+  create_table "downvotes", :force => true do |t|
+    t.integer  "user_id",      :limit => 8
+    t.integer  "votable_id",   :limit => 8
+    t.string   "votable_type"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "downvotes", ["user_id", "votable_id", "votable_type"], :name => "index_downvotes_on_user_id_and_votable_id_and_votable_type", :unique => true
+  add_index "downvotes", ["votable_id", "votable_type"], :name => "index_downvotes_on_votable_id_and_votable_type"
+
   create_table "flags", :force => true do |t|
     t.integer  "user_id",        :limit => 8
     t.integer  "flaggable_id",   :limit => 8
@@ -59,10 +59,12 @@ ActiveRecord::Schema.define(:version => 20121223091803) do
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
     t.integer  "topic_id",   :limit => 8
+    t.integer  "score",      :limit => 8
   end
 
   add_index "link_users", ["link_id", "topic_id"], :name => "index_link_users_on_link_id_and_topic_id", :unique => true
   add_index "link_users", ["link_id"], :name => "index_link_users_on_link_id"
+  add_index "link_users", ["score"], :name => "index_link_users_on_score"
   add_index "link_users", ["topic_id"], :name => "index_link_users_on_topic_id"
   add_index "link_users", ["user_id"], :name => "index_link_users_on_user_id"
 
@@ -91,19 +93,6 @@ ActiveRecord::Schema.define(:version => 20121223091803) do
   add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"
   add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id", :unique => true
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
-
-  create_table "topic_downvotes", :force => true do |t|
-    t.integer  "user_id",    :limit => 8
-    t.integer  "topic_id",   :limit => 8
-    t.integer  "link_id",    :limit => 8
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-  end
-
-  add_index "topic_downvotes", ["link_id"], :name => "index_topic_downvotes_on_link_id"
-  add_index "topic_downvotes", ["topic_id"], :name => "index_topic_downvotes_on_topic_id"
-  add_index "topic_downvotes", ["user_id", "topic_id", "link_id"], :name => "index_topic_downvotes_on_user_id_and_topic_id_and_link_id", :unique => true
-  add_index "topic_downvotes", ["user_id"], :name => "index_topic_downvotes_on_user_id"
 
   create_table "topic_user_relationships", :force => true do |t|
     t.integer  "user_id",    :limit => 8

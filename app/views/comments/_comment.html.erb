@@ -31,12 +31,12 @@
       <% else %>
         <div class="votes-up"><i class="icon-caret-down icon-small"></i></div>
         <div class="downvotes">
-          <%= comment.comment_downvotes.count %>
+          <%= comment.downvotes.count %>
         </div>
       <% end %>
     <% end %>
     <div class="comment-downvote">
-      <%= render 'comment_downvotes/downvote_button', comment: comment %>
+      <%= render 'downvotes/downvote_button', votable: comment, type: "Comment" %>
     </div>
     <div class="comment-vote">
       <%= render 'votes/vote_button', votable: comment, type: "Comment" %>
