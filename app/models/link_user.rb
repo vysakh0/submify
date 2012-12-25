@@ -26,6 +26,13 @@ class LinkUser < ActiveRecord::Base
 
 
   after_save :add_downvote
+  C = 45000
+  EPOCH = 1356264052 #time in milli seconds 23rd dec 5.31 PM
+  def calculate_score
+        x = 0
+        x = self.link.score if score
+        self.score =  x - (C * 2)
+  end
   def add_downvote
     vote =TopicDownvote.new(user_id: 0,topic_id: topic_id, link_id: link_id) 
     vote.save
