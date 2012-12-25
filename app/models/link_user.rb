@@ -20,22 +20,11 @@ class LinkUser < ActiveRecord::Base
 
   default_scope order: 'link_users.created_at DESC'
 
-
   validates :link_id, presence: true
+  after_save :calculate_score
 
-
-
-  after_save :add_downvote
-  C = 45000
-  EPOCH = 1356264052 #time in milli seconds 23rd dec 5.31 PM
   def calculate_score
-        x = 0
-        x = self.link.score if score
-        self.score =  x - (C * 2)
-  end
-  def add_downvote
-    vote =TopicDownvote.new(user_id: 0,topic_id: topic_id, link_id: link_id) 
-    vote.save
+    LinkScoreWorker.perform_in(15.minutes, self.id)
   end
 # add score: when it is newly created
 # calculate: periodically based on the votes,downvotes,comments

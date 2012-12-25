@@ -29,14 +29,6 @@ class Link < ActiveRecord::Base
   validates :url_link, uniqueness: true
   attr_accessible :avatar
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
-  C = 45000
-  EPOCH = 1356264052 #time in milli seconds 23rd dec 5.31 PM
-  def calculate_score
-    t = (self.created_at.to_i - EPOCH)
-    x = self.votes.count + self.comments.count  #number of upvotes only
-    self.score = (C * Math::log10(x) ) +  t #-> this is reddit algorithm
-    #self.score =(C * (x + 1)) +  t #mixed hackernews algo( p+1/t^1.5) with reddit algo :)
-  end
 
   def link_comments
     Comment.show_link_comments(self.id)

@@ -21,29 +21,16 @@ class Comment < ActiveRecord::Base
   has_many :flags, as: :flaggable
   has_many :downvotes,as: :votable, dependent: :destroy
   has_many :comments, as: :commentable
-  after_save :add_downvote 
   validates :user_id, presence: true
   has_many :votes, as: :votable, dependent: :destroy
-  C = 45000
-  EPOCH = 1356264052 #time in milli seconds 23rd dec 5.31 PM
+  after_save :calculate_score
+
   def calculate_score
     if self.commentable.is_a? Link
-      t = (self.created_at.to_i - EPOCH)
-      x = self.votes.count + self.comments.count - self.downvotes.count  #number of upvotes only
-      if x< 0
-        self.score = t - (C * x)
-      else
-      self.score = (C * (x+1)) +  t
-      end
+      CommentScoreWorker.perform_async(self.id)
     end
   end
 
-  def add_downvote
-    if self.commentable.is_a? Link
-      vote =CommentDownvote.new(user_id: 0, comment_id: id) 
-      vote.save
-    end
-  end
   def user_name
     user.user_name
   end

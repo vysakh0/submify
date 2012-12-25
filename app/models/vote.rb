@@ -6,9 +6,4 @@ class Vote < ActiveRecord::Base
 
   validates :user_id, presence: true
  
-  after_save :calculate_score
-
-  def calculate_score
-      self.votable.calculate_score
-  end
 end

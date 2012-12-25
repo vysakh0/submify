@@ -1,8 +1,9 @@
 
 class FacebookLinkNotifyWorker
   include Sidekiq::Worker
+  include SessionsHelper
   #sidekiq_options queue: "high"
-   #sidekiq_options retry: false
+   sidekiq_options retry: false
   
   def perform(link)
     app = FbGraph::Application.new("295241533825642")
