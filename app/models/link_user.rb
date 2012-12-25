@@ -40,6 +40,11 @@ class LinkUser < ActiveRecord::Base
 # add score: when it is newly created
 # calculate: periodically based on the votes,downvotes,comments
 # remove old link_users based on some algorithm
+  def self.from_users_followed_by(user)
+    followed_topic_ids = "SELECT topic_id FROM topic_user_relationships WHERE user_id = :user_id"
+    followed_user_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
+    where("topic_id IN (#{followed_topic_ids}) OR  user_id IN (#{followed_user_ids}) OR user_id = :user_id", user_id: user.id).uniq
+  end
 
   def scored(score)
     if score > self.high_score

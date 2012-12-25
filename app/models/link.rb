@@ -70,10 +70,6 @@ class Link < ActiveRecord::Base
     self.avatar = URI.parse(url) 
   end
 
-  def self.from_users_followed_by(user)
-    followed_topic_ids = "SELECT topic_id FROM topic_user_relationships WHERE user_id = :user_id"
-    joins(:link_users).where("topic_id IN (#{followed_topic_ids}) OR user_id = :user_id", user_id: user.id).uniq
-  end
 
   def self.search(params)
 

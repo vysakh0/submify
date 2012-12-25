@@ -106,7 +106,7 @@ class User < ActiveRecord::Base
   end
 
   def feed
-    Link.from_users_followed_by(self)
+    LinkUser.from_users_followed_by(self)
   end
 
   def commented

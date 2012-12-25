@@ -90,10 +90,8 @@ class LinksController < ApplicationController
   def destroy
     unsubmit = LinkUser.find(params[:unsubmit])
     unsubmit.destroy
-    @link_id = params[:link_id]
-   topic = Topic.find(params[:topic])
+    @link_id = params[:id]
     respond_to do |format|
-      format.html { redirect_to topic}
       format.js
     end
 
