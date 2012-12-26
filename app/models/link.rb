@@ -77,6 +77,10 @@ class Link < ActiveRecord::Base
     to_json(methods: [:topics_name])
   end
 
+  def to_param
+    "#{id} #{url_heading}".parameterize
+  end
+
   def author_name
     topics.collect {|topic|  topic.name  }
   end
