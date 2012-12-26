@@ -1,9 +1,14 @@
 <% provide(:title, @link.url_heading) %>
+<% if @link.avatar.exists? %>
+  <% image = @link.avatar.url %>
+<% else %>
+  <% image = @link.topics.first.avatar.url %>
+<% end %>
 <meta property="fb:app_id" content="295241533825642" /> 
 <meta property="og:type"   content="website" /> 
 <meta property="og:url"    content="<%= link_url(@link)%>"/>
 <meta property="og:title"  content= "<%= @link.url_heading %>" /> 
-<meta property="og:image"  content="<%= @link.topics.first.avatar.url if @link.topics.first %>"/>
+<meta property="og:image"  content="<%= image %>"/>
 <div class="container-fluid">
   <div class="link-<%= @link.id %>" >
     <div class = "span8">
