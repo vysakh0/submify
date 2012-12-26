@@ -3,7 +3,6 @@
   <div class= "link-<%= link.id %>" >
     <div class="link_contain">
       <% topic = link_user.topic %>
-        <br/>
       <% if link_user.user == current_user and topic %>
         <div class="unsubmit">
           <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  link_path(link, unsubmit: link_user, topic: topic.id), method: :delete, remote: true %>
@@ -36,8 +35,6 @@
       <div class="vote">
         <%= render 'votes/vote_button', votable: link, type: "Link" %>
       </div>
-        <br/>
-        <br/>
     </div>
   </div>
 </div>

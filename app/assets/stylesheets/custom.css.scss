@@ -244,15 +244,19 @@ color: #0088CC;
 #topic-downvote{
 
   float: right;
-  max-height: 18px;
-  max-width: 80px;
+  /*
+   *max-height: 18px;
+   *max-width: 80px;
+   */
   padding-right: 350px;
   font-size: 12.8px;
 }
 .vote, .comment-downvote{
   float: right;
-  max-height: 18px;
-  max-width: 80px;
+  /*
+   *max-height: 18px;
+   *max-width: 80px;
+   */
   font-size: 12.8px;
 }
 .comment-vote{
@@ -426,6 +430,7 @@ color: #0088CC;
 }
 .user-profile{
   width: 100%;
+  color: #808080
 }
 .sep{
   width: 100%;
@@ -438,15 +443,10 @@ color: #0088CC;
 }
 .link_contain{
   width: 100%;
-  padding-top: 10px;
-  padding-bottom:  10px;
-  padding-left: 5px;
+  padding: 15px;
   border-top-color: #E9E9E9;
-  border-left-color: #E9E9E9;
   border-top-style: solid;
-  border-left-style: solid;
   border-top-width: 1px;
-  border-left-width: 1px;
 }
 li.active{
 a{
