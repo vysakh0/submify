@@ -19,9 +19,8 @@
         <%= link_to link_user.user.user_name, link_user.user %>
         submitted to <%= link_to topic.topic_name, topic_path(topic) %>
       </div> 
-      <br/>
       <% cache link do %>
-        <%= render 'links/link_info', link: link %>
+        <div class="link_info"><%= render 'links/link_info', link: link %></div>
         <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
         <div class="votes">
           <%= link.votes.count %>

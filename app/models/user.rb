@@ -2,6 +2,30 @@
 #
 # Table name: users
 #
+#  id                  :integer          not null, primary key
+#  name                :string(255)
+#  email               :string(255)
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  password_digest     :string(255)
+#  remember_token      :string(255)
+#  admin               :boolean          default(FALSE)
+#  slug                :string(255)
+#  uid                 :string(255)
+#  oauth_token         :string(255)
+#  oauth_expires_at    :datetime
+#  username            :string(255)
+#  avatar_file_name    :string(255)
+#  avatar_content_type :string(255)
+#  avatar_file_size    :integer
+#  avatar_updated_at   :datetime
+#  description         :text
+#
+
+# == Schema Information
+#
+# Table name: users
+#
 #  id              :integer          not null, primary key
 #  name            :string(255)
 #  email           :string(255)

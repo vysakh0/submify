@@ -12,9 +12,6 @@ Youarel::Application.routes.draw do
   resources :users do
     member do
       get :following, :followers, :commented, :followed_topics
-
-      get :links, :comments, :follower
-      post :links, :comments, :follower
     end
   end
   resources :topics do

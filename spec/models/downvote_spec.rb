@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: downvotes
+#
+#  id           :integer          not null, primary key
+#  user_id      :integer
+#  votable_id   :integer
+#  votable_type :string(255)
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
 require 'spec_helper'
 
 describe Downvote do

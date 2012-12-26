@@ -2,7 +2,7 @@
 <li>
 <%= image_tag (user.avatar.url(:thumb)), class: "gravatar" %>
 <%= link_to user.name, user %>
-  <% if current_user.admin? %>
+  <% if current_user and current_user.admin? %>
     | <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "You sure?" } %>
   <% end %>

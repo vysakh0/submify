@@ -9,6 +9,7 @@
 #  commentable_type :string(255)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  score            :integer
 #
 
 class Comment < ActiveRecord::Base
@@ -27,7 +28,7 @@ class Comment < ActiveRecord::Base
 
   def calculate_score
     if self.commentable.is_a? Link
-      CommentScoreWorker.perform_async(self.id)
+      CommentScoreWorker.perform_async(self.commentable.id)
     end
   end
 

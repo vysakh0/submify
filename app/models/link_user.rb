@@ -7,6 +7,8 @@
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  topic_id   :integer
+#  score      :integer
 #
 
 class LinkUser < ActiveRecord::Base

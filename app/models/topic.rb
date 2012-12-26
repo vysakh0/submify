@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: topics
+#
+#  id                  :integer          not null, primary key
+#  name                :string(255)
+#  description         :text
+#  slug                :string(255)
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  avatar_file_name    :string(255)
+#  avatar_content_type :string(255)
+#  avatar_file_size    :integer
+#  avatar_updated_at   :datetime
+#  verify              :boolean          default(FALSE)
+#
+
 class Topic < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged

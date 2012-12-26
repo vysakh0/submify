@@ -241,7 +241,7 @@ color: #0088CC;
   padding-right: 50px;
   display: block;
 }
-#topic-downvote{
+#topic-downvote {
 
   float: right;
   /*
@@ -250,6 +250,11 @@ color: #0088CC;
    */
   padding-right: 350px;
   font-size: 12.8px;
+}
+.vote_link_show{
+  float: right;
+  font-size: 12.8px;
+  padding-right: 40px;
 }
 .vote, .comment-downvote{
   float: right;
@@ -439,11 +444,13 @@ color: #0088CC;
 }
 .dummy{
   font-size: 0.2px;
-  width: 100%;
+  float: right;
 }
 .link_contain{
   width: 100%;
-  padding: 15px;
+  padding-top: 18px;
+  padding-bottom: 20px;
+  padding-left: 10px;
   border-top-color: #E9E9E9;
   border-top-style: solid;
   border-top-width: 1px;
@@ -452,4 +459,9 @@ li.active{
 a{
   color: #7f7f7f;
 }
+}
+.link_info{
+  padding-top: 18px;
+  padding-bottom: 18px;
+  padding-left: 5px;
 }

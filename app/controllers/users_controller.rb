@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
-  before_filter :signed_in_user, only: [:edit, :update, :destroy, :following, :followers, :index]
-  before_filter :correct_user, only: [:edit, :update]
-  before_filter :not_signed_user, only: [:create, :new]
+  before_filter :signed_in_user, only: [:edit, :update, :destroy, :following, :index]
+  before_filter :correct_user, only: [:edit, :update, :following]
+  #before_filter :not_signed_user, only: [:create, :new]
 
   before_filter :admin_user, only: :destroy
 
@@ -43,32 +43,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @link_users = @user.link_users.page(params[:page]).per_page(10)
-  end
-  def comments
-    @user = User.find(params[:id])
-    @comments = @user.commented.paginate(page: params[:page])
-    respond_to do |format|
-      format.html { redirect_to commented_user_url(@user) }
-      format.js 
-    end
-  end
-  def follower
-    @title = "Followers"
-    @user = User.find(params[:id])
-    @users = @user.followers.paginate(page: params[:page])
-    respond_to do |format|
-     format.html { redirect_to followers_user_url(@user) }
-     format.js
-    end
-  end
-
-  def links
-    @user = User.find(params[:id])
-    @link_users = @user.link_users.paginate(page: params[:page])
-    respond_to do |format|
-      format.html { redirect_to user_url(@user) }
-      format.js 
-    end
   end
 
   def new

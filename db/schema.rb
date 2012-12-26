@@ -11,19 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121225100624) do
+ActiveRecord::Schema.define(:version => 20121226151702) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
-    t.integer  "user_id"
+    t.integer  "user_id",          :limit => 8
     t.integer  "commentable_id",   :limit => 8
     t.string   "commentable_type"
+    t.integer  "score",            :limit => 8
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
   end
 
   add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
+  add_index "comments", ["score"], :name => "index_comments_on_score"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "downvotes", :force => true do |t|
@@ -47,7 +49,10 @@ ActiveRecord::Schema.define(:version => 20121225100624) do
     t.datetime "updated_at",                  :null => false
   end
 
+  add_index "flags", ["flaggable_id", "flaggable_type"], :name => "index_flags_on_flaggable_id_and_flaggable_type"
+  add_index "flags", ["flaggable_id"], :name => "index_flags_on_flaggable_id"
   add_index "flags", ["user_id", "flaggable_id", "flaggable_type"], :name => "index_flags_on_user_id_and_flaggable_id_and_flaggable_type", :unique => true
+  add_index "flags", ["user_id"], :name => "index_flags_on_user_id"
 
   create_table "link_users", :force => true do |t|
     t.integer  "link_id",    :limit => 8
