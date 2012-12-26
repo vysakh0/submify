@@ -11,7 +11,7 @@ class LinkScoreWorker
       #time between link creation and link_user creation, so that first person has more points than the second, also check second does not take advantage of first votes
 
     t = (link_user.created_at.to_i - EPOCH)
-    x = link_user.link.votes.count + (link_user.comments.count/2)  - link_user.downvotes.count 
+    x = link_user.link.votes.count + (link_user.link.comments.count/2)  - link_user.downvotes.count 
     z = x
     z = 1 if x <= 0
     y = 0

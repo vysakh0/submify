@@ -1,6 +1,6 @@
-$('.links').append('<%= j (render @feed_items) %>');
-<% if @feed_items.next_page %>
-  $('.pagination').replaceWith('<%= j (will_paginate(@feed_items)) %>');
+$('.links').append('<%= j (render @link_users) %>');
+<% if @link_users.next_page %>
+  $('.pagination').replaceWith('<%= j (will_paginate(@link_users)) %>');
 <% else %>
   $('.pagination').remove();
 <% end %>

@@ -8,5 +8,7 @@ class CreateDownvotes < ActiveRecord::Migration
     end
     add_index :downvotes, [:votable_id, :votable_type]
     add_index :downvotes, [:user_id, :votable_id, :votable_type], unique: true
+    add_index :downvotes, :user_id
+    add_index :downvotes, :votable_id
   end
 end

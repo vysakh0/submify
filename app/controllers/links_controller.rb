@@ -41,7 +41,7 @@ class LinksController < ApplicationController
     @link = Link.find_by_id(id)
     if id and topic!= ""
       @link.link_with_topic!(topic, current_user, nil)
-      publish_to_fb
+      #publish_to_fb
       respond_to do |format|
         format.js
       end
@@ -62,7 +62,7 @@ class LinksController < ApplicationController
           @link_user = @link.link_with_topic!(topic, current_user,@topic)
 
           flash[:success]="Link submitted"
-                    publish_to_fb
+                    #publish_to_fb
         end
       else
         @link = current_user.links.build(params[:link]) 
@@ -73,7 +73,7 @@ class LinksController < ApplicationController
         end
         if @link!= nil && @link.save
           @link_user = @link.link_with_topic!(topic, current_user, @topic)
-                   publish_to_fb
+                   #publish_to_fb
           flash[:success]="Link submitted"
         end
       end
@@ -108,7 +108,7 @@ class LinksController < ApplicationController
   end
 
   def publish_to_fb
-   FacebookLinkNotifyWorker.perform_async(link_url(@link))
+   FacebookLinkNotifyWorker.perform_async(current_user.oauth_token, link_url(@link))
   end
   def check_url
     count = 0

@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   def new
     @comment = @parent.comments.build
     @comment.user = current_user
-    publish_to_fb if @parent.class.to_s == "Link"
+    #publish_to_fb if @parent.class.to_s == "Link"
   end
 
   def show
@@ -80,6 +80,6 @@ class CommentsController < ApplicationController
   end
 
   def publish_to_fb
-  FacebookCommentNotifyWorker.perform_async(comment_url(@comment), @comment.body) 
+  FacebookCommentNotifyWorker.perform_async(current_user.oauth_token, comment_url(@comment), @comment.body) 
   end
 end
