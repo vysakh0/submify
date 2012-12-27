@@ -1,6 +1,6 @@
 <% link = link_user.link %>
 <div class="span8 container">
-  <div class= "link-<%= link.id %>" >
+  <div class= "link-<%= link_user.id %>" >
     <div class="link_contain">
       <% topic = link_user.topic %>
       <% if link_user.user == current_user and topic %>
@@ -23,7 +23,7 @@
         <div class="link_info"><%= render 'links/link_info', link: link %></div>
         <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
         <div class="votes">
-          <%= link.votes.count %>
+          <%= link_user.votes.count %>
         </div>
         <div class="show-comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></div>
       <% end %>
@@ -32,7 +32,7 @@
       </div>
 
       <div class="vote">
-        <%= render 'votes/vote_button', votable: link, type: "Link" %>
+        <%= render 'votes/vote_button', votable: link_user, type: "LinkUser" %>
       </div>
     </div>
   </div>

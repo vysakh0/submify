@@ -19,7 +19,7 @@ class VotesController < ApplicationController
   end
   private
   def get_parent
-    @votable = Link.find_by_id(params[:votable_id]) if params[:votable_type] == "Link"
+    @votable = LinkUser.find_by_id(params[:votable_id]) if params[:votable_type] == "LinkUser"
     @votable = Comment.find_by_id(params[:votable_id]) if params[:votable_type] == "Comment"
   end
 end

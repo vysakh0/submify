@@ -40,7 +40,6 @@ class Link < ActiveRecord::Base
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :topics, through: :link_users, source: :topic
 
-  has_many :votes, as: :votable, dependent: :destroy
   validates :url_link, uniqueness: true
   attr_accessible :avatar
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }

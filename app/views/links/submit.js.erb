@@ -1,2 +1,2 @@
-$("#topics-list").html("<%= escape_javascript render('links/list_topics', link: @link) %>");
+$("ol.list_topics").append("<%= escape_javascript render('links/link_topic', link_user: @link_user) %>");
 $("#topic_name").val("");

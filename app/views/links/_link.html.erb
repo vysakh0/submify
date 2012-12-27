@@ -8,16 +8,9 @@
           </div>
       <% cache link do %>
       <%= render 'links/link_info', link: link %>
-      <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
-      <div class="votes">
-        <%= link.votes.count %>
-      </div>
+      <div class="votes-up"> <i class="icon-comment-alt icon-small"></i></div>
       <div class="show-comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></div>
     <% end %>
-
-    <div class="vote">
-      <%= render 'votes/vote_button', votable: link, type: "Link" %>
-    </div>
   </div>
   </div>
 </div>

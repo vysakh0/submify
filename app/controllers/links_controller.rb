@@ -29,6 +29,7 @@ class LinksController < ApplicationController
 
     @link = Link.find_by_id(params[:id])
     @comments = @link.comments.order('score DESC').paginate(page: params[:page])
+    @link_users = @link.link_users.order('score DESC')
     respond_to do |format|
       format.html
       format.js
@@ -40,7 +41,7 @@ class LinksController < ApplicationController
     topic = params[:topic_name]
     @link = Link.find_by_id(id)
     if id and topic!= ""
-      @link.link_with_topic!(topic, current_user, nil)
+      @link_user = @link.link_with_topic!(topic, current_user, nil)
       publish_to_fb
       respond_to do |format|
         format.js
@@ -90,7 +91,7 @@ class LinksController < ApplicationController
   def destroy
     unsubmit = LinkUser.find(params[:unsubmit])
     unsubmit.destroy
-    @link_id = params[:id]
+    @link_user_id = params[:unsubmit]
     respond_to do |format|
       format.js
     end

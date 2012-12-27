@@ -1,8 +1,12 @@
-<% vid = @votable.class.to_s.downcase+'-'+@votable.id.to_s %>
-<% if @votable.is_a? Link %>
-$(".<%= vid %>  > .link_contain > .vote").html("<%= escape_javascript render('votes/vote_button', votable: @votable) %>");
-$(".<%= vid %>  > .link_contain > .votes").html(" <%=  @votable.votes.count %>");
+<% if @votable.is_a? LinkUser %>
+  <% vid = "link"+'-'+@votable.id.to_s %>
+  $(".<%= vid %> > .topic_detail > .tvote").html("<%= escape_javascript render('votes/vote_button', votable: @votable) %>");
+  $(".<%= vid %> > .topic_detail > .topic_votes > .votes").html("<%= @votable.votes.count %>");
+   
+    $(".<%= vid %>  > .link_contain > .vote").html("<%= escape_javascript render('votes/vote_button', votable: @votable) %>");
+    $(".<%= vid %>  > .link_contain > .votes").html(" <%=  @votable.votes.count %>");
 <% else %>
-$(".<%= vid %>  > .comment-vote").html("<%= escape_javascript render('votes/vote_button', votable: @votable) %>");
-$(".<%= vid %>  > .votes").html("<%=  @votable.votes.count %>");
+  <% vid = @votable.class.to_s.downcase+'-'+@votable.id.to_s %>
+  $(".<%= vid %>  > .comment-vote").html("<%= escape_javascript render('votes/vote_button', votable: @votable) %>");
+  $(".<%= vid %>  > .votes").html("<%=  @votable.votes.count %>");
 <% end %>

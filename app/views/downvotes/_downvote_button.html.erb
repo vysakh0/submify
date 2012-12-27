@@ -4,14 +4,14 @@
   <% if vote = current_user.downvotes.find_by_votable_id_and_votable_type(votable.id, type) %>
     <%= form_for vote, :html => { :method => :delete }, remote: true do |f| %>
       <%= button_tag(type: 'submit',class: "undo-butn ") do %>
-        <i class="icon-caret-up icon-small"></i>downvoted
+        <i class="icon-caret-down icon-small"></i>downvoted
       <% end %>
     <% end %>
   <% else %>
     <%= form_for current_user.downvotes.build, url: downvotes_path(votable_id: votable.id, votable_type: type), remote: true do |f| %>
       <%= f.hidden_field :user_id %>
       <%= button_tag(type: 'submit',class: "butn ") do %>
-        <i class="icon-caret-up icon-small"></i>downvote
+        <i class="icon-caret-down icon-small"></i>downvote
       <% end %>
     <% end %>
   <% end %>

@@ -1,0 +1,17 @@
+<li class="topics_link nostyle link-<%= link_user.id %>">
+<div class="topic_detail">
+  <%= image_tag (link_user.topic.avatar.url), class: "topic-img" %>
+  <%=link_to  link_user.topic.name, link_user.topic %>
+  <span class="topic_user">
+    by <%= link_to link_user.user.name, link_user.user %>
+  </span>
+  <div class="topic_votes">  
+    <i class="icon-caret-up icon-small"></i>
+    <div class="votes"><%= link_user.votes.count %></div>
+  </div>
+  <div class="tdvote"><%= render 'downvotes/downvote_button', votable: link_user, type: "LinkUser" %> </div>
+  <div class="tvote"> <%= render 'votes/vote_button', votable: link_user, type: "LinkUser" %></div>
+
+</div>
+
+</li>

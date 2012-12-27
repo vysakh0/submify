@@ -7,8 +7,8 @@ class LinkScoreWorker
   
   def perform(link_user_id)
     link_user = LinkUser.find_by_id(link_user_id)
-    t = (link_user.link.created_at.to_i - EPOCH)
-    x = link_user.link.votes.count + (link_user.link.comments.count/2)  - link_user.downvotes.count 
+    t = (link_user.created_at.to_i - EPOCH)
+    x = link_user.votes.count - link_user.downvotes.count 
     z = x
     z = 1 if x <= 0
     y = 0
