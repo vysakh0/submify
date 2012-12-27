@@ -17,5 +17,10 @@ class Vote < ActiveRecord::Base
   belongs_to :user
 
   validates :user_id, presence: true
+  after_save :calculate_score
+
+  def calculate_score
+    LinkScoreWorker.perform_async(self.votable.id) if self.votable.is_a? LinkUser
+  end
 
 end

@@ -30,6 +30,15 @@ class LinksController < ApplicationController
     @link = Link.find_by_id(params[:id])
     @comments = @link.comments.order('score DESC').paginate(page: params[:page])
     @link_users = @link.link_users.order('score DESC')
+    if @link_users.exists?
+      search = { q: "" }
+      @link_users.each_with_index do |link_user, i|
+        search[:q] = search[:q] + link_user.topic.name + "+"
+        break if i > 2
+      end
+      @related = Link.search(search)
+    end
+
     respond_to do |format|
       format.html
       format.js
@@ -63,7 +72,7 @@ class LinksController < ApplicationController
           @link_user = @link.link_with_topic!(topic, current_user,@topic)
 
           flash[:success]="Link submitted"
-                    publish_to_fb
+          publish_to_fb
         end
       else
         @link = current_user.links.build(params[:link]) 
@@ -74,7 +83,7 @@ class LinksController < ApplicationController
         end
         if @link!= nil && @link.save
           @link_user = @link.link_with_topic!(topic, current_user, @topic)
-                   publish_to_fb
+          publish_to_fb
           flash[:success]="Link submitted"
         end
       end
@@ -109,7 +118,7 @@ class LinksController < ApplicationController
   end
 
   def publish_to_fb
-   FacebookLinkNotifyWorker.perform_async(current_user.oauth_token, link_url(@link))
+    FacebookLinkNotifyWorker.perform_async(current_user.oauth_token, link_url(@link))
   end
   def check_url
     count = 0

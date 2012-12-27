@@ -1,8 +1,10 @@
 <% provide(:title, @link.url_heading) %>
 <% if @link.avatar.exists? %>
   <% image = @link.avatar.url %>
-<% else %>
+<% elsif @link.topics.exists? %>
   <% image = @link.topics.first.avatar.url %>
+<% else %>
+  <% image = link_url(@link) %>
 <% end %>
 <meta property="fb:app_id" content="295241533825642" /> 
 <meta property="og:type"   content="website" /> 
@@ -25,20 +27,14 @@
         <div class="comment-form">
           <%= render 'shared/comment_form' %>
         </div>
-        <% if  @comments.all.count > 0 %>
-          <ol class="full_comments">
-            <%= render partial: 'comments/comment', collection: @comments %>
-            <!--
-            -each comment is fragment cached :)
-            -->
+        <ol class="full_comments">
+          <%= render partial: 'comments/comment', collection: @comments %>
+          <!--
+          -each comment is fragment cached :)
+          -->
 
-          </ol>
-          <%= will_paginate @comments %>
-        <% else %>
-          <ol class="full_comments">
-          </ol>
-        <%end %>
-
+        </ol>
+        <%= will_paginate @comments %>
 
       </div>
     </div>
@@ -52,6 +48,17 @@
           <% end %>
         </ol>
         <div class="submit_topic"> <%= render 'submit_to_topics' %> </div> 
+      </div>
+      <div class="related">
+        <% if @related %>
+          <h6> Related </h6>
+          <% @related.each do |link| %>
+            <% if link.id != @link.id %>
+            <%= link_to link.url_heading, link , class: "rel_link"%>
+            <br/>
+          <% end %>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>

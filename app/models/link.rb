@@ -80,7 +80,7 @@ class Link < ActiveRecord::Base
   def self.search(params)
 
     tire.search(load: true) do
-      query { string params[:q], default_operator: "AND" } if params[:q].present?
+      query { string params[:q], default_operator: "OR" } if params[:q].present?
       #    filter :range, published_at: {lte: Time.zone.now}
     end
     # raise to_curl
