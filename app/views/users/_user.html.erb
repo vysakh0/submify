@@ -1,5 +1,6 @@
 
 <li>
+<div class="follow_button">  <%= render 'follow_form', user: user if signed_in? %> </div>
 <%= image_tag (user.avatar.url(:thumb)), class: "gravatar" %>
 <%= link_to user.name, user %>
   <% if current_user and current_user.admin? %>
