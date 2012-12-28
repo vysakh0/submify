@@ -261,7 +261,7 @@ color: #0088CC;
    *max-height: 18px;
    *max-width: 80px;
    */
-  padding-right: 350px;
+  padding-right: 340px;
   font-size: 12.8px;
 }
 .vote_link_show{
@@ -504,11 +504,11 @@ padding-bottom: 5px;
   width: 80px;
   height: 12px;
 }
-.tdvote , .topic_votes{
+.tdvote {
   float: right;
 }
 .tdvote{
-  padding-right: 130px;
+  padding-right: 110px;
 }
 .submit_topic{
   padding-left: 20px;
@@ -523,4 +523,8 @@ padding-bottom: 5px;
     font-size: 12px;
   }
 }
-
+.full_comments{
+  padding-top: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+}

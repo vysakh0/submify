@@ -5,10 +5,10 @@
   <span class="topic_user">
     by <%= link_to link_user.user.name, link_user.user %>
   </span>
-  <div class="topic_votes">  
+  <span class="topic_votes">  
     <i class="icon-caret-up icon-small"></i>
-    <div class="votes"><%= link_user.votes.count %></div>
-  </div>
+    <%= link_user.votes.count %>
+  </span>
   <div class="tdvote"><%= render 'downvotes/downvote_button', votable: link_user, type: "LinkUser" %> </div>
   <div class="tvote"> <%= render 'votes/vote_button', votable: link_user, type: "LinkUser" %></div>
 
