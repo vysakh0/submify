@@ -22,18 +22,6 @@
 #  description         :text
 #
 
-# == Schema Information
-#
-# Table name: users
-#
-#  id              :integer          not null, primary key
-#  name            :string(255)
-#  email           :string(255)
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  password_digest :string(255)
-#  remember_token  :string(255)
-#
 require 'open-uri'
 require 'uri'
 
@@ -141,9 +129,6 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(other_user.id)
   end
 
-  def vote?(votable)
-    votes.find_by_votable_id(votable.id)
-  end
 
   def follow!(other_user)
     relationships.create!(followed_id: other_user.id)
@@ -165,13 +150,6 @@ class User < ActiveRecord::Base
     topic_user_relationships.find_by_topic_id(topic.id).destroy
   end
 
-  def link_with_user!(given_link)
-    link_users.create!(link_id: given_link.id)
-  end
-
-  def unlink_with_user!(given_link)
-    link_users.find_by_link_id(given_link.id).destroy
-  end
   private
 
   def create_remember_token

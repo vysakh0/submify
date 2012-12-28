@@ -29,35 +29,10 @@ class LinkUser < ActiveRecord::Base
   def calculate_score
     LinkScoreWorker.perform_in(15.minutes, self.id)
   end
-  # add score: when it is newly created
-  # calculate: periodically based on the votes,downvotes,comments
-  # remove old link_users based on some algorithm
+
   def self.from_users_followed_by(user)
     followed_topic_ids = "SELECT topic_id FROM topic_user_relationships WHERE user_id = :user_id"
     followed_user_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
     where("topic_id IN (#{followed_topic_ids}) OR  user_id IN (#{followed_user_ids}) OR user_id = :user_id", user_id: user.id).uniq
   end
-
-  def scored(score)
-    if score > self.high_score
-      $redis.zadd("highscores", score, self.id)
-    end
-  end
-
-
-  # table rank
-  def rank
-    $redis.zrevrank("highscores", self.id) + 1
-  end
-
-  # high score
-  def high_score
-    $redis.zscore("highscores", self.id).to_i
-  end
-
-  # load top 3 users
-  def self.top_links range
-    $redis.zrevrange("highscores", 0, range).map{|id| User.find(id)}
-  end
-
 end

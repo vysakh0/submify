@@ -57,9 +57,4 @@ class Topic < ActiveRecord::Base
     matches.collect {|match| {"id" => match["id"], "label" => match["term"], "value" => match["term"], "url"  => match["data"]["url"], "imgsrc" => match["data"]["imgsrc"] , "category" => "topic"} }
   end
 
-  def topic_feed
-    Link.feed_topic(self.id)
-
-  end
-
 end

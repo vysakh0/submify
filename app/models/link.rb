@@ -13,17 +13,6 @@
 #  avatar_updated_at   :datetime
 #
 
-# == Schema Information
-#
-# Table name: links
-#
-#  id          :integer          not null, primary key
-#  url_link    :string(255)
-#  url_heading :string(255)
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  slug        :string(255)
-#
 require 'uri'
 require 'open-uri'
 
@@ -44,18 +33,6 @@ class Link < ActiveRecord::Base
   attr_accessible :avatar
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
 
-  def link_comments
-    Comment.show_link_comments(self.id)
-  end
-  #def self.front_page
-    #order('created_at DESC').order('score')
-  #end
-
-  def following_comments user
-    followed_user_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
-    self.comments.where("user_id IN (#{followed_user_ids}) OR user_id = :user_id", user_id: user.id).limit(3).order('created_at desc')
-  end
-
   def link_with_topic!(topic_name, user, topic_page)
     topic_slug = topic_name.to_s.parameterize
     if topic_page
@@ -68,9 +45,6 @@ class Link < ActiveRecord::Base
     link_users.create!(topic_id: topic.id, user_id: user.id)
   end
 
-  def self.feed_topic (topic_id)
-    joins(:topic_downvotes).group("topic_id, links.id").where("topic_id = #{topic_id}").order("count(*)").order('links.created_at DESC')
-  end
 
   def picture_from_url(url)
     self.avatar = URI.parse(url) 
@@ -86,17 +60,8 @@ class Link < ActiveRecord::Base
     # raise to_curl
   end
 
-  # self.include_root_in_json = false (necessary before Rails 3.1)
-  def to_indexed_json
-    to_json(methods: [:topics_name])
-  end
 
   def to_param
     "#{id} #{url_heading}".parameterize
   end
-
-  def author_name
-    topics.collect {|topic|  topic.name  }
-  end
-
 end
