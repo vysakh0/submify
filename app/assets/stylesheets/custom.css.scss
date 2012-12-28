@@ -125,7 +125,20 @@ aside {
     border: 1px solid #999;
   }
 }
+.field_comment{
 
+  input[type = "text"],
+  textarea{
+
+    width: 500px;
+    height: 40px;
+    padding: 3px;
+  }
+}
+textarea#topic_description, textarea#user_description{
+  width: 400px;
+  height: 40px;
+}
 .comments-form  .field{
     textarea{
   width: 350px;

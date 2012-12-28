@@ -3,17 +3,16 @@
   <% comment = @link.id and value =1 if @link %>
   <% comment = @comment.id and value = 0 if @comment %>
   <%= form_for :comment, url: comments_path(comment_id: comment, val: value), html: { multipart: true} , remote: true  do |f| %>
-  <div class="field">
+  <div class="field_comment">
     <% if @link %>
     <%= f.text_area :body, placeholder: "Add a comment", id: "comment_text", value: ""%>
-      Image:<%= f.file_field :avatar %>
+      <%= f.file_field :avatar %>
     <%= f.submit "Comment", class: "btn btn-small"%>
     <% else %>
     <%= f.text_area :body, placeholder: "Add a reply", id: "comment_text", value: ""%>
     <br/>
     <%= f.submit "Reply", class: "btn btn-small"%>
     <% end %>
-  <div class="underline"></div>
   </div>
 <% end %>
 <% end %>

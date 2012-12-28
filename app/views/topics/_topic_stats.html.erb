@@ -6,7 +6,7 @@
 <%= image_tag (@topic.avatar.url(:thumb)), class: "topic-pic" %>
   <%= @topic.topic_name %>
 </h3>
-<%= @topic.description %>
+<div class="expandable"><%= @topic.description %></div>
 <ul class="breadcrumb">
   <li>
   <%= link_to "Feed" , topic_path(@topic) , class:("active" if @page_tab == "Feed")%><span class="divider">/</span> </li> 

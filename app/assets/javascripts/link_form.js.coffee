@@ -3,6 +3,8 @@ $(document).ready ->
   $(".link-topic-tag").hide()
   $("textarea#complete_url").autosize()
   $('textarea#comment_text').autosize();  
+  $('textarea#user_description').autosize();  
+  $('textarea#topic_description').autosize();  
 
 $("#comment_text").live "click", (event) ->
   $("textarea#comment_text").autosize()

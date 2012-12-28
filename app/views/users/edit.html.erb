@@ -11,8 +11,9 @@
 
       
       <%= f.label :description %>
-      <%= f.text_field :description %>
+      <%= f.text_area :description %>
        <br/>
+   <%= image_tag (@user.avatar.url(:thumb)), class: "gravatar" %>
        <%= f.label :image %>
        <%= f.file_field :avatar %>
        <br/>

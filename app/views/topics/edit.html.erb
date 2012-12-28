@@ -4,14 +4,16 @@
   <div class="span8">
     <% tab "Edit" %>
     <%= render 'topic_stats' %>
+<div class="span6 offset3">
     <h5> Edit Topic </h5>
     <% if  !(@topic.verify) || (current_user.admin? if current_user) %>
       <%= form_for @topic, :html => {:multipart => true}  do |f| %>
         <%= f.label :name %>
         <%= f.text_field :name %>
         <%= f.label :description %>
-        <%= f.text_field :description %>
+        <%= f.text_area :description %>
         <br/>
+<%= image_tag (@topic.avatar.url(:thumb)), class: "topic-pic" %>
         <%= f.label :image %>
         <%= f.file_field :avatar %>
         <br/>
@@ -25,4 +27,5 @@
       <% end %>
     <% end %>
   </div>
+</div>
 </div>

@@ -16,4 +16,5 @@
 //= require bootstrap
 //= require_tree .
 //= require jquery.autosize.js
+//= require jquery.expander.min.js
 //= require bootstrap-alert
