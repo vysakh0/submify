@@ -17,6 +17,7 @@ class Comment < ActiveRecord::Base
   self.per_page = 10
 
   has_attached_file :avatar, styles: { medium: "600x600>", thumb: "300x300>" }
+
   belongs_to :commentable, polymorphic: true, touch: true 
   belongs_to :user, touch: true 
   has_many :flags, as: :flaggable

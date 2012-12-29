@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+//= require colorbox-rails
 //= require jquery.autosize.js
 //= require jquery.expander.min.js
 //= require bootstrap-alert

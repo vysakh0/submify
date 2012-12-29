@@ -28,6 +28,7 @@ gem 'bundler'
 gem 'cache_digests'
 #gem 'rails3-redis-session-store'
 gem 'redis-store'
+gem 'colorbox-rails'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do
