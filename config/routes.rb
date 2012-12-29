@@ -11,7 +11,7 @@ Youarel::Application.routes.draw do
   match '/contact', to: 'static_pages#contact'
   resources :users do
     member do
-      get :following, :followers, :commented, :followed_topics
+      get :following, :followers, :commented, :followed_topics, :hovercard
     end
   end
   resources :topics do

@@ -17,7 +17,7 @@
       <% cache link_user do %>
       <div class="user-profile">
         <%= image_tag (link_user.user.avatar.url(:thumb)), class: 'comment-image'  %>
-        <%= link_to link_user.user.user_name, link_user.user %>
+        <%= link_to link_user.user.user_name, link_user.user, class: 'profile_hover', data: { hovercard: link_user.user.id } %>
         submitted to <%= link_to topic.topic_name, topic_path(topic) %>
       </div> 
         <div class="link_info"><%= render 'links/link_info', link: link %></div>

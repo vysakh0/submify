@@ -22,6 +22,7 @@ gem 'slim'
 gem 'oauth2'
 gem 'multi_fetch_fragments'
 gem 'dalli'
+#gem "jqtools-rails"
 gem "auto_html"
 #gem 'pjax_rails'
 gem 'bundler'

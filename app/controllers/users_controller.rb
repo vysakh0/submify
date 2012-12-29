@@ -5,10 +5,16 @@ class UsersController < ApplicationController
   #before_filter :not_signed_user, only: [:create, :new]
 
   before_filter :admin_user, only: :destroy
+  layout nil
+  layout 'application', :except => :hovercard
 
+  def hovercard
+    @user = User.find_by_id(params[:id])
+    render partial: 'hovercard'
+  end
   def index
     @users = User.paginate(page: params[:page])
-    
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
@@ -24,7 +30,7 @@ class UsersController < ApplicationController
       format.js 
     end
   end
-    
+
   def search
     @users = User.search params[:q]
 
@@ -34,8 +40,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-     sign_in @user
-     redirect_to @user 
+      sign_in @user
+      redirect_to @user 
     else
       render 'new'
     end
@@ -79,30 +85,30 @@ class UsersController < ApplicationController
       format.js
     end
   end
-  
+
   def followers
     @title = "Followers"
     @user = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     respond_to do |format|
 
-     format.html {render 'show_follow'}
-     format.js
+      format.html {render 'show_follow'}
+      format.js
     end
   end
 
   private
 
-    def admin_user
-      redirect_to(root_path) unless current_user.admin?
-    end
-    
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_path) unless current_user?(@user)
-    end
+  def admin_user
+    redirect_to(root_path) unless current_user.admin?
+  end
 
-    def not_signed_user
-        redirect_to root_path if signed_in?
-    end
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_path) unless current_user?(@user)
+  end
+
+  def not_signed_user
+    redirect_to root_path if signed_in?
+  end
 end
