@@ -549,3 +549,19 @@ background-color: hsl(193, 32%, 49%) !important; background-repeat: repeat-x; fi
   float: left;
   width: 100%;
 }
+
+#spinner
+{
+    display: none;
+    width:100px;
+    height: 100px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    text-align:center;
+    margin-left: -50px;
+    margin-top: -100px;
+    z-index:2;
+    overflow: auto;
+}    
+
