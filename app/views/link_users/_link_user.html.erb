@@ -14,12 +14,12 @@
         -->
       <% end %>  
 
+      <% cache link_user do %>
       <div class="user-profile">
         <%= image_tag (link_user.user.avatar.url(:thumb)), class: 'comment-image'  %>
         <%= link_to link_user.user.user_name, link_user.user %>
         submitted to <%= link_to topic.topic_name, topic_path(topic) %>
       </div> 
-      <% cache link do %>
         <div class="link_info"><%= render 'links/link_info', link: link %></div>
         <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
         <div class="votes">

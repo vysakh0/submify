@@ -36,8 +36,8 @@
         </ol>
         <%= will_paginate @comments %>
 
+      </div>
     </div>
-  </div>
 
     <div class="span4 ">
       <div class="topic_in"> 
@@ -50,15 +50,17 @@
         <div class="submit_topic"> <%= render 'submit_to_topics' %> </div> 
       </div>
       <div class="related">
+        <% cache "related_#{@link.id}", expires_in: 1.hour do %>
         <% if @related %>
           <h6> Related </h6>
           <% @related.each do |link| %>
             <% if link.id != @link.id %>
-            <%= link_to link.url_heading, link , class: "rel_link"%>
-            <br/>
-          <% end %>
+              <%= link_to link.url_heading, link , class: "rel_link"%>
+              <br/>
+            <% end %>
           <% end %>
         <% end %>
+      <% end %>
       </div>
     </div>
   </div>

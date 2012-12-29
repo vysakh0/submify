@@ -1,3 +1,4 @@
+<% cache ["topics", current_user ] do %>
 <div class="topics-nav">
   <li><%= link_to "Front Page", front_path %></li>
   <li><%= link_to "Discover", topics_path %> </li>
@@ -6,3 +7,4 @@
               <li> <%= link_to topic.topic_name, topic_path(topic) %> </li>
             <% end %>
           </div> 
+        <% end %>

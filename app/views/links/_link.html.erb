@@ -1,12 +1,11 @@
   <div class= "link-<%= link.id %>" >
 
-    <div class ="link_contain">
-      <br/>
+    <div class ="link_contain row-fluid">
       <div class="flag">
         <%= render 'flags/flag_button', flaggable: link, type: "Link" %>
       </div>
       <% cache link do %>
-        <%= render 'links/link_info', link: link %>
+        <div class="info_link"><%= render 'links/link_info', link: link %></div>
         <div class="link_comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></div>
       <% end %>
     </div>
