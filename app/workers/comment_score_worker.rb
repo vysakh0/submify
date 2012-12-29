@@ -5,13 +5,8 @@ class CommentScoreWorker
   C = 45000
   EPOCH = 1356264052 #time in milli seconds 23rd dec 5.31 PM
 
-  def perform(link_id)
-    link = Link.find_by_id(link_id)
-    link.comments.each do |comment|
-      cal_score(comment)
-    end
-  end
-  def cal_score(comment)
+  def perform(comment_id)
+    comment = Comment.find_by_id(comment_id)
     t = (comment.created_at.to_i - EPOCH)
     x = comment.votes.count + (comment.comments.count/2) - comment.downvotes.count  #number of upvotes only
     if x <= 0

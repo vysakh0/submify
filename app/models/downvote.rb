@@ -23,7 +23,9 @@ class Downvote < ActiveRecord::Base
 
   def calculate_score
     if self.votable.is_a? LinkUser
-      LinkScoreWorker.perform_async(self.votable.id)
+      LinkScoreWorker.perform_async(self.votable.id) 
+    else 
+      CommentScoreWorker.perform_async(self.votable.id)
     end
   end
 end

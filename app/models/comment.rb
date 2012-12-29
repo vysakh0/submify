@@ -29,7 +29,7 @@ class Comment < ActiveRecord::Base
 
   def calculate_score
     if self.commentable.is_a? Link
-      CommentScoreWorker.perform_async(self.commentable.id)
+      CommentScoreWorker.perform_async(self.id)
     end
   end
 

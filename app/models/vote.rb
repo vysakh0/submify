@@ -20,7 +20,11 @@ class Vote < ActiveRecord::Base
   after_save :calculate_score
 
   def calculate_score
-    LinkScoreWorker.perform_async(self.votable.id) if self.votable.is_a? LinkUser
+    if self.votable.is_a? LinkUser
+      LinkScoreWorker.perform_async(self.votable.id) 
+    else 
+      CommentScoreWorker.perform_async(self.votable.id)
+    end
   end
 
 end
