@@ -1,4 +1,3 @@
-<div class="container">
   <div class= "link-<%= link.id %>" >
 
     <div class ="link_contain">
@@ -8,12 +7,10 @@
       </div>
       <% cache link do %>
         <%= render 'links/link_info', link: link %>
-        <div class="votes-up"> <i class="icon-comment-alt icon-small"></i></div>
-        <div class="show-comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></div>
+        <div class="link_comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></div>
       <% end %>
     </div>
   </div>
-</div>
 <!--
 -<div class="underline"></div>
 -->

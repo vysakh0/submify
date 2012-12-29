@@ -1,0 +1,11 @@
+
+<li class="topics_in nostyle">
+<div class="follow_button topic-<%= topic.id %>">  <%= render 'follow_form', topic: topic if signed_in? %> </div>
+<%= image_tag (topic.avatar.url(:thumb)), class: "topic-pic" %>
+<%= link_to topic.name, topic %>
+  <% if current_user and current_user.admin? %>
+    | <%= link_to "delete", topic, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+  <%= pluralize(topic.following_users.count, 'follower') %>
+</li>

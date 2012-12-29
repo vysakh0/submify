@@ -25,6 +25,9 @@ class TopicsController < ApplicationController
       render 'edit'
     end
   end
+  def index
+    @topics = Topic.limit(100).paginate(page: params[:page])
+  end
 
   private
 
