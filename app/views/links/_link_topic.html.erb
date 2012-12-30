@@ -2,9 +2,9 @@
 <div class="topic_detail">
   <% cache ["link_topic", link_user] do %>
   <%= image_tag (link_user.topic.avatar.url), class: "topic-img" %>
-  <%=link_to  link_user.topic.name, link_user.topic %>
+  <%=link_to  link_user.topic.name, link_user.topic, class: 'topic_hover', data: { hovercard: link_user.topic.id } %>
   <span class="topic_user">
-    by <%= link_to link_user.user.name, link_user.user %>
+    by <%= link_to link_user.user.name, link_user.user, class: 'profile_hover', data: { hovercard: link_user.user.id } %>
   </span>
   <span class="topic_votes">  
     <i class="icon-caret-up icon-small"></i>

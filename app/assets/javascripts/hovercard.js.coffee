@@ -1,4 +1,3 @@
-
 jQuery ->
   profile_hovercards = (object) ->
     id = "profile_hovercard_#{$(object).attr("data-hovercard")}"
@@ -22,3 +21,9 @@ jQuery ->
  
   $(".profile_hover").each () ->
     profile_hovercards $(this)
+
+
+  $(document).on "mouseenter", ".profile_hover", ->
+    $(".profile_hover").each () ->
+      profile_hovercards $(this)
+	

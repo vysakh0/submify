@@ -1,4 +1,3 @@
-
 jQuery ->
   topic_hovercards = (object) ->
     id = "topic_hovercard_#{$(object).attr("data-hovercard")}"
@@ -22,3 +21,7 @@ jQuery ->
  
   $(".topic_hover").each () ->
     topic_hovercards $(this)
+
+  $(document).on "mouseenter", ".topic_hover", ->
+    $(".topic_hover").each () ->
+      topic_hovercards $(this)
