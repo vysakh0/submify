@@ -5,9 +5,6 @@ class UsersController < ApplicationController
   #before_filter :not_signed_user, only: [:create, :new]
 
   before_filter :admin_user, only: :destroy
-  layout nil
-  layout 'application', :except => :hovercard
-
   def hovercard
     @user = User.find_by_id(params[:id])
     render partial: 'hovercard'

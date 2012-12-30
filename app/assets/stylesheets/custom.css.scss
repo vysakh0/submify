@@ -593,12 +593,15 @@ li.nostyle {
   float:right;
   margin-top:-1em;
 }
-.profile_hovercard{
-  background-image: url(white_big.png);
+.profile_hovercard, .topic_hovercard{
+  background: #fff;
+  border: solid 1px #ddd;
   width: 310px;
   height: 60px;
   padding-left: 20px;
   padding-right: 20px;
-  padding-top: 30px;
+  padding-top: 20px;
 }
-
+*[id*='topic_hovercard_'] , *[id*='topic_hovercard_']{
+  display: none;
+}

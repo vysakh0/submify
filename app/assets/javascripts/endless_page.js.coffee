@@ -9,5 +9,3 @@ jQuery ->
         $('.pagination').text("Loading more...")
         $.getScript(url)
     $(window).scroll()
-  $(".profile_hover").each () ->
-    profile_hovercards $(this)
