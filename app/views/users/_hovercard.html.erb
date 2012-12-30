@@ -2,7 +2,7 @@
 <%= image_tag (@user.avatar.url(:thumb)), class: "gravatar" %>
 <%= link_to @user.name, @user %>
 <div class="hover_stats">
-<%= pluralize(@user.links.count, 'link') %>
-<%= pluralize(@user.commented.count, 'comment') %>
-<%= pluralize(@user.followers.count, 'follower') %>
+<%= link_to pluralize(@user.links.count, 'link'), user_path(@user) %>
+<%= link_to pluralize(@user.commented.count, 'comment'), commented_user_path(@user) %>
+<%= link_to pluralize(@user.followers.count, 'follower'), followers_user_path(@user) %>
 </div>

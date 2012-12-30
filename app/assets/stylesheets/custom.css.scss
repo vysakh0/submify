@@ -60,6 +60,8 @@ display:block;
 
 .gravatar {
   float: left;
+  max-width: 60px;
+  max-height: 60px;
   margin-right: 10px;
 }
 
@@ -596,12 +598,40 @@ li.nostyle {
 .profile_hovercard, .topic_hovercard{
   background: #fff;
   border: solid 1px #ddd;
-  width: 310px;
-  height: 60px;
+  min-width: 280px;
+  min-height: 70px;
   padding-left: 20px;
   padding-right: 20px;
-  padding-top: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 *[id*='topic_hovercard_'] , *[id*='topic_hovercard_']{
   display: none;
 }
+.topic-pic-hover{
+  width: 60px;
+  height: 60px;
+  float: left;
+  margin-right: 10px;
+}
+.hover_stats{
+  a{
+    color: #5c5f5d;
+  }
+}
+.follow_hover{
+  float: right;
+  width: 25px;
+  height: 12px;
+  padding-left: 5px;
+  padding-right: 60px;
+}
+.hover-name{
+  float: left;
+}
+.followers-count.hover_stat_topic{
+  display: block;
+  clear: left;
+  padding-right: 10px;
+}
+
