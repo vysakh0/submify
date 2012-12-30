@@ -576,24 +576,6 @@ li.nostyle {
   position:relative;    
   z-index:100; /*greater than details, to still appear in card*/
 }
-.details
-{            
-  background:#fff ;    
-  border:solid 1px #ddd;      
-  position:absolute ;
-  width:300px;
-  left:-10px;
-  top:-10px;
-  z-index:50; /*less than name*/
-  padding:2em 10px 10px; /*leave enough padding on top for the name*/   
-  display:none;
-}
-.details img
-{
-  width:70px;    
-  float:right;
-  margin-top:-1em;
-}
 .profile_hovercard, .topic_hovercard{
   background: #fff;
   border: solid 1px #ddd;
