@@ -1,8 +1,8 @@
 
 <li>
-<div class="follow_button user-<%= user.id %>">  <%= render 'follow_form', user: user if signed_in? %> </div>
+<span class="follow_button user-<%= user.id %>">  <%= render 'follow_form', user: user if signed_in? %> </span>
 <%= image_tag (user.avatar.url(:thumb)), class: "gravatar" %>
-<span class="profile_hover"> <%= link_to user.name, user %></span>
+<%= link_to user.name, user, class: 'profile_hover', data: {hovercard: user.id} %>
   <% if current_user and current_user.admin? %>
     | <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "You sure?" } %>
