@@ -1,3 +1,3 @@
-$("input[type=submit]").click ->
-  $(this).attr "disabled", "disabled"
+#$("input[type=submit]").click ->
+#  $(this).attr "disabled", "disabled"
 

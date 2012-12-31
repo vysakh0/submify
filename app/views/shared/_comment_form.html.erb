@@ -2,7 +2,7 @@
 <% if signed_in? %>
   <% comment = @link.id and value =1 if @link %>
   <% comment = @comment.id and value = 0 if @comment %>
-  <%= form_for :comment, url: comments_path(comment_id: comment, val: value), html: { multipart: true} , remote: true  do |f| %>
+  <%= form_for :comment, url: comments_path(comment_id: comment, val: value), html: { multipart: true} , remote: true, id: "comment_form"  do |f| %>
   <div class="field_comment">
     <% if @link %>
     <%= f.text_area :body, placeholder: "Add a comment", id: "comment_text", value: ""%>
