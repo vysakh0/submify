@@ -23,6 +23,7 @@ class Comment < ActiveRecord::Base
   has_many :flags, as: :flaggable
   has_many :downvotes,as: :votable, dependent: :destroy
   has_many :comments, as: :commentable
+  has_many :notifications, as: :notifiable, dependent: :destroy
   validates :user_id, presence: true
   has_many :votes, as: :votable, dependent: :destroy
   after_save :calculate_score
@@ -36,6 +37,4 @@ class Comment < ActiveRecord::Base
   def user_name
     user.user_name
   end
-
-
 end

@@ -1,0 +1,10 @@
+<% notifiable = notification.notifiable %>
+  <% if notifiable.is_a? LinkUser %>
+    <%= render 'link_users/link_user', link_user: notifiable %>
+  <% elsif notifiable.is_a? Comment %>
+    <div class="span8"> <%= render 'comments/comment', comment: notifiable %></div>
+  <% elsif notifiable.is_a? Relationship %>
+    <li class="nostyle span8">
+    <%= notifiable.followed.name %> followed you 
+    </li>
+  <% end %>

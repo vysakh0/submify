@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121226151702) do
+ActiveRecord::Schema.define(:version => 20121231201702) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -82,6 +82,19 @@ ActiveRecord::Schema.define(:version => 20121226151702) do
 
   add_index "links", ["url_link"], :name => "index_links_on_url_link", :unique => true
 
+  create_table "notifications", :force => true do |t|
+    t.integer  "user_id",         :limit => 8
+    t.integer  "notifiable_id",   :limit => 8
+    t.string   "notifiable_type"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
+  add_index "notifications", ["notifiable_id", "notifiable_type"], :name => "index_notifications_on_notifiable_id_and_notifiable_type"
+  add_index "notifications", ["notifiable_id"], :name => "index_notifications_on_notifiable_id"
+  add_index "notifications", ["updated_at"], :name => "index_notifications_on_updated_at"
+  add_index "notifications", ["user_id"], :name => "index_notifications_on_user_id"
+
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id", :limit => 8
     t.integer  "followed_id", :limit => 8
@@ -138,6 +151,7 @@ ActiveRecord::Schema.define(:version => 20121226151702) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.text     "description"
+    t.datetime "notify"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

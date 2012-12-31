@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
-  before_filter :signed_in_user, only: [:edit, :update, :destroy, :following, :index]
-  before_filter :correct_user, only: [:edit, :update, :following]
+  before_filter :signed_in_user, only: [:edit, :update, :destroy, :following, :index, :notifications]
+  before_filter :correct_user, only: [:edit, :update, :following, :notifications]
   #before_filter :not_signed_user, only: [:create, :new]
 
   before_filter :admin_user, only: :destroy
@@ -92,6 +92,9 @@ class UsersController < ApplicationController
       format.html {render 'show_follow'}
       format.js
     end
+  end
+  def notifications
+    @notifications = current_user.notifications
   end
 
   private

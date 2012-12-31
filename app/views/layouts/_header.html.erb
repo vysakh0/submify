@@ -25,14 +25,19 @@
             </li>
             <li><%= link_to "Home",root_path  %> </li>
             <li id="fat-menu" class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+            <a href="#" class="dropdown-toggle"  data-toggle="dropdown" >
+              
               <%= current_user.user_name.split.first %> 
               <%= image_tag (current_user.avatar.url(:thumb)), class: "gravatar" %><b class="caret"></b>
+<span class="noti_bubble">2</span>
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "Profile", current_user %></li>
               <li><%= link_to "Following", following_user_path(current_user) %> </li>
+              <span class="noti_noti">2</span></li>
               
+              <li><%= link_to "Notifications", notifications_user_path(current_user) %> 
+
               
               <li><%= link_to "Settings", edit_user_path(current_user)%>  </li>
                  

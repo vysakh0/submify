@@ -12,6 +12,7 @@
 class Relationship < ActiveRecord::Base
   attr_accessible :followed_id
   belongs_to :follower, class_name: "User", touch: true
+  has_many :notifications, as: :notifiable, dependent: :destroy
   belongs_to :followed, class_name: "User", touch: true
 
   validates :follower_id, presence: true

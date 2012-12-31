@@ -611,4 +611,30 @@ li.nostyle {
   clear: left;
   padding-right: 10px;
 }
-
+#noti_Container {
+    position:relative;
+    border:1px solid blue;
+    width:16px;
+    height:16px;
+}
+.noti_bubble {
+    position:absolute;
+    top: -2px;
+    left: -2px;
+    padding:1px 2px 1px 2px;
+    background-color:red;
+    color:white;
+    font-weight:bold;
+    font-size:0.55em;
+    
+    border-radius:30px;
+    box-shadow:1px 1px 1px gray;
+}
+.noti_noti{
+    right: -2px;
+    padding:1px 55px 1px 2px;
+    position: absolute;
+    color:red;
+    font-weight:bold;
+    font-size:0.55em;
+}
