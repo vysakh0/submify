@@ -1,19 +1,14 @@
 <% provide(:title, @comment.body) %>
-<% if @comment.avatar.exists? %>
-  <% image = @comment.avatar.url %>
-<% elsif @comment.commentable.avatar.exists? %>
-  <% image = @comment.commentable.first.avatar.url %>
-<% else %>
-  <% image = link_url(@comment.commentable) %>
-<% end %>
-
-<div class="container-fluid span8">
-
   <meta property="fb:app_id" content="295241533825642" /> 
   <meta property="og:type"   content="website" /> 
   <meta property="og:url"    content="<%= comment_url(@comment)%>"/>
   <meta property="og:title"  content= "<%= @comment.body %>" /> 
-  <meta property="og:image"  content="<%= image %>" />
-  <%= render 'links/link_info', link: @comment.commentable %>
+
+<div class="span8">
+
   <%= render 'comments/comment', comment: @comment %>
+  <div class="span6">
+    <%= render 'links/link', link: @comment.commentable %>
+  </div>
+
 </div>

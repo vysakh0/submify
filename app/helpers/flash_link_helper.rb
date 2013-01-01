@@ -9,4 +9,9 @@ module FlashLinkHelper
     flash.discard
     response
   end
+
+  def notify_count
+    current_user.notifications.where("created_at > ?", current_user.notify).count  
+  end
+
 end
