@@ -1,7 +1,8 @@
 <% provide(:title, @user.user_name) %>
 <div class="row-fluid">
   <div class="span8">
-    <h4><%= @title %></h4>
+    <h4><%= @title %> 
+      (<%= @users.count %>) </h4>
     <% if @users.any? %>
       <ul class="users">
         <%= render partial: 'users/user', collection: @users, cache: true %>

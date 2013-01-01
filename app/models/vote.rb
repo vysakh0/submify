@@ -18,6 +18,7 @@ class Vote < ActiveRecord::Base
 
   validates :user_id, presence: true
   after_save :calculate_score
+  has_many :notifications, as: :notifiable, dependent: :destroy
 
   def calculate_score
     if self.votable.is_a? LinkUser
@@ -25,6 +26,10 @@ class Vote < ActiveRecord::Base
     else 
       CommentScoreWorker.perform_async(self.votable.id)
     end
+  end
+
+  def user_to_notify
+    self.votable.user.id
   end
 
 end

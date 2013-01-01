@@ -1,3 +1,88 @@
 // Place all the styles related to the comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.field_comment{
+
+  input[type = "text"],
+  textarea{
+
+    width: 500px;
+    height: 40px;
+    padding: 3px;
+  }
+}
+.comments-form  .field{
+  textarea{
+    width: 350px;
+  }
+}
+.comment_in_links{
+  overflow: hidden;
+}
+.full_comments {
+  list-style: none;
+  margin: 10px 0 0 0;
+  font-size: 12.8px;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+}
+
+.show_comment {
+  color: #bbc3bc;
+  padding-right: 45px;
+  font-size: 12.8px;
+  float: left;
+}
+.comment-vote{
+  float: right;
+  max-height: 18px;
+  max-width: 80px;
+}
+.comment_body{
+  overflow: hidden;
+  word-wrap: break-word;
+}
+.span8 > .full_comments > .comment-downvote{
+  float: right;
+  max-height: 18px;
+  max-width: 80px;
+  padding-right: 350px;
+  font-size: 12.8px;
+}
+.comment_url{
+  width: 100%;
+}
+.show-comments{
+  float: left;
+  padding-right: 40px;
+  font-size: 12.8px;
+}
+.full_comments{
+  background: #f5faff;
+  margin: 1px 1px 1px 1px;
+  padding: 1px 1px 1px 1px;
+}
+.comment-name{
+  float: left;
+}
+.comment-image {
+  float: left;
+  margin-right: 10px;
+  width: 25px;
+  height: 25px;
+}
+#comment-comments, .comments-form{
+  padding-left: 60px;
+  width: 500px;
+}
+.full_comments{
+  padding-top: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.link_comments{
+  float: left;
+  width: 100%;
+}

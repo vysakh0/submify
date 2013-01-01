@@ -37,4 +37,9 @@ class Comment < ActiveRecord::Base
   def user_name
     user.user_name
   end
+  def user_to_notify
+    self.commentable.user.id 
+  end
+
+
 end

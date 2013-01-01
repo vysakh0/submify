@@ -21,7 +21,6 @@ class LinkUser < ActiveRecord::Base
   has_many :votes, as: :votable, dependent: :destroy
   has_many :downvotes,as: :votable, dependent: :destroy
 
-  has_many :notifications, as: :notifiable, dependent: :destroy
   default_scope order: 'link_users.created_at DESC'
 
   validates :link_id, presence: true

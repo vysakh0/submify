@@ -18,4 +18,8 @@ class Relationship < ActiveRecord::Base
   validates :follower_id, presence: true
   validates :followed_id, presence: true
 
+  def user_to_notify
+    self.followed_id
+  end
+
 end
