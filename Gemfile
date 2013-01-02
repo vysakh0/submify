@@ -45,6 +45,7 @@ group :assets do
   gem 'sass-rails',   '3.2.5'
  #gem "turbo-sprockets-rails3-0.2.13"
   gem 'coffee-rails', '3.2.2'
+gem 'sprockets-rails', :require => 'sprockets/railtie'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 gem 'font-awesome-rails'
