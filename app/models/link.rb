@@ -31,7 +31,6 @@ class Link < ActiveRecord::Base
 
   validates :url_link, uniqueness: true
   attr_accessible :avatar
-  has_attached_file :avatar, :styles => { :medium => ["600x600>", :jpg]}
 
   def link_with_topic!(topic_name, user, topic_page)
     topic_slug = topic_name.to_s.parameterize

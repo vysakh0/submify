@@ -79,7 +79,7 @@ class LinksController < ApplicationController
 
         unless /youtube.com|vimeo.com|twitter.com|soundcloud.com/.match(params[:link][:url_link])
           img = link_image(data)
-          @link.picture_from_url(img) if img
+          @link.picture = img if img
         end
         if @link!= nil && @link.save
           @link_user = @link.link_with_topic!(topic, current_user, @topic)

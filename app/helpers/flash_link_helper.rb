@@ -4,14 +4,19 @@ module FlashLinkHelper
     response = ""
     flash.each do |key, value| 
       response = response + content_tag(:div, value, class: "alert alert-#{key}")
-      
+
     end
     flash.discard
     response
   end
 
   def notify_count
-    current_user.notifications.where("created_at > ?", current_user.notify).count  
+    unless current_user.nil?
+      current_user.notifications.where("created_at > ?", current_user.notify).count  
+    else
+      0
+    end
+
   end
 
 end

@@ -5,7 +5,7 @@
     <br/>
   </div>
     <% else %>
-      <%= link_to image_tag(link.avatar.url, class: 'link-image') , link.avatar.url(:medium), data: { colorbox: true } if link.avatar.exists? %>
+      <%= link_to image_tag(link.picture, class: 'link-image') , link.picture, data: { colorbox: true } if link.picture %>
       <span class="link_url"><%= link_to link.url_heading, 'http://' + link.url_link %> </span>
 
     <% host = 'http://'+ link.url_link %>
