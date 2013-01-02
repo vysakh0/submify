@@ -1,6 +1,6 @@
 <% provide(:title, @link.url_heading) %>
-<% if @link.avatar.exists? %>
-  <% image = @link.avatar.url %>
+<% if @link.picture %>
+  <% image = @link.picture %>
 <% elsif @link.topics.exists? %>
   <% image = @link.topics.first.avatar.url %>
 <% else %>
