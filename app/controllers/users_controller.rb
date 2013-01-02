@@ -6,11 +6,11 @@ class UsersController < ApplicationController
 
   before_filter :admin_user, only: :destroy
   def hovercard
-    @user = User.find_by_id(params[:id])
+    @user = User.find(params[:id])
     render partial: 'hovercard'
   end
   def index
-    @users = User.paginate(page: params[:page])
+      @users = User.all.paginate(page: params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

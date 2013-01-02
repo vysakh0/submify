@@ -6,7 +6,7 @@
       </div>
       <% cache link do %>
         <div class="info_link"><%= render 'links/link_info', link: link %></div>
-        <div class="link_comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></div>
+        <span class="show-comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></span>
       <% end %>
     </div>
   </div>

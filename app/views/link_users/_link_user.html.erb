@@ -4,9 +4,9 @@
     <div class="link_contain">
       <% topic = link_user.topic %>
       <% if link_user.user == current_user and topic %>
-        <div class="unsubmit">
+        <span class="unsubmit">
           <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  link_path(link, unsubmit: link_user, topic: topic.id), method: :delete, remote: true %>
-        </div>
+        </span>
       <% else %>
         <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"), "#", class: "dummy" %>
         <!--
@@ -21,11 +21,11 @@
         submitted to <%= link_to topic.topic_name, topic_path(topic), class: 'topic_hover', data: { hovercard: topic.id } %>
       </div> 
         <div class="link_info"><%= render 'links/link_info', link: link %></div>
-        <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
-        <div class="votes">
+        <span class="votes-up"> <i class="icon-caret-up icon-small"></i></span>
+        <span class="votes">
           <%= link_user.votes.count %>
-        </div>
-        <div class="show-comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></div>
+        </span>
+        <span class="show-comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></span>
       <% end %>
       <div id="topic-downvote">
         <%= render 'downvotes/downvote_button', votable: link_user, type: "LinkUser" %>

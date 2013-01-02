@@ -3,3 +3,4 @@
 <% end -%>
   $(".comment-<%= @comment.id %> > .comments-form").append('<%= escape_javascript(render(partial: 'shared/comment_form')) %>');
   $(".comment-<%= @comment.id %>  .show_comment").html('<%= pluralize(@comment.comments.count, "reply") %>');
+  $("div.expandable").expander();

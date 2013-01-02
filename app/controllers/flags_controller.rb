@@ -9,9 +9,9 @@ class FlagsController < ApplicationController
       format.js
     end
   end
-  
+
   def destroy
-    flag = Flag.find_by_id(params[:id])
+    flag = Flag.find(params[:id])
     @flaggable = flag.flaggable
     flag.destroy
     respond_to do |format|
@@ -20,7 +20,10 @@ class FlagsController < ApplicationController
   end
   private
   def get_parent
-    @flaggable = Link.find_by_id(params[:flaggable_id]) if params[:flaggable_type] == "Link"
-    @flaggable = Comment.find_by_id(params[:flaggable_id]) if params[:flaggable_type] == "Comment"
+    if params[:flaggable_type] == "Link"
+      @flaggable = Link.find(params[:flaggable_id]) 
+    elsif params[:flaggable_type] == "Comment"
+      @flaggable = Comment.find(params[:flaggable_id]) 
+    end
   end
 end

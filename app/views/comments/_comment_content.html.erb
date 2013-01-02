@@ -1,11 +1,11 @@
 <% cache "#{comment.id}_comment" do %>
-  <div class="timestamp">
+  <span class="timestamp">
     <% if comment.commentable_type == 'Link' %>
       <%= link_to timing(comment.created_at), link_comment_path(comment.commentable, comment) %>
     <% else %>
       <%= timing(comment.created_at) %>
     <% end %>
-  </div>
+  </span>
     <%= image_tag (comment.user.avatar.url(:thumb)), class: "comment-image" %>
 
     <div class="user_link">

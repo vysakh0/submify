@@ -30,7 +30,6 @@ class Link < ActiveRecord::Base
   has_many :topics, through: :link_users, source: :topic
 
   validates :url_link, uniqueness: true
-  attr_accessible :avatar
 
   def link_with_topic!(topic_name, user, topic_page)
     topic_slug = topic_name.to_s.parameterize
@@ -41,14 +40,8 @@ class Link < ActiveRecord::Base
       topic = Topic.create!(name: topic_name)
       topic.save
     end
-    link_users.create!(topic_id: topic.id, user_id: user.id)
+     LinkUser.create!(topic_id: topic.id, user_id: user.id, link_id: self.id)
   end
-
-
-  def picture_from_url(url)
-    self.avatar = URI.parse(url) 
-  end
-
 
   def self.search(params)
 

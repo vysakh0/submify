@@ -7,7 +7,6 @@ class LinksController < ApplicationController
 
   include LinksHelper
   before_filter :signed_in_user, only: [:create, :destroy, :submit]
-  before_filter :correct_user, only: [:destroy]
 
   def index
 
@@ -48,7 +47,7 @@ class LinksController < ApplicationController
   def submit
     id = params[:link][:id]
     topic = params[:topic_name]
-    @link = Link.find_by_id(id)
+    @link = Link.find(id)
     if id and topic!= ""
       @link_user = @link.link_with_topic!(topic, current_user, nil)
       publish_to_fb
@@ -60,13 +59,14 @@ class LinksController < ApplicationController
 
   def create
     topic = params[:topic_name]
-    @topic = Topic.find_by_id(params[:topic_val]) if params[:topic_val]!=""
+    @topic = Topic.find(params[:topic_val]) if params[:topic_val]!=""
 
     if topic != "" and data=check_url
 
       if @link= Link.find_by_url_link(params[:link][:url_link])
-
-        if @link.topics.exists? name: topic
+        #after upgrading to rails4 use this line instead of previous line:)
+        #if @link= Link.find_by url_link: params[:link][:url_link]
+        if @link.topics.exists? slug: topic.parameterize
           flash[:notice]="Link already submitted to the topic"
         else 
           @link_user = @link.link_with_topic!(topic, current_user,@topic)
@@ -108,58 +108,8 @@ class LinksController < ApplicationController
   end
 
   private
-  def correct_user
-    if params[:id] != nil
-      id = params[:id] 
-    else
-      id = params[:link][:id]
-    end
-    @link = current_user.links.find_by_id(id)
-  end
-
   def publish_to_fb
     FacebookLinkNotifyWorker.perform_async(current_user.oauth_token, link_url(@link))
   end
-  def check_url
-    count = 0
-    given =params[:link][:url_link]
-    given = "http://" + given if /https?:\/\/[\S]+/.match(given) == nil
-    begin       	
-      final_url =  open(given, allow_safe_redirections: true).base_uri.to_s
-      data = Nokogiri::HTML(open(final_url))
-      final_url.slice! "http://"
-      final_url.slice! "https://"
-      final_url.slice! "www."
-      final_url.slice! '#'+ URI(final_url).fragment if URI(final_url).fragment
-      final_url = final_url[0..-2] if final_url[-1]=='/'
-      params[:link][:url_link] = final_url
-      params[:link][:url_heading] = data.css('title')[0].content
-      data 
-
-    rescue URI::InvalidURIError
-      host = given.match(".+\:\/\/([^\/]+)")[1]
-      path = given.partition(host)[2] || "/"
-      path= "/" if path== ""
-      begin    		
-        doc = Net::HTTP.get host, path
-        given.slice! "http://"
-        given.slice! "https://"
-        given.slice! "www."
-        data = Nokogiri::HTML(doc)	
-        params[:link][:url_link] = given
-        params[:link][:url_heading] = data.css('title')[0].content
-        data
-      rescue
-        flash[:error] = "Invalid url in uri rescue"
-        false
-      end	
-    rescue Errno::ECONNRESET 
-      count  = count + 1 
-      retry unless count > 10 
-    rescue
-      flash[:error] = "Invalid url"
-      false
-    end
-  end   
 end
 

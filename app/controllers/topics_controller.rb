@@ -3,13 +3,13 @@ class TopicsController < ApplicationController
   before_filter :check_verification, only: [:edit, :update]
 
   def hovercard
-    @topic = Topic.find_by_id(params[:id])
+    @topic = Topic.find(params[:id])
     render partial: 'hovercard'
   end
 
   def show
     @link = current_user.links.build  if current_user
-    @topic = Topic.find_by_slug(params[:id])
+    @topic = Topic.find(params[:id])
     @link_users = @topic.link_users.order("score DESC").paginate(page: params[:page], per_page: params[:per_page]||15)
     respond_to do |format|
       format.html

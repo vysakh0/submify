@@ -11,36 +11,36 @@
           <%= render 'flags/flag_button', flaggable: comment, type: "Comment" %>
         </div>
       <% end %>
-  <% cache ["abc",comment] do %>
+  <% cache comment do %>
     <!--
        -do caching with comment content and number of stats & number of downvotes or replies as it saves more time calculating the count & no need of any counter cache :) This works with model of vote, downvote set as touch: true!
        -->
      <div class="comment_body">
        <%= render 'comments/comment_content', comment: comment %>
      </div>
-      <div class="votes-up"> <i class="icon-caret-up icon-small"></i></div>
-      <div class="votes">
+      <span class="votes-up"> <i class="icon-caret-up icon-small"></i></span>
+      <span class="votes">
         <%= comment.votes.count %>
-      </div>
+      </span>
       <% if comment.commentable_type == 'Link' %>
 
-        <div class="votes-up"><i class="icon-comments-alt icon-small"></i></div>
-        <div class="show_comment">
+        <span class="votes-up"><i class="icon-comments-alt icon-small"></i></span>
+        <span class="show_comment">
           <%= link_to pluralize(comment.comments.count, "reply"), comment_path(comment), class: 'hook-comment-comments', remote: true %>
-        </div>
+        </span>
       <% else %>
-        <div class="votes-up"><i class="icon-caret-down icon-small"></i></div>
-        <div class="downvotes">
+        <span class="votes-up"><i class="icon-caret-down icon-small"></i></span>
+        <span class="downvotes">
           <%= comment.downvotes.count %>
-        </div>
+        </span>
       <% end %>
     <% end %>
-    <div class="comment-downvote">
+    <span class="comment-downvote">
       <%= render 'downvotes/downvote_button', votable: comment, type: "Comment" %>
-    </div>
-    <div class="comment-vote">
+    </span>
+    <span class="comment-vote">
       <%= render 'votes/vote_button', votable: comment, type: "Comment" %>
-    </div>
+    </span>
     <br/>
     <div id="comment-comments">
     </div>

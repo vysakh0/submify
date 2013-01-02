@@ -8,9 +8,9 @@ class DownvotesController < ApplicationController
       format.js
     end
   end
-  
+
   def destroy
-    vote = Downvote.find_by_id(params[:id])
+    vote = Downvote.find(params[:id])
     @votable = vote.votable
     vote.destroy
     respond_to do |format|
@@ -19,7 +19,10 @@ class DownvotesController < ApplicationController
   end
   private
   def get_parent
-    @votable = LinkUser.find_by_id(params[:votable_id]) if params[:votable_type] == "LinkUser"
-    @votable = Comment.find_by_id(params[:votable_id]) if params[:votable_type] == "Comment"
+    if params[:votable_type] == "LinkUser"
+      @votable = LinkUser.find(params[:votable_id]) 
+    elsif params[:votable_type] == "Comment"
+      @votable = Comment.find(params[:votable_id]) 
+    end
   end
 end

@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
 
   def show
 
-    @comment = Comment.find_by_id(params[:id])
+    @comment = Comment.find(params[:id])
     @comments = @comment.comments
     respond_to do |format|
       format.html
@@ -17,28 +17,12 @@ class CommentsController < ApplicationController
     end
   end
 
-  #def create
-      #@comment = @parent.comments.build(params[:comment])
-    #if params[:comment][:body]!=''
-      #@comment.user = current_user
-      #if @comment.save
-        #flash[:notice] = "Commented"
-        #publish_to_fb if @parent.class.to_s == "Link"
-        #redirect_to @parent
-      #else
-        #redirect_to @parent
-      #end
-    #else
-      #redirect_to @parent 
-    #end
-  #end
-
   def create
     @comment = @parent.comments.build(params[:comment])
     if params[:comment][:body]!=''
       @comment.user = current_user
       if @comment.save
-        publish_to_fb if @parent.class.to_s == "Link"
+        publish_to_fb if @parent.is_a? Link
       else
         flash[:notice] = "Could not add comment, try again"
       end
@@ -52,7 +36,7 @@ class CommentsController < ApplicationController
 
   def destroy
     if @comment
-      @comment_id = @comment.id
+      @comment_id = params[:id]
       @comment.destroy
     end
     respond_to do |format|
@@ -65,17 +49,17 @@ class CommentsController < ApplicationController
 
   def get_parent
     if params[:val]=="1"     
-    @parent = Link.find_by_id(params[:comment_id]) 
+    @parent = Link.find(params[:comment_id]) 
     else
-    @parent = Comment.find_by_id(params[:comment_id]) 
+    @parent = Comment.find(params[:comment_id]) 
     end
   end
 
   def correct_user
 
-    @comment = current_user.comments.find_by_id(params[:id])
+    @comment = Comment.find(params[:id])
     @parent = @comment.commentable       
-    redirect_to @parent if @comment.nil?
+    redirect_to @parent unless current_user?(@comment.user)
 
   end
 

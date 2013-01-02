@@ -13,7 +13,7 @@
 #
 
 class Comment < ActiveRecord::Base
-  attr_accessible :body, :avatar
+  attr_accessible :body 
   self.per_page = 10
   belongs_to :commentable, polymorphic: true, touch: true 
   belongs_to :user, touch: true 
