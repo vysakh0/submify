@@ -32,6 +32,11 @@
           <!--
           -each comment is fragment cached :)
           -->
+          <% unless @comments.next_page %>
+          <div class="downvoted">
+          <%= link_to "show downvoted comments", downvoted_link_path(@link), remote: true %>
+        </div>
+      <% end %>
 
         </ol>
         <%= will_paginate @comments %>

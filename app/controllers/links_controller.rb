@@ -28,7 +28,8 @@ class LinksController < ApplicationController
   def show
 
     @link = Link.find_by_id(params[:id])
-    @comments = @link.comments.order('score DESC').paginate(page: params[:page])
+    @comments = @link.comments.where('score > -10').order('score DESC').paginate(page: params[:page])
+    @downvoted_comments = @link.comments.where('score < -10').exists?
     @link_users = @link.link_users.order('score DESC')
     if @link_users.exists?
       search = { q: "" }
@@ -43,6 +44,10 @@ class LinksController < ApplicationController
       format.html
       format.js
     end
+  end
+  def downvoted
+    link = Link.find(params[:id])
+    @comments = link.comments.where("score <= -10")
   end
 
   def submit

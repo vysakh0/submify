@@ -2,8 +2,7 @@ class UsersController < ApplicationController
 
   before_filter :signed_in_user, only: [:edit, :update, :destroy, :following, :index, :notifications]
   before_filter :correct_user, only: [:edit, :update, :following, :notifications]
-  #before_filter :not_signed_user, only: [:create, :new]
-
+#rails4 makes filter into action, so you should have before_action
   before_filter :admin_user, only: :destroy
   def hovercard
     @user = User.find_by_id(params[:id])

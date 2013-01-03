@@ -26,16 +26,11 @@ class Comment < ActiveRecord::Base
   after_save :calculate_score
 
   def calculate_score
-    if self.commentable.is_a? Link
-      CommentScoreWorker.perform_async(self.id)
-    end
+    self.update_column(:score, self.created_at.to_i)
   end
 
   def user_name
     user.user_name
-  end
-  def user_to_notify
-    self.commentable.user.id 
   end
 
 
