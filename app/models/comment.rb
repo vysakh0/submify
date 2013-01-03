@@ -28,8 +28,8 @@ class Comment < ActiveRecord::Base
   def score_and_notify
     self.update_column(:score, self.created_at.to_i)
     Notification.create!(notifiable_id: self.id, notifiable_type: "Comment" , user_id: self.commentable.user.id) if self.commentable.is_a? Comment
-
   end
+
 
   def user_name
     user.user_name

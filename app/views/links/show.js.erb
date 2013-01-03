@@ -2,5 +2,8 @@ $('.full_comments').append('<%= j (render @comments) %>');
 <% if @comments.next_page %>
   $('.pagination').replaceWith('<%= j (will_paginate(@comments)) %>');
 <% else %>
+  <% if @downvoted_comments %>
+    $('.full_comments').append('<%= j content_tag(:div, (link_to "Show downvoted comments", downvoted_link_path(@link), remote: true), class: 'downvoted' )%>') 
+      <% end %>
   $('.pagination').remove();
 <% end %>

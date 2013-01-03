@@ -1,0 +1,4 @@
+<% if @comments.all.count>0 %>
+  $(".full_comments").append('<%= escape_javascript(render(partial: 'comments/comment', collection: @comments)) %>');
+  $(".downvoted").remove("");
+<% end -%>

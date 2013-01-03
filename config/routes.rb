@@ -27,7 +27,7 @@ Youarel::Application.routes.draw do
 
   resources :flags, only: [:create, :destroy]
   resources :link_users, only: [:create, :destroy]
-  resources :links, only: [:create, :destroy, :show, :submit]
+  resources :links, only: [:create, :destroy, :show]
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :relationships, only: [:create, :destroy]
@@ -40,6 +40,7 @@ Youarel::Application.routes.draw do
   resources :links do
     member do
       post 'submit'
+      get  'downvoted'
     end
   end
   resources :topics do
