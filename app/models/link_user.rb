@@ -24,10 +24,10 @@ class LinkUser < ActiveRecord::Base
   default_scope order: 'link_users.created_at DESC'
 
   validates :link_id, presence: true
-  after_save :calculate_score
+  after_create :calculate_score
 
   def calculate_score
-    LinkScoreWorker.perform_in(15.minutes, self.id)
+    self.update_column(:score, self.created_at.to_i)
   end
 
   def self.from_users_followed_by(user)

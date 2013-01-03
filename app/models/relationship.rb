@@ -17,9 +17,10 @@ class Relationship < ActiveRecord::Base
 
   validates :follower_id, presence: true
   validates :followed_id, presence: true
+  after_save :notify
 
-  def user_to_notify
-    self.followed_id
+
+  def notify
+      Notification.create!(notifiable_id: self.id, notifiable_type: "Relationship", user_id: self.followed_id)
   end
-
 end

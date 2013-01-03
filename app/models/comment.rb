@@ -23,20 +23,15 @@ class Comment < ActiveRecord::Base
   has_many :notifications, as: :notifiable, dependent: :destroy
   validates :user_id, presence: true
   has_many :votes, as: :votable, dependent: :destroy
-  after_save :calculate_score
+  after_create :score_and_notify
 
-  def calculate_score
-    if self.commentable.is_a? Link
-      CommentScoreWorker.perform_async(self.id)
-    end
+  def score_and_notify
+    self.update_column(:score, self.created_at.to_i)
+    Notification.create!(notifiable_id: self.id, notifiable_type: "Comment" , user_id: self.commentable.user.id) if self.commentable.is_a? Comment
+
   end
 
   def user_name
     user.user_name
   end
-  def user_to_notify
-    self.commentable.user.id 
-  end
-
-
 end
