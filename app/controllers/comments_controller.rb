@@ -10,13 +10,18 @@ class CommentsController < ApplicationController
   def show
 
     @comment = Comment.find(params[:id])
-    @comments = @comment.comments
+    @comments = @comment.comments.where('score > -10')
+    @downvoted_comments = @comment.comments.where('score < -10').exists?
     respond_to do |format|
       format.html
       format.js
     end
   end
 
+  def downvoted
+    @comment = Comment.find(params[:id])
+    @comments = @comment.comments.where("score <= -10")
+  end
   def create
     @comment = @parent.comments.build(params[:comment])
     if params[:comment][:body]!=''

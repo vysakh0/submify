@@ -49,6 +49,11 @@ Youarel::Application.routes.draw do
     end
   end
   resources :comments do
+    member do
+      get 'downvoted'
+    end
+  end
+  resources :comments do
 
     resources :comments, only: [:create, :destroy, :show]
   end
