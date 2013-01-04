@@ -3,7 +3,7 @@
 <% name = @topic.name and val= @topic.id if @topic %>
 <%= form_for @link , remote: true do |f| %>
   <div class="field">
-    <%= f.text_area :url_link, placeholder: "Submit a link...", id: "complete_url"%>
+    <%= f.text_area :url_link, placeholder: "Best thing you saw on the Internet today. Let's go.", id: "complete_url"%>
     <%= text_field_tag 'topic_name', name , class: 'link-topic-tag', placeholder: "Topic name" %>
    <%= hidden_field_tag 'topic_val', val  %>
     <%= f.submit "Submit", class: "btn btn-small gif-load", id: "submit_button"%>

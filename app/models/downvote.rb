@@ -47,7 +47,7 @@ class Downvote < ActiveRecord::Base
     score = link_user.created_at.to_i #time is the default score 
     x = link_user.votes.count - link_user.downvotes.count 
     if x< 0 
-      score =  score + ( C* x)
+      score = x
     elsif x>=1
       score = (C * Math::log10(x+1) ) +  score #-> this is reddit algorithm
     end

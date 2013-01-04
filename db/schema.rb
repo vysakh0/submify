@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130102114054) do
+ActiveRecord::Schema.define(:version => 20130104142413) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -85,10 +85,14 @@ ActiveRecord::Schema.define(:version => 20130102114054) do
     t.string   "notifiable_type"
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
+    t.integer  "parent_id",       :limit => 8
+    t.string   "parent_type"
   end
 
   add_index "notifications", ["notifiable_id", "notifiable_type"], :name => "index_notifications_on_notifiable_id_and_notifiable_type"
   add_index "notifications", ["notifiable_id"], :name => "index_notifications_on_notifiable_id"
+  add_index "notifications", ["parent_id", "parent_type"], :name => "index_notifications_on_parent_id_and_parent_type"
+  add_index "notifications", ["parent_id"], :name => "index_notifications_on_parent_id"
   add_index "notifications", ["updated_at"], :name => "index_notifications_on_updated_at"
   add_index "notifications", ["user_id"], :name => "index_notifications_on_user_id"
 
