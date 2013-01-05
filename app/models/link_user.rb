@@ -20,6 +20,7 @@ class LinkUser < ActiveRecord::Base
   belongs_to :topic, class_name: "Topic", touch: true
   has_many :votes, as: :votable, dependent: :destroy
   has_many :downvotes,as: :votable, dependent: :destroy
+  has_many :notifications, as: :parent, dependent: :destroy
 
   default_scope order: 'link_users.created_at DESC'
 

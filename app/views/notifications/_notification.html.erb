@@ -1,32 +1,33 @@
 <li class="nostyle">
 <% notifiable = notification.notifiable %>
+<% parent = notification.parent %>
 <% if notifiable.is_a? Vote %>
-  <% if notifiable.votable.is_a? Comment %>
+  <% if parent.is_a? Comment %>
     <span class="span8">
     <%= image_tag (notifiable.user.avatar.url(:thumb)), class: "comment-image" %>
-    <%= link_to notifiable.user.user_name, notifiable.user, class: 'profile_hover', data: { hovercard: notifiable.user.id } %> voted on your comment
+    <%= link_to notifiable.user.user_name, notifiable.user, class: 'profile_hover', data: { hovercard: notifiable.user.id } %> <%= pluralize((parent.votes.size) -1 , "other") if parent.votes.size > 1 %> voted on your comment
 
-    <span class="span8"><%= render 'comments/comment', comment: notifiable.votable %></span>
+    <span class="span8"><%= render 'comments/comment', comment: parent %></span>
   </span>
   <% else %>
     <span class="span8">
     <%= image_tag (notifiable.user.avatar.url(:thumb)), class: "comment-image" %>
-    <%= link_to notifiable.user.user_name, notifiable.user, class: 'profile_hover', data: { hovercard: notifiable.user.id } %> voted on your link </span>
-    <%= render 'link_users/link_user', link_user: notifiable.votable %>
+    <%= link_to notifiable.user.user_name, notifiable.user, class: 'profile_hover', data: { hovercard: notifiable.user.id } %> <%= pluralize((parent.votes.size) - 1, "other") if parent.votes.size > 1%> voted on your link </span>
+    <%= render 'link_users/link_user', link_user: parent %>
   <% end %>
   <% elsif notifiable.is_a? Comment %>
     <span class="span8">
 
     <%= image_tag (notifiable.user.avatar.url(:thumb)), class: "comment-image" %>
-    <%= link_to notifiable.user.user_name, notifiable.user, class: 'profile_hover', data: { hovercard: notifiable.user.id } %>
+    <%= link_to notifiable.user.user_name, notifiable.user, class: 'profile_hover', data: { hovercard: notifiable.user.id } %> <%= pluralize((parent.comments.size) - 1, "other") if parent.comments.size > 1%>
     replied to your comment
-    <span class="span8"><%= render 'comments/comment', comment: notifiable.commentable %></span>
+    <span class="span8"><%= render 'comments/comment', comment: parent %></span>
   </span>
 
-  <% elsif notifiable.is_a? Relationship %>
+  <% elsif notifiable.is_a? User%>
     <div class="span8">
-    <%= image_tag (notifiable.followed.avatar.url(:thumb)), class: "comment-image" %>
-        <%= link_to notifiable.followed.user_name, notifiable.followed, class: 'profile_hover', data: { hovercard: notifiable.followed_id } %> is now following you 
+    <%= image_tag (notifiable.avatar.url(:thumb)), class: "comment-image" %>
+        <%= link_to notifiable.user_name, notifiable, class: 'profile_hover', data: { hovercard: notifiable.id } %> is now following you 
     </div>
   <% end %>
   </li>

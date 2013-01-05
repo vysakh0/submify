@@ -12,7 +12,7 @@
 class Relationship < ActiveRecord::Base
   attr_accessible :followed_id
   belongs_to :follower, class_name: "User", touch: true
-  has_many :notifications, as: :notifiable, dependent: :destroy
+  has_many :notifications, as: :parent, dependent: :destroy
   belongs_to :followed, class_name: "User", touch: true
 
   validates :follower_id, presence: true
@@ -21,6 +21,6 @@ class Relationship < ActiveRecord::Base
 
 
   def notify
-      Notification.create!(notifiable_id: self.id, notifiable_type: "Relationship", user_id: self.followed_id)
+      Notification.create!(notifiable_id: follower_id , notifiable_type: "User", user_id: followed_id, parent_id: id, parent_type: "Relationship")
   end
 end

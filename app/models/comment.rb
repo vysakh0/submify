@@ -20,6 +20,7 @@ class Comment < ActiveRecord::Base
   has_many :flags, as: :flaggable
   has_many :downvotes,as: :votable, dependent: :destroy
   has_many :comments, as: :commentable
+  has_many :notifications, as: :parent, dependent: :destroy
   has_many :notifications, as: :notifiable, dependent: :destroy
   validates :user_id, presence: true
   has_many :votes, as: :votable, dependent: :destroy
@@ -28,9 +29,9 @@ class Comment < ActiveRecord::Base
   def score_and_notify
     update_column(:score, created_at.to_i)
     if commentable.is_a? Comment
-      Notification.where(notifiable_type: "Comment" , user_id: commentable.user.id, parent_id: commentable_id, parent_type: "Comment").first_or_create do |notify|
-        notify.notifiable_id = id
-      end
+      notify = Notification.where(notifiable_type: "Comment" , user_id: commentable.user.id, parent_id: commentable_id, parent_type: "Comment").first_or_initialize
+      notify.notifiable_id = id
+      notify.save!
     end
   end
 

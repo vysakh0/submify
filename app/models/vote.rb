@@ -27,9 +27,9 @@ class Vote < ActiveRecord::Base
     else 
       comment_score(votable)
     end
-    Notification.where(notifiable_type: "Vote" , user_id: votable.user.id, parent_id: votable_id, parent_type: votable_type).first_or_create do |notify|
-      notify.notifiable_id = id
-    end
+    notify = Notification.where(notifiable_type: "Vote" , user_id: votable.user.id, parent_id: votable_id, parent_type: votable_type).first_or_initialize
+    notify.notifiable_id = id
+    notify.save!
   end
 
 

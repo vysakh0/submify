@@ -12,7 +12,7 @@ module FlashLinkHelper
 
   def notify_count
     unless current_user.nil?
-      current_user.notifications.where("created_at > ?", current_user.notify).count  
+      current_user.notifications.where("updated_at > ?", current_user.notify).count  
     else
       0
     end
