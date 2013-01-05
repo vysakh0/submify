@@ -21,13 +21,15 @@ class Vote < ActiveRecord::Base
   has_many :notifications, as: :notifiable, dependent: :destroy
 
   def score_and_notify
-    if self.votable.is_a? LinkUser
-      link_user_score(self.votable)
+    if votable.is_a? LinkUser
+      link_user_score(votable)
 
     else 
-      comment_score(self.votable)
+      comment_score(votable)
     end
-    Notification.create!(notifiable_id: votable_id, notifiable_type: votable_type , user_id: votable.user.id)
+    Notification.where(notifiable_type: "Vote" , user_id: votable.user.id, parent_id: votable_id, parent_type: votable_type).first_or_create do |notify|
+      notify.notifiable_id = id
+    end
   end
 
 

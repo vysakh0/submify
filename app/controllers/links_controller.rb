@@ -26,7 +26,7 @@ class LinksController < ApplicationController
   end
   def show
 
-    @link = Link.find_by_id(params[:id])
+    @link = Link.find(params[:id])
     @comments = @link.comments.where('score > -10').order('score DESC').paginate(page: params[:page])
     @downvoted_comments = @link.comments.where('score < -10').exists?
     @link_users = @link.link_users.order('score DESC')

@@ -26,8 +26,12 @@ class Comment < ActiveRecord::Base
   after_create :score_and_notify
 
   def score_and_notify
-    self.update_column(:score, self.created_at.to_i)
-    Notification.create!(notifiable_id: self.id, notifiable_type: "Comment" , user_id: self.commentable.user.id) if self.commentable.is_a? Comment
+    update_column(:score, created_at.to_i)
+    if commentable.is_a? Comment
+      Notification.where(notifiable_type: "Comment" , user_id: commentable.user.id, parent_id: commentable_id, parent_type: "Comment").first_or_create do |notify|
+        notify.notifiable_id = id
+      end
+    end
   end
 
 

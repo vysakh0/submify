@@ -89,11 +89,9 @@ ActiveRecord::Schema.define(:version => 20130104142413) do
     t.string   "parent_type"
   end
 
-  add_index "notifications", ["notifiable_id", "notifiable_type"], :name => "index_notifications_on_notifiable_id_and_notifiable_type"
   add_index "notifications", ["notifiable_id"], :name => "index_notifications_on_notifiable_id"
-  add_index "notifications", ["parent_id", "parent_type"], :name => "index_notifications_on_parent_id_and_parent_type"
+  add_index "notifications", ["notifiable_type", "parent_id", "parent_type", "user_id"], :name => "notification_index", :unique => true
   add_index "notifications", ["parent_id"], :name => "index_notifications_on_parent_id"
-  add_index "notifications", ["updated_at"], :name => "index_notifications_on_updated_at"
   add_index "notifications", ["user_id"], :name => "index_notifications_on_user_id"
 
   create_table "relationships", :force => true do |t|
@@ -137,8 +135,8 @@ ActiveRecord::Schema.define(:version => 20130104142413) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                                             :null => false
+    t.datetime "updated_at",                                             :null => false
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin",               :default => false
@@ -152,7 +150,7 @@ ActiveRecord::Schema.define(:version => 20130104142413) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.text     "description"
-    t.datetime "notify"
+    t.datetime "notify",              :default => '2013-01-05 11:36:12'
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -32,7 +32,7 @@
           <!--
           -each comment is fragment cached :)
           -->
-          <% unless @comments.next_page %>
+          <% if !(@comments.next_page) and  @downvoted_comments %>
           <div class="downvoted">
           <%= link_to "show downvoted comments", downvoted_link_path(@link), remote: true %>
         </div>

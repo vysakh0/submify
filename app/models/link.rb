@@ -38,7 +38,6 @@ class Link < ActiveRecord::Base
     elsif topic = Topic.find_by_slug(topic_slug)
     else
       topic = Topic.create!(name: topic_name)
-      topic.save
     end
      LinkUser.create!(topic_id: topic.id, user_id: user.id, link_id: self.id)
   end

@@ -1,6 +1,5 @@
 class AddNotifyTimestampToUsers < ActiveRecord::Migration
   def change
-    add_column :users, :notify, :timestamp
-    add_index :notifications, :updated_at
+    add_column :users, :notify, :timestamp, default: Time.now
   end
 end
