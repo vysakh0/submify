@@ -25,8 +25,8 @@
         <span class="votes">
           <%= link_user.votes.count %>
         </span>
-        <span class="show-comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></span>
       <% end %>
+        <span class="show-comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></span>
       <div id="topic-downvote">
         <%= render 'downvotes/downvote_button', votable: link_user, type: "LinkUser" %>
       </div>

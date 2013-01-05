@@ -1,7 +1,8 @@
 <% vid = @parent.class.to_s.downcase+'-'+@parent.id.to_s %>
 <% if @parent.class.to_s == "Link"%>
   $('.full_comments').prepend("<%= escape_javascript render('comments/comment', comment: @comment ) %>");
-  $(" .link_comments").html("<%= pluralize(@parent.comments.count,"comment") %>");
+  $(".show-comments").html("<%= pluralize(@parent.comments.count,"comment") %>");
+
 $('#comment_text').val("");
 <% else %>
 
