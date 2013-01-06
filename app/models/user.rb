@@ -75,15 +75,15 @@ class User < ActiveRecord::Base
 
   after_update :flush_name_cache
 
-  def user_name
-    Rails.cache.fetch([:user, id, :name]) do
-      name
-    end
-  end
+  #def user_name
+    #Rails.cache.fetch([:user, id, :name]) do
+      #name
+    #end
+  #end
 
-  def flush_name_cache
-    Rails.cache.delete([:user, id, :name]) if name_changed?
-  end
+  #def flush_name_cache
+    #Rails.cache.delete([:user, id, :name]) if name_changed?
+  #end
 
   def remove_from_soulmate
     loader = Soulmate::Loader.new("user")

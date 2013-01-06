@@ -4,7 +4,7 @@
 <% cache @topic do %>
 <h3>
 <%= image_tag (@topic.avatar.url(:thumb)), class: "topic-pic" %>
-  <%= @topic.topic_name %>
+  <%= @topic.name %>
 </h3>
 <div class="expandable"><%= @topic.description %></div>
 <ul class="breadcrumb">

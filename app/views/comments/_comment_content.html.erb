@@ -10,7 +10,7 @@
 
     <div class="user_link">
       <span class="user">
-        <%= link_to comment.user_name, comment.user, class: 'profile_hover', data: { hovercard: comment.user.id } %>
+        <%= link_to comment.user.name, comment.user, class: 'profile_hover', data: { hovercard: comment.user.id } %>
       </span>
     </div>
      <div class="expandable"> <%= comment.body %></div>
