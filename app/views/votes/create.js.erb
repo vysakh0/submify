@@ -1,6 +1,6 @@
 <% if @votable.is_a? LinkUser %>
 
-  <% vid = "link"+'-'+@votable.id.to_s %>
+  <% vid = "link-#{@votable.id.to_s}" %>
   $(".<%= vid %> > .topic_detail > .tvote").html("<%= escape_javascript render('votes/vote_button', votable: @votable) %>");
   $(".<%= vid %> > .topic_detail > .topic_votes ").html("<%= pluralize(@votable.votes.count, 'vote') %>");
     

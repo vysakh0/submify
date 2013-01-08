@@ -1,5 +1,5 @@
 <% if @votable.is_a? LinkUser %>
-  <% vid = "link"+'-'+@votable.id.to_s %>
+  <% vid = "link-#{@votable.id.to_s}" %>
   $(".<%= vid %> > .topic_detail > .tdvote").html("<%= escape_javascript render('downvotes/downvote_button', votable: @votable) %>");
 
   $(".<%=vid %> > .link_contain > #topic-downvote").html("<%= escape_javascript render('downvotes/downvote_button', votable: @votable) %>");

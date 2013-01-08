@@ -11,9 +11,7 @@ class LinksController < ApplicationController
   def index
 
     final_url  =params[:q]
-    final_url.slice! "http://"
-    final_url.slice! "https://"
-    final_url.slice! "www."
+    final_url = final_url.sub(/http:\/\/www.|https:\/\/www.|http:\/\/|https:\/\/|www./, '')
     params[:q] = final_url
     if params[:q]
       @links = Link.search(params)
