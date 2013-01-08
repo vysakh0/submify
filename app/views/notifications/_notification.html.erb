@@ -19,7 +19,10 @@
     <span class="span8">
 
     <%= image_tag (notifiable.user.avatar.url(:thumb)), class: "comment-image" %>
-    <%= link_to notifiable.user.name, notifiable.user, class: 'profile_hover', data: { hovercard: notifiable.user.id } %> <%= pluralize((parent.comments.size) - 1, "other") if parent.comments.size > 1%>
+    <%= link_to notifiable.user.name, notifiable.user, class: 'profile_hover', data: { hovercard: notifiable.user.id } %> 
+    <% if parent.comments.size > 1%>
+      and others 
+    <% end %>
     replied to your comment
     <span class="span8"><%= render 'comments/comment', comment: parent %></span>
   </span>
