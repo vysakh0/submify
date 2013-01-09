@@ -61,8 +61,9 @@ module LinksHelper
       final_url =  open(given, allow_safe_redirections: true).base_uri.to_s
       data = Nokogiri::HTML(open(final_url))
       final_url = final_url.sub(/http:\/\/www.|https:\/\/www.|http:\/\/|https:\/\/|www./, '')
-      final_url.slice! '#'+ URI(final_url).fragment if URI(final_url).fragment
-      final_url = final_url[0..-2] if final_url[-1]=='/'
+      final_url.slice! "##{URI(final_url).fragment}" if URI(final_url).fragment
+      final_url.chomp('/')
+      #final_url = final_url[0..-2] if final_url[-1]=='/'
       params[:link][:url_link] = final_url
       params[:link][:url_heading] = data.css('title')[0].content
       data 

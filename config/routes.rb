@@ -1,67 +1,48 @@
 require 'sidekiq/web'
 Youarel::Application.routes.draw do
 
-  mount Sidekiq::Web, at: '/sidekiq'
-  resources :users do
-    collection { get :search }
+  get 'kavalan', 'kavalan/comments', 'kavalan/topics'
+ 
+  resources :votes, only: [:create, :destroy]
+  resources :downvotes, only: [:create, :destroy]
+  resources :topics, only: [:create, :destroy, :show, :edit ]
+  resources :flags, only: [:create, :destroy]
+  resources :links, only: [:create, :destroy, :show]
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :relationships, only: [:create, :destroy]
+  resources :topic_user_relationships, only: [:create, :destroy]
+  resources :links do
+    resources :comments, only: [:create, :destroy, :show]
   end
-  match '/autocomplete', to: 'static_pages#autocomplete', as: 'autocomplete'
-
-  match '/autocomplete_topic', to: 'static_pages#autocomplete_topic_name', as: 'autocomplete_topic'
-  match '/contact', to: 'static_pages#contact'
-  resources :users do
+  resources :links do
     member do
-      get :following, :followers, :commented, :followed_topics, :hovercard, :notifications
+      post 'submit'
     end
+  end
+  resources :comments do
+    resources :comments, only: [:create, :destroy, :show]
   end
   resources :topics do
     member do
       get :following_users, :hovercard
     end
   end
-
-  match '/front', to: 'static_pages#front_page'
-  resources :votes, only: [:create, :destroy]
-  resources :downvotes, only: [:create, :destroy]
-  resources :topics, only: [:create, :destroy, :show, :edit ]
-
-  resources :flags, only: [:create, :destroy]
-  resources :link_users, only: [:create, :destroy]
-  resources :links, only: [:create, :destroy, :show]
-  resources :sessions, only: [:new, :create, :destroy]
-
-  resources :relationships, only: [:create, :destroy]
-
-  resources :topic_user_relationships, only: [:create, :destroy]
-  resources :links do
-    resources :comments, only: [:create, :destroy, :show]
-  end
-
-  resources :links do
+  resources :users do
     member do
-      post 'submit'
-      get  'downvoted'
+      get :following, :followers, :commented, :followed_topics, :hovercard, :notifications
     end
-  end
-  resources :topics do
-    member do
-      post 'unsubmit'
-    end
-  end
-  resources :comments do
-    member do
-      get 'downvoted'
-    end
-  end
-  resources :comments do
-
-    resources :comments, only: [:create, :destroy, :show]
   end
   #  match '/signin', to: 'sessions#new'
+  mount Sidekiq::Web, at: '/sidekiq'
+  match '/contact', to: 'static_pages#contact'
+  match '/front', to: 'static_pages#front_page'
   match '/auth/:provider/callback', to: 'sessions#new'
   match '/auth/failure', to: 'sessions#failure'
   match '/signup', to: 'users#new'
   match '/signout', to: 'sessions#destroy', via: :delete
+  match '/autocomplete', to: 'static_pages#autocomplete', as: 'autocomplete'
+
+  match '/autocomplete_topic', to: 'static_pages#autocomplete_topic_name', as: 'autocomplete_topic'
   root to: 'static_pages#home'
   # The priority is based upon order of creation:
   # first created -> highest priority.
