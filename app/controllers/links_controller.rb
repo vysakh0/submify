@@ -6,7 +6,7 @@ require 'open_uri_redirections'
 class LinksController < ApplicationController
 
   include LinksHelper
-  before_filter :signed_in_user, only: [:create, :destroy, :submit]
+  before_filter :signed_in_user, only: [:create, :destroy, :submit, :unsubmit]
 
   def index
 
@@ -101,6 +101,11 @@ class LinksController < ApplicationController
   end
 
   def destroy
+    link = Link.find(params[:id])
+    @link_id = link.id
+    link.destroy
+  end
+  def unsubmit
     unsubmit = LinkUser.find(params[:unsubmit])
     unsubmit.destroy
     @link_user_id = params[:unsubmit]

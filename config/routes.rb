@@ -1,7 +1,6 @@
 require 'sidekiq/web'
 Youarel::Application.routes.draw do
 
-  get 'kavalan', 'kavalan/comments', 'kavalan/topics'
  
   resources :votes, only: [:create, :destroy]
   resources :downvotes, only: [:create, :destroy]
@@ -16,7 +15,7 @@ Youarel::Application.routes.draw do
   end
   resources :links do
     member do
-      post 'submit'
+      post 'submit', 'unsubmit'
     end
   end
   resources :comments do
@@ -34,6 +33,9 @@ Youarel::Application.routes.draw do
   end
   #  match '/signin', to: 'sessions#new'
   mount Sidekiq::Web, at: '/sidekiq'
+  match '/kavalan', to: 'kavalan#links'
+  match '/kavalan/comments', to: 'kavalan#comments'
+  match '/kavalan/topics', to: 'kavalan#topics'
   match '/contact', to: 'static_pages#contact'
   match '/front', to: 'static_pages#front_page'
   match '/auth/:provider/callback', to: 'sessions#new'

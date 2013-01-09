@@ -1,6 +1,6 @@
 
 <li class="topics_in nostyle">
-<div class="follow_button topic-<%= topic.id %>">  <%= render 'follow_form', topic: topic if signed_in? %> </div>
+<div class="follow_button topic-<%= topic.id %>">  <%= render 'topics/follow_form', topic: topic if signed_in? %> </div>
 <%= image_tag (topic.avatar.url(:thumb)), class: "topic-pic" %>
 <%= link_to topic.name, topic, class: 'topic_hover' , data: { hovercard: topic.id } %>
   <% if current_user and current_user.admin? %>
