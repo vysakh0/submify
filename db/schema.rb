@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130104142413) do
+ActiveRecord::Schema.define(:version => 20130110165447) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -19,8 +19,10 @@ ActiveRecord::Schema.define(:version => 20130104142413) do
     t.integer  "commentable_id",   :limit => 8
     t.string   "commentable_type"
     t.integer  "score",            :limit => 8
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.integer  "votes_count",                   :default => 0
+    t.integer  "comments_count",                :default => 0
   end
 
   add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
@@ -55,12 +57,13 @@ ActiveRecord::Schema.define(:version => 20130104142413) do
   add_index "flags", ["user_id"], :name => "index_flags_on_user_id"
 
   create_table "link_users", :force => true do |t|
-    t.integer  "link_id",    :limit => 8
-    t.integer  "user_id",    :limit => 8
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-    t.integer  "topic_id",   :limit => 8
-    t.integer  "score",      :limit => 8
+    t.integer  "link_id",     :limit => 8
+    t.integer  "user_id",     :limit => 8
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+    t.integer  "topic_id",    :limit => 8
+    t.integer  "score",       :limit => 8
+    t.integer  "votes_count",              :default => 0
   end
 
   add_index "link_users", ["link_id", "topic_id"], :name => "index_link_users_on_link_id_and_topic_id", :unique => true
@@ -72,9 +75,10 @@ ActiveRecord::Schema.define(:version => 20130104142413) do
   create_table "links", :force => true do |t|
     t.string   "url_link"
     t.string   "url_heading"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.string   "picture"
+    t.integer  "comments_count", :default => 0
   end
 
   add_index "links", ["url_link"], :name => "index_links_on_url_link", :unique => true
@@ -151,6 +155,9 @@ ActiveRecord::Schema.define(:version => 20130104142413) do
     t.datetime "avatar_updated_at"
     t.text     "description"
     t.datetime "notify",              :default => '2013-01-05 11:36:12'
+    t.integer  "comments_count",      :default => 0
+    t.integer  "link_users_count",    :default => 0
+    t.integer  "followers_count",     :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

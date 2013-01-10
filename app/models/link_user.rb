@@ -16,7 +16,7 @@ class LinkUser < ActiveRecord::Base
   attr_accessible :link_id, :user_id, :topic_id
 
   belongs_to :link, class_name: "Link", touch: true
-  belongs_to :user, class_name: "User", touch: true
+  belongs_to :user, class_name: "User", touch: true, counter_cache: true
   belongs_to :topic, class_name: "Topic", touch: true
   has_many :votes, as: :votable, dependent: :destroy
   has_many :downvotes,as: :votable, dependent: :destroy
@@ -28,7 +28,7 @@ class LinkUser < ActiveRecord::Base
   after_create :calculate_score
 
   def calculate_score
-    self.update_column(:score, self.created_at.to_i)
+    self.update_column(:score, (self.created_at.to_i/60))
   end
 
   def self.from_users_followed_by(user)

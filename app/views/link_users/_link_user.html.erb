@@ -23,10 +23,10 @@
         <div class="link_info"><%= render 'links/link_info', link: link %></div>
         <span class="votes-up"> <i class="icon-caret-up icon-small"></i></span>
         <span class="votes">
-          <%= link_user.votes.count %>
+          <%= link_user.votes_count %>
         </span>
       <% end %>
-        <span class="show-comments">  <%= link_to pluralize(link.comments.count, "comment"), link %></span>
+        <span class="show-comments">  <%= link_to pluralize(link.comments_count, "comment"), link %></span>
       <div id="topic-downvote">
         <%= render 'downvotes/downvote_button', votable: link_user, type: "LinkUser" %>
       </div>

@@ -15,8 +15,8 @@
 class Comment < ActiveRecord::Base
   attr_accessible :body 
   self.per_page = 10
-  belongs_to :commentable, polymorphic: true, touch: true 
-  belongs_to :user, touch: true 
+  belongs_to :commentable, polymorphic: true, touch: true, counter_cache: true
+  belongs_to :user, touch: true, counter_cache: true
   has_many :flags, as: :flaggable
   has_many :downvotes,as: :votable, dependent: :destroy
   has_many :comments, as: :commentable
@@ -27,7 +27,7 @@ class Comment < ActiveRecord::Base
   after_create :score_and_notify
 
   def score_and_notify
-    update_column(:score, created_at.to_i)
+    update_column(:score, (created_at.to_i/60))
     if commentable.is_a? Comment
       notify = Notification.where(notifiable_type: "Comment" , user_id: commentable.user.id, parent_id: commentable_id, parent_type: "Comment").first_or_initialize
       notify.notifiable_id = id

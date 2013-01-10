@@ -20,13 +20,13 @@
      </div>
       <span class="votes-up"> <i class="icon-caret-up icon-small"></i></span>
       <span class="votes">
-        <%= comment.votes.count %>
+        <%= comment.votes_count %>
       </span>
       <% if comment.commentable_type == 'Link' %>
 
         <span class="votes-up"><i class="icon-comments-alt icon-small"></i></span>
         <span class="show_comment">
-          <%= link_to pluralize(comment.comments.count, "reply"), comment_path(comment), class: 'hook-comment-comments', remote: true %>
+          <%= link_to pluralize(comment.comments_count, "reply"), comment_path(comment), class: 'hook-comment-comments', remote: true %>
         </span>
       <% else %>
         <span class="votes-up"><i class="icon-caret-down icon-small"></i></span>
