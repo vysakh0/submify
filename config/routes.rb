@@ -33,9 +33,9 @@ Youarel::Application.routes.draw do
   end
   #  match '/signin', to: 'sessions#new'
   mount Sidekiq::Web, at: '/sidekiq'
-  match '/kavalan', to: 'kavalan#links'
-  match '/kavalan/comments', to: 'kavalan#comments'
-  match '/kavalan/topics', to: 'kavalan#topics'
+  match '/admin', to: 'admin#links'
+  match '/admin/comments', to: 'admin#comments'
+  match '/admin/topics', to: 'admin#topics'
   match '/contact', to: 'static_pages#contact'
   match '/front', to: 'static_pages#front_page'
   match '/auth/:provider/callback', to: 'sessions#new'

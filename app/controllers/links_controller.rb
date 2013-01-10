@@ -7,6 +7,8 @@ class LinksController < ApplicationController
 
   include LinksHelper
   before_filter :signed_in_user, only: [:create, :destroy, :submit, :unsubmit]
+  #in rails4 before_filter will be before_action
+  before_filter :check_admin, only: :destroy
 
   def index
 
@@ -112,12 +114,14 @@ class LinksController < ApplicationController
     respond_to do |format|
       format.js
     end
-
   end
 
   private
   def publish_to_fb
     FacebookLinkNotifyWorker.perform_async(current_user.oauth_token, link_url(@link))
+  end
+  def check_admin
+    redirect_to root_url unless signed_in? and current_user.admin?
   end
 end
 

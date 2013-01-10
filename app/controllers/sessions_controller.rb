@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
   
   before_filter :not_signed_user, only: [:create, :new]
 

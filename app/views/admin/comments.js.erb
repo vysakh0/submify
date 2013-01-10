@@ -1,0 +1,6 @@
+$('.show-commented').append('<%= j (render @comments) %>');
+<% if @comments.next_page %>
+  $('.pagination').replaceWith('<%= j (will_paginate(@comments)) %>');
+<% else %>
+  $('.pagination').remove();
+<% end %>
