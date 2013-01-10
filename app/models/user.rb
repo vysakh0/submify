@@ -73,8 +73,6 @@ class User < ActiveRecord::Base
   after_save :load_into_soulmate
   before_destroy :remove_from_soulmate
 
-  after_update :flush_name_cache
-
   #def user_name
     #Rails.cache.fetch([:user, id, :name]) do
       #name
