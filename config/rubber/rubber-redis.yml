@@ -1,0 +1,17 @@
+redis_server_version: 2.4.16
+redis_server_pid_file: /var/run/redis-server.pid
+redis_server_conf_file: /etc/redis.conf
+redis_server_log_file: /var/log/redis-server.log
+redis_server_port: 6379
+
+redis_db_dir: /mnt/redis
+
+gems: [redis]
+
+role_dependencies:
+  redis_master: [redis]
+  redis_slave: [redis]
+
+roles:
+  redis:
+    packages: [zip]

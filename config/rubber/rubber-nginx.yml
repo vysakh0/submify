@@ -1,0 +1,10 @@
+
+# Uses from base rubber config
+# domain: foo.com
+
+# Uses from rubber-complete.yml
+# web_tools_port: 8080
+
+roles:
+  nginx:
+    packages: [nginx]

@@ -1,0 +1,17 @@
+<%
+  @read_cmd = 'crontab -l'
+  @write_cmd = 'crontab -'
+  @additive = ['# start-redis-crontab', '# end-redis-crontab']
+%>
+
+<%
+  # Backup db every 3 hours to secondary db if available, else primary db
+  backup_redis_host = rubber_instances.for_role('redis_slave').first rescue nil
+  backup_redis_host ||= rubber_instances.for_role('redis_master').first
+  if backup_redis_host.name == rubber_env.host
+%>
+
+# Backup redis DBs every hour.
+0 * * * * <%= Rubber.root %>/script/rubber cron --task util:backup --directory=/mnt/redis_backups --name=redis --command="nice zip -r \%dir\%/\%name\%_\%time_stamp\%.zip <%= rubber_env.redis_db_dir %> -x \*temp\*.rdb"
+
+<% end %>

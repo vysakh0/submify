@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '3.2.11'
 gem 'bcrypt-ruby', '3.0.1'
@@ -31,12 +31,13 @@ gem 'cache_digests'
 gem 'redis-rails'
 gem 'redis-store'
 gem 'colorbox-rails'
+gem "rubber", :git => 'git://github.com/wr0ngway/rubber.git'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do
-	gem 'rspec-rails', '2.11.0'
-        gem 'capybara', '1.1.2'
-        gem 'growl', '1.0.3'
+  gem 'rspec-rails', '2.11.0'
+  gem 'capybara', '1.1.2'
+  gem 'growl', '1.0.3'
 end
 
 
@@ -44,24 +45,24 @@ end
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '3.2.5'
- #gem "turbo-sprockets-rails3-0.2.13"
+  gem 'therubyracer', :platforms => :ruby
+  #gem "turbo-sprockets-rails3-0.2.13"
   gem 'coffee-rails', '3.2.2'
-gem 'sprockets-rails', :require => 'sprockets/railtie'
+  gem 'sprockets-rails', :require => 'sprockets/railtie'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-gem 'font-awesome-rails'
+  gem 'font-awesome-rails'
   gem 'uglifier', '1.2.3'
 end
 
 gem 'jquery-rails', '2.0.2'
 gem 'annotate', '2.5.0', group: :development
 group :test do
-	gem 'capybara', '1.1.2'
-        gem 'factory_girl_rails', '4.1.0'
+  gem 'capybara', '1.1.2'
+  gem 'factory_girl_rails', '4.1.0'
 end
 
 group :production do
-	gem 'pg'
+  gem 'pg'
 end
 
 # To use ActiveModel has_secure_password
@@ -71,7 +72,7 @@ end
 # gem 'jbuilder'
 
 # Use unicorn as the app server
- gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
@@ -79,3 +80,4 @@ end
 # To use debugger
 # gem 'debugger'
 #
+gem 'open4'
