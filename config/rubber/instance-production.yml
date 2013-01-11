@@ -1,3 +1,107 @@
 ---
+- !ruby/object:Rubber::Configuration::InstanceItem
+  name: db01
+  domain: submify.com
+  roles:
+  - !ruby/object:Rubber::Configuration::RoleItem
+    name: db
+    options:
+      primary: true
+  - !ruby/object:Rubber::Configuration::RoleItem
+    name: postgresql
+    options: {}
+  - !ruby/object:Rubber::Configuration::RoleItem
+    name: postgresql_master
+    options: {}
+  - !ruby/object:Rubber::Configuration::RoleItem
+    name: collectd
+    options: {}
+  - !ruby/object:Rubber::Configuration::RoleItem
+    name: monit
+    options: {}
+  instance_id: i-a54320d4
+  image_type: m1.small
+  image_id: ami-eafa5883
+  security_groups:
+  - submify_production_default
+  - submify_production_db01
+  - submify_production_db
+  - submify_production_postgresql
+  - submify_production_postgresql_master
+  - submify_production_collectd
+  - submify_production_monit
+  external_host: ec2-50-19-35-220.compute-1.amazonaws.com
+  external_ip: 50.19.35.220
+  internal_host: domU-12-31-39-13-CC-02.compute-1.internal
+  internal_ip: 10.201.207.240
+  zone: us-east-1c
+  platform: linux
+  root_device_type: instance-store
+- !ruby/object:Rubber::Configuration::InstanceItem
+  name: app01
+  domain: submify.com
+  roles:
+  - !ruby/object:Rubber::Configuration::RoleItem
+    name: app
+    options: {}
+  - !ruby/object:Rubber::Configuration::RoleItem
+    name: unicorn_nginx
+    options: {}
+  - !ruby/object:Rubber::Configuration::RoleItem
+    name: collectd
+    options: {}
+  - !ruby/object:Rubber::Configuration::RoleItem
+    name: monit
+    options: {}
+  instance_id: i-ed4c2f9c
+  image_type: m1.small
+  image_id: ami-eafa5883
+  security_groups:
+  - submify_production_default
+  - submify_production_app01
+  - submify_production_app
+  - submify_production_unicorn_nginx
+  - submify_production_collectd
+  - submify_production_monit
+  external_host: ec2-23-20-193-138.compute-1.amazonaws.com
+  external_ip: 23.20.193.138
+  internal_host: ip-10-6-97-93.ec2.internal
+  internal_ip: 10.6.97.93
+  zone: us-east-1c
+  platform: linux
+  root_device_type: instance-store
+- !ruby/object:Rubber::Configuration::InstanceItem
+  name: web01
+  domain: submify.com
+  roles:
+  - !ruby/object:Rubber::Configuration::RoleItem
+    name: web
+    options: {}
+  - !ruby/object:Rubber::Configuration::RoleItem
+    name: haproxy
+    options: {}
+  - !ruby/object:Rubber::Configuration::RoleItem
+    name: collectd
+    options: {}
+  - !ruby/object:Rubber::Configuration::RoleItem
+    name: monit
+    options: {}
+  instance_id: i-d35437a2
+  image_type: m1.small
+  image_id: ami-eafa5883
+  security_groups:
+  - submify_production_default
+  - submify_production_web
+  - submify_production_web01
+  - submify_production_haproxy
+  - submify_production_collectd
+  - submify_production_monit
+  external_host: ec2-50-19-31-102.compute-1.amazonaws.com
+  external_ip: 50.19.31.102
+  internal_host: domU-12-31-39-13-C6-AE.compute-1.internal
+  internal_ip: 10.201.197.88
+  zone: us-east-1c
+  platform: linux
+  root_device_type: instance-store
 - volumes: {}
   static_ips: {}

@@ -1,5 +1,5 @@
 <% if comment %>
-    <div class="comment-<%= comment.id %>">
+    <div class="comment-<%= comment.id %> comment_contain">
 
       <br/>
       <% if comment.user== current_user || (current_user.admin? if current_user) %>
