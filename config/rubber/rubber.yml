@@ -18,7 +18,7 @@ timezone: US/Eastern
 
 # REQUIRED: the domain all the instances should be associated with
 #
-domain: submify.com
+domain: foo.com
 
 # OPTIONAL: See rubber-dns.yml for dns configuration
 # This lets rubber update a dynamic dns service with the instance alias
