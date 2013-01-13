@@ -1,2 +1,0 @@
-role_dependencies:
-  background_worker: [sidekiq]

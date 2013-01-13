@@ -1,5 +1,0 @@
-role_dependencies:
-  unicorn: [nginx]
-roles:
-  unicorn:
-    gems: [unicorn]
