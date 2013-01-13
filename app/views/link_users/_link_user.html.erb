@@ -13,6 +13,9 @@
         -created a dummy link so that unsigned user see a good profile links which is otherwise unaligned :)
         -->
       <% end %>  
+      <span class="timestamp">
+        <%= timing(link_user.created_at) %>
+      </span>
 
       <% cache link_user do %>
       <div class="user-profile">

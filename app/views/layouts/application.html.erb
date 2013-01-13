@@ -4,7 +4,7 @@
 
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# strongfly: http://ogp.me/ns/fb/strongfly#">
     <title>
-      <% if (n= notify_count) > 0 %>
+      <% if (n= current_user.notifications_count) > 0 %>
         (<%= n %>)
       <% end %>
       <%= yield(:title) %> | Submify </title>

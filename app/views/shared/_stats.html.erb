@@ -4,5 +4,5 @@
   <li class="comments_user">
   <%= link_to pluralize(@user.comments_count, 'comment') , commented_user_path(@user) %> <span class="divider">/</span> </li>
   <li class="followers_user">
-  <%= link_to pluralize(@user.followers.count, 'follower') , followers_user_path(@user)%> </li>
+  <%= link_to pluralize(@user.relationships_count, 'follower') , followers_user_path(@user)%> </li>
 </ul>

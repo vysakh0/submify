@@ -1,9 +1,9 @@
 <% vid = @parent.class.to_s.downcase+'-'+@parent.id.to_s %>
 <% if @parent.class.to_s == "Link"%>
   $('.comment-<%= @comment_id %>').remove();
-  $(".<%= vid %>  > .link_contain > .show-comments").html("<%= pluralize(@parent.comments_count,"comment") %>");
+  $(".<%= vid %>  > .link_contain > .show-comments").html("<%= pluralize(@parent.comments.count,"comment") %>");
 <% else %>
 
   $('.comment-<%= @comment_id %>').remove();
-$(".<%= vid %> > .show_comment").html("<%=  @parent.comments_count %>");
+$(".<%= vid %> > .show_comment").html("<%=  @parent.comments.count %>");
 <% end %>
