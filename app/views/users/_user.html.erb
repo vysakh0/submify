@@ -1,5 +1,5 @@
 
-<li>
+<li class="user_in">
 <span class="follow_button user-<%= user.id %>">  <%= render 'follow_form', user: user if signed_in? %> </span>
 <%= image_tag (user.avatar.url(:thumb)), class: "gravatar" %>
 <%= link_to user.name, user, class: 'profile_hover', data: {hovercard: user.id} %>

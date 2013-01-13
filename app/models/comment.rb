@@ -16,7 +16,7 @@ class Comment < ActiveRecord::Base
   attr_accessible :body 
   self.per_page = 10
   belongs_to :commentable, polymorphic: true, touch: true, counter_cache: true
-  belongs_to :user, touch: true, counter_cache: true
+  belongs_to :user, touch: true
   has_many :flags, as: :flaggable
   has_many :downvotes,as: :votable, dependent: :destroy
   has_many :comments, as: :commentable
@@ -25,6 +25,8 @@ class Comment < ActiveRecord::Base
   validates :user_id, presence: true
   has_many :votes, as: :votable, dependent: :destroy
   after_create :score_and_notify
+  after_save :update_counter_cache
+  after_destroy :update_counter_cache
 
   def score_and_notify
     update_column(:score, (created_at.to_i/60))
@@ -38,5 +40,11 @@ class Comment < ActiveRecord::Base
 
   def user_name
     user.user_name
+  end
+  def update_counter_cache
+    if commentable.is_a? Link
+      comments_count = Comment.where("user_id = #{user.id} AND commentable_type= 'Link' ").count
+      user.update_column(:comments_count, comments_count)
+    end
   end
 end

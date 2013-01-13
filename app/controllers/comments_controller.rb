@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
     if params[:comment][:body]!=''
       @comment.user = current_user
       if @comment.save
-        publish_to_fb if @parent.is_a? Link
+        #publish_to_fb if @parent.is_a? Link
       else
         flash[:notice] = "Could not add comment, try again"
       end
