@@ -5,7 +5,7 @@
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# strongfly: http://ogp.me/ns/fb/strongfly#">
     <title>
       <% if current_user and current_user.notifications_count > 0 %>
-        (<%= currnet_user.notifications_count %>)
+        (<%= current_user.notifications_count %>)
       <% end %>
       <%= yield(:title) %> | Submify </title>
       <%= favicon_link_tag 'favicon.ico' %>
