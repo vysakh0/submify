@@ -5,5 +5,5 @@ stderr_path "#{root}/log/unicorn.log"
 stdout_path "#{root}/log/unicorn.log"
 
 listen "/tmp/unicorn.youarel.sock"
-worker_processes 7
+worker_processes 4
 timeout 30
