@@ -14,6 +14,7 @@ set :branch, "master"
 
 default_run_options[:pty] = true
 ssh_options[:keys] = ["~/.ec2/gsg-keypair"]
+ssh_options[:forward_agent] = true
 
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
