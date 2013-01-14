@@ -49,9 +49,9 @@ group :assets do
 gem 'sprockets-rails', :require => 'sprockets/railtie'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
-gem 'font-awesome-rails'
   gem 'uglifier', '1.2.3'
 end
+gem 'font-awesome-rails'
 
 gem 'jquery-rails', '2.0.2'
 gem 'annotate', '2.5.0', group: :development
