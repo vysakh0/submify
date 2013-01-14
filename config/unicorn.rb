@@ -1,4 +1,4 @@
-root = "/home/ubuntu/apps/youarel"
+root = "/home/ubuntu/apps/blog/current"
 working_directory root
 pid "#{root}/tmp/pids/unicorn.pid"
 stderr_path "#{root}/log/unicorn.log"

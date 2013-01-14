@@ -1,13 +1,12 @@
 require "bundler/capistrano"
 
-server "184.72.240.67", :web, :app
+server "184.72.240.67", :web, :app, :db, primary: true
 
-set :application, "youarel"
+set :application, "blog"
 set :user, "ubuntu"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
 set :use_sudo, false
-
 
 set :scm, "git"
 set :repository, "git@bitbucket.org:vysakh0/submify.git"
@@ -15,8 +14,8 @@ set :branch, "master"
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
-after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
+after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
 namespace :deploy do
   %w[start stop restart].each do |command|
