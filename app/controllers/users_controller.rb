@@ -94,7 +94,9 @@ class UsersController < ApplicationController
   end
   def notifications
     @notifications = @user.notifications.order("updated_at DESC").paginate(page: params[:page])
-    @user.update_column(:notifications_count, @notifications.first.updated_at) if @notifications.any?
+    @user.update_column(:notify, @notifications.first.updated_at) if @notifications.any?
+    notify = Notification.where("updated_at > ?", @user.notify).count  
+    @user.update_column(:notifications_count, notify)
   end
 
   private
