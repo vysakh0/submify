@@ -17,7 +17,6 @@ gem "paperclip", "~> 3.0"
 gem "soulmate"
 gem 'open_uri_redirections'
 gem 'sidekiq'
-gem 'sinatra', require: false
 gem 'slim'
 gem 'oauth2'
 gem 'multi_fetch_fragments'

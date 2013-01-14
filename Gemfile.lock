@@ -358,7 +358,6 @@ DEPENDENCIES
   rvm-capistrano
   sass-rails (= 3.2.5)
   sidekiq
-  sinatra
   slim
   soulmate
   sprockets-rails
