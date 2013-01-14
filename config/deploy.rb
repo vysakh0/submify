@@ -17,8 +17,18 @@ set :branch, "master"
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
+before 'deploy:setup', 'rvm:install_rvm'
+set :rvm_install_type, :stable
+set :rvm_install_pkgs, %w[libyaml openssl]
+set :rvm_install_ruby_params, '--with-opt-dir=~/.rvm/usr'  # or for system installs:
+# set :rvm_install_ruby_params, '--with-opt-dir=/usr/local/rvm/usr'
+before 'deploy:setup', 'rvm:install_pkgs'
 
+before 'deploy:setup', 'rvm:install_ruby-1.9.3-p327'
+before 'deploy:setup', 'rvm:import_gemset'
+before 'deploy:setup', 'rvm:export_gemset'
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
+
 
 namespace :deploy do
   %w[start stop restart].each do |command|
