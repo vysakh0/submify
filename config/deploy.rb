@@ -1,4 +1,5 @@
 require "bundler/capistrano"
+set :bundle_flags, "--deployment --quiet --binstubs"
 
 server "184.72.240.67", :web, :app
 server "ec2-23-20-2-123.compute-1.amazonaws.com", :db, primary: true
@@ -17,7 +18,9 @@ default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
-
+set :default_environment, {
+  'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
+}
 namespace :deploy do
   %w[start stop restart].each do |command|
     desc "#{command} unicorn server"
