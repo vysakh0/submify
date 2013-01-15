@@ -20,6 +20,6 @@ production:
   encoding: unicode
   database: production
   host: localhost
-  pool: 20
+  pool: 6
   username: vysakh
   password: 1234@abcd
