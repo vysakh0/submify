@@ -27,7 +27,7 @@ gem "auto_html"
 gem 'bundler'
 gem 'cache_digests'
 #gem 'rails3-redis-session-store'
-gem 'rvm-capistrano'
+gem 'capistrano'
 gem 'redis-rails'
 gem 'redis-store'
 gem 'colorbox-rails'

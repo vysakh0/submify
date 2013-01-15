@@ -243,8 +243,6 @@ GEM
       railties (>= 3.0)
       rspec (~> 2.11.0)
     rubyzip (0.9.9)
-    rvm-capistrano (1.2.7)
-      capistrano (>= 2.0.0)
     sanitize (2.0.3)
       nokogiri (>= 1.4.4, < 1.6)
     sass (3.2.3)
@@ -352,7 +350,6 @@ DEPENDENCIES
   redis-rails
   redis-store
   rspec-rails (= 2.11.0)
-  rvm-capistrano
   sass-rails (= 3.2.5)
   sidekiq
   slim
