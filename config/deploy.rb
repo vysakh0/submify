@@ -1,7 +1,6 @@
 require "bundler/capistrano"
 
 server "184.72.240.67", :web, :app
-server "ec2-23-20-2-123.compute-1.amazonaws.com", :db, primary: true
 
 set :application, "blog"
 set :user, "ubuntu"
