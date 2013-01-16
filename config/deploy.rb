@@ -1,3 +1,4 @@
+require 'sidekiq/capistrano'
 require "bundler/capistrano"
 set :bundle_flags, "--deployment --quiet --binstubs"
 
@@ -18,6 +19,12 @@ default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
+
+set :sidekiq_role, :sidekiq
+role :sidekiq, "ec2-50-17-104-118.compute-1.amazonaws.com"
+set :sidekiq_processes, 1
+
+
 set :default_environment, {
   'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
 }
