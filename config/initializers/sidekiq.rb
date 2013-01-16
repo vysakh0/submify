@@ -1,4 +1,3 @@
-require './lib/scheduler.rb'
 Sidekiq.configure_server do |config|
   config.redis = { url: 'redis://ec2-50-17-104-118.compute-1.amazonaws.com:6379'}
 end
