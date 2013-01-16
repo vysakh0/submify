@@ -498,6 +498,9 @@ li.nostyle {
 *[id*='topic_hovercard_'] , *[id*='topic_hovercard_']{
   display: none;
 }
+*[id*='profile_hovercard_'] , *[id*='profile_hovercard_']{
+  display: none;
+}
 .topic-pic-hover{
   width: 60px;
   height: 60px;
