@@ -495,11 +495,14 @@ li.nostyle {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
+
 *[id*='topic_hovercard_'] , *[id*='topic_hovercard_']{
   display: none;
 }
 *[id*='profile_hovercard_'] , *[id*='profile_hovercard_']{
   display: none;
+
 }
 .topic-pic-hover{
   width: 60px;
@@ -527,6 +530,7 @@ li.nostyle {
   clear: left;
   padding-right: 10px;
 }
+
 #noti_Container {
     position:relative;
     border:1px solid blue;
