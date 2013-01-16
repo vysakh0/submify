@@ -2,7 +2,7 @@ require "bundler/capistrano"
 set :bundle_flags, "--deployment --quiet --binstubs"
 
 server "184.72.240.67", :web, :app
-server "ec2-23-20-2-123.compute-1.amazonaws.com", :db, primary: true
+server "ec2-23-22-38-10.compute-1.amazonaws.com", :db, primary: true
 
 set :application, "blog"
 set :user, "ubuntu"
