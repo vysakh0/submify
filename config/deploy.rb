@@ -21,7 +21,7 @@ ssh_options[:forward_agent] = true
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
 set :sidekiq_role, :sidekiq
-role :sidekiq, "ec2-50-17-104-118.compute-1.amazonaws.com"
+role :sidekiq, "184.72.240.67"
 set :sidekiq_processes, 1
 
 
