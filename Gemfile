@@ -31,6 +31,7 @@ gem 'cache_digests'
 gem 'redis-rails'
 gem 'redis-store'
 gem 'colorbox-rails'
+gem 'aws-sdk'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do

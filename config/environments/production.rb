@@ -32,6 +32,14 @@ Youarel::Application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = false
 
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+    :bucket => 'Submify_images',
+    :access_key_id => 'AKIAI3ESEO6AFUEOFQAA',
+    :secret_access_key => '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'
+  }
+  }
   # See everything in the log (default is :info)
   # config.log_level = :debug
 
