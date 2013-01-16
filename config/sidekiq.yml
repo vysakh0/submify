@@ -1,8 +1,8 @@
-root = "/home/ubuntu/apps/blog/current"
+---
 :verbose: false
-:pidfile: "#{root}/tmp/pids/sidekiq.pid"
+:pidfile: ./tmp/pids/sidekiq.pid
 :namespace: sidekiq_namespace
-:concurrency: 20
+:concurrency:  10
 :queues:
   - [high, 7]
   - [default, 5]
