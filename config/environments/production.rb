@@ -5,7 +5,7 @@ Youarel::Application.configure do
   YOUR_APP_SECRET = "6be81d70c8df4705180ed8052d635c37"
   # Code is not reloaded between requests
   config.cache_classes = true
-  config.cache_store = :dalli_store
+  config.cache_store = :dalli_store, 'ec2-50-17-104-118.compute-1.amazonaws.com'
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true

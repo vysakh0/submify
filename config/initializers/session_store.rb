@@ -3,7 +3,7 @@
                                           #:db => 0,
                                           #:expire_after => 10.minutes,
                                           #:key_prefix => "youarel:session:"
-Youarel::Application.config.session_store :redis_store, expire_in: 20.minutes
+Youarel::Application.config.session_store :redis_store, servers: { host: 'ec2-50-17-104-118.compute-1.amazonaws.com', port: 6379 }, expire_in: 20.minutes
 
 #Youarel::Application.config.session_store :cookie_store, key: '_youarel_session'
 #Rails.application.config.session_store ActionDispatch::Session::CacheStore, :expire_after => 20.minutes
