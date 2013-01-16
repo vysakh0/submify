@@ -5,7 +5,7 @@ stderr_path "#{root}/log/unicorn.log"
 stdout_path "#{root}/log/unicorn.log"
 
 listen "/tmp/unicorn.blog.sock"
-worker_processes 2
+worker_processes 6
 timeout 30
 after_fork do |server, worker|
   if defined?(Sidekiq)

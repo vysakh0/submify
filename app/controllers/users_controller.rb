@@ -9,12 +9,7 @@ class UsersController < ApplicationController
     render partial: 'hovercard'
   end
   def index
-      @users = User.all.paginate(page: params[:page])
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
-    end
+      @users = User.limit(100).paginate(page: params[:page])
   end
 
   def commented
