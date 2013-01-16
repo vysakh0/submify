@@ -1,7 +1,16 @@
+class AdminConstraint
+  def matches?(request)
+    return false unless request.session[:user_id]
+    user = User.find request.session[:user_id]
+    user && user.admin?
+  end
+end
+
 require 'sidekiq/web'
 Youarel::Application.routes.draw do
 
- 
+  mount Sidekiq::Web, at: '/sidekiq', :constraints => AdminConstraint.new
+
   resources :votes, only: [:create, :destroy]
   resources :downvotes, only: [:create, :destroy]
   resources :topics, only: [:create, :destroy, :show, :edit ]
@@ -32,7 +41,6 @@ Youarel::Application.routes.draw do
     end
   end
   #  match '/signin', to: 'sessions#new'
-  mount Sidekiq::Web, at: '/sidekiq'
   match '/admin', to: 'admin#links'
   match '/admin/comments', to: 'admin#comments'
   match '/admin/topics', to: 'admin#topics'
