@@ -104,8 +104,8 @@ class User < ActiveRecord::Base
       user.username = auth.extra.raw_info.username
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-      user.avatar = URI.parse("https://graph.facebook.com/#{auth.uid}/picture")
-      user.save!
+      user.avatar = URI.parse("https://graph.facebook.com/#{auth.uid}/picture") unless user.valid?
+      user.save! unless user.valid?
     end
   end
 
