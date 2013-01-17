@@ -6,6 +6,5 @@ class Notification < ActiveRecord::Base
   belongs_to :notifiable, polymorphic: true
   belongs_to :parent, polymorphic: true
   validates :user_id, presence: true
-  after_save :update_counter
 
 end
