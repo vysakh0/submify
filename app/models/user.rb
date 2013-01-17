@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
 
   extend FriendlyId
   friendly_id :username, use: :slugged
-  attr_accessible :avatar, :description, :name
+  attr_accessible :avatar, :description, :name, :notifications_count, :notify
 
   has_attached_file :avatar, styles: { medium: "200x200>", thumb: "100x100"}, default_style: :thumb, default_url:'/images/avatar/missing_profile_thumb.png'
   has_many :flags
