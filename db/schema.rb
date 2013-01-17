@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130113143656) do
+ActiveRecord::Schema.define(:version => 20130117174616) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -139,8 +139,8 @@ ActiveRecord::Schema.define(:version => 20130113143656) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                                             :null => false
-    t.datetime "updated_at",                                             :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin",               :default => false
@@ -154,7 +154,6 @@ ActiveRecord::Schema.define(:version => 20130113143656) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.text     "description"
-    t.datetime "notify",              :default => '2013-01-05 11:36:12'
     t.integer  "comments_count",      :default => 0
     t.integer  "link_users_count",    :default => 0
     t.integer  "relationships_count", :default => 0
