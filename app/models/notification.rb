@@ -7,7 +7,7 @@ class Notification < ActiveRecord::Base
   belongs_to :parent, polymorphic: true
   validates :user_id, presence: true
   after_save :inc_counter
-  after_destroy :dec_counter
+  before_destroy :dec_counter
 
   def inc_counter
     user.update_column(:notifications_count, user.notifications_count + 1)
