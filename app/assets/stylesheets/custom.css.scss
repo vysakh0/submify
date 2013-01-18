@@ -7,7 +7,7 @@ body {
   min-width: 1000px;
 }
 .brand{
-
+  font-family: Georgia, Times, "Times New Roman", serif;
   width: 210px;
 }
 .search-query{
@@ -323,6 +323,7 @@ padding-right: 100px;
   float: right;
   max-width: 150px;
   max-height: 75px;
+  padding: 5px;
 }
 .load-more {
 
@@ -372,6 +373,9 @@ padding-right: 100px;
   float: left;
   width: 100%;
 }
+.profile_hover, .topic_hover{
+  font-weight: bold;
+}
 .user-profile{
   width: 100%;
   color: #808080
@@ -393,6 +397,9 @@ padding-right: 100px;
   border-top-color: #E9E9E9;
   border-top-style: solid;
   border-top-width: 1px;
+  border-left-color: #E9E9E9;
+  border-left-style: solid;
+  border-left-width: 1px;
 }
 li.active{
   a{
@@ -534,32 +541,40 @@ li.nostyle {
 }
 
 #noti_Container {
-    position:relative;
-    border:1px solid blue;
-    width:16px;
-    height:16px;
+  position:relative;
+  border:1px solid blue;
+  width:16px;
+  height:16px;
 }
 .noti_bubble {
-    position:absolute;
-    top: -2px;
-    left: -2px;
-    padding:1px 2px 1px 2px;
-    background-color:red;
-    color:white;
-    font-weight:bold;
-    font-size:0.55em;
-    
-    border-radius:30px;
-    box-shadow:1px 1px 1px gray;
+  position:absolute;
+  top: -2px;
+  left: -2px;
+  padding:1px 2px 1px 2px;
+  background-color:red;
+  color:white;
+  font-weight:bold;
+  font-size:0.55em;
+
+  border-radius:30px;
+  box-shadow:1px 1px 1px gray;
 }
 .noti_noti{
-    right: -2px;
-    padding:1px 55px 1px 2px;
-    position: absolute;
-    color:red;
-    font-weight:bold;
-    font-size:0.55em;
+  right: -2px;
+  padding:1px 55px 1px 2px;
+  position: absolute;
+  color:red;
+  font-weight:bold;
+  font-size:0.55em;
 }
 .breadcrumb{
-  padding: 5px;
+  padding: 10px;
+}
+
+.link-user-image {
+  float: left;
+  margin-right: 10px;
+  width: 45px;
+  height: 45px;
+  padding-bottom: 10px;
 }

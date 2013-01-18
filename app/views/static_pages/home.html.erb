@@ -13,8 +13,8 @@
 
     <% else %>
       <% cache "front", expires_in: 2.minutes do %>
-        <% provide(:title, 'Best thing you saw on the Internet today. Lets go..' ) %>
-      <h3> Best thing you saw on the Internet today. Let's go... </h3>
+        <% provide(:title, 'What is the best thing you saw on the Internet today?. Lets go..' ) %>
+      <h3> What is the best thing you saw on the Internet today? Let's go... </h3>
       <ol class="links">
         <%= render @link_users if @link_users %>
       </ol>

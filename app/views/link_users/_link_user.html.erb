@@ -19,7 +19,7 @@
 
       <% cache link_user, expires_in: 10.minutes do %>
       <div class="user-profile">
-        <%= image_tag (link_user.user.avatar.url(:thumb)), class: 'comment-image'  %>
+        <%= image_tag (link_user.user.avatar.url(:thumb)), class: 'link-user-image'  %>
         <%= link_to link_user.user.name, link_user.user, class: 'profile_hover', data: { hovercard: link_user.user.id } %>
         submitted about <%= link_to topic.name, topic_path(topic), class: 'topic_hover', data: { hovercard: topic.id } %>
       </div> 
