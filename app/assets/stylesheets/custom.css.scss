@@ -9,10 +9,16 @@ body {
 .brand{
   font-family: Georgia, Times, "Times New Roman", serif;
   width: 210px;
+  font-weight: bold;
 }
 .search-query{
   width: 300px;
+  height: 12px;
 }
+.nav{
+  font-weight: bold;
+}
+
 #error_explanation {
 
   color: #f00;
@@ -144,6 +150,8 @@ textarea#topic_description, textarea#user_description{
     color: #004864;
     font-size: 22px; 
     font-family: Optima, 'Trebuchet MS', sans-serif;
+    padding-right: 5px;
+
   }
 
 }
@@ -378,7 +386,7 @@ padding-right: 100px;
 }
 .user-profile{
   width: 100%;
-  color: #808080
+  color: #808080;
 }
 .sep{
   width: 100%;
@@ -576,5 +584,4 @@ li.nostyle {
   margin-right: 10px;
   width: 45px;
   height: 45px;
-  padding-bottom: 10px;
 }
