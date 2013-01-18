@@ -13,6 +13,8 @@ class Notification < ActiveRecord::Base
     user.update_column(:notifications_count, user.notifications_count + 1)
   end 
   def dec_counter
-    user.update_column(:notifications_count, user.notifications_count - 1)
+    count = (user.notifications_count - 1) 
+    count = 0 if count < 0
+    user.update_column(:notifications_count, count)
   end 
 end

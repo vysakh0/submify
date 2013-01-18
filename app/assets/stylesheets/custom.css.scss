@@ -1,4 +1,6 @@
-@import "bootstrap.css" ;
+
+$navbarBackgroundHighlight: #605f46;
+@import "bootstrap";
 body {
 
   padding-top: 60px;
@@ -557,4 +559,7 @@ li.nostyle {
     color:red;
     font-weight:bold;
     font-size:0.55em;
+}
+.breadcrumb{
+  padding: 5px;
 }
