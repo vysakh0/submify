@@ -1,0 +1,24 @@
+<div class="intro_box">
+<% if signed_in? %>
+<% name , val = nil %>
+<%= form_for @link do |f| %>
+  <div class="field">
+    <span class="link_explain"> Submit a link in the box eg: http://facebook.com </span>
+    <br/>
+    <%= f.text_area :url_link, placeholder: "Submit the best thing you saw on the Internet today "%>
+    <br/>
+    <span class="link_explain"> Choose a suitable topic from autocomplete or just type to create a new one. eg. Facebook </h5>
+  </span>
+    <br/>
+    <%= text_field_tag 'topic_name', name , class: 'link-topic', placeholder: "Topic name" %>
+   <%= hidden_field_tag 'topic_val', val  %>
+   <br/>
+   <%= f.submit "Submit", class: "btn btn-small gif-load"%>
+   <br/>
+
+   <span class="sub_explain"> The submitted link will reach the topic followers and to your followers. Start submitting links </span>
+  </div>
+<% end %>
+
+<% end %>
+</div>

@@ -30,14 +30,14 @@ class LinksController < ApplicationController
     @comments = @link.comments.where('score > -10').order('score DESC').paginate(page: params[:page])
     @downvoted_comments = @link.comments.where('score < -10').exists?
     @link_users = @link.link_users.order('score DESC')
-    if @link_users.exists?
-      search = { q: "" }
-      @link_users.each_with_index do |link_user, i|
-        search[:q] = search[:q] + link_user.topic.name + "+"
-        break if i > 2
-      end
-      @related = Link.search(search)
-    end
+    #if @link_users.exists?
+      #search = { q: "" }
+      #@link_users.each_with_index do |link_user, i|
+        #search[:q] = search[:q] + link_user.topic.name + "+"
+        #break if i > 2
+      #end
+      #@related = Link.search(search)
+    #end
 
     respond_to do |format|
       format.html

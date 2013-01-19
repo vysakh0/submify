@@ -32,13 +32,13 @@ class Downvote < ActiveRecord::Base
 
   private 
 
-  C = 45000
+  C = 4500
   def comment_score(comment)
     x = comment.votes_count  - comment.downvotes.count  #number of upvotes only
     if x <= 0
       score =  x
     else
-      score = (C * Math::log10(x + 1)) + (comment.created_at.to_i/60) 
+      score = (C * (x + 1)) + (comment.created_at.to_i/60) 
     end
     comment.update_column(:score, score)
 
@@ -49,7 +49,7 @@ class Downvote < ActiveRecord::Base
     if x< 0 
       score = x
     elsif x>=1
-      score = (C * Math::log10(x+1) ) +  score #-> this is reddit algorithm
+      score = (C * (x+1) ) +  score #-> this is reddit algorithm
     end
     link_user.update_column(:score, score)
   end

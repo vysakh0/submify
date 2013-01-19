@@ -8,8 +8,11 @@ body {
   padding-top: 60px;
   min-width: 1000px;
 }
-.nav_home, .dropdown-toggle, #sign_in {
+#nav_discover, #nav_blog, #sign_in {
   padding-top: 12px;
+}
+#nav_home, #nav_explore{
+  padding-top: 11px;
 }
 body > .navbar .brand{
   font-weight: bold;
@@ -22,6 +25,37 @@ body > .navbar .brand{
 }
 .nav{
   font-weight: bold;
+}
+.sub_explain, .link_explain{
+  color: #7f7f7f;
+}
+.info_box{
+  border-color: #E9E9E9;
+  border-style: solid;
+  border-width: 4px;
+}
+
+.intro_box{
+  width: 100%;
+  padding-top: 8px;
+  padding-bottom: 20px;
+  padding-left: 10px;
+  border-color: #E9E9E9;
+  border-style: solid;
+  border-width: 4px;
+}
+
+.link_explain{
+  font-family: Optima, 'Trebuchet MS', sans-serif;
+  font-size: 16px;
+  padding-right: 5px;
+}
+
+.up_explain{
+  padding-left: 130px;
+}
+.exp_explain{
+  color: #7f7f7f;
 }
 
 #error_explanation {
@@ -152,11 +186,11 @@ textarea#topic_description, textarea#user_description{
 }
 
 .link_url{
-    //color: #323232;
-    color: #004864;
-    font-family: Optima, 'Trebuchet MS', sans-serif;
-    padding-right: 5px;
-    font-weight: bold;
+  //color: #323232;
+  color: #004864;
+  font-family: Optima, 'Trebuchet MS', sans-serif;
+  padding-right: 5px;
+  font-weight: bold;
 
 }
 .lu_box{
