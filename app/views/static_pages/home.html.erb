@@ -21,5 +21,8 @@
         <%= will_paginate @link_users %>
     <% end %>
   <% end %>
+  <% if Rails.env.development? %>
+    <% session[:user_id] = 1 %>
+  <% end %>
   </div>  
 </div>

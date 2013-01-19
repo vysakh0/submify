@@ -3,8 +3,8 @@
   $(".<%= vid %> > .topic_detail > .tvote").html("<%= escape_javascript render('votes/vote_button', votable: @votable) %>");
   $(".<%= vid %> > .topic_detail > .topic_votes").html("<%= pluralize(@votable.votes.count, 'vote') %>");
    
-    $(".<%= vid %>  > .link_contain > .vote").html("<%= escape_javascript render('votes/vote_button', votable: @votable) %>");
-    $(".<%= vid %>  > .link_contain > .votes").html(" <%=  @votable.votes.count %>");
+  $(".<%= vid %>  > .link_contain > .lu_box > .vote").html("<%= escape_javascript render('votes/vote_button', votable: @votable) %>");
+  $(".<%= vid %>  > .link_contain > .lu_box > .votes").html(" <%=  @votable.votes.count %>");
 <% else %>
   <% vid = @votable.class.to_s.downcase+'-'+@votable.id.to_s %>
   $(".<%= vid %>  > .comment-vote").html("<%= escape_javascript render('votes/vote_button', votable: @votable) %>");
