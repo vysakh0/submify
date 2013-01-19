@@ -19,4 +19,5 @@
 //= require jquery.autosize.js
 //= require jquery.expander.min.js
 //= require jquery.tools.min.js
+//= require rails-timeago
 //= require bootstrap-alert

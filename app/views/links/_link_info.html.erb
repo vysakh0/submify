@@ -5,12 +5,12 @@
     <br/>
   </div>
     <% else %>
-      <%= link_to image_tag(link.picture, class: 'link-image') , link.picture, data: { colorbox: true } if link.picture %>
-      <span class="link_url"><%= link_to link.url_heading, 'http://' + link.url_link, target: "_blank" %> </span>
-
+      <div class="link_link">
+      <%= link_to link.url_heading, 'http://' + link.url_link, target: "_blank", class: 'link_url' %> 
     <% host = 'http://'+ link.url_link %>
-    <span class="host_link">
-      <%= link_to host.match(".+\:\/\/([^\/]+)")[1], host %> 
-    </span>
+      <%= link_to host.match(".+\:\/\/([^\/]+)")[1], host, class: 'host_link' %> 
+    </div>
+      <%= link_to image_tag(link.picture, class: 'link-image') , link.picture, data: { colorbox: true } if link.picture %>
+
+    <% end %>
   <% end %>
-<% end %>

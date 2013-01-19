@@ -1,19 +1,21 @@
 
-$navbarBackgroundHighlight: #605f46;
+/*
+ *$navbarBackgroundHighlight: #605f46;
+ */
 @import "bootstrap";
 body {
 
   padding-top: 60px;
   min-width: 1000px;
 }
-.brand{
-  font-family: Georgia, Times, "Times New Roman", serif;
-  width: 210px;
+body > .navbar .brand{
   font-weight: bold;
+  padding-top: 12px;
+  padding-left: 40px;
+  padding-right: 80px;
 }
 .search-query{
-  width: 300px;
-  height: 12px;
+  width: 420px;
 }
 .nav{
   font-weight: bold;
@@ -65,7 +67,9 @@ display:block;
     font-size: 10px;
   }
 }
-
+.stats_of_user{
+  padding-top: 30px;
+}
 .gravatar {
   float: left;
   max-width: 60px;
@@ -145,24 +149,28 @@ textarea#topic_description, textarea#user_description{
 }
 
 .link_url{
-  a{
     //color: #323232;
     color: #004864;
-    font-size: 22px; 
     font-family: Optima, 'Trebuchet MS', sans-serif;
     padding-right: 5px;
+    font-weight: bold;
 
-  }
-
+}
+.lu_box{
+  padding-left: 60px;
 }
 .host_link{
   color: #7f7f7f;
   a{
     color: #7f7f7f;
     font-weight: bold;
-    font-size: 14px;
     font-family: arial, sans-serif;
   }
+}
+.link_link{
+  width: 100%;
+  padding: 5px;
+
 }
 .followers-count{
   font-size: 12px;
@@ -232,21 +240,12 @@ textarea#topic_description, textarea#user_description{
   padding-right: 50px;
   display: block;
 }
-#topic-downvote {
-
-  float: right;
-  /*
-   *max-height: 18px;
-   *max-width: 80px;
-   */
-padding-right: 100px;
-}
 .vote_link_show{
   float: right;
   font-size: 12.8px;
   padding-right: 40px;
 }
-.vote, .comment-downvote{
+.comment-downvote{
   float: right;
   /*
    *max-height: 18px;
@@ -328,9 +327,8 @@ padding-right: 100px;
   float: right;
 }
 .link-image {
-  float: right;
-  max-width: 150px;
-  max-height: 75px;
+  max-width: 400px;
+  max-height: 400px;
   padding: 5px;
 }
 .load-more {
@@ -382,7 +380,6 @@ padding-right: 100px;
   width: 100%;
 }
 .profile_hover, .topic_hover{
-  font-weight: bold;
 }
 .user-profile{
   width: 100%;
@@ -392,6 +389,10 @@ padding-right: 100px;
   width: 100%;
   border-bottom-color: #333333;
   height: 2px;
+
+}
+.profile_hover{
+  font-weight: bold;
 }
 .dummy{
   font-size: 0.2px;
@@ -433,6 +434,10 @@ li.nostyle {
     width: 12px;
     height: 12px;
   }
+}
+.vote, #topic-downvote{
+  float: left;
+  padding-left: 5px;
 }
 .topic_in, .related, .user_in{
   padding-top: 5px;
@@ -575,13 +580,11 @@ li.nostyle {
   font-weight:bold;
   font-size:0.55em;
 }
-.breadcrumb{
-  padding: 10px;
-}
 
 .link-user-image {
   float: left;
   margin-right: 10px;
   width: 45px;
   height: 45px;
+  padding: 5px;
 }

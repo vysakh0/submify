@@ -20,6 +20,7 @@ gem 'sidekiq'
 gem 'slim'
 gem 'oauth2'
 gem 'multi_fetch_fragments'
+gem 'rails-timeago', '~> 2.0'
 gem 'dalli'
 #gem "jqtools-rails"
 gem "auto_html"

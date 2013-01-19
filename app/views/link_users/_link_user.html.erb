@@ -14,7 +14,10 @@
         -->
       <% end %>  
       <span class="timestamp">
-        <%= timing(link_user.created_at) %>
+        <%= timeago_tag link_user.created_at, :nojs => true, :limit => 10.days.ago %>
+        <!--
+           -<%= timing(link_user.created_at) %>
+           -->
       </span>
 
       <% cache link_user, expires_in: 10.minutes do %>
@@ -23,6 +26,7 @@
         <%= link_to link_user.user.name, link_user.user, class: 'profile_hover', data: { hovercard: link_user.user.id } %>
         submitted about <%= link_to topic.name, topic_path(topic), class: 'topic_hover', data: { hovercard: topic.id } %>
       </div> 
+      <div class="lu_box row-fluid">
         <div class="link_info"><%= render 'links/link_info', link: link %></div>
         <span class="votes-up"> <i class="icon-caret-up icon-small"></i></span>
         <span class="votes">
@@ -30,13 +34,14 @@
         </span>
       <% end %>
         <span class="show-comments">  <%= link_to pluralize(link.comments_count, "comment"), link %></span>
-      <div id="topic-downvote">
-        <%= render 'downvotes/downvote_button', votable: link_user, type: "LinkUser" %>
-      </div>
-
-      <div class="vote">
+      <span class="vote">
         <%= render 'votes/vote_button', votable: link_user, type: "LinkUser" %>
-      </div>
+      </span>
+      <span id="topic-downvote">
+        <%= render 'downvotes/downvote_button', votable: link_user, type: "LinkUser" %>
+      </span>
+
+    </div>
     </div>
   </div>
 </div>

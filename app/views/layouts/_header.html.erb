@@ -6,13 +6,13 @@
     <div class="container-fluid">
       <div class="nav-collapse">
         <%=link_to "Submify", root_path, class: "brand" %>
-        <% if signed_in? %>
-          <%= form_tag links_path , :method => 'get', class:"navbar-search " do %>
+        <%= form_tag links_path , :method => 'get', class:"navbar-search " do %>
 
-            <%= text_field_tag :q, params[:q],class:"search-query", id: "search_input", placeholder:"Search" %>
-          <% end %>
-        <nav>
-        <ul class="nav pull-right">
+          <%= text_field_tag :q, params[:q],class:"search-query", id: "search_input", placeholder:"Search" %>
+        <% end %>
+        <% if signed_in? %>
+          <nav>
+          <ul class="nav pull-right">
 
             <li id="fat-menu" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
@@ -20,18 +20,18 @@
             </a>
 
             <ul class="dropdown-menu">
-<div class="topics-nav">
+              <div class="topics-nav">
 
-              <%= render 'shared/show_topics_nav' %>
-            </div>
+                <%= render 'shared/show_topics_nav' %>
+              </div>
             </ul>
             </li>
             <li><%= link_to "Home",root_path  %> </li>
             <li id="fat-menu" class="dropdown">
             <a href="#" class="dropdown-toggle"  data-toggle="dropdown" >
-              
+
               <%= current_user.name.split.first %> 
-              <%= image_tag (current_user.avatar.url(:thumb)), class: "gravatar" %><b class="caret"></b>
+              <%= image_tag (current_user.avatar.url(:thumb)), class: "nav-gravatar" %><b class="caret"></b>
               <% if current_user.notifications_count> 0 %>
                 <span class="noti_bubble"><%= current_user.notifications_count %></span>
               <% end %>
@@ -42,19 +42,21 @@
               <% if current_user.notifications_count> 0 %>
                 <span class="noti_noti"> <%= current_user.notifications_count%></span>
               <% end %>
-                </li>
-              
+              </li>
+
               <li><%= link_to "Notifications", notifications_user_path(current_user) %> 
 
-              
+
               <li><%= link_to "Settings", edit_user_path(current_user)%>  </li>
-                 
+
               <li class="divider"></li>
               <li> <%= link_to "Sign out", signout_path, method: "delete" %> </li>
             </ul>
             </li>
           <% else %>
             <ul class="nav pull-right"> 
+              <li><%= link_to "Discover", topics_path %> </li>
+              <li><%= link_to "Blog", "http://submify.tumblr.com" %></li>
               <li><%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %></li>
             </ul>
           <% end %>

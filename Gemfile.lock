@@ -204,6 +204,9 @@ GEM
       activesupport (= 3.2.11)
       bundler (~> 1.0)
       railties (= 3.2.11)
+    rails-timeago (2.1.0)
+      actionpack (>= 3.1)
+      activesupport (>= 3.1)
     railties (3.2.11)
       actionpack (= 3.2.11)
       activesupport (= 3.2.11)
@@ -358,6 +361,7 @@ DEPENDENCIES
   pg
   pismo
   rails (= 3.2.11)
+  rails-timeago (~> 2.0)
   redis-rails
   redis-store
   rspec-rails (= 2.11.0)
