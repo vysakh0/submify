@@ -34,7 +34,7 @@ class Vote < ActiveRecord::Base
 
 
   private 
-  C = 4500
+  C = 45000
 
   def comment_score(comment)
     x = comment.votes_count  - comment.downvotes.count  #number of upvotes only

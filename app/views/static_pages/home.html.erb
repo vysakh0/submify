@@ -25,14 +25,10 @@
       <% end %>
 
     <% else %>
-    <span class="span6 offset10">
-      <span class="up_explain"><i class="icon-caret-up icon-large"></i></span>
-      <span class="exp_explain">   <h5> Sign in to share the best thing you saw on the internet </h5></span>
-    </span>
   <div class="span8">
       <% cache "front", expires_in: 2.minutes do %>
         <% provide(:title, 'What is the best thing you saw on the Internet today?. Lets go..' ) %>
-        <h3> A place to share, read a cool link with the people who think it is cool</h3>
+        <h3> Sign to share the best thing you saw on the internet today.  </h3>
       <ol class="links">
         <%= render @link_users if @link_users %>
       </ol>
