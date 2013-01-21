@@ -10,6 +10,7 @@
     <i class="icon-caret-up icon-small"></i>
     <%= link_user.votes.count %>
   </span>
+  <br/>
 <% end %>
   <div class="tdvote"><%= render 'downvotes/downvote_button', votable: link_user, type: "LinkUser" %> </div>
   <div class="tvote"> <%= render 'votes/vote_button', votable: link_user, type: "LinkUser" %></div>

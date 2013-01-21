@@ -1,7 +1,10 @@
 <% cache "#{comment.id}_comment" do %>
   <span class="timestamp">
     <% if comment.commentable_type == 'Link' %>
-      <%= link_to timing(comment.created_at), link_comment_path(comment.commentable, comment) %>
+      <!--
+         -<%= link_to timing(comment.created_at), link_comment_path(comment.commentable, comment) %>
+         -->
+        <%= link_to (timeago_tag comment.created_at, :nojs => true, :limit => 10.days.ago),  link_comment_path(comment.commentable, comment) %>
     <% else %>
 
         <%= timeago_tag comment.created_at, :nojs => true, :limit => 10.days.ago %>

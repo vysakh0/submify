@@ -33,6 +33,9 @@ gem 'redis-rails'
 gem 'redis-store'
 gem 'colorbox-rails'
 gem 'aws-sdk'
+gem 'simple_form', '2.0.4'
+gem 'client_side_validations', '3.2.1'
+gem 'client_side_validations-simple_form', '2.0.1'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do
