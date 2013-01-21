@@ -49,6 +49,8 @@ Youarel::Application.routes.draw do
   match '/auth/:provider/callback', to: 'sessions#new'
   match '/auth/failure', to: 'sessions#failure'
   match '/signup', to: 'users#new'
+  match 'show_signup', to: 'sessions#show_signup'
+  match 'show_signin', to: 'sessions#show_signin'
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/autocomplete', to: 'static_pages#autocomplete', as: 'autocomplete'
 

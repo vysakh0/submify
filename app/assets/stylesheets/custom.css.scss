@@ -16,9 +16,10 @@ body {
 }
 body > .navbar .brand{
   font-weight: bold;
+  color: white;
   padding-top: 12px;
   padding-left: 40px;
-  padding-right: 140px;
+  padding-right: 112px;
 }
 .search-query{
   width: 420px;
@@ -624,4 +625,15 @@ li.nostyle {
   width: 45px;
   height: 45px;
   padding: 5px;
+}
+.sidebar-nav-fixed {
+  padding-right: 9px 0;
+  position:fixed;
+  right: 40px;
+  top: 200px;
+  width: 300px;
+}
+
+.row-fluid > .span-fixed-sidebar {
+  margin-right: 290px;
 }

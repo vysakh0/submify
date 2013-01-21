@@ -21,6 +21,12 @@ class SessionsController < ApplicationController
     redirect_back_or root_url
   end
 
+  def show_signup
+    @user = User.new
+  end
+  def show_signin
+    @user = User.new
+  end
   def destroy
     sign_out
     session[:user_id] = nil

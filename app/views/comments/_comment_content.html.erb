@@ -5,9 +5,6 @@
     <% else %>
 
         <%= timeago_tag comment.created_at, :nojs => true, :limit => 10.days.ago %>
-      <!--
-         -<%= timing(comment.created_at) %>
-         -->
     <% end %>
   </span>
     <%= image_tag (comment.user.avatar.url(:thumb)), class: "comment-image" %>

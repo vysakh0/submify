@@ -1,15 +1,13 @@
 
-<div class="row-fluid" >
-  <h3> Sign in </h3>
+<span class="exp_explain"> <h4> Not using fb login? Sign in using email </h4></span>
    <%= form_for :session, url: sessions_path do |f| %>
       <%= f.label :email %>
       <%= f.text_field :email %>
 
       <%= f.label :password %>
       <%= f.password_field :password %>
+      <br/>
 
       <%= f.submit "Sign in", class: "btn btn-large" %>
     <% end %>
-    <p> New user? <%= link_to "Sign up now", signup_path %> </p>
-  </div>
-</div>
+    <p> New user? <%= link_to "Sign up now", show_signup_path, remote: true %> </p>
