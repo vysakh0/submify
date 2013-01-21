@@ -5,14 +5,24 @@
   <% if parent.is_a? Comment %>
     <span class="span8">
     <%= image_tag (notifiable.user.avatar.url(:thumb)), class: "comment-image" %>
-    <%= link_to notifiable.user.name, notifiable.user, class: 'profile_hover', data: { hovercard: notifiable.user.id } %> <%= pluralize((parent.votes.size) -1 , "other") if parent.votes.size > 1 %> voted on your comment
+    <%= link_to notifiable.user.name, notifiable.user, class: 'profile_hover', data: { hovercard: notifiable.user.id } %>
+    <%  if parent.votes.size > 1 %>
+      and
+      <%= pluralize((parent.votes.size) -1 , "other")  %>
+    <% end %> 
+    voted on your comment
 
     <span class="span8"><%= render 'comments/comment', comment: parent %></span>
   </span>
   <% else %>
     <span class="span8">
     <%= image_tag (notifiable.user.avatar.url(:thumb)), class: "comment-image" %>
-    <%= link_to notifiable.user.name, notifiable.user, class: 'profile_hover', data: { hovercard: notifiable.user.id } %> <%= pluralize((parent.votes.size) - 1, "other") if parent.votes.size > 1%> voted on your link </span>
+    <%= link_to notifiable.user.name, notifiable.user, class: 'profile_hover', data: { hovercard: notifiable.user.id } %> 
+    <%  if parent.votes.size > 1 %>
+      and
+      <%= pluralize((parent.votes.size) - 1, "other")%> 
+    <% end %>
+    voted on your link </span>
     <%= render 'link_users/link_user', link_user: parent %>
   <% end %>
   <% elsif notifiable.is_a? Comment %>

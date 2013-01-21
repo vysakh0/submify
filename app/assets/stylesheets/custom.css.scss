@@ -27,7 +27,11 @@ body > .navbar .brand{
 .nav{
   font-weight: bold;
 }
-.sub_explain, .link_explain{
+.sub_explain {
+  color: red;
+}
+.link_explain{
+
   color: #7f7f7f;
 }
 .info_box{
@@ -171,7 +175,7 @@ aside {
   input[type = "text"],
   textarea{
 
-    width: 600px;
+    width: 550px;
     height: 20px;
     padding: 3px;
     border: 1px solid #999;
@@ -185,7 +189,10 @@ textarea#topic_description, textarea#user_description{
 #submit_button{
   position: relative;
 }
-
+.head_intro{
+  color: #004864;
+  float: center;
+}
 .link_url{
   //color: #323232;
   color: #004864;
@@ -625,6 +632,13 @@ li.nostyle {
   width: 45px;
   height: 45px;
   padding: 5px;
+}
+.arrow_box{
+  padding-right: 9px 0;
+  position:fixed;
+  right: 40px;
+  top: 60px;
+  width: 300px;
 }
 .sidebar-nav-fixed {
   padding-right: 9px 0;

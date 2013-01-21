@@ -3,13 +3,17 @@
 <% name , val = nil %>
 <%= form_for @link do |f| %>
   <div class="field">
-    <span class="link_explain"> Submit a link in the box eg: http://facebook.com . Links with .jpg, jpeg or png extension is not allowed</span>
     <br/>
-    <%= f.text_area :url_link, placeholder: "Submit the best thing you saw on the Internet today "%>
+    <span class="link_explain"> Submit a link in the box eg: http://facebook.com</span>
+    <br/>
+    <br/>
+    <%= f.text_area :url_link, class: 'new_user_text', placeholder: "Submit the best thing you saw on the Internet today "%>
+    <br/>
     <br/>
     <span class="link_explain"> Choose one suitable topic from autocomplete or just type to create a new one. eg. Facebook </h5>
   </span>
-    <br/>
+  <br/>
+  <br/>
     <%= text_field_tag 'topic_name', name , class: 'link-topic', placeholder: "Topic name(only one)" %>
    <%= hidden_field_tag 'topic_val', val  %>
    <br/>

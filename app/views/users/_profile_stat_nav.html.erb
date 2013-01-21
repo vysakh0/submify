@@ -2,7 +2,7 @@
 <div class="follow_button user-<%= @user.id %>">  <%= render 'follow_form', user: @user if signed_in? %> </div>
 <% cache @user do %>
 <h3>
-   <%= image_tag (@user.avatar.url(:thumb)), class: "gravatar" %>
+   <%= image_tag (@user.avatar.url(:medium)), class: "gravatar" %>
   <%= @user.name %>
 </h3>
 
