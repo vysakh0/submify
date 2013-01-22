@@ -1,6 +1,6 @@
 <% link = link_user.link %>
-<div class="span8 container">
-  <div class= "link-<%= link_user.id %>" >
+<div class="span8 container-fluid">
+  <div class= "link-<%= link_user.id %> row-fluid" >
     <div class="link_contain">
       <% topic = link_user.topic %>
       <% if (link_user.user == current_user and topic) || (current_user and current_user.admin?) %>
