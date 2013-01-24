@@ -19,6 +19,21 @@ body > .navbar .brand{
   color: white;
   padding-top: 12px;
 }
+/*
+ *.sidebar-nav-fixed {
+ *  padding-right: 9px 0;
+ *  position:fixed;
+ *  right: 40px;
+ *  top: 200px;
+ *  width: 300px;
+ *}
+ */
+.sidebar-nav-fixed {
+  position:fixed;
+  top:200px;
+  right: 80px;
+  width:21.97%;
+}
 
 @media (min-width: 1200px) {
 
@@ -28,9 +43,9 @@ body > .navbar .brand{
   .navbar-search{
     padding-left: 124px;
   }
-body > .navbar .brand{
-  padding-left: 50px;
-}
+  body > .navbar .brand{
+    padding-left: 50px;
+  }
 }
 @media (min-width: 768px) and (max-width: 979px) {
   .search-query{
@@ -59,6 +74,22 @@ body > .navbar .brand{
   }
 
 }
+
+@media (max-width: 979px) {
+  .sidebar-nav-fixed {
+    position:static;
+    width:auto;
+  }
+}
+
+/*
+ *@media (max-width: 979px) {
+ *  .sidebar-nav-fixed {
+ *    top:70px;
+ *  }
+ *}
+ */
+
 footer {
   margin-top: 45px;
   padding-top: 5px;
@@ -701,13 +732,6 @@ li.nostyle {
   position:fixed;
   right: 40px;
   top: 60px;
-  width: 300px;
-}
-.sidebar-nav-fixed {
-  padding-right: 9px 0;
-  position:fixed;
-  right: 40px;
-  top: 200px;
   width: 300px;
 }
 .yield_box{

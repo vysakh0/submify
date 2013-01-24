@@ -1,8 +1,10 @@
     <h4> Sign up </h4>
 
-    <%= form_for @user do |f| %>
+    <%= simple_form_for @user, validate: true, :html => { :class => "form-horizontal" }  do |f| %>
 
-      <%= render 'shared/error_messages' %>
+      <!--
+         -<%= render 'shared/error_messages' %>
+         -->
       <%= f.label :name %>
       <%= f.text_field :name %>
 
