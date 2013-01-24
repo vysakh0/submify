@@ -1,5 +1,5 @@
 
-<div class="container">
+<div class="container-fluid">
   <% if signed_in? %>
     <% provide(:title, 'Home') %>
     <% unless @link_users.empty? %>
@@ -16,10 +16,12 @@
       <span class="head_intro"><h3> Start sharing links with the appropriate topic community </h3></span>
       <br/>
 
+      <div class="span4 container">
       <div class="arrow_box">
         <span class="up_explain"><i class="icon-caret-up icon-large"></i></span>
         <span class="exp_explain">   <h5> Click Explore to find new topics, people and links </h5></span>
       </div>
+    </div>
       <div class="span8">
         <section>
         <%= render 'shared/link_form_new' %>
@@ -34,7 +36,7 @@
       <ol class="links">
         <%= render @link_users if @link_users %>
       </ol>
-      <span class="span8"> <%= will_paginate @link_users %></span>
+      <%= will_paginate @link_users %>
     <% end %>
     <!--
     -<%= render 'shared/sign_in_fixed' %>
