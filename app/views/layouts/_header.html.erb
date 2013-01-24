@@ -3,14 +3,15 @@
 
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
-    <div class="container-fluid">
-      <div class="row-fluid">
-      <div class="nav-collapse">
+    <div class="container">
         <%=link_to "Submify", root_path, class: "brand" %>
+        <span class="visible-desktop hidden-phone hidden-tablet">
         <%= form_tag links_path , :method => 'get', class:"navbar-search " do %>
 
           <%= text_field_tag :q, params[:q],class:"search-query", id: "search_input", placeholder:"Search" %>
         <% end %>
+      </span>
+      <div class="nav-collapse">
         <% if signed_in? %>
           <nav>
           <ul class="nav pull-right">
@@ -66,6 +67,5 @@
       </div>
     </div>
   </div>
-</div>
 </div>
 </header>

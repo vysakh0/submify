@@ -1,8 +1,10 @@
 <% provide(:title, @comment.body) %>
+<% content_for :head do %>
   <meta property="fb:app_id" content="295241533825642" /> 
   <meta property="og:type"   content="website" /> 
   <meta property="og:url"    content="<%= comment_url(@comment)%>"/>
   <meta property="og:title"  content= "<%= @comment.body %>" /> 
+<% end %>
 
 <div class="span8">
 

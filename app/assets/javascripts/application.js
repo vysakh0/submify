@@ -21,3 +21,5 @@
 //= require jquery.tools.min.js
 //= require rails-timeago
 //= require bootstrap-alert
+//= require rails.validations
+//= require rails.validations.simple_form
