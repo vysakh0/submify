@@ -10,6 +10,9 @@
     <% host = 'http://'+ link.url_link %>
       <%= link_to host.match(".+\:\/\/([^\/]+)")[1], host, class: 'host_link' %> 
     </div>
+    <blockquote>
+      <%= link.description if link.description %>
+    </blockquote>
       <%= link_to image_tag(link.picture, class: 'link-image') , link.picture, data: { colorbox: true } if link.picture %>
 
     <% end %>

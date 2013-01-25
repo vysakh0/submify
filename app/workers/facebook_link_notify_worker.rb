@@ -9,7 +9,7 @@ class FacebookLinkNotifyWorker
     me = FbGraph::User.me(oauth_token)
     action = me.og_action!(
       app.og_action(:submit), # or simply "APP_NAMESPACE:ACTION" as String
-      :website => link
+      :link => link
     )
   end
 end

@@ -31,12 +31,12 @@ class LinksController < ApplicationController
     @downvoted_comments = @link.comments.where('score < -10').exists?
     @link_users = @link.link_users.order('score DESC')
     #if @link_users.exists?
-      #search = { q: "" }
-      #@link_users.each_with_index do |link_user, i|
-        #search[:q] = search[:q] + link_user.topic.name + "+"
-        #break if i > 2
-      #end
-      #@related = Link.search(search)
+    #search = { q: "" }
+    #@link_users.each_with_index do |link_user, i|
+    #search[:q] = search[:q] + link_user.topic.name + "+"
+    #break if i > 2
+    #end
+    #@related = Link.search(search)
     #end
 
     respond_to do |format|
@@ -85,7 +85,13 @@ class LinksController < ApplicationController
         unless /youtube.com|vimeo.com|twitter.com|soundcloud.com/.match(params[:link][:url_link])
           img = link_image(data)
           @link.picture = img if img
+          if data.xpath('//meta[@property="og:description"]').first
+            @link.description = data.xpath('//meta[@property="og:description"]').first.attribute('content').value
+          elsif data.xpath('//meta[@name="description"]').first 
+            @link.description = data.xpath('//meta[@name="description"]').first.attribute('content').value
+          end
         end
+
         if @link!= nil && @link.save
           @link_user = @link.link_with_topic!(topic, current_user, @topic)
           publish_to_fb

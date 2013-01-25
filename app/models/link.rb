@@ -21,7 +21,7 @@ class Link < ActiveRecord::Base
   include Tire::Model::Search
   include Tire::Model::Callbacks
 
-  attr_accessible :url_link,:url_heading
+  attr_accessible :url_link,:url_heading, :description
   has_many :flags, as: :flaggable
   has_many :link_users, foreign_key: "link_id", dependent: :destroy
   has_many :users, through: :link_users, source: :user
