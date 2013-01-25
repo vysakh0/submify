@@ -12,6 +12,11 @@
   <meta property="og:url"    content="<%= link_url(@link)%>"/>
   <meta property="og:title"  content= "<%= @link.url_heading %>" /> 
   <meta property="og:image"  content="<%= image %>"/>
+  <% if @link.description %>
+    <meta property="og:description"  content="<%= @link.description %>"/>
+  <% else %>
+    <meta property="og:description"  content="<%= @link.url_heading %>"/>
+  <% end %>
 <% end %>
 <div class="container-fluid">
   <div class="row-fluid">
