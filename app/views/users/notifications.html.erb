@@ -1,6 +1,9 @@
 <% provide(:title, @user.name) %>
-<div class="row-fluid">
+<div class="container">
+  <div class="span8">
       <ul class="notifications">
         <%= render partial: 'notifications/notification', collection: @notifications %>
       </ul>
+      <%= will_paginate @notifications %>
+    </div>
 </div>
