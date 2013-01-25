@@ -125,7 +125,7 @@ class LinksController < ApplicationController
 
   private
   def publish_to_fb
-    FacebookLinkNotifyWorker.perform_async(current_user.oauth_token, "http://submify.com#{link_path(@link)}")
+    FacebookLinkNotifyWorker.perform_async(current_user.oauth_token, link_url(@link)) if Rails.env.production?
   end
   def check_admin
     redirect_to root_url unless signed_in? and current_user.admin?
