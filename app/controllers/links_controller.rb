@@ -76,6 +76,12 @@ class LinksController < ApplicationController
           flash[:notice]="Link already submitted to the topic"
         else 
           @link_user = @link.link_with_topic!(topic, current_user,@topic)
+          if params[:comment_body] != ""
+           comment = @link.comments.build(body: params[:comment_body])
+           comment.user = current_user
+           comment.save
+          end
+
 
           flash[:success]="Link submitted"
           publish_to_fb
@@ -96,6 +102,11 @@ class LinksController < ApplicationController
         if @link!= nil && @link.save
           @link_user = @link.link_with_topic!(topic, current_user, @topic)
           publish_to_fb
+          if params[:comment_body] != ""
+           comment = @link.comments.build(body: params[:comment_body])
+           comment.user = current_user
+           comment.save
+          end
           flash[:success]="Link submitted"
         end
       end

@@ -10,4 +10,8 @@ module CommentsHelper
     end
   end
 
+  def link_user_comment link, user
+    link.comments.where(user_id: user).first
+  end
+
 end

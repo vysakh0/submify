@@ -42,7 +42,16 @@
       </span>
 
     </div>
+    <% if comment = link_user_comment(link, link_user.user.id) %>
+
+    <div class="comment_link_box">
+      <div id="comment_link_border">
+      <%= render 'comments/comment', comment: comment %>
     </div>
+    </div>
+  <% end %>
+    </div>
+
   </div>
 </div>
 <!--

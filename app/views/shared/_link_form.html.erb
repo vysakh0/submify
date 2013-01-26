@@ -7,6 +7,8 @@
     <%= f.text_area :url_link, placeholder: "Submit the best thing you saw on the Internet today ", id: "complete_url"%>
 
     <%= text_field_tag 'topic_name', name , class: 'link-topic-tag', placeholder: "Topic name(only one)" %>
+    <%= text_area_tag 'comment_body', nil, placeholder: "Add a comment", id: "link_c_text"%>
+    <br/>
    <%= hidden_field_tag 'topic_val', val  %>
     <%= f.submit "Submit", class: "btn btn-small gif-load", id: "submit_button"%>
   </div>

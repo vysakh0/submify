@@ -17,6 +17,12 @@
     <%= text_field_tag 'topic_name', name , class: 'link-topic', placeholder: "Topic name(only one)" %>
    <%= hidden_field_tag 'topic_val', val  %>
    <br/>
+   <br/>
+   <span class="link_explain">  Give your thoughts about the link 
+  </span>
+  <br/>
+    <%= text_area_tag 'comment_body', nil, placeholder: "Add a comment"%>
+    <br/>
    <%= f.submit "Submit", class: "btn btn-small gif-load"%>
    <br/>
 
