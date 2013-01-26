@@ -77,9 +77,9 @@ class LinksController < ApplicationController
         else 
           @link_user = @link.link_with_topic!(topic, current_user,@topic)
           if params[:comment_body] != ""
-           comment = @link.comments.build(body: params[:comment_body])
-           comment.user = current_user
-           comment.save
+            comment = @link.comments.build(body: params[:comment_body])
+            comment.user = current_user
+            comment.save
           end
 
 
@@ -91,7 +91,10 @@ class LinksController < ApplicationController
 
         unless /youtube.com|vimeo.com|twitter.com|soundcloud.com/.match(params[:link][:url_link])
           img = link_image(data)
-          @link.picture = img if img
+          if img
+            @link.picture = img if /^(http|https):\/\/|[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/.match(img)
+
+          end
           if data.xpath('//meta[@property="og:description"]').first
             @link.description = data.xpath('//meta[@property="og:description"]').first.attribute('content').value
           elsif data.xpath('//meta[@name="description"]').first 
@@ -103,9 +106,9 @@ class LinksController < ApplicationController
           @link_user = @link.link_with_topic!(topic, current_user, @topic)
           publish_to_fb
           if params[:comment_body] != ""
-           comment = @link.comments.build(body: params[:comment_body])
-           comment.user = current_user
-           comment.save
+            comment = @link.comments.build(body: params[:comment_body])
+            comment.user = current_user
+            comment.save
           end
           flash[:success]="Link submitted"
         end
