@@ -8,7 +8,7 @@
         (<%= current_user.notifications_count %>)
       <% end %>
       <%= yield(:title) %> | Submify </title>
-      <%= favicon_link_tag 'favicon.ico' %>
+    <%= favicon_link_tag 'favicon.ico' %>
     <%= stylesheet_link_tag    "application", media: "all" %>
     <%= csrf_meta_tags %>
     <%= yield :head %>
@@ -17,19 +17,21 @@
   <body>
     <%= render 'layouts/header' %>
 
-    <div class="container yield_box">
-      <div id="flash">
-        <% flash.each do |key, value| %>
-          <div class="alert alert-<%= key %>"><%= value %></div>
-        <% end %>
+    <div id="wrap">
+      <div class="container yield_box clear_top">
+        <div id="flash">
+          <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>"><%= value %></div>
+          <% end %>
+        </div>
+        <div id="spinner">
+          <%= image_tag("ajax-loader.gif", class:  "loading-indicator") %>
+        </div>
+        <%= yield %>
       </div>
-      <div id="spinner">
-        <%= image_tag("ajax-loader.gif", class:  "loading-indicator") %>
-      </div>
-      <%= yield %>
-<%= render 'layouts/footer' %>
-      <%= debug(params) if Rails.env.development? %>
+      <div id="main"></div>
     </div>
+    <%= render 'layouts/footer' %>
 
     <%= javascript_include_tag "application" %>
   </body>

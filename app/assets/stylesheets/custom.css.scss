@@ -3,6 +3,24 @@
  *$navbarBackgroundHighlight: #605f46;
  */
 @import "bootstrap";
+
+html, body {
+  height: 100%;
+}
+
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -142px; /* the bottom margin is the negative value of the footer's height */
+}
+
+#main {
+}
+
+.footer, #main {
+  height: 142px;
+} 
 body {
 
   padding-top: 60px;
@@ -740,13 +758,13 @@ li.nostyle {
 
 
 .comment_link_box{
-   padding-left: 60px;
-   width: 500px;
+  padding-left: 60px;
+  width: 500px;
 
 }
 #comment_link_border{
-   border-top: 1px solid #E9E9E9;
-   left: 50%;
+  border-top: 1px solid #E9E9E9;
+  left: 50%;
 
 }
 .row-fluid > .span-fixed-sidebar {
