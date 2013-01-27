@@ -46,7 +46,7 @@ Youarel::Application.routes.draw do
   match '/admin/topics', to: 'admin#topics'
   match '/contact', to: 'static_pages#contact'
   match '/front', to: 'static_pages#front_page'
-  match '/auth/:provider/callback', to: 'sessions#new'
+  match '/auth/:provider/callback', to: 'sessions#fb'
   match '/auth/failure', to: 'sessions#failure'
   match '/signup', to: 'users#new'
   match 'privacy', to: 'static_pages#privacy'

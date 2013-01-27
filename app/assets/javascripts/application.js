@@ -20,6 +20,6 @@
 //= require jquery.expander.min.js
 //= require jquery.tools.min.js
 //= require rails-timeago
+//= require rails-timeago-all
 //= require bootstrap-alert
 //= require rails.validations
-//= require rails.validations.simple_form

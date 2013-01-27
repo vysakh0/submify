@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_relationships, source: :follower
   has_many :notified_to, through: :notifications, as: :notifiable, dependent: :destroy
 
-  #  has_secure_password
+  has_secure_password
 
   before_save { |user| user.email = email.downcase }
 
@@ -67,21 +67,21 @@ class User < ActiveRecord::Base
   validates :email, presence: true, 
     format: { with: VALID_EMAIL_REGEX }, 
     uniqueness: { case_sensitive: false} 
-  #  validates :password, presence: true, length: { minimum: 6 }
-  #  validates :password_confirmation, presence: true
-  #after_save :make_following
+  validates :password, presence: true, length: { minimum: 6 }
+  validates :password_confirmation, presence: true
+  after_save :make_following
   after_save :load_into_soulmate
   before_destroy :remove_from_soulmate
   before_create :make_profile_pic
 
   #def user_name
-    #Rails.cache.fetch([:user, id, :name]) do
-      #name
-    #end
+  #Rails.cache.fetch([:user, id, :name]) do
+  #name
+  #end
   #end
 
   #def flush_name_cache
-    #Rails.cache.delete([:user, id, :name]) if name_changed?
+  #Rails.cache.delete([:user, id, :name]) if name_changed?
   #end
 
   def remove_from_soulmate
@@ -109,7 +109,7 @@ class User < ActiveRecord::Base
     end
   end
   def make_profile_pic
-      self.avatar = URI.parse("https://graph.facebook.com/#{self.uid}/picture")
+    self.avatar = URI.parse("https://graph.facebook.com/#{self.uid}/picture")
   end
 
 

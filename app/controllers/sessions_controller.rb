@@ -15,6 +15,9 @@ class SessionsController < ApplicationController
   end
 
   def new
+  end
+  
+  def fb
    user = User.from_omniauth(env["omniauth.auth"])
     sign_in user
     session[:user_id] = user.id

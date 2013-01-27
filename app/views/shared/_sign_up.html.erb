@@ -1,7 +1,7 @@
     <h4> Sign up </h4>
     <br/>
 
-    <%= form_for @user, :validate => true, :html => {:class => "form-inline"} do |f| %>
+    <%= form_for @user, :validate => true do |f| %>
 
       <%= f.label :name, 'Full Name' %>
       <%= f.text_field :name, :validate => { :presence => true, :uniqueness => false} %>
