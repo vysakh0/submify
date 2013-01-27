@@ -18,10 +18,17 @@ class SessionsController < ApplicationController
   end
   
   def fb
-   user = User.from_omniauth(env["omniauth.auth"])
-    sign_in user
-    session[:user_id] = user.id
+   @user = User.from_omniauth(env["omniauth.auth"])
+    if (user.valid? and  user.password.is_nil?)
+      render 'set_password'
+    elsif !@user.valid?
+      #render 'fb'
+    else
+    @user.save!
+    sign_in @user
+    session[:user_id] = @user.id
     redirect_back_or root_url
+    end
   end
 
   def show_signup

@@ -105,13 +105,26 @@ class User < ActiveRecord::Base
       user.username = auth.extra.raw_info.username
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-      user.save!
     end
   end
   def make_profile_pic
     self.avatar = URI.parse("https://graph.facebook.com/#{self.uid}/picture")
   end
 
+  def send_password_reset
+    generate_token(:password_reset_token)
+  #self.password_reset_sent_at = Time.zone.now
+    #save!
+    self.update_column(:password_reset_sent_at, Time.zone.now)
+    UserMailer.password_reset(self).deliver
+
+  end
+
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column])
+  end
 
   def make_following
     FacebookFriendWorker.perform_async(uid, oauth_token)

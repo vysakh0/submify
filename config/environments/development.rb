@@ -1,7 +1,5 @@
 Youarel::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
-  YOUR_APP_ID = '295241533825642'
-  YOUR_APP_SECRET = "6be81d70c8df4705180ed8052d635c37"
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -25,6 +23,8 @@ Youarel::Application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   # Print deprecation notices to the Rails logger
+
+  config.action_mailer.default_url_options = { :host => "localhost:8080" }
   config.active_support.deprecation = :log
 
   # Only use best-standards-support built into browsers

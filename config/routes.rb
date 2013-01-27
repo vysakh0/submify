@@ -9,8 +9,10 @@ end
 require 'sidekiq/web'
 Youarel::Application.routes.draw do
 
+
   mount Sidekiq::Web, at: '/sidekiq', :constraints => AdminConstraint.new
 
+  resources :password_resets
   resources :votes, only: [:create, :destroy]
   resources :downvotes, only: [:create, :destroy]
   resources :topics, only: [:create, :destroy, :show, :edit ]
