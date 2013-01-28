@@ -1,18 +1,18 @@
 class SessionsController < ApplicationController
-  
+
   before_filter :not_signed_user, only: [:create, :new, :send_again ]
 
   def create
     user = User.find_by_email(params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       if user.verify?
-      sign_in user if params[:remember_me]
-      session[:user_id] = user.id
-      redirect_to root_url
+        sign_in user if params[:remember_me]
+        session[:user_id] = user.id
+        redirect_to root_url
       else
-     flash[:notice] = "You have not confirmed your email. #{view_context.link_to('Send Again?', send_again_path(id: user.id), method: :post)}".html_safe
+        flash[:notice] = "You have not confirmed your email. #{view_context.link_to('Send Again?', send_again_path(id: user.id), method: :post)}".html_safe
 
-      redirect_to root_url 
+        redirect_to root_url 
       end
     else
       flash.now[:error] = "Invalid username/password"
@@ -30,15 +30,22 @@ class SessionsController < ApplicationController
   end
 
 
-  
+
   def fb
-   @user = User.from_omniauth(env["omniauth.auth"])
-    if (@user.valid? and  @user.password.is_nil?) or !@user.valid?
-      #render 'fb'
+    auth = env["omniauth.auth"]
+    if @user = User.find_by_uid(auth.uid)
+      session[:user_id] = @user.id
+      redirect_to root_url
     else
-    @user.save!
-    session[:user_id] = @user.id
-    redirect_back_or root_url
+      @user = User.from_omniauth(env["omniauth.auth"])
+      #render 'fb'
+      if @user.save
+        session[:user_id] = @user.id
+        redirect_to root_url
+
+      else
+        render 'fb'
+      end
     end
   end
 
@@ -58,8 +65,8 @@ class SessionsController < ApplicationController
   end
   private
 
-    def not_signed_user
-         redirect_to root_path if signed_in? 
-    end
+  def not_signed_user
+    redirect_to root_path if signed_in? 
+  end
 end
-      
+

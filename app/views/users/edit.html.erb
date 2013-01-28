@@ -18,17 +18,17 @@
        <%= f.file_field :avatar %>
        <br/>
        <br/>
+         <%= f.label :password %>
+         <%= f.password_field :password %>
+   
+         <%= f.label :password_confirmation, "Confirm Password" %>
+         <%= f.password_field :password_confirmation %>
       <%= f.submit "Save changes", class:"btn" %>
 
 <!--
    -      <%=f.label :email %>
    -      <%= f.text_field :email %>
    -
-   -      <%= f.label :password %>
-   -      <%= f.password_field :password %>
-   -
-   -      <%= f.label :password_confirmation, "Confirm Password" %>
-   -      <%= f.password_field :password_confirmation %>
    -      <%= f.submit "Save changes", class:"btn" %>
    -      <%= gravatar_for @user %>
    -

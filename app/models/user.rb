@@ -72,6 +72,7 @@ class User < ActiveRecord::Base
   after_save :make_following
   after_save :load_into_soulmate
   before_destroy :remove_from_soulmate
+  before_create :make_pic
 
   #def user_name
   #Rails.cache.fetch([:user, id, :name]) do
@@ -104,10 +105,10 @@ class User < ActiveRecord::Base
       user.username = auth.extra.raw_info.username
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-      user.avatar = URI.parse("https://graph.facebook.com/#{auth.uid}/picture")
     end
   end
-  def make_profile_pic
+  def make_pic
+      self.avatar = URI.parse("https://graph.facebook.com/#{auth.uid}/picture")
   end
 
   def send_password_reset

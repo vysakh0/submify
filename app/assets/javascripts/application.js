@@ -22,4 +22,3 @@
 //= require rails-timeago
 //= require rails-timeago-all
 //= require bootstrap-alert
-//= require rails.validations
