@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   before_filter :signed_in_user, only: [:edit, :update, :destroy, :following, :index, :notifications], except: [:facebook_create, :create, :new, :confirmation]
   before_filter :correct_user, only: [:edit, :update, :following, :notifications]
+
   #rails4 makes filter into action, so you should have before_action
   before_filter :admin_user, only: :destroy
   def hovercard
@@ -69,15 +70,23 @@ class UsersController < ApplicationController
   end
 
   def facebook_create
-    @user = User.new(params[:user])
-    @user.toggle!(:verify) unless @user.verify?
-
-    if @user.save!
+    if @user = User.find_by_email(params[:user][:email])
+      @user.update_attributes(params[:user])
+      @user.toggle!(:verify) unless @user.verify?
       session[:user_id] = @user.id
       redirect_to root_url
     else
-      render 'new'
+      @user = User.new(params[:user])
+      if @user.save!
+        @user.toggle!(:verify) unless @user.verify?
+        session[:user_id] = @user.id
+        redirect_to root_url
+      else
+        render 'new'
+      end
     end
+
+
   end
 
 
