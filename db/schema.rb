@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130127154431) do
+ActiveRecord::Schema.define(:version => 20130128101524) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -161,6 +161,7 @@ ActiveRecord::Schema.define(:version => 20130127154431) do
     t.integer  "notifications_count",    :default => 0
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.boolean  "verify",                 :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

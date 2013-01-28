@@ -8,24 +8,24 @@ class StaticPagesController < ApplicationController
         format.html
       end
     else
-     front_page 
+      front_page 
     end
   end
   def autocomplete
     result = User.search(params['term']) +  Topic.search(params['term'])
-render :json => result
+    render :json => result
   end
   def autocomplete_topic_name
     render :json => Topic.search(params['term'])
   end
-  
-def privacy
-end
+
+  def privacy
+  end
   def front_page
-      @link_users = LinkUser.order("score DESC").limit(100).paginate(page: params[:page])
-      unless signed_in?
-        render 'home'
-      end
+    @link_users = LinkUser.order("score DESC").limit(100).paginate(page: params[:page])
+    unless signed_in?
+      render 'home'
+    end
   end
 
   def contact

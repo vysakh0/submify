@@ -41,7 +41,12 @@ Youarel::Application.routes.draw do
     member do
       get :following, :followers, :commented, :followed_topics, :hovercard, :notifications
     end
+      collection do
+        post 'facebook_create'
+      end
   end
+  post 'send_again', to: 'sessions#send_again'
+  get 'confirmation', to: 'users#confirmation'
   #  match '/signin', to: 'sessions#new'
   match '/admin', to: 'admin#links'
   match '/admin/comments', to: 'admin#comments'

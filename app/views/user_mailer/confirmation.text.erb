@@ -1,0 +1,6 @@
+
+To confirm your account, click the URL below.
+
+<%= link_to "Confirm", confirmation_url(id: @user.password_reset_token), method: :post %>
+
+If you did not request to sign up an account in submify, just ignore this mail.

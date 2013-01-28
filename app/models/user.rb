@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
 
   extend FriendlyId
   friendly_id :username, use: :slugged
-  attr_accessible :avatar, :description, :name, :notifications_count
+  attr_accessible :avatar, :description, :name, :notifications_count, :email, :uid, :username, :oauth_token, :oauth_expires_at, :password, :password_confirmation
 
   has_attached_file :avatar, styles: { medium: "200x200>", thumb: "100x100"}, default_style: :thumb, default_url:'/images/avatar/missing_profile_thumb.png'
   has_many :flags
@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
 
   has_many :comments, dependent: :destroy
 
-  has_many :notifications, dependent: :destroy
+  has_many :notifications
   has_many :votes
 
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
   has_many :reverse_relationships, foreign_key: "followed_id", class_name: "Relationship", dependent: :destroy
 
   has_many :followers, through: :reverse_relationships, source: :follower
-  has_many :notified_to, through: :notifications, as: :notifiable, dependent: :destroy
+  has_many :notifiable, through: :notifications
 
   has_secure_password
 
@@ -72,7 +72,6 @@ class User < ActiveRecord::Base
   after_save :make_following
   after_save :load_into_soulmate
   before_destroy :remove_from_soulmate
-  before_create :make_profile_pic
 
   #def user_name
   #Rails.cache.fetch([:user, id, :name]) do
@@ -105,26 +104,28 @@ class User < ActiveRecord::Base
       user.username = auth.extra.raw_info.username
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+      user.avatar = URI.parse("https://graph.facebook.com/#{auth.uid}/picture")
     end
   end
   def make_profile_pic
-    self.avatar = URI.parse("https://graph.facebook.com/#{self.uid}/picture")
   end
 
   def send_password_reset
-    generate_token(:password_reset_token)
-  #self.password_reset_sent_at = Time.zone.now
+    #self.password_reset_sent_at = Time.zone.now
     #save!
+    self.update_column(:password_reset_token,SecureRandom.urlsafe_base64)
     self.update_column(:password_reset_sent_at, Time.zone.now)
     UserMailer.password_reset(self).deliver
 
   end
-
-  def generate_token(column)
-    begin
-      self[column] = SecureRandom.urlsafe_base64
-    end while User.exists?(column => self[column])
+  def send_confirmation
+    #self.password_reset_sent_at = Time.zone.now
+    #save!
+    self.update_column(:password_reset_token,SecureRandom.urlsafe_base64)
+    self.update_column(:password_reset_sent_at, Time.zone.now)
+    UserMailer.confirmation(self).deliver
   end
+
 
   def make_following
     FacebookFriendWorker.perform_async(uid, oauth_token)

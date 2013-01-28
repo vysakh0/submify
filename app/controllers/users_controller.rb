@@ -1,15 +1,15 @@
 class UsersController < ApplicationController
 
-  before_filter :signed_in_user, only: [:edit, :update, :destroy, :following, :index, :notifications]
+  before_filter :signed_in_user, only: [:edit, :update, :destroy, :following, :index, :notifications], except: [:facebook_create, :create, :new, :confirmation]
   before_filter :correct_user, only: [:edit, :update, :following, :notifications]
-#rails4 makes filter into action, so you should have before_action
+  #rails4 makes filter into action, so you should have before_action
   before_filter :admin_user, only: :destroy
   def hovercard
     @user = User.find(params[:id])
     render partial: 'hovercard'
   end
   def index
-      @users = User.limit(100).paginate(page: params[:page])
+    @users = User.limit(100).paginate(page: params[:page])
   end
 
   def commented
@@ -31,8 +31,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      sign_in @user
-      redirect_to @user 
+      #session[:user_id] = @user.id
+      @user.send_confirmation
+      redirect_to root_url, :notice => "Email sent to your email, please confirm to activate your account "
     else
       render 'new'
     end
@@ -65,6 +66,28 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = "User destroyed"
     redirect_to users_url
+  end
+
+  def facebook_create
+    @user = User.new(params[:user])
+    @user.toggle!(:verify) unless @user.verify?
+
+    if @user.save!
+      session[:user_id] = @user.id
+      redirect_to root_url
+    else
+      render 'new'
+    end
+  end
+
+
+  def confirmation
+
+    if @user = User.find_by_password_reset_token!(params[:id])
+      @user.toggle!(:verify) unless @user.verify?
+      session[:user_id] = @user.id
+      redirect_to root_url
+    end
   end
 
   def following

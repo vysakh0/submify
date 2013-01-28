@@ -21,6 +21,9 @@ html, body {
 #main {
   height: 142px;
 } 
+.s_media{
+  float: left;
+}
 body {
 
   padding-top: 60px;
@@ -51,6 +54,16 @@ body > .navbar .brand{
   top:200px;
   right: 80px;
   width:21.97%;
+}
+.social_media{
+  position: fixed;
+  top: 100px;
+  right: 80px;
+  width: 21.97%;
+  padding: 14px;
+}
+.social_box{
+  padding-left: 25px;
 }
 
 @media (min-width: 1200px) {
@@ -94,7 +107,7 @@ body > .navbar .brand{
 }
 
 @media (max-width: 979px) {
-  .sidebar-nav-fixed {
+  .sidebar-nav-fixed, .social_media {
     position:static;
     width:auto;
   }
