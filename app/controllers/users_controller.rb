@@ -93,49 +93,53 @@ class UsersController < ApplicationController
   def confirmation
 
     if @user = User.find_by_password_reset_token!(params[:id])
-      @user.toggle!(:verify) unless @user.verify?
-      session[:user_id] = @user.id
-      redirect_to root_url
+      if @user.password_reset_sent_at < 2.hours.ago
+        redirect_to root_url, :alert => "Confirmation has expired."
+      else
+        @user.toggle!(:verify) unless @user.verify?
+        session[:user_id] = @user.id
+        redirect_to root_url, alert: "Account confirmed"
+      end
     end
   end
 
-  def following
-    @title = "Following"
-    @user = User.find(params[:id])
-    @users = @user.followed_users.paginate(page: params[:page])
-    respond_to do |format|
-      format.html {render 'show_following'}
-      format.js
+    def following
+      @title = "Following"
+      @user = User.find(params[:id])
+      @users = @user.followed_users.paginate(page: params[:page])
+      respond_to do |format|
+        format.html {render 'show_following'}
+        format.js
+      end
+    end
+
+    def followers
+      @title = "Followers"
+      @user = User.find(params[:id])
+      @users = @user.followers.paginate(page: params[:page])
+      respond_to do |format|
+
+        format.html {render 'show_follow'}
+        format.js
+      end
+    end
+    def notifications
+      @notifications = @user.notifications.order("updated_at DESC").paginate(page: params[:page])
+      @user.update_column(:notifications_count, 0)
+    end
+
+    private
+
+    def admin_user
+      redirect_to(root_path) unless current_user.admin?
+    end
+
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_path) unless current_user?(@user)
+    end
+
+    def not_signed_user
+      redirect_to root_path if signed_in?
     end
   end
-
-  def followers
-    @title = "Followers"
-    @user = User.find(params[:id])
-    @users = @user.followers.paginate(page: params[:page])
-    respond_to do |format|
-
-      format.html {render 'show_follow'}
-      format.js
-    end
-  end
-  def notifications
-    @notifications = @user.notifications.order("updated_at DESC").paginate(page: params[:page])
-    @user.update_column(:notifications_count, 0)
-  end
-
-  private
-
-  def admin_user
-    redirect_to(root_path) unless current_user.admin?
-  end
-
-  def correct_user
-    @user = User.find(params[:id])
-    redirect_to(root_path) unless current_user?(@user)
-  end
-
-  def not_signed_user
-    redirect_to root_path if signed_in?
-  end
-end

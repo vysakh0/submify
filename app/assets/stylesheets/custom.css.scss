@@ -155,10 +155,6 @@ footer ul li {
 .sub_explain {
   color: red;
 }
-.link_explain{
-
-  color: #7f7f7f;
-}
 .info_box{
   border-color: #E9E9E9;
   border-style: solid;
@@ -170,15 +166,14 @@ footer ul li {
   padding-top: 8px;
   padding-bottom: 20px;
   padding-left: 10px;
-  border-color: #E9E9E9;
-  border-style: solid;
-  border-width: 4px;
 }
 
 .link_explain{
-  font-family: Optima, 'Trebuchet MS', sans-serif;
+  /*
+   *font-family: Optima, 'Trebuchet MS', sans-serif;
+   */
   font-size: 16px;
-  padding-right: 5px;
+  padding: 0px 10px 10px 0px;
 }
 
 .up_explain{
