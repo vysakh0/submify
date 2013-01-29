@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   friendly_id :username, use: :slugged
   attr_accessible :avatar, :description, :name, :notifications_count, :email, :uid, :username, :oauth_token, :oauth_expires_at, :password, :password_confirmation
 
-  has_attached_file :avatar, styles: { medium: "200x200>", thumb: "100x100"}, default_style: :thumb, default_url:'/images/avatar/missing_profile_thumb.png'
+  has_attached_file :avatar, styles: { medium: "200x200>", thumb: "100x100"}, default_style: :thumb, default_url:'/images/avatar/missing_profile_thumb.jpg'
   has_many :flags
 
   has_many :topic_user_relationships, foreign_key: "user_id", dependent: :destroy
