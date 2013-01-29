@@ -18,15 +18,7 @@ Youarel::Application.configure do
   config.assets.compile = false
   config.action_mailer.default_url_options = { :host => "submify.com" }
 
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :address              => "smtp.zoho.com",
-    :port                 => 587,
-    :domain               => 'submify.com',
-    :user_name            => 'support@submify.com',
-    :password             => '9381205918',
-    :authentication       => 'plain',
-    :enable_starttls_auto => true  }
+  config.action_mailer.delivery_method = :sendmail
     # Generate digests for assets URLs
     config.assets.digest = true
 
