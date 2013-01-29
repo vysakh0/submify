@@ -3,8 +3,6 @@
 
     <%= form_for @user, url: facebook_create_path, method: :post  do |f| %>
 
-         <%= render 'shared/error_messages' %>
-
 
       <%= f.hidden_field :name, value: @user.name %>
       <%= f.hidden_field :email, value: @user.email %>
