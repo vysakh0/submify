@@ -108,7 +108,7 @@ class User < ActiveRecord::Base
     end
   end
   def make_pic
-      self.avatar = URI.parse("https://graph.facebook.com/#{auth.uid}/picture")
+      self.avatar = URI.parse("https://graph.facebook.com/#{self.uid}/picture")
   end
 
   def send_password_reset
