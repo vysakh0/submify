@@ -41,7 +41,7 @@ class UsersController < ApplicationController
   end
   def show
     @user = User.find(params[:id])
-  @topics = @user.followed_topics.limit(5)
+    @topics = @user.from_user_suggest(current_user.id)
     @link_users = @user.link_users.page(params[:page]).per_page(10)
   end
 
@@ -104,43 +104,43 @@ class UsersController < ApplicationController
     end
   end
 
-    def following
-      @title = "Following"
-      @user = User.find(params[:id])
-      @users = @user.followed_users.paginate(page: params[:page])
-      respond_to do |format|
-        format.html {render 'show_following'}
-        format.js
-      end
-    end
-
-    def followers
-      @title = "Followers"
-      @user = User.find(params[:id])
-      @users = @user.followers.paginate(page: params[:page])
-      respond_to do |format|
-
-        format.html {render 'show_follow'}
-        format.js
-      end
-    end
-    def notifications
-      @notifications = @user.notifications.order("updated_at DESC").paginate(page: params[:page])
-      @user.update_column(:notifications_count, 0)
-    end
-
-    private
-
-    def admin_user
-      redirect_to(root_path) unless current_user.admin?
-    end
-
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_path) unless current_user?(@user)
-    end
-
-    def not_signed_user
-      redirect_to root_path if signed_in?
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.followed_users.paginate(page: params[:page])
+    respond_to do |format|
+      format.html {render 'show_following'}
+      format.js
     end
   end
+
+  def followers
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    respond_to do |format|
+
+      format.html {render 'show_follow'}
+      format.js
+    end
+  end
+  def notifications
+    @notifications = @user.notifications.order("updated_at DESC").paginate(page: params[:page])
+    @user.update_column(:notifications_count, 0)
+  end
+
+  private
+
+  def admin_user
+    redirect_to(root_path) unless current_user.admin?
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_path) unless current_user?(@user)
+  end
+
+  def not_signed_user
+    redirect_to root_path if signed_in?
+  end
+end

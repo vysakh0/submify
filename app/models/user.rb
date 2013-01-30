@@ -169,6 +169,16 @@ class User < ActiveRecord::Base
   def topic_unfollow!(topic)
     topic_user_relationships.find_by_topic_id(topic.id).destroy
   end
+  def suggest_topics
+    followed_topics = "SELECT topic_id FROM topic_user_relationships WHERE (user_id = #{self.id})"
+    Topic.where("id NOT IN (#{followed_topics})").limit(5)
+
+  end
+
+  def from_user_suggest(current)
+    followed_topics = "SELECT topic_id FROM topic_user_relationships WHERE (user_id = #{current})"
+    self.followed_topics.where("topics.id NOT IN (#{followed_topics})").limit(5)
+  end
 
   private
 
