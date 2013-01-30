@@ -30,8 +30,10 @@ class Comment < ActiveRecord::Base
 
   def score_and_notify
     update_column(:score, (created_at.to_i/60))
-    if commentable.is_a? Comment and user!=commentable.user
-      notify = Notification.where(notifiable_type: "Comment" , user_id: commentable.user.id, parent_id: commentable_id, parent_type: "Comment").first_or_initialize
+    users = commentable.comments.pluck(:user_id).uniq
+    users = users - [user.id]
+    users.each do |notify_user|
+      notify = Notification.where(notifiable_type: "Comment" , user_id: notify_user, parent_id: commentable_id, parent_type: commentable_type).first_or_initialize
       notify.notifiable_id = id
       notify.save!
     end

@@ -33,14 +33,23 @@
     <% if parent.comments.size > 1%>
       and others 
     <% end %>
-    replied to your comment
+  <% if parent.is_a? Comment %>
+    replied to the comment
     <span class="span8"><%= render 'comments/comment', comment: parent %></span>
   </span>
+    <% else %>
+      commented on the link
+    <%= render 'links/link', link: parent %>
+  <% end %>
 
   <% elsif notifiable.is_a? User%>
+    <br/>
     <div class="span8">
     <%= image_tag (notifiable.avatar.url(:thumb)), class: "comment-image" %>
         <%= link_to notifiable.name, notifiable, class: 'profile_hover', data: { hovercard: notifiable.id } %> is now following you 
+    
     </div>
+      <br/>
+    <br/>
   <% end %>
   </li>
