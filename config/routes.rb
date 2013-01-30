@@ -34,7 +34,7 @@ Youarel::Application.routes.draw do
   end
   resources :topics do
     member do
-      get :following_users, :hovercard
+      get :followers, :hovercard
     end
   end
   resources :users do

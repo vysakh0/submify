@@ -25,16 +25,7 @@ Youarel::Application.configure do
   # Print deprecation notices to the Rails logger
 
   config.action_mailer.default_url_options = { :host => "localhost:8080" }
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: "smtp.zoho.com",
-    port: 465,
-    user_name: "support@submify.com",
-    password: "9381205918",
-    openssl_verify_mode: 'none',
-    authentication: :login,
-    enable_starttls_auto: false
-  }
+  config.action_mailer.delivery_method = :sendmail
   # Generate digests for assets URLs
   config.active_support.deprecation = :log
 
