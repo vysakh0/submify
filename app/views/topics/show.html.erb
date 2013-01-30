@@ -1,5 +1,5 @@
 <% provide(:title, @topic.name) %>
-<div class="container">
+<div class="container-fluid">
   <div class="span8">
     <% tab "Feed" %>
     <%= render 'topic_stats' %>
@@ -12,4 +12,8 @@
     </div>
   </div>
 
-  </div>
+  <% if @users.any? %>
+  <%= render 'shared/user_suggest' %>
+<% end %>
+
+</div>

@@ -41,6 +41,7 @@ class UsersController < ApplicationController
   end
   def show
     @user = User.find(params[:id])
+  @topics = @user.followed_topics.limit(5)
     @link_users = @user.link_users.page(params[:page]).per_page(10)
   end
 

@@ -10,12 +10,18 @@ class TopicsController < ApplicationController
   def show
     @link = current_user.links.build  if current_user
     @topic = Topic.find(params[:id])
+    @users = @topic.following_users.limit(5)
     @link_users = @topic.link_users.order("score DESC").paginate(page: params[:page], per_page: params[:per_page]||15)
     respond_to do |format|
       format.html
       format.js
     end
   end
+  def followers
+    @topic = Topic.find(params[:id])
+    @users = @topic.following_users.paginate(page: params[:page])
+  end
+
   def edit
     @topic = Topic.find(params[:id])
   end

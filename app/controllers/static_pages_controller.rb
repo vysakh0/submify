@@ -3,6 +3,9 @@ class StaticPagesController < ApplicationController
     if signed_in?
       @link = current_user.links.build 
       @link_users = current_user.feed.paginate(page: params[:page], per_page: params[:per_page]|| 15)
+      @topics = Topic.joins(:topic_user_relationships).where("topic_user_relationships.user_id != ?", current_user.id).limit(5).uniq
+
+      #Article.where.not(title: 'Rails 3') Rails 4 way :D
       respond_to do |format|
         format.js
         format.html
