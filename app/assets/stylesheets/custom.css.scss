@@ -31,6 +31,10 @@ body {
 }
 #nav_discover, #nav_blog, #sign_in {
   padding-top: 12px;
+  color: #eaedea;
+}
+#nav_explore{
+  color: #eaedea;
 }
 #nav_home, #nav_explore{
   padding-top: 11px;
@@ -736,7 +740,7 @@ li.nostyle {
   background-color:red;
   color:white;
   font-weight:bold;
-  font-size:0.55em;
+  font-size:0.70em;
 
   border-radius:30px;
   box-shadow:1px 1px 1px gray;

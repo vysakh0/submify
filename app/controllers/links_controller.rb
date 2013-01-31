@@ -67,7 +67,7 @@ class LinksController < ApplicationController
     topic = params[:topic_name]
     @topic = Topic.find(params[:topic_val]) if params[:topic_val]!=""
 
-    if topic != "" and data=check_url
+    if topic != "" and params[:link][:url_link]!= ""  and data=check_url
 
       if @link= Link.find_by_url_link(params[:link][:url_link])
         #after upgrading to rails4 use this line instead of previous line:)
@@ -114,7 +114,7 @@ class LinksController < ApplicationController
         end
       end
     else 
-      flash[:error]= "Enter a proper url"
+      flash[:error]= "Enter a proper url with topic name"
 
     end
     respond_to do |format|

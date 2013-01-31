@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :signed_in_user, only: [:edit, :update, :destroy, :following, :index, :notifications], except: [:facebook_create, :create, :new, :confirmation]
+  before_filter :signed_in_user, only: [:edit, :update, :destroy, :following, :index, :notifications], except: [:facebook_create, :create, :new, :confirmation, :hovercard]
   before_filter :correct_user, only: [:edit, :update, :following, :notifications]
 
   #rails4 makes filter into action, so you should have before_action
@@ -78,12 +78,12 @@ class UsersController < ApplicationController
       redirect_to root_url
     else
       @user = User.new(params[:user])
-      if @user.save!
+      if @user.save
         @user.toggle!(:verify) unless @user.verify?
         session[:user_id] = @user.id
         redirect_to root_url
       else
-        render 'new'
+        render 'fb'
       end
     end
 
