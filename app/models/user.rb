@@ -111,8 +111,6 @@ class User < ActiveRecord::Base
   def make_pic
   if self.uid
     self.avatar = URI.parse("https://graph.facebook.com/#{self.uid}/picture") 
-  else
-    self.avatar = '/images/avatar/missing_profile_thumb.jpg'
   end
   end
 
