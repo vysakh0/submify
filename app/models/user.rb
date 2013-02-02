@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   friendly_id :name, use: :slugged
   attr_accessible :avatar, :description, :name, :notifications_count, :email, :uid, :username, :oauth_token, :oauth_expires_at, :password, :password_confirmation
 
-  has_attached_file :avatar, styles: { medium: "200x200>", thumb: "100x100"}, default_style: :thumb
+  has_attached_file :avatar, styles: { medium: "200x200>", thumb: "100x100"}, default_style: :thumb, default_url: '/images/avatar/missing_profile_thumb.png'
   has_many :flags
 
   has_many :topic_user_relationships, foreign_key: "user_id", dependent: :destroy
@@ -72,7 +72,7 @@ class User < ActiveRecord::Base
   after_save :make_following
   after_save :load_into_soulmate
   before_destroy :remove_from_soulmate
-  before_create :make_pic
+  after_create :make_pic
 
   #def user_name
   #Rails.cache.fetch([:user, id, :name]) do
@@ -111,6 +111,7 @@ class User < ActiveRecord::Base
   def make_pic
   if self.uid
     self.avatar = URI.parse("https://graph.facebook.com/#{self.uid}/picture") 
+    self.save
   end
   end
 
