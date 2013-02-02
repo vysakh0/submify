@@ -13,7 +13,7 @@
     <blockquote>
       <%= link.description if link.description %>
     </blockquote>
-      <%= link_to image_tag(link.picture, class: 'link-image') , link.picture, data: { colorbox: true } if link.picture and  /^(http|https):\/\/|[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/.match(img)!=nil %>
+      <%= link_to image_tag(link.picture, class: 'link-image') , link.picture, data: { colorbox: true } if link.picture and  /^(http|https):\/\/|[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/.match(link.picture)!=nil %>
 
     <% end %>
   <% end %>
