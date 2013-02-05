@@ -232,13 +232,18 @@ display:block;
 
 .timestamp{
   float: left;
-  color: #bbc3bc;
+  color: #707570;
   padding-right: 10px;
-  font-size: 11.8px;
+  font-size: 10.8px;
   a{
-    color: #bbc3bc;
+    color: #707570;
   }
 }
+.exp_explain{
+  font-size: 20px;
+  padding-left: 18px;
+}
+
 .stats_of_user, .stats_of_topic{
   padding-top: 30px;
 }
@@ -794,4 +799,7 @@ li.nostyle {
 }
 .show-comments{
   padding-right: 10px;
+}
+.comments_stats{
+  padding-top: 4px;
 }
