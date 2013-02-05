@@ -1,10 +1,9 @@
-<div class="span8">
 <% if signed_in? %>
 <% name , val = nil %>
 <% name = @topic.name and val= @topic.id if @topic %>
 <%= form_for @link , remote: true do |f| %>
   <div class="field">
-    <%= f.text_area :url_link, placeholder: "Submit the best thing you saw on the Internet today ", id: "complete_url"%>
+    <%= f.text_area :url_link, placeholder: "Submit the best thing(url link) you saw on the Internet today ", id: "complete_url"%>
 
     <%= text_field_tag 'topic_name', name , class: 'link-topic-tag', placeholder: "Topic name(only one)" %>
     <%= text_area_tag 'comment_body', nil, placeholder: "Add a comment", id: "link_c_text"%>
@@ -15,4 +14,3 @@
 <% end %>
 
 <% end %>
-</div>

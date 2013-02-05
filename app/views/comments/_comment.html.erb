@@ -18,7 +18,19 @@
      <div class="comment_body">
        <%= render 'comments/comment_content', comment: comment %>
      </div>
-      <span class="votes-up"> <i class="icon-caret-up icon-small"></i></span>
+<div class="comment_stats">
+   <span class="timestamp">
+    <% if comment.commentable_type == 'Link' %>
+      <!--
+         -<%= link_to timing(comment.created_at), link_comment_path(comment.commentable, comment) %>
+         -->
+        <%= link_to (timeago_tag comment.created_at, :nojs => true, :limit => 10.days.ago),  link_comment_path(comment.commentable, comment) %>
+    <% else %>
+
+        <%= timeago_tag comment.created_at, :nojs => true, :limit => 10.days.ago %>
+    <% end %>
+  </span>
+     <span class="votes-up"> <i class="icon-caret-up icon-small"></i></span>
       <span class="votes">
         <%= comment.votes_count %>
       </span>
@@ -41,6 +53,7 @@
     <span class="comment-vote">
       <%= render 'votes/vote_button', votable: comment, type: "Comment" %>
     </span>
+</div>
     <br/>
     <div id="comment-comments">
     </div>
