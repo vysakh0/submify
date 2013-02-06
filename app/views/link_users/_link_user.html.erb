@@ -21,7 +21,6 @@
       </div> 
       <div class="lu_box container-fluid">
         <div class="link_info"><%= render 'links/link_info', link: link %></div>
-<div class="link_stats">
       <span class="timestamp">
         <%= timeago_tag link_user.created_at, :nojs => true, :limit => 10.days.ago %>
         <!--
@@ -42,7 +41,6 @@
       <span id="topic-downvote">
         <%= render 'downvotes/downvote_button', votable: link_user, type: "LinkUser" %>
       </span>
-</div>
 
     </div>
     <% if comment = link_user_comment(link, link_user.user.id) %>

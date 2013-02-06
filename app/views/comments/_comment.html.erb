@@ -18,7 +18,6 @@
      <div class="comment_body">
        <%= render 'comments/comment_content', comment: comment %>
      </div>
-<div class="comment_stats">
    <span class="timestamp">
     <% if comment.commentable_type == 'Link' %>
       <!--
@@ -53,7 +52,6 @@
     <span class="comment-vote">
       <%= render 'votes/vote_button', votable: comment, type: "Comment" %>
     </span>
-</div>
     <br/>
     <div id="comment-comments">
     </div>
