@@ -25,6 +25,8 @@ class StaticPagesController < ApplicationController
 
   def privacy
   end
+  def faq
+  end
   def front_page
     @link_users = LinkUser.order("score DESC").limit(100).paginate(page: params[:page])
     unless signed_in?

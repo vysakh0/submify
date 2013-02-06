@@ -45,6 +45,7 @@ Youarel::Application.routes.draw do
   post 'facebook_create', to: 'users#facebook_create'
   post 'send_again', to: 'sessions#send_again'
   get 'confirmation', to: 'users#confirmation'
+  get 'faq', to: 'static_pages#faq'
   #  match '/signin', to: 'sessions#new'
   match '/admin', to: 'admin#links'
   match '/admin/comments', to: 'admin#comments'
