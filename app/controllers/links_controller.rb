@@ -84,7 +84,7 @@ class LinksController < ApplicationController
 
 
           flash[:success]="Link submitted"
-          #publish_to_fb
+          publish_to_fb
         end
       else
         @link = current_user.links.build(params[:link]) 
@@ -111,6 +111,7 @@ class LinksController < ApplicationController
             comment.save
           end
           flash[:success]="Link submitted"
+          publish_to_fb
         end
       end
     else 
