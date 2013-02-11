@@ -1,0 +1,8 @@
+---
+:verbose: false
+:pidfile: ./tmp/pids/sidekiq.pid
+:namespace: sidekiq_namespace
+:concurrency:  10
+:queues:
+  - [high, 7]
+  - [default, 5]
