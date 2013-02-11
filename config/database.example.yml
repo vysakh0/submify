@@ -4,8 +4,8 @@ development:
   database: jerry
   host: localhost
   pool: 5
-  username: tom
-  password: pass
+  username: 
+  password: 
 
 test:
   adapter: postgresql
@@ -21,5 +21,5 @@ production:
   database: jerry
   host: localhost
   pool: 25
-  username: tom
-  password: pass
+  username: 
+  password: 

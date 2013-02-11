@@ -7,7 +7,7 @@ class AdminConstraint
 end
 
 require 'sidekiq/web'
-Youarel::Application.routes.draw do
+Submify::Application.routes.draw do
 
 
   mount Sidekiq::Web, at: '/sidekiq', :constraints => AdminConstraint.new
