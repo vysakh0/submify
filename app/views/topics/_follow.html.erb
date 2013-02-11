@@ -1,5 +1,0 @@
-<%= form_for(current_user.topic_user_relationships.build(topic_id: topic.id), remote: true) do |f| %>
-  <div><%= f.hidden_field :topic_id %> </div>
-  <%= f.submit "Follow", class: "btn btn-large btn-custom " %>
-<% end %>
-

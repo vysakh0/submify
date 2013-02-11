@@ -1,3 +1,0 @@
-$(" .user-<%= @user.id %> > #follow_form").html("<%= escape_javascript(render 'users/follow', user: @user) %>")
-
-$(".followers_user").html('<%= j link_to pluralize(@user.followers.count, 'follower') , followers_user_path(@user) %>')

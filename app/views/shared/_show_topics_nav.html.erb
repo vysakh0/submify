@@ -1,8 +1,0 @@
-<% cache ["topics", current_user ] do %>
-  <li><%= link_to "Front Page", front_path %></li>
-  <li><%= link_to "Discover", topics_path %> </li>
-            <li class="divider"></li>
-            <% current_user.followed_topics.each do |topic| %>
-              <li> <%= link_to topic.name, topic_path(topic) %> </li>
-            <% end %>
-        <% end %>

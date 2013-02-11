@@ -1,3 +1,0 @@
-<% vid = @flaggable.class.to_s.downcase+'-'+@flaggable.id.to_s %>
-$(".<%= vid %>  > .link_contain > .flag").html("<%= escape_javascript render('flags/flag_button', flaggable: @flaggable) %>");
-$(".<%= vid %>  > .flag").html("<%= escape_javascript render('flags/flag_button', flaggable: @flaggable) %>");

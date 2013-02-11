@@ -1,8 +1,0 @@
-<% if signed_in? %>
-<%= form_for Comment.new do |f| %>
-  <div class="field">
-    <%= f.text_area :body, placeholder: "Add a comment", id: "comment_text"%>
-    <%= f.submit "Submit", class: "btn btn-small"%>
-  </div>
-<% end %>
-<% end %>

@@ -1,9 +1,0 @@
-<% if @link_user %>
-  $('.links').prepend("<%= escape_javascript render('link_users/link_user', link_user: @link_user ) %>");
-  $('#new_link')[0].reset();
-<% end %>
-$('#flash').html("<%= escape_javascript raw(flash_display) %>");
-  <% if not @topic %>
-    $('#topic_name').val("");
-  <% end %>
-$("input[type=submit]").removeAttr("disabled");

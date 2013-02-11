@@ -1,7 +1,0 @@
-<%if signed_in? %>
-  <%= form_for :link, url: submit_link_path(@link), remote: true do |f| %>
-    <%= text_field_tag 'topic_name', nil, placeholder: "Topic name" %>
-    <%= f.hidden_field :id, value: @link.id %>
-    <%= f.submit "submit", class: "undo-butn gif-load" %>
-  <% end %>
-<% end %>

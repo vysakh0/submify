@@ -1,8 +1,0 @@
-$('.links').append('<%= j (render @link_users) %>');
-<% if @link_users.next_page %>
-  $('.pagination').replaceWith('<%= j (will_paginate(@link_users)) %>');
-<% else %>
-  $('.pagination').remove();
-<% end %>
-<% sleep 1 %>
-

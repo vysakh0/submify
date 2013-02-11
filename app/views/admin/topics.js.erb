@@ -1,6 +1,0 @@
-$('.topics').append('<%= j (render @topics) %>');
-<% if @topics.next_page %>
-  $('.pagination').replaceWith('<%= j (will_paginate(@topics)) %>');
-<% else %>
-  $('.pagination').remove();
-<% end %>
