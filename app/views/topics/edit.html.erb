@@ -1,0 +1,31 @@
+<% provide(:title, @topic.name ) %>
+
+<div class="container">
+  <div class="span8">
+    <% tab "Edit" %>
+    <%= render 'topic_stats' %>
+<div class="span8">
+    <h5> Edit Topic </h5>
+    <% if  !(@topic.verify) || (current_user.admin? if current_user) %>
+      <%= form_for @topic, :html => {:multipart => true}  do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+        <br/>
+<%= image_tag (@topic.avatar.url(:thumb)), class: "topic-pic" %>
+        <%= f.label :image %>
+        <%= f.file_field :avatar %>
+        <br/>
+        <br/>
+        <% if current_user.admin? %>
+          Topic verification is  <%= @topic.verify? %>
+          <br/>
+          <%= text_field_tag 'verify' %>
+        <% end %>
+        <%= f.submit "Save changes", class:"btn" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+</div>

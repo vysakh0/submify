@@ -1,0 +1,27 @@
+<div id='container'>
+<div class='item'>
+<% if @feed_items.any? %>
+  <ol class="links">
+    <%= render partial: 'shared/feed_item', collection: @feed_items %>
+  </ol>
+  <%= will_paginate @feed_items %>
+<% end %>	
+</div>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script src="/path/to/jquery.masonry.min.js"></script>
+<style>
+.item {
+  width: 220px;
+  margin: 10px;
+  float: left;
+}
+</style>
+<script> 
+  $('#container').masonry({
+      itemSelector: '.item',
+      columnWidth : 100 
+  });
+</script>
+

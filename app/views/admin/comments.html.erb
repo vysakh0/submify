@@ -1,0 +1,9 @@
+<div class="span8">
+  <div class="container-fluid">
+    <%= render 'admin/stats' %>
+      <ol class="show-commented">
+        <%= render @comments %>
+      </ol>
+      <%= will_paginate @comments %>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<% if comment %>
+    <div class="comment-<%= comment.id %> comment_contain">
+
+      <br/>
+      <% if comment.user== current_user || (current_user.admin? if current_user) %>
+        <div class="del_comment"> 
+          <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  comment, method: :delete, data: { confirm: "You sure?" }, remote: true, title: comment.body %>
+        </div>
+      <% else %>
+        <div class="flag">
+          <%= render 'flags/flag_button', flaggable: comment, type: "Comment" %>
+        </div>
+      <% end %>
+  <% cache comment, expires_in: 10.minutes do %>
+    <!--
+       -do caching with comment content and number of stats & number of downvotes or replies as it saves more time calculating the count & no need of any counter cache :) This works with model of vote, downvote set as touch: true!
+       -->
+    <%= image_tag (comment.user.avatar.url(:medium)), class: "comment-image" %>
+
+     <div class="comment_body">
+       <%= render 'comments/comment_content', comment: comment %>
+     </div>
+   <span class="timestamp">
+    <% if comment.commentable_type == 'Link' %>
+      <!--
+         -<%= link_to timing(comment.created_at), link_comment_path(comment.commentable, comment) %>
+         -->
+        <%= link_to (timeago_tag comment.created_at, :nojs => true, :limit => 10.days.ago),  link_comment_path(comment.commentable, comment) %>
+    <% else %>
+
+        <%= timeago_tag comment.created_at, :nojs => true, :limit => 10.days.ago %>
+    <% end %>
+  </span>
+     <span class="votes-up"> <i class="icon-caret-up icon-small"></i></span>
+      <span class="votes">
+        <%= comment.votes_count %>
+      </span>
+      <% if comment.commentable_type == 'Link' %>
+
+        <span class="votes-up"><i class="icon-comments-alt icon-small"></i></span>
+        <span class="show_comment">
+          <%= link_to pluralize(comment.comments_count, "reply"), comment_path(comment), class: 'hook-comment-comments', remote: true %>
+        </span>
+      <% else %>
+        <span class="votes-up"><i class="icon-caret-down icon-small"></i></span>
+        <span class="downvotes">
+          <%= comment.downvotes.count %>
+        </span>
+      <% end %>
+    <% end %>
+    <span class="comment-downvote">
+      <%= render 'downvotes/downvote_button', votable: comment, type: "Comment" %>
+    </span>
+    <span class="comment-vote">
+      <%= render 'votes/vote_button', votable: comment, type: "Comment" %>
+    </span>
+    <br/>
+    <div id="comment-comments">
+    </div>
+    <div class="comments-form">
+    </div>
+    <div class="underline"></div>
+  </div>
+<% end %>

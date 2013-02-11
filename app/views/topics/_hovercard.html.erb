@@ -1,0 +1,7 @@
+
+<%= image_tag (@topic.avatar.url(:thumb)), class: "topic-pic-hover" %>
+<%= link_to @topic.name, @topic, class: "hover-name" %>
+  <span class="follow_hover topic-<%= @topic.id %>">  <%= render 'topics/follow_form', topic: @topic if signed_in? %> </span>
+  <div class="followers-count hover_stat_topic">
+      <%= pluralize(@topic.following_users.count, 'follower') %>
+</div>

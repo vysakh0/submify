@@ -1,0 +1,50 @@
+<li class="nostyle">
+<div class="notification_box">
+<% notifiable = notification.notifiable %>
+<% parent = notification.parent %>
+<% if notifiable.is_a? Vote %>
+  <% if parent.is_a? Comment %>
+    <%= image_tag (notifiable.user.avatar.url(:thumb)), class: "comment-image" %>
+    <%= link_to notifiable.user.name, notifiable.user, class: 'profile_hover', data: { hovercard: notifiable.user.id } %>
+    <%  if parent.votes.size > 1 %>
+      and
+      <%= pluralize((parent.votes.size) -1 , "other")  %>
+    <% end %> 
+    voted on your comment
+
+    <%= render 'comments/comment', comment: parent %>
+  <% else %>
+    <%= image_tag (notifiable.user.avatar.url(:thumb)), class: "comment-image" %>
+    <%= link_to notifiable.user.name, notifiable.user, class: 'profile_hover', data: { hovercard: notifiable.user.id } %> 
+    <%  if parent.votes.size > 1 %>
+      and
+      <%= pluralize((parent.votes.size) - 1, "other")%> 
+    <% end %>
+    voted on your link 
+    <%= render 'link_users/link_user', link_user: parent %>
+  <% end %>
+  <% elsif notifiable.is_a? Comment %>
+
+    <%= image_tag (notifiable.user.avatar.url(:thumb)), class: "comment-image" %>
+    <%= link_to notifiable.user.name, notifiable.user, class: 'profile_hover', data: { hovercard: notifiable.user.id } %> 
+    <% if parent.comments.size > 1%>
+      and others 
+    <% end %>
+  <% if parent.is_a? Comment %>
+    replied to the comment
+    <%= render 'comments/comment', comment: parent %>
+    <% else %>
+      commented on the link
+    <%= render 'links/link', link: parent %>
+  <% end %>
+
+  <% elsif notifiable.is_a? User%>
+    <br/>
+    <%= image_tag (notifiable.avatar.url(:thumb)), class: "comment-image" %>
+        <%= link_to notifiable.name, notifiable, class: 'profile_hover', data: { hovercard: notifiable.id } %> is now following you 
+    
+      <br/>
+    <br/>
+  <% end %>
+</div>
+  </li>

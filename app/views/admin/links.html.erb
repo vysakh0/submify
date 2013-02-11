@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <div class="span8">
+     <%= render 'admin/stats' %>
+   <% if signed_in? %>
+<h4> Links </h4>
+      <% if @links %>
+        <ol class="links">
+    <%= render @links %>
+        </ol>
+        <%= will_paginate @links %>
+      <% else %>
+    <h5> No links found </h5>
+      <% end %>	
+    <% end %>
+  </div>  
+</div>

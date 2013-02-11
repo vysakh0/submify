@@ -1,0 +1,19 @@
+<% cache "link_#{link.id}" do %>
+  <% if /youtube.com|vimeo.com|twitter.com|soundcloud.com/.match(link.url_link) %>
+    <div class="video_embedd">
+    <%= video_preview(link.url_link) %>
+    <br/>
+  </div>
+    <% else %>
+      <div class="link_link">
+      <%= link_to link.url_heading, 'http://' + link.url_link, target: "_blank", class: 'link_url' %> 
+    <% host = 'http://'+ link.url_link %>
+      <%= link_to host.match(".+\:\/\/([^\/]+)")[1], host, class: 'host_link' %> 
+    </div>
+    <blockquote>
+      <%= link.description if link.description %>
+    </blockquote>
+      <%= link_to image_tag(link.picture, class: 'link-image') , link.picture, data: { colorbox: true } if link.picture and  /^(http|https):\/\/|[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/.match(link.picture)!=nil %>
+
+    <% end %>
+  <% end %>

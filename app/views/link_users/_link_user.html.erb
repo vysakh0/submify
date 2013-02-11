@@ -1,0 +1,60 @@
+<% link = link_user.link %>
+<div class="container-fluid">
+  <div class= "link-<%= link_user.id %> row-fluid" >
+    <div class="link_contain">
+      <% topic = link_user.topic %>
+      <% if (link_user.user == current_user and topic) || (current_user and current_user.admin?) %>
+        <span class="unsubmit">
+          <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"),  unsubmit_link_path(link, unsubmit: link_user, topic: topic.id), method: :post, remote: true, data: { confirm: "You sure?" }   %>
+        </span>
+      <% else %>
+        <%= link_to raw("<i class=\"icon-remove icon-small\"></i>"), "#", class: "dummy" %>
+        <!--
+        -created a dummy link so that unsigned user see a good profile links which is otherwise unaligned :)
+        -->
+      <% end %>  
+      <% cache link_user, expires_in: 5.minutes do %>
+      <div class="user-profile">
+        <%= image_tag (link_user.user.avatar.url(:medium)), class: 'link-user-image'  %>
+        <%= link_to link_user.user.name, link_user.user, class: 'profile_hover', data: { hovercard: link_user.user.id } %>
+        submitted about <%= link_to topic.name, topic_path(topic), class: 'topic_hover', data: { hovercard: topic.id } %>
+      </div> 
+      <div class="lu_box container-fluid">
+        <div class="link_info"><%= render 'links/link_info', link: link %></div>
+      <span class="timestamp">
+        <%= timeago_tag link_user.created_at, :nojs => true, :limit => 10.days.ago %>
+        <!--
+           -<%= timing(link_user.created_at) %>
+           -->
+      </span>
+
+        <span class="votes-up"> <i class="icon-caret-up icon-small"></i></span>
+        <span class="votes">
+          <%= (link_user.votes_count) %>
+        </span>
+      <% end %>
+        <span class="votes-up"> <i class="icon-comments-alt icon-small"></i></span>
+        <span class="show-comments">  <%= link_to pluralize(link.comments_count, "comment"), link %></span>
+      <span class="vote">
+        <%= render 'votes/vote_button', votable: link_user, type: "LinkUser" %>
+      </span>
+      <span id="topic-downvote">
+        <%= render 'downvotes/downvote_button', votable: link_user, type: "LinkUser" %>
+      </span>
+
+    </div>
+    <% if comment = link_user_comment(link, link_user.user.id) %>
+
+    <div class="comment_link_box">
+      <div id="comment_link_border">
+      <%= render 'comments/comment', comment: comment %>
+    </div>
+    </div>
+  <% end %>
+    </div>
+
+  </div>
+</div>
+<!--
+-<div class="underline"></div>
+-->

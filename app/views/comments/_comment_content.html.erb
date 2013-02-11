@@ -1,0 +1,9 @@
+<% cache "#{comment.id}_comment" do %>
+
+    <div class="user_link">
+      <span class="user">
+        <%= link_to comment.user.name, comment.user, class: 'profile_hover', data: { hovercard: comment.user.id } %>
+      </span>
+    </div>
+     <div class="expandable"> <%= comment.body %></div>
+  <% end %>

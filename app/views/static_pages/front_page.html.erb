@@ -1,0 +1,12 @@
+<% provide(:title, 'Front Page') %>
+<div class="container-fluid">
+  <div class="span8">
+<% cache "signed_front", expires_in: 2.minutes do %>
+       <span class="exp_explain">Front Page - Top links in Submify</span>
+      <ol class="links">
+        <%= render @link_users %>
+      </ol>
+          <%= will_paginate @link_users %>
+<% end %>
+  </div>
+</div>

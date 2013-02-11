@@ -1,0 +1,16 @@
+<% provide(:title, @topic.name) %>
+<div class="container">
+  <div class="span8">
+    <%= render 'topic_stats' %>
+    <% if @users.any? %>
+      <div class="span8">
+    <h4>Followers 
+      (<%= @users.count %>) </h4>
+      <ul class="users">
+        <%= render partial: 'users/user', collection: @users %>
+      </ul>
+      <%= will_paginate @users %>
+    </div>
+    <% end %>
+  </div>
+</div>

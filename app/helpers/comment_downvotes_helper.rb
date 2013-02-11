@@ -1,0 +1,2 @@
+module CommentDownvotesHelper
+end

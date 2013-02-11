@@ -1,0 +1,12 @@
+<% provide(:title, 'All users') %>
+<div class="row-fluid">
+  <div class="span8">
+<h1>users</h1>
+
+<ol class="users">
+  <%= render @users %>
+</ol>
+
+<%= will_paginate @users %>
+</div>
+</div>

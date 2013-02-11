@@ -1,0 +1,48 @@
+
+<div class="container-fluid">
+  <% if signed_in? %>
+    <% provide(:title, 'Home') %>
+    <% unless @link_users.empty? %>
+      <div class="span8">
+        <section>
+        <%= render 'shared/link_form' %>
+        </section>
+        <ol class="links">
+          <%= render @link_users %>
+        </ol>
+        <%= will_paginate @link_users %>
+      </div>
+      <%= render 'shared/topics_suggest' %>
+    <% else %>
+
+      <div class="span4 container">
+      <div class="arrow_box">
+        <span class="up_explain"><i class="icon-caret-up icon-large"></i></span>
+        <span class="exp_explain">   <h5> Click Explore to find new topics, people and links </h5></span>
+      </div>
+    </div>
+      <div class="span8">
+      <span class="exp_explain"> Start sharing links with the appropriate topic community </span>
+        <section>
+        <%= render 'shared/link_form_new' %>
+        </section>
+      </div>
+    <% end %>
+
+  <% else %>
+    <div class="span8">
+    <% cache "front", expires_in: 2.minutes do %>
+      <% provide(:title, 'What is the best thing you saw on the Internet today?. Lets go..' ) %>
+      <span class="exp_explain">   Sign in to share the best thing you saw on the internet today. </span>
+      <ol class="links">
+        <%= render @link_users if @link_users %>
+      </ol>
+      <%= will_paginate @link_users %>
+    <% end %>
+  </div>
+  <div class="social_media">
+      <%= render 'shared/social_media' %>
+    </div>
+       <%= render 'shared/sign_in_fixed' %>
+  <% end %>
+</div>

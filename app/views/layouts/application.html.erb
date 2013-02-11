@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US"
+  xmlns:fb="https://www.facebook.com/2008/fbml">
+
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# strongfly: http://ogp.me/ns/fb/strongfly#">
+    <title>
+      <% if current_user and current_user.notifications_count > 0 %>
+        (<%= current_user.notifications_count %>)
+      <% end %>
+      <%= yield(:title) %> | Submify </title>
+    <%= favicon_link_tag 'favicon.ico' %>
+    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= csrf_meta_tags %>
+    <% if Rails.env.production? %>
+    <%= render 'layouts/analytics' %>
+    <% end %>
+    <%= yield :head %>
+    <%= render 'layouts/shim' %>
+  </head>
+  <body>
+    <%= render 'layouts/header' %>
+
+    <div id="wrap">
+      <div class="container yield_box clear_top">
+        <div id="flash">
+          <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>"><%= value %></div>
+          <% end %>
+        </div>
+        <div id="spinner">
+          <%= image_tag("ajax-loader.gif", class:  "loading-indicator") %>
+        </div>
+        <%= yield %>
+      </div>
+      <div id="main"></div>
+    </div>
+    <%= render 'layouts/footer' %>
+    <%= debug(params) if Rails.env.development? %>
+
+    <%= javascript_include_tag "application" %>
+  </body>
+</html>

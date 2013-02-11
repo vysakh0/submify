@@ -1,0 +1,20 @@
+
+    <h4> Enter a password </h4>
+
+    <%= form_for @user, url: facebook_create_path, method: :post  do |f| %>
+
+
+      <%= f.hidden_field :name, value: @user.name %>
+      <%= f.hidden_field :email, value: @user.email %>
+      <%= f.hidden_field :uid, value: @user.uid %>
+      <%= f.hidden_field :username, value:  @user.username %>
+      <%= f.hidden_field :oauth_token , value: @user.oauth_token %>
+      <%= f.hidden_field :oauth_expires_at , value: @user.oauth_expires_at %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+
+      <%= f.submit "Create my account", class: "btn btn-large" %>
+    <% end %>

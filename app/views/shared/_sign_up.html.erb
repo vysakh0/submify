@@ -1,0 +1,20 @@
+    <h4> Sign up </h4>
+    <br/>
+
+    <%= form_for @user do |f| %>
+
+      <%= f.label :name, 'Full Name' %>
+      <%= f.text_field :name %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+
+      <%= f.submit "Create my account", class: "btn btn-large" %>
+    <% end %>
+    <p> Existing user? <%= link_to "Sign in now", show_signin_path, remote: true %> </p>

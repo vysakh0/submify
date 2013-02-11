@@ -1,0 +1,9 @@
+
+<%= image_tag (@user.avatar.url(:thumb)), class: "gravatar" %>
+<%= link_to @user.name, @user %>
+<span class="follow_button user-<%= @user.id %>">  <%= render 'follow_form', user: @user if signed_in? %> </span>
+<div class="hover_stats">
+<%= link_to pluralize(@user.links.count, 'link'), user_path(@user) %>
+<%= link_to pluralize(@user.commented.count, 'comment'), commented_user_path(@user) %>
+<%= link_to pluralize(@user.followers.count, 'follower'), followers_user_path(@user) %>
+</div>

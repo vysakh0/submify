@@ -1,0 +1,5 @@
+<%= form_for(current_user.link_users.find_by_link_id(feed_item.id),
+             html: { method: :delete },
+             remote: true) do |f| %>
+  <%= f.submit "Unvote" %>
+<% end %>

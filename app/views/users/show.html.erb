@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <% provide(:title, @user.name) %>
+  <div class="span8">
+    <%= hidden_field_tag 'page_tab',"links" %> 
+    <span class="span8"><%= render 'profile_stat_nav' %></span>
+    <ol class="links">
+      <%= render @link_users %>
+    </ol>
+    <%= will_paginate @link_users %>
+  </div>
+
+  <% if @topics.any? %>
+    <%= render 'shared/topics_suggest' %>
+<% end %>
+
+</div>

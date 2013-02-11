@@ -1,0 +1,19 @@
+<% provide(:title, @topic.name) %>
+<div class="container-fluid">
+  <div class="span8">
+    <% tab "Feed" %>
+    <%= render 'topic_stats' %>
+    <div class="span8">
+      <%= render 'shared/link_form' %>
+      <ol class="links">
+        <%= render @link_users %>
+      </ol>
+      <%= will_paginate @link_users%>
+    </div>
+  </div>
+
+  <% if @users.any? %>
+  <%= render 'shared/user_suggest' %>
+<% end %>
+
+</div>

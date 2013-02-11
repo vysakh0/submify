@@ -1,0 +1,80 @@
+<% provide(:title, @link.url_heading) %>
+<% content_for :head do %>
+  <% if @link.picture %>
+    <% image = @link.picture %>
+  <% elsif @link.topics.exists? %>
+    <% image = @link.topics.first.avatar.url %>
+    <% image = "submify.com#{image}" unless /^(http|https):\/\//.match(image) %>
+  <% else %>
+    <% image = link_url(@link) %>
+  <% end %>
+  <meta property="fb:app_id" content="295241533825642" /> 
+  <meta property="og:type"   content="strongfly:link" /> 
+  <meta property="og:url"    content="<%= link_url(@link)%>"/>
+  <meta property="og:title"  content= "<%= @link.url_heading %>" /> 
+  <meta property="og:image"  content="<%= image %>"/>
+  <% if @link.description %>
+    <meta property="og:description"  content="<%= @link.description %>"/>
+  <% else %>
+    <meta property="og:description"  content="<%= @link.url_heading %>"/>
+  <% end %>
+<% end %>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="link-<%= @link.id %>" >
+      <div class="span8">
+        <!--
+        -fragment cached!..but now its a  problem!!Lets try adding diff cache
+        -->
+        <%= render 'links/link', link: @link %>
+        <!--
+        -      links are always fragment cached with their link info and stats :) no need of counter cache as it has already has a cache digest with "touch: true" to change as and when :) due to topics-list problem lets try combined caching with cache @link :)
+        - may expose vote button but never mind it disappears when tried to click
+        -->
+
+        <div class="comment-form">
+          <%= render 'shared/comment_form' %>
+        </div>
+        <ol class="full_comments">
+          <%= render partial: 'comments/comment', collection: @comments %>
+          <!--
+          -each comment is fragment cached :)
+          -->
+          <% if !(@comments.next_page) and  @downvoted_comments %>
+            <div class="downvoted">
+              <%= link_to "show downvoted comments", downvoted_link_path(@link), remote: true %>
+            </div>
+          <% end %>
+
+        </ol>
+        <%= will_paginate @comments %>
+
+      </div>
+    </div>
+
+    <div class="span4 ">
+      <div class="topic_in"> 
+        <ol class="list_topics">
+          <h6>Link in Topics</h6>
+          <% @link_users.each do |link_user| %>
+            <%= render 'link_topic', link_user: link_user %>
+          <% end %>
+        </ol>
+        <div class="submit_topic"> <%= render 'submit_to_topics' %> </div> 
+      </div>
+      <div class="related">
+        <% cache "related_#{@link.id}", expires_in: 1.hour do %>
+          <% if @related %>
+            <h6> Related </h6>
+            <% @related.each do |link| %>
+              <% if link.id != @link.id %>
+                <%= link_to link.url_heading, link , class: "rel_link"%>
+                <br/>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

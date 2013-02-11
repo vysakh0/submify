@@ -1,0 +1,183 @@
+@import "bootstrap.css" ;
+body {
+
+  padding-top: 60px;
+  min-width: 1000px;
+}
+
+#error_explanation {
+
+  color: #f00;
+
+  ul{
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+  .field_with_errors input{ 
+    border-color: #f00;
+  }
+
+/* ul.nav li.dropdown:hover ul.dropdown-menu{
+  display:block;
+} */
+
+.dropdown-menu li > a:hover{
+  background-image: none;
+  background-color: #bbc3bc;
+}
+
+/* show links */
+.links {
+  list-style: none;
+  margin: 10px 0 0 0;
+
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+}
+
+.url_link{
+  display: block;
+}
+
+.timestamp {
+	a{
+	  color: #999;
+	  float: right;
+	  font-size: 12px;
+	}
+	}
+
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+
+aside {
+  textarea{
+    height: 100px;
+    margin-bottom: 5px;
+  }
+}
+/* side bar */
+
+.stats {
+  overflow: auto;
+
+  a{
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid #999;
+    color: gray;
+    &:first-child{
+      padding-left: 0;
+      border:0;
+    }
+    &:hover{
+      text-decoration: none;
+      color: blue;
+    }
+  }
+  strong{
+    display: block;
+  }
+}
+.users_avatars {
+  overflow: auto;
+  margin-top: 10px;
+  .gravatar {
+    margin:  1px 1px;
+  }
+}
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid #999;
+    &:last-child {
+      border-bottom: 1px solid #999;
+    }
+  }
+}
+
+.field{
+
+	input[type = "text"],
+	textarea{
+
+		width: 600px;
+		height: 20px;
+		padding: 3px;
+		border: 1px solid #999;
+	}
+}
+
+
+
+#submit_button{
+	position: relative;
+	left: 550px;
+}
+
+.link_url{
+	a{
+	color: #323232;
+	font-family: arial, sans-serif;
+	}
+	
+}
+.host_link{
+	float: right;
+	color: #7f7f7f;
+	a{
+	color: #7f7f7f;
+	font-family: arial, sans-serif;
+	}
+}
+.user_link{
+	a{
+	color: #4c4c4c;
+	font-size: 12.8px;
+	font-weight: bold;
+	font-family: "Helvetica Neue",Arial,sans-serif;
+	text-shadow: rgba(0, 0, 0, 0.0078125) 0 0 1px;
+	}
+	
+}
+.delete_link{
+	
+	
+	left: 550px;
+	
+}
+.comments{
+	a{
+	float: right;
+	
+	}
+}
+#complete_url textarea, .mirroredText { line-height:20px; }
+.full_comments {
+  list-style: none;
+  margin: 10px 0 0 0;
+
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+}
+
+.show_comment{
+	color: #7f7f7f;
+	font-family: arial, sans-serif;
+	font-size: 12.8px;
+}
+.row_of_linkstats{
+	height: 20px;
+}

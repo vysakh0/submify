@@ -1,0 +1,27 @@
+
+
+<li id="<%= feed_item.id %>">
+
+<% host = 'http://'+ feed_item.url_link %>
+
+<div class="host_link">
+<%= link_to host.match(".+\:\/\/([^\/]+)")[1], host.match(".+\:\/\/([^\/]+)")[1] %> 
+</div>
+<div class="link_url">
+<span class="url_link"><%= link_to feed_item.url_heading, 'http://' + feed_item.url_link %> </span>
+</div>
+<div class= "row_of_linkstats">
+
+<div class="comments">
+<%= link_to feed_item.comments.count.to_s + pluralize(feed_item.comments.count, "comment"), feed_item %>
+
+</div>
+<div class="user_image">
+<% feed_item.users.each do |user| %>
+<%= link_to gravatar_for(user, size: 30), user %>
+<% end %>
+</div>
+</div>
+</li>
+
+
