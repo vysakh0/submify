@@ -25,3 +25,6 @@ config/initializers/soulmate.rb
 config/initializers/secret_token.rb
 
 config/environments/production.rb
+
+public/system
+public/images

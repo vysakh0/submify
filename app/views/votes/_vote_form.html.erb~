@@ -1,8 +1,0 @@
-
-  <div id="vote_form">
-  <% if vote= current_user.votes.find_by_votable_id(votable.id) %>
-    <%= render 'votes/unvote', votable: votable, vote: vote %>
-  <% else %>
-    <%= render 'votes/vote', votable: votable %>
-   <% end %>
-  </div>

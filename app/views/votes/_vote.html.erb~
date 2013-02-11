@@ -1,4 +1,0 @@
-
-	<%= form_for current_user.votes.find_by_votable_id(votable.id), :html => { :method => :delete }, remote: true do |f| %>
-		<%= f.submit "Unvote" %>
-	<% end %>
