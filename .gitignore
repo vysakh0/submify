@@ -14,13 +14,14 @@
 /log/*.log
 /tmp
 config/database.yml
-#config/facebook.yml
+config/facebook.yml
 
-## Ignore some initializers files
-#config/initializers/redis.rb
-#config/initializers/session_store.rb
-#config/initializers/sidekiq.rb
-#config/initializers/soulmate.rb
-#config/initializers/secret_token.rb
+config/deploy.rb
+# Ignore some initializers files
+config/initializers/redis.rb
+config/initializers/session_store.rb
+config/initializers/sidekiq.rb
+config/initializers/soulmate.rb
+config/initializers/secret_token.rb
 
-#config/environments/production.rb
+config/environments/production.rb
