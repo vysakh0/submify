@@ -15,4 +15,3 @@ This blog into two,
  
 1. Technical: [Submify Tech](http://submify-tech.quora.com)
 2. Non-technical: [My startup](http://vysakh.quora.com)	
-on-technical: [My startup](http://vysakh.quora.com)	
