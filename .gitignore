@@ -23,8 +23,10 @@ config/initializers/session_store.rb
 config/initializers/sidekiq.rb
 config/initializers/soulmate.rb
 config/initializers/secret_token.rb
+config/initializers/facebook.rb
 
 config/environments/production.rb
 
 public/system
 public/images
+
