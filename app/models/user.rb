@@ -69,7 +69,7 @@ class User < ActiveRecord::Base
     uniqueness: { case_sensitive: false} 
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
-  after_save :make_following
+  #after_save :make_following
   after_save :load_into_soulmate
   before_destroy :remove_from_soulmate
   after_create :make_pic
