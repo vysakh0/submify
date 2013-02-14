@@ -13,20 +13,20 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-#config/database.yml
-#config/facebook.yml
+config/database.yml
+config/facebook.yml
 
-#config/deploy.rb
-## Ignore some initializers files
-#config/initializers/redis.rb
-#config/initializers/session_store.rb
-#config/initializers/sidekiq.rb
-#config/initializers/soulmate.rb
-#config/initializers/secret_token.rb
-#config/initializers/facebook.rb
+config/deploy.rb
+# Ignore some initializers files
+config/initializers/redis.rb
+config/initializers/session_store.rb
+config/initializers/sidekiq.rb
+config/initializers/soulmate.rb
+config/initializers/secret_token.rb
+config/initializers/facebook.rb
 
-#config/environments/production.rb
+config/environments/production.rb
 
-#public/system
-#public/images
+public/system
+public/images
 
