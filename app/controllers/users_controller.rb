@@ -1,6 +1,25 @@
+#
+# Submify - Dashboard of web and web activity
+# Copyright (C) 2013 Vysakh Sreenivasan <support@submify.com>
+#
+# This file is part of Submify.
+#
+# Submify is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# Submify is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with Submify.  If not, see <http://www.gnu.org/licenses/>.
+#
 class UsersController < ApplicationController
 
-  before_filter :signed_in_user, only: [:edit, :update, :destroy, :following, :index, :notifications], except: [:facebook_create, :create, :new, :confirmation, :hovercard]
+  before_filter :signed_in_user, only: [:edit, :update, :destroy, :following, :index, :notifications]
   before_filter :correct_user, only: [:edit, :update, :following, :notifications]
 
   #rails4 makes filter into action, so you should have before_action
@@ -41,7 +60,7 @@ class UsersController < ApplicationController
   end
   def show
     @user = User.find(params[:id])
-    @topics = @user.from_user_suggest(current_user.id)
+    @topics = @user.from_user_suggest(current_user.id) if signed_in?
     @link_users = @user.link_users.page(params[:page]).per_page(10)
   end
 

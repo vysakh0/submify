@@ -355,6 +355,7 @@ DEPENDENCIES
   jquery-rails (= 2.0.2)
   jquery-ui-rails
   multi_fetch_fragments
+  nokogiri
   oauth2
   omniauth
   omniauth-facebook
