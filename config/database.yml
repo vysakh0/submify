@@ -4,8 +4,8 @@ development:
   database: jerry
   host: localhost
   pool: 5
-  username: 
-  password: 
+  username: tom
+  password: pass
 
 test:
   adapter: postgresql
@@ -18,8 +18,8 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: jerry
+  database: production
   host: localhost
-  pool: 25
-  username: 
-  password: 
+  pool: 6
+  username: vysakh
+  password:

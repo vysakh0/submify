@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Youarel::Application.load_tasks
+Submify::Application.load_tasks
