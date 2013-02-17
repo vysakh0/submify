@@ -90,7 +90,7 @@ class User < ActiveRecord::Base
     u.force_set_password(password) if u
   end
 
-  def force_set_password(new_password = 'Submify@1234')
+  def force_set_password(new_password)
     self.password = new_password
     self.password_confirmation = new_password
     self.verify = true unless verify?
