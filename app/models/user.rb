@@ -84,6 +84,19 @@ class User < ActiveRecord::Base
   #Rails.cache.delete([:user, id, :name]) if name_changed?
   #end
 
+  # force set password
+  def self.force_set_password(email, password="Submify@1234")
+    u = find_by_email(email)
+    u.force_set_password(password) if u
+  end
+
+  def force_set_password(new_password = 'Submify@1234')
+    self.password = new_password
+    self.password_confirmation = new_password
+    self.verify = true unless verify?
+    save!
+  end
+
   def remove_from_soulmate
     loader = Soulmate::Loader.new("user")
     loader.remove("term" => name, "id" => id,"data" => { "url" => "/users/#{slug}", "imgsrc" => avatar.url(:thumb) } )
