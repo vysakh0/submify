@@ -9,7 +9,7 @@
 #  updated_at  :datetime         not null
 #
 
-class Relationship < ActiveRecord::Base
+class Relationship < ApplicationModel
   attr_accessible :followed_id
   belongs_to :follower, class_name: "User", touch: true
   has_many :notifications, as: :parent, dependent: :destroy

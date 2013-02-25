@@ -11,7 +11,7 @@
 #  score      :integer
 #
 
-class LinkUser < ActiveRecord::Base
+class LinkUser < ApplicationModel
 
   attr_accessible :link_id, :user_id, :topic_id
 

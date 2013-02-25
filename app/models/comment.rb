@@ -12,7 +12,7 @@
 #  score            :integer
 #
 
-class Comment < ActiveRecord::Base
+class Comment < ApplicationModel
   attr_accessible :body 
   self.per_page = 10
   belongs_to :commentable, polymorphic: true, touch: true, counter_cache: true

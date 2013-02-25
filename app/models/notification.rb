@@ -1,4 +1,4 @@
-class Notification < ActiveRecord::Base
+class Notification < ApplicationModel
   attr_accessible :notifiable_id, :notifiable_type, :parent_id, :parent_type
 
   attr_accessible :user_id

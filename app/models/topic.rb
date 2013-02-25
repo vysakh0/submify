@@ -15,7 +15,7 @@
 #  verify              :boolean          default(FALSE)
 #
 
-class Topic < ActiveRecord::Base
+class Topic < ApplicationModel
   extend FriendlyId
   friendly_id :name, use: :slugged
 

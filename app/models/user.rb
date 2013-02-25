@@ -25,7 +25,7 @@
 require 'open-uri'
 require 'uri'
 
-class User < ActiveRecord::Base
+class User < ApplicationModel
 
   extend FriendlyId
   friendly_id :name, use: :slugged
