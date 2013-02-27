@@ -35,7 +35,7 @@
 require 'uri'
 require 'open-uri'
 
-class Link < ActiveRecord::Base
+class Link < ApplicationModel
 
   include Tire::Model::Search
   include Tire::Model::Callbacks

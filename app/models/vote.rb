@@ -29,7 +29,7 @@
 #  updated_at   :datetime         not null
 #
 
-class Vote < ActiveRecord::Base
+class Vote < ApplicationModel
   attr_accessible :votable_id, :user_id
 
   belongs_to :votable, polymorphic: true, touch: true, counter_cache: true

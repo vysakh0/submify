@@ -1,3 +1,4 @@
+class Notification < ApplicationModel
 #
 # Submify - Dashboard of web and web activity
 # Copyright (C) 2013 Vysakh Sreenivasan <support@submify.com>
@@ -17,7 +18,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Submify.  If not, see <http://www.gnu.org/licenses/>.
 #
-class Notification < ActiveRecord::Base
   attr_accessible :notifiable_id, :notifiable_type, :parent_id, :parent_type
 
   attr_accessible :user_id

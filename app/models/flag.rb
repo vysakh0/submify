@@ -29,7 +29,7 @@
 #  updated_at     :datetime         not null
 #
 
-class Flag < ActiveRecord::Base
+class Flag < ApplicationModel
   attr_accessible :user_id
   belongs_to :user
   belongs_to :flaggable, polymorphic: true
