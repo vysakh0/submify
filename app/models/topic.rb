@@ -40,6 +40,8 @@ class Topic < ApplicationModel
 
   attr_accessible :description, :name, :avatar
   has_attached_file :avatar, styles: { medium: "200x200>", thumb: "100x100"}, default_style: :thumb, default_url:'/images/avatar/missing_topic_thumb.png'
+  validates_attachment_content_type :avatar, :content_type => /^image\/(jpg|jpeg|pjpeg|png|x-png|gif)$/, :message => 'file type is not allowed (only jpeg/png/gif images)'
+
   has_many :link_users, foreign_key: "topic_id", dependent: :destroy
   has_many :links, through: :link_users, source: :link
 

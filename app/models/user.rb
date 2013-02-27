@@ -51,6 +51,8 @@ class User < ApplicationModel
   attr_accessible :avatar, :description, :name, :notifications_count, :email, :uid, :username, :oauth_token, :oauth_expires_at, :password, :password_confirmation
 
   has_attached_file :avatar, styles: { medium: "200x200>", thumb: "100x100"}, default_style: :thumb, default_url: '/images/avatar/missing_profile_thumb.jpg'
+  validates_attachment_content_type :avatar, :content_type => /^image\/(jpg|jpeg|pjpeg|png|x-png|gif)$/, :message => 'file type is not allowed (only jpeg/png/gif images)'
+
   has_many :flags
 
   has_many :topic_user_relationships, foreign_key: "user_id", dependent: :destroy
