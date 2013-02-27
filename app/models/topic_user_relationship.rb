@@ -28,7 +28,7 @@
 #  updated_at :datetime         not null
 #
 
-class TopicUserRelationship < ActiveRecord::Base
+class TopicUserRelationship < ApplicationModel
   attr_accessible :topic_id, :user_id
   belongs_to :topic, class_name: "Topic",touch: true
   belongs_to :user, class_name: "User", touch: true

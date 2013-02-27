@@ -29,7 +29,7 @@
 #  updated_at   :datetime         not null
 #
 
-class Downvote < ActiveRecord::Base
+class Downvote < ApplicationModel
   # attr_accessible :title, :body
   attr_accessible :votable_id, :user_id
 
