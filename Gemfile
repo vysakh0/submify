@@ -24,6 +24,7 @@ gem 'rails-timeago', '~> 2.0'
 gem 'dalli'
 #gem "jqtools-rails"
 gem "auto_html"
+gem "seed_dump", "~> 0.4.2"
 #gem 'pjax_rails'
 gem 'bundler'
 gem 'cache_digests'
