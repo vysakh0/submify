@@ -34,6 +34,7 @@ gem 'redis-store'
 gem 'colorbox-rails'
 gem 'aws-sdk'
 gem 'client_side_validations', '3.2.1'
+gem "nokogiri", :require => "nokogiri"
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do
