@@ -163,8 +163,12 @@ class User < ApplicationModel
     self.update_column(:password_reset_token,SecureRandom.urlsafe_base64)
     self.update_column(:password_reset_sent_at, Time.zone.now)
     UserMailer.confirmation(self).deliver
+    confirm_user if Rails.env.development?
   end
 
+  def confirm_user
+    self.toggle!(:verify) unless self.verify?
+  end
 
   def make_following
     FacebookFriendWorker.perform_async(uid, oauth_token)

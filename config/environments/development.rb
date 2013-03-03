@@ -25,7 +25,11 @@ Submify::Application.configure do
   # Print deprecation notices to the Rails logger
 
   config.action_mailer.default_url_options = { :host => "localhost:8080" }
-  config.action_mailer.delivery_method = :sendmail
+  # config.action_mailer.delivery_method = :sendmail
+  
+  #using mailcatcher gem for development environment
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
   # Generate digests for assets URLs
   config.active_support.deprecation = :log
 

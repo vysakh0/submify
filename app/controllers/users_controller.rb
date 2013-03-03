@@ -111,12 +111,11 @@ class UsersController < ApplicationController
 
 
   def confirmation
-
     if @user = User.find_by_password_reset_token!(params[:id])
       if @user.password_reset_sent_at < 2.hours.ago
         redirect_to root_url, :alert => "Confirmation has expired."
       else
-        @user.toggle!(:verify) unless @user.verify?
+        @user.confirm_user
         session[:user_id] = @user.id
         redirect_to root_url, alert: "Account confirmed"
       end
