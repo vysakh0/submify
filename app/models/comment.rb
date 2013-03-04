@@ -49,7 +49,7 @@ class Comment < ApplicationModel
 
   def score_and_notify
     update_column(:score, (created_at.to_i/60))
-    users = self.commentable.comments.pluck(:user_id).uniq
+    users = commentable.comments.pluck(:user_id).uniq
     users = users - [user.id]
     users.each do |notify_user|
       notify = Notification.where(notifiable_type: "Comment" , user_id: notify_user, parent_id: commentable_id, parent_type: commentable_type).first_or_initialize
