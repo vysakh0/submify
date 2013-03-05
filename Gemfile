@@ -39,6 +39,7 @@ gem "nokogiri", :require => "nokogiri"
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do
+  gem 'debugger'
 	gem 'rspec-rails', '2.11.0'
   gem 'capybara', '1.1.2'
   gem 'growl', '1.0.3'
