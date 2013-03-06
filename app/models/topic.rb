@@ -73,8 +73,9 @@ class Topic < ApplicationModel
   end
 
   def self.search(term)
-    matches = Soulmate::Matcher.new('topic').matches_for_term(term)
-    matches.collect {|match| {"id" => match["id"], "label" => match["term"], "value" => match["term"], "url"  => match["data"]["url"], "imgsrc" => match["data"]["imgsrc"] , "category" => "topic"} }
+    self.match_from_soulmate(term,self.module_name.downcase) 
+    # matches = Soulmate::Matcher.new('topic').matches_for_term(term)
+    # matches.collect {|match| {"id" => match["id"], "label" => match["term"], "value" => match["term"], "url"  => match["data"]["url"], "imgsrc" => match["data"]["imgsrc"] , "category" => "topic"} }
   end
 
 end

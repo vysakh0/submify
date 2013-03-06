@@ -127,8 +127,7 @@ class User < ApplicationModel
     loader.add("term" => name, "id" => id,"data" => { "url" => "/users/#{slug}", "imgsrc" => avatar.url(:thumb) } )
   end
   def self.search(term)
-    matches = Soulmate::Matcher.new('user').matches_for_term(term)
-    matches.collect {|match| {"id" => match["id"], "label" => match["term"], "value" => match["term"], "url"  => match["data"]["url"], "imgsrc" => match["data"]["imgsrc"], "category" => "user"} }
+     self.match_from_soulmate(term,self.module_name.downcase) 
   end 
 
   def self.from_omniauth(auth)
