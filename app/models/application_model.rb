@@ -11,7 +11,7 @@ class ApplicationModel < ActiveRecord::Base
   	matches = Soulmate::Matcher.new(klass_name).matches_for_term(match_term)
 
     matches.collect {|match| {"id" => match["id"], "label" => match["term"], 
-    	"value" => match["term"], "url"  => match["data"]["url"], "imgsrc" => match["data"]["imgsrc"], "category" => "user"} }
+    	"value" => match["term"], "url"  => match["data"]["url"], "imgsrc" => match["data"]["imgsrc"], "category" => klass_name} }
   end
 
   # ********************** # 
