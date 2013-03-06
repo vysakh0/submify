@@ -1,4 +1,5 @@
 config/database.yml  merge=ours
+.gitignore  merge=ours
 config/facebook.yml  merge=ours
 config/deploy.rb  merge=ours
 # Ignore some initializers files  merge=ours
