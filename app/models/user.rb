@@ -91,8 +91,8 @@ class User < ApplicationModel
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
   #after_save :make_following
-  after_save :load_into_soulmate
-  before_destroy :remove_from_soulmate
+  after_save :load_soulmate
+  before_destroy :remove_soulmate
   after_create :make_pic
 
   #def user_name
@@ -118,16 +118,20 @@ class User < ApplicationModel
     save!
   end
 
-  def remove_from_soulmate
-    loader = Soulmate::Loader.new("user")
-    loader.remove("term" => name, "id" => id,"data" => { "url" => "/users/#{slug}", "imgsrc" => avatar.url(:thumb) } )
+  def remove_soulmate
+    remove_from_soulmate self.class.name.downcase
+    # loader = Soulmate::Loader.new("user")
+    # loader.remove("term" => name, "id" => id,"data" => { "url" => "/users/#{slug}", "imgsrc" => avatar.url(:thumb) } )
   end
-  def load_into_soulmate
-    loader = Soulmate::Loader.new("user")
-    loader.add("term" => name, "id" => id,"data" => { "url" => "/users/#{slug}", "imgsrc" => avatar.url(:thumb) } )
+  
+  def load_soulmate
+    load_into_soulmate self.class.name.downcase
+    # loader = Soulmate::Loader.new("user")
+    # loader.add("term" => name, "id" => id,"data" => { "url" => "/users/#{slug}", "imgsrc" => avatar.url(:thumb) } )
   end
+  
   def self.search(term)
-     self.match_from_soulmate(term,self.module_name.downcase) 
+     match_from_soulmate(term,self.name.downcase) 
   end 
 
   def self.from_omniauth(auth)
