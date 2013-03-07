@@ -120,14 +120,10 @@ class User < ApplicationModel
 
   def remove_soulmate
     remove_from_soulmate self.class.name.downcase
-    # loader = Soulmate::Loader.new("user")
-    # loader.remove("term" => name, "id" => id,"data" => { "url" => "/users/#{slug}", "imgsrc" => avatar.url(:thumb) } )
   end
   
   def load_soulmate
     load_into_soulmate self.class.name.downcase
-    # loader = Soulmate::Loader.new("user")
-    # loader.add("term" => name, "id" => id,"data" => { "url" => "/users/#{slug}", "imgsrc" => avatar.url(:thumb) } )
   end
   
   def self.search(term)
