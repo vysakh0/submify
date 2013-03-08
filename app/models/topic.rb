@@ -65,11 +65,13 @@ class Topic < ApplicationModel
 
 
   def remove_soulmate
-    remove_from_soulmate self.class.name.downcase
+    load_soulmate_by_operation self.class.name.downcase, :remove
+    # remove_from_soulmate self.class.name.downcase
   end
   
   def load_soulmate
-    load_into_soulmate self.class.name.downcase
+    do_soulmate_by_operation self.class.name.downcase, :add
+    # load_into_soulmate self.class.name.downcase
   end
 
   def self.search(term)

@@ -4,29 +4,26 @@ class ApplicationModel < ActiveRecord::Base
 
 
   # ********************** # 
-  # 	Class Methods 	   #
+  # 	Class Methods 	     #
   # ********************** #	
 
   def self.match_from_soulmate(match_term, klass_name)
-  	matches = Soulmate::Matcher.new(klass_name).matches_for_term(match_term)
+  	matches = SoulmateSubmify::CustomSoulmate.new_soulmate_matcher(klass_name).matches_for_term(match_term)
 
     matches.collect {|match| {"id" => match["id"], "label" => match["term"], 
     	"value" => match["term"], "url"  => match["data"]["url"], "imgsrc" => match["data"]["imgsrc"], "category" => klass_name} }
   end
 
   # ********************** # 
-  # 	Instance Methods   #
+  # 	Instance Methods     #
   # ********************** #	
 
-  def remove_from_soulmate(load_term)
-  	loader = Soulmate::Loader.new(load_term)
-  	loader.remove("term" => name, "id" => id,"data" => { "url" => "/#{load_term}s/#{slug}", "imgsrc" => avatar.url(:thumb) } )
+  def do_soulmate_by_operation(load_term, operation)
+      loader = SoulmateSubmify::CustomSoulmate.new_soulmate_loader load_term
+      if operation == :add
+        loader.add("term" => name, "id" => id,"data" => { "url" => "/#{load_term}s/#{slug}", "imgsrc" => avatar.url(:thumb) } )
+      else
+        loader.remove("term" => name, "id" => id,"data" => { "url" => "/#{load_term}s/#{slug}", "imgsrc" => avatar.url(:thumb) } )
+      end
   end
-
-  def load_into_soulmate(load_term)
-    loader = Soulmate::Loader.new(load_term)
-    loader.add("term" => name, "id" => id,"data" => { "url" => "/#{load_term}s/#{slug}", "imgsrc" => avatar.url(:thumb) } )
-  end
-
-
 end

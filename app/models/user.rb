@@ -106,6 +106,8 @@ class User < ApplicationModel
   #end
 
   # force set password
+
+  
   def self.force_set_password(email, password="Submify@1234")
     u = find_by_email(email)
     u.force_set_password(password) if u
@@ -119,11 +121,13 @@ class User < ApplicationModel
   end
 
   def remove_soulmate
-    remove_from_soulmate self.class.name.downcase
+    load_soulmate_by_operation self.class.name.downcase, :remove
+    # remove_from_soulmate self.class.name.downcase
   end
   
   def load_soulmate
-    load_into_soulmate self.class.name.downcase
+    do_soulmate_by_operation self.class.name.downcase, :add
+    # load_into_soulmate self.class.name.downcase
   end
   
   def self.search(term)
