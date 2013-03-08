@@ -5,7 +5,6 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
 gem 'bootstrap-sass', '2.0.4'
-gem 'faker', '1.0.1'
 gem "friendly_id","~> 4.0.1"
 gem "pismo"
 gem 'tire'
@@ -44,6 +43,7 @@ group :development, :test do
   gem 'capybara', '1.1.2'
   gem 'growl', '1.0.3'
   gem 'mailcatcher'
+  gem 'faker', '1.0.1'
 end
 
 
