@@ -91,8 +91,8 @@ class User < ApplicationModel
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
   #after_save :make_following
-  after_save :load_into_soulmate
-  before_destroy :remove_from_soulmate
+  after_save :load_soulmate
+  before_destroy :remove_soulmate
   after_create :make_pic
 
   #def user_name
@@ -106,6 +106,8 @@ class User < ApplicationModel
   #end
 
   # force set password
+
+  
   def self.force_set_password(email, password="Submify@1234")
     u = find_by_email(email)
     u.force_set_password(password) if u
@@ -118,17 +120,18 @@ class User < ApplicationModel
     save!
   end
 
-  def remove_from_soulmate
-    loader = Soulmate::Loader.new("user")
-    loader.remove("term" => name, "id" => id,"data" => { "url" => "/users/#{slug}", "imgsrc" => avatar.url(:thumb) } )
+  def remove_soulmate
+    load_soulmate_by_operation self.class.name.downcase, :remove
+    # remove_from_soulmate self.class.name.downcase
   end
-  def load_into_soulmate
-    loader = Soulmate::Loader.new("user")
-    loader.add("term" => name, "id" => id,"data" => { "url" => "/users/#{slug}", "imgsrc" => avatar.url(:thumb) } )
+  
+  def load_soulmate
+    do_soulmate_by_operation self.class.name.downcase, :add
+    # load_into_soulmate self.class.name.downcase
   end
+  
   def self.search(term)
-    matches = Soulmate::Matcher.new('user').matches_for_term(term)
-    matches.collect {|match| {"id" => match["id"], "label" => match["term"], "value" => match["term"], "url"  => match["data"]["url"], "imgsrc" => match["data"]["imgsrc"], "category" => "user"} }
+     match_from_soulmate(term,self.name.downcase) 
   end 
 
   def self.from_omniauth(auth)
