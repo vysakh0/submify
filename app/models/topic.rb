@@ -48,9 +48,10 @@ class Topic < ApplicationModel
   has_many :topic_user_relationships, foreign_key: "topic_id", dependent: :destroy
 
   has_many :following_users, through: :topic_user_relationships, source: :user
-  after_save :load_into_soulmate
+  
+  after_save :load_soulmate
 
-  before_destroy :remove_from_soulmate
+  before_destroy :remove_soulmate
 
   #def topic_name
     #Rails.cache.fetch([:topic, id, :name]) do
@@ -63,18 +64,18 @@ class Topic < ApplicationModel
   #end
 
 
-  def remove_from_soulmate
-    loader = Soulmate::Loader.new("topic")
-    loader.remove("term" => name, "id" => id,"data" => { "url" => "/topics/#{slug}", "imgsrc" => avatar.url(:thumb) } )
+  def remove_soulmate
+    load_soulmate_by_operation self.class.name.downcase, :remove
+    # remove_from_soulmate self.class.name.downcase
   end
-  def load_into_soulmate
-    loader = Soulmate::Loader.new("topic")
-    loader.add("term" => name, "id" => id,"data" => { "url" => "/topics/#{slug}", "imgsrc" => avatar.url(:thumb) } )
+  
+  def load_soulmate
+    do_soulmate_by_operation self.class.name.downcase, :add
+    # load_into_soulmate self.class.name.downcase
   end
 
   def self.search(term)
-    matches = Soulmate::Matcher.new('topic').matches_for_term(term)
-    matches.collect {|match| {"id" => match["id"], "label" => match["term"], "value" => match["term"], "url"  => match["data"]["url"], "imgsrc" => match["data"]["imgsrc"] , "category" => "topic"} }
+    match_from_soulmate(term,self.name.downcase) 
   end
 
 end

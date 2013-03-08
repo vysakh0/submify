@@ -1,12 +1,22 @@
 require 'spec_helper'
 
 describe User do
-  
-  it "can verify a new user without sending a mail" do
-  	user = User.create!({:name => 'Saurav C', :email => 'csaurav80@gmail.com', :password => 'Submify@12345', 
-  		:password_confirmation => 'Submify@12345'})
-  	expect(user.verify).to eq false
-	user.confirm_user
-	expect(user.verify).to eq true
+
+  before(:all) do
+    @user = FactoryGirl.build(:user) 
   end
+  it "can verify a new user without sending a mail" do
+  	@user.verify.should be_false
+  	@user.confirm_user
+  	@user.verify.should be_true
+  end
+
+  it "should be able to return similar matches" do
+  	matched_results = User.search(@user.name)
+  	matched_results.each do |result|
+  		result['label'].should == @user.name
+  		result['value'].should == @user.name
+  	end
+  end
+
 end
