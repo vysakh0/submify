@@ -25,7 +25,6 @@ class ApplicationModel < ActiveRecord::Base
 
   def load_into_soulmate(load_term)
     loader = Soulmate::Loader.new(load_term)
-    puts "----loader: #{loader.inspect}----#{name}----#{id}------#{avatar.url(:thumb).inspect}"
     loader.add("term" => name, "id" => id,"data" => { "url" => "/#{load_term}s/#{slug}", "imgsrc" => avatar.url(:thumb) } )
   end
 
