@@ -10,7 +10,7 @@ This project is licensed under the terms of the Affero General Public License ve
 ## Getting Started
 
 - Clone this repository.
-- Install the dependencies.
+- Install the dependencies. Take a look at the [wiki](https://github.com/vysakh0/submify/wiki)
 - Make changes as required.
 - Deploy it and/or a send pull request.
 
