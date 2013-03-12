@@ -2,8 +2,10 @@
 /*
  *$navbarBackgroundHighlight: #605f46;
  */
-@import url("http://fonts.googleapis.com/css?family=Open+Sans");
-$baseFontFamily: 'Open Sans', sans-serif;
+/*
+ *@import url("http://fonts.googleapis.com/css?family=Open+Sans");
+ */
+/*$baseFontFamily: 'Open Sans', sans-serif;*/
 
 @import "bootstrap";
 
@@ -797,7 +799,7 @@ li.nostyle {
 #new_link{
   padding-left: 30px;
 }
-.show-comments{
+.show-comments, .show-topics{
   padding-right: 10px;
 }
 .comments_stats{
@@ -805,4 +807,11 @@ li.nostyle {
 }
 .notification_box{
   padding: 10px;
+}
+.link_desc{
+  font-family: Optima, 'Trebuchet MS', sans-serif;
+}
+.user-profile{
+
+  font-family: Optima, 'Trebuchet MS', sans-serif;
 }
