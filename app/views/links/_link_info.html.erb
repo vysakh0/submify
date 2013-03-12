@@ -11,7 +11,7 @@
       <%= link_to host.match(".+\:\/\/([^\/]+)")[1], host, class: 'host_link' %> 
     </div>
     <blockquote>
-      <%= link.description if link.description %>
+      <span class="link_desc">     <%= link.description if link.description %></span>
     </blockquote>
       <%= link_to image_tag(link.picture, class: 'link-image') , link.picture, data: { colorbox: true } if link.picture and  /^(http|https):\/\/|[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/.match(link.picture)!=nil %>
 

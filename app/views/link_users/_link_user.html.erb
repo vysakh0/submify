@@ -33,8 +33,11 @@
           <%= (link_user.votes_count) %>
         </span>
       <% end %>
-        <span class="votes-up"> <i class="icon-comments-alt icon-small"></i></span>
+        <span class="votes-up"> <i class="icon-comment icon-small"></i></span>
         <span class="show-comments">  <%= link_to pluralize(link.comments_count, "comment"), link %></span>
+        <span class="votes-up"> <i class="icon-tag icon-small"></i></span>
+        <span class="show-topics">  <%= link_to pluralize(link.link_users.count, "topic"), link %></span>
+
       <span class="vote">
         <%= render 'votes/vote_button', votable: link_user, type: "LinkUser" %>
       </span>
