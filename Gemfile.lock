@@ -80,10 +80,20 @@ GEM
     colorbox-rails (0.0.9)
       jquery-rails
       rails (>= 3.1.1)
+    columnize (0.3.6)
     connection_pool (0.9.2)
+    daemons (1.1.9)
     dalli (2.5.0)
+    debugger (1.4.0)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.1.1)
+      debugger-ruby_core_source (~> 1.2.0)
+    debugger-linecache (1.1.2)
+      debugger-ruby_core_source (>= 1.1.1)
+    debugger-ruby_core_source (1.2.0)
     diff-lcs (1.1.3)
     erubis (2.7.0)
+    eventmachine (1.0.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
     facter (1.6.16)
@@ -107,6 +117,8 @@ GEM
       railties (~> 3.1)
     friendly_id (4.0.9)
     growl (1.0.3)
+    haml (4.0.0)
+      tilt
     hashie (1.2.0)
     hashr (0.0.22)
     highline (1.6.15)
@@ -135,6 +147,15 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mailcatcher (0.5.11)
+      activesupport (~> 3.0)
+      eventmachine (~> 1.0.0)
+      haml (>= 3.1, < 5)
+      mail (~> 2.3)
+      sinatra (~> 1.2)
+      skinny (~> 0.2.3)
+      sqlite3 (~> 1.3)
+      thin (~> 1.5.0)
     metaclass (0.0.1)
     mime-types (1.19)
     mocha (0.10.5)
@@ -286,6 +307,9 @@ GEM
       rack (~> 1.3, >= 1.3.6)
       rack-protection (~> 1.2)
       tilt (~> 1.3, >= 1.3.3)
+    skinny (0.2.3)
+      eventmachine (~> 1.0.0)
+      thin (~> 1.5.0)
     slim (1.3.4)
       temple (~> 0.5.5)
       tilt (~> 1.3.3)
@@ -301,7 +325,12 @@ GEM
       tilt (~> 1.1, != 1.3.0)
     sprockets-rails (0.0.1)
       sprockets (>= 1.0.2)
+    sqlite3 (1.3.7)
     temple (0.5.5)
+    thin (1.5.0)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
     thor (0.16.0)
     tilt (1.3.3)
     timers (1.0.2)
@@ -347,6 +376,7 @@ DEPENDENCIES
   coffee-rails (= 3.2.2)
   colorbox-rails
   dalli
+  debugger
   factory_girl_rails (= 4.1.0)
   faker (= 1.0.1)
   fb_graph
@@ -355,6 +385,7 @@ DEPENDENCIES
   growl (= 1.0.3)
   jquery-rails (= 2.0.2)
   jquery-ui-rails
+  mailcatcher
   multi_fetch_fragments
   nokogiri
   oauth2
