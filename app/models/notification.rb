@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: notifications
+#
+#  id              :integer          not null, primary key
+#  user_id         :integer
+#  notifiable_id   :integer
+#  notifiable_type :string(255)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  parent_id       :integer
+#  parent_type     :string(255)
+#
+
 class Notification < ApplicationModel
 #
 # Submify - Dashboard of web and web activity

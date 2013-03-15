@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: comments
+#
+#  id               :integer          not null, primary key
+#  body             :text
+#  user_id          :integer
+#  commentable_id   :integer
+#  commentable_type :string(255)
+#  score            :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  votes_count      :integer          default(0)
+#  comments_count   :integer          default(0)
+#
+
 #
 # Submify - Dashboard of web and web activity
 # Copyright (C) 2013 Vysakh Sreenivasan <support@submify.com>
@@ -17,20 +33,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Submify.  If not, see <http://www.gnu.org/licenses/>.
 #
-# == Schema Information
-#
-# Table name: comments
-#
-#  id               :integer          not null, primary key
-#  body             :text
-#  user_id          :integer
-#  commentable_id   :integer
-#  commentable_type :string(255)
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  score            :integer
-#
-
 class Comment < ApplicationModel
   attr_accessible :body 
   self.per_page = 10
