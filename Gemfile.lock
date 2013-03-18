@@ -402,6 +402,7 @@ DEPENDENCIES
   rspec-rails (= 2.11.0)
   sass-rails (= 3.2.5)
   seed_dump (~> 0.4.2)
+  shoulda
   sidekiq
   slim
   soulmate
