@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: links
+#
+#  id             :integer          not null, primary key
+#  url_link       :string(255)
+#  url_heading    :string(255)
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  picture        :string(255)
+#  comments_count :integer          default(0)
+#  description    :text
+#
+
 #
 # Submify - Dashboard of web and web activity
 # Copyright (C) 2013 Vysakh Sreenivasan <support@submify.com>
@@ -17,21 +31,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Submify.  If not, see <http://www.gnu.org/licenses/>.
 #
-# == Schema Information
-#
-# Table name: links
-#
-#  id                  :integer          not null, primary key
-#  url_link            :string(255)
-#  url_heading         :string(255)
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  avatar_file_name    :string(255)
-#  avatar_content_type :string(255)
-#  avatar_file_size    :integer
-#  avatar_updated_at   :datetime
-#
-
 require 'uri'
 require 'open-uri'
 

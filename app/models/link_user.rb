@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: link_users
+#
+#  id          :integer          not null, primary key
+#  link_id     :integer
+#  user_id     :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  topic_id    :integer
+#  score       :integer
+#  votes_count :integer          default(0)
+#
+
 #
 # Submify - Dashboard of web and web activity
 # Copyright (C) 2013 Vysakh Sreenivasan <support@submify.com>
@@ -17,19 +31,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with Submify.  If not, see <http://www.gnu.org/licenses/>.
 #
-# == Schema Information
-#
-# Table name: link_users
-#
-#  id         :integer          not null, primary key
-#  link_id    :integer
-#  user_id    :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  topic_id   :integer
-#  score      :integer
-#
-
 class LinkUser < ApplicationModel
 
   attr_accessible :link_id, :user_id, :topic_id

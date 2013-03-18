@@ -75,7 +75,8 @@ class LinksController < ApplicationController
     @link = Link.find(id)
     if id and topic!= ""
       @link_user = @link.link_with_topic!(topic, current_user, nil)
-      publish_to_fb
+      msg = ""
+      publish_to_fb(msg)
       respond_to do |format|
         format.js
       end
@@ -103,7 +104,7 @@ class LinksController < ApplicationController
 
 
           flash[:success]="Link submitted"
-          publish_to_fb
+          publish_to_fb(params[:comment_body])
         end
       else
         @link = current_user.links.build(params[:link]) 
@@ -123,14 +124,13 @@ class LinksController < ApplicationController
 
         if @link!= nil && @link.save
           @link_user = @link.link_with_topic!(topic, current_user, @topic)
-          publish_to_fb
           if params[:comment_body] != ""
             comment = @link.comments.build(body: params[:comment_body])
             comment.user = current_user
             comment.save
           end
           flash[:success]="Link submitted"
-          publish_to_fb
+            publish_to_fb(params[:comment_body])
         end
       end
     else 
