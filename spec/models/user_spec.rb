@@ -33,11 +33,42 @@ require 'spec_helper'
 
 describe User do
 
-  before(:all) do
+  before(:each) do
     @user = FactoryGirl.build(:user) 
   end
-  it "can verify a new user without sending a mail" do
-  	@user.verify.should be_false
+
+  it "is valid with proper values" do
+    @user.valid?.should be_true
+  end
+
+  it "is invalid without a name" do
+      @user.name = nil
+      @user.should_not be_valid
+  end
+
+  it "is invalid without a email" do
+      @user.email = nil
+      @user.should_not be_valid
+  end
+
+  it "is invalid without a password" do
+      @user.password = nil
+      @user.should_not be_valid
+  end  
+
+  it "is invalid without a password_confirmation" do
+      @user.password_confirmation = nil
+      @user.should_not be_valid
+  end  
+
+  it "is invalid when password and password_confirmation do not match" do
+      @user.password = 'password'
+      @user.password_confirmation = 'differentpassword'
+      @user.should_not be_valid
+  end
+
+ it "can verify a new user without sending a mail" do
+    @user.verify.should be_false
   	@user.confirm_user
   	@user.verify.should be_true
   end
@@ -48,6 +79,38 @@ describe User do
   		result['label'].should == @user.name
   		result['value'].should == @user.name
   	end
+  end
+
+  it { should have_many(:flags) }
+
+  it { should have_many(:topic_user_relationships).dependent(:destroy)}
+
+  it { should have_many(:followed_topics).through(:topic_user_relationships) }
+
+  it { should have_many(:downvotes) }
+
+  it { should have_many(:link_users).dependent(:destroy) }
+
+  it { should have_many(:links).through(:link_users) }
+
+  it { should have_many(:comments).dependent(:destroy) }
+
+  it { should have_many(:notifications) }
+
+  it { should have_many (:votes)}
+
+  it { should have_many(:relationships).dependent(:destroy) }
+
+  it { should have_many(:followed_users).through(:relationships) }
+
+  it { should have_many(:reverse_relationships).class_name("Relationship").dependent(:destroy)}
+
+  it { should have_many(:followers).through(:reverse_relationships) }
+
+  it { should have_many(:notifiable).through(:notifications) }
+
+  it "should have avatar picture" do
+    @user.avatar.should_not be_nil
   end
 
 end
