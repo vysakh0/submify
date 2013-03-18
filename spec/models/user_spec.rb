@@ -109,7 +109,7 @@ describe User do
 
   it { should have_many(:notifiable).through(:notifications) }
 
-  it "should have picture" do
+  it "should have avatar picture" do
     @user.avatar.should_not be_nil
   end
 
