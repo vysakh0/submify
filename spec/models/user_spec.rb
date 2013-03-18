@@ -85,8 +85,32 @@ describe User do
 
   it { should have_many(:topic_user_relationships).dependent(:destroy)}
 
-  after(:each) do
-    @user.delete
+  it { should have_many(:followed_topics).through(:topic_user_relationships) }
+
+  it { should have_many(:downvotes) }
+
+  it { should have_many(:link_users).dependent(:destroy) }
+
+  it { should have_many(:links).through(:link_users) }
+
+  it { should have_many(:comments).dependent(:destroy) }
+
+  it { should have_many(:notifications) }
+
+  it { should have_many (:votes)}
+
+  it { should have_many(:relationships).dependent(:destroy) }
+
+  it { should have_many(:followed_users).through(:relationships) }
+
+  it { should have_many(:reverse_relationships).class_name("Relationship").dependent(:destroy)}
+
+  it { should have_many(:followers).through(:reverse_relationships) }
+
+  it { should have_many(:notifiable).through(:notifications) }
+
+  it "should have picture" do
+    @user.avatar.should_not be_nil
   end
 
 end
