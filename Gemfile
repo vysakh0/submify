@@ -41,8 +41,9 @@ gem "annotate"
 
 group :development, :test do
   gem 'debugger'
-	gem 'rspec-rails', '2.11.0'
-  gem 'capybara', '1.1.2'
+  gem 'rspec', '2.12.0'
+	gem 'rspec-rails', '2.12.0'
+  gem 'capybara'
   gem 'growl', '1.0.3'
   gem 'mailcatcher'
   gem 'faker', '1.0.1'
