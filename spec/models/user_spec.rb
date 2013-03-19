@@ -37,9 +37,9 @@ describe User do
     @user = FactoryGirl.build(:user) 
   end
 
-  it "is valid with proper values" do
-    @user.valid?.should be_true
-  end
+  specify { @user.should be_valid }
+
+  specify { @user.avatar.should_not be_nil}
 
   it "is invalid without a name" do
       @user.name = nil
@@ -108,9 +108,5 @@ describe User do
   it { should have_many(:followers).through(:reverse_relationships) }
 
   it { should have_many(:notifiable).through(:notifications) }
-
-  it "should have avatar picture" do
-    @user.avatar.should_not be_nil
-  end
-
+  
 end
