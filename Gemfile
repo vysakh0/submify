@@ -38,6 +38,7 @@ gem "nokogiri", :require => "nokogiri"
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem "annotate"
+
 group :development, :test do
   gem 'debugger'
 	gem 'rspec-rails', '2.11.0'
@@ -45,6 +46,8 @@ group :development, :test do
   gem 'growl', '1.0.3'
   gem 'mailcatcher'
   gem 'faker', '1.0.1'
+  gem 'factory_girl_rails', '4.1.0'
+  gem 'shoulda'
 end
 
 
@@ -62,11 +65,13 @@ end
 gem 'font-awesome-rails'
 
 gem 'jquery-rails', '2.0.2'
-group :test do
-	gem 'capybara', '1.1.2'
-  gem 'factory_girl_rails', '4.1.0'
-  gem 'shoulda'
-end
+
+# Not needed here.
+# group :test do
+# 	gem 'capybara', '1.1.2'
+#   gem 'factory_girl_rails', '4.1.0'
+#   gem 'shoulda'
+# end
 
 group :production do
 	gem 'pg'
