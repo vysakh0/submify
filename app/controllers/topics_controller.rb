@@ -18,7 +18,7 @@
 # along with Submify.  If not, see <http://www.gnu.org/licenses/>.
 #
 class TopicsController < ApplicationController
-  before_filter :signed_in_user, only: [:edit, :update]
+  before_filter :signed_in_user, only: [:edit, :update, :destroy]
   before_filter :check_verification, only: [:edit, :update]
 
   def hovercard
@@ -57,6 +57,11 @@ class TopicsController < ApplicationController
   end
   def index
     @topics = Topic.limit(100).paginate(page: params[:page])
+  end
+  def destroy
+    Topic.find(params[:id]).destroy
+    flash[:success] = "Topic destroyed"
+    redirect_to topics_url
   end
 
   private

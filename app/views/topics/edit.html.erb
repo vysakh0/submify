@@ -20,6 +20,8 @@
         <br/>
         <% if current_user.admin? %>
           Topic verification is  <%= @topic.verify? %>
+    | <%= link_to "delete", topic, method: :delete,
+                                  data: { confirm: "You sure?" } %>
           <br/>
           <%= text_field_tag 'verify' %>
         <% end %>
