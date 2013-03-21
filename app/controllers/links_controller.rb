@@ -86,6 +86,7 @@ class LinksController < ApplicationController
   def create
     topic = params[:topic_name]
     @topic = Topic.find(params[:topic_val]) if params[:topic_val]!=""
+      logger.debug "-------------------------------------------------------------------------------------------------------------------------------------------Debugging starts"
 
     if topic != "" and params[:link][:url_link]!= ""  and data=check_url
 

@@ -18,6 +18,7 @@
 # along with Submify.  If not, see <http://www.gnu.org/licenses/>.
 #
 require 'open-uri'
+require 'debugger'
 require 'uri'
 require 'net/http'
 require 'nokogiri'
@@ -76,9 +77,13 @@ module LinksHelper
     count = 0
     given =params[:link][:url_link]
     given = "http://" + given if /https?:\/\/[\S]+/.match(given) == nil
+      logger.debug "-------------------------------------------------------------------------------------------------------------------------------------------Debugging starts-------------------------------------------------------------- For the links helper"
+      logger.debug "given value is : #{given.inspect}"
     begin       	
-      final_url =  open(given, allow_safe_redirections: true).base_uri.to_s
+      final_url =  open(given, :allow_redirections => :all).base_uri.to_s
+      logger.debug "The links helper part mate :) final: #{final_url.inspect}"
       data = Nokogiri::HTML(open(final_url))
+      logger.debug "The links helper part mate :) data: #{data.inspect}"
       final_url = final_url.sub(/http:\/\/www.|https:\/\/www.|http:\/\/|https:\/\/|www./, '')
       final_url.slice! "##{URI(final_url).fragment}" if URI(final_url).fragment
       final_url.chomp('/')
