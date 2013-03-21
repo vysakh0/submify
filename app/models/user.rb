@@ -121,7 +121,7 @@ class User < ApplicationModel
   end
 
   def remove_soulmate
-    load_soulmate_by_operation self.class.name.downcase, :remove
+    do_soulmate_by_operation self.class.name.downcase, :remove
     # remove_from_soulmate self.class.name.downcase
   end
   
