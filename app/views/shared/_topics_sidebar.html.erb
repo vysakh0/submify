@@ -1,0 +1,7 @@
+<ul class="topics_tab">
+  <% Topic.limit(25).each do |topic| %>
+  <li class="topic_front"><%= link_to topic.name, topic %></li>
+  <% end %>
+  <%= link_to "More", topics_path, class: "topic_front"%>
+</ul>
+
