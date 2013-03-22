@@ -15,10 +15,10 @@ html, body {
 }
 
 #wrap {
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    margin: 0 auto -142px; /* the bottom margin is the negative value of the footer's height */
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -142px; /* the bottom margin is the negative value of the footer's height */
 }
 
 #main {
@@ -186,8 +186,8 @@ footer ul li {
   /*
    *font-family: Optima, 'Trebuchet MS', sans-serif;
    */
-  font-size: 16px;
-  padding: 0px 10px 10px 0px;
+font-size: 16px;
+padding: 0px 10px 10px 0px;
 }
 
 .up_explain{
@@ -814,4 +814,15 @@ li.nostyle {
 .user-profile{
 
   font-family: Optima, 'Trebuchet MS', sans-serif;
+}
+.topics_tab{
+
+  float: left;
+  font-size: 14px;
+  list-style: none outside none;
+  padding-left: 50px;
+  padding-top: 100px;
+}
+.topic_front{
+  padding: 5px;
 }

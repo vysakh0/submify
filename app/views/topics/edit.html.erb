@@ -4,6 +4,7 @@
   <div class="span8">
     <% tab "Edit" %>
     <%= render 'topic_stats' %>
+    <div class="container">
 <div class="span8">
     <h5> Edit Topic </h5>
     <% if  !(@topic.verify) || (current_user.admin? if current_user) %>
@@ -20,7 +21,7 @@
         <br/>
         <% if current_user.admin? %>
           Topic verification is  <%= @topic.verify? %>
-    | <%= link_to "delete", topic, method: :delete,
+    | <%= link_to "delete", @topic, method: :delete,
                                   data: { confirm: "You sure?" } %>
           <br/>
           <%= text_field_tag 'verify' %>
@@ -28,6 +29,7 @@
         <%= f.submit "Save changes", class:"btn" %>
       <% end %>
     <% end %>
+  </div>
   </div>
 </div>
 </div>

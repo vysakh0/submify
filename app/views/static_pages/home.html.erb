@@ -1,5 +1,5 @@
-
-<div class="container-fluid">
+<%= render 'shared/topics_sidebar' %>
+<div class="container">
   <% if signed_in? %>
     <% provide(:title, 'Home') %>
     <% unless @link_users.empty? %>
@@ -32,17 +32,14 @@
   <% else %>
     <div class="span8">
     <% cache "front", expires_in: 2.minutes do %>
-      <% provide(:title, 'What is the best thing you saw on the Internet today?. Lets go..' ) %>
-      <span class="exp_explain">   Sign in to share the best thing you saw on the internet today. </span>
+      <% provide(:title, 'What is the best hack you saw on the Internet today?.' ) %>
+      <span class="exp_explain">   Sign in to share the best hack you saw on the internet today. </span>
       <ol class="links">
         <%= render @link_users if @link_users %>
       </ol>
       <%= will_paginate @link_users %>
     <% end %>
   </div>
-  <div class="social_media">
-      <%= render 'shared/social_media' %>
-    </div>
        <%= render 'shared/sign_in_fixed' %>
   <% end %>
 </div>

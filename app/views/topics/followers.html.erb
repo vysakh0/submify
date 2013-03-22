@@ -3,6 +3,7 @@
   <div class="span8">
     <%= render 'topic_stats' %>
     <% if @users.any? %>
+      <div class="container">
       <div class="span8">
     <h4>Followers 
       (<%= @users.count %>) </h4>
@@ -11,6 +12,7 @@
       </ul>
       <%= will_paginate @users %>
     </div>
+  </div>
     <% end %>
   </div>
 </div>
